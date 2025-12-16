@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://kpapos05kbp5"]
+[gd_scene load_steps=8 format=3 uid="uid://kpapos05kbp5"]
 
 [ext_resource type="PackedScene" path="res://scenes/entities/player.tscn" id="1_player"]
 [ext_resource type="Script" uid="uid://6pdq5vj6jg3s" path="res://scenes/world.gd" id="2_world"]
@@ -6,11 +6,13 @@
 [ext_resource type="PackedScene" path="res://scenes/entities/sundial.tscn" id="4_sundial"]
 [ext_resource type="PackedScene" path="res://scenes/ui/crafting_minigame.tscn" id="5_crafting"]
 [ext_resource type="PackedScene" path="res://scenes/ui/dialogue_box.tscn" id="6_dialogue"]
+[ext_resource type="TileSet" path="res://resources/tilesets/grass_tileset.tres" id="7_tileset"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("2_world")
 
 [node name="Ground" type="TileMapLayer" parent="."]
+tile_set = ExtResource("7_tileset")
 
 [node name="Interactables" type="Node2D" parent="."]
 
