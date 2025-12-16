@@ -1,4 +1,19 @@
 extends Node2D
+
+@onready var ground_layer: TileMapLayer = $Ground
+
+func _ready() -> void:
+	_paint_ground_tiles()
+
+func _paint_ground_tiles() -> void:
+	# Paint a 40x40 grid of grass tiles (centered around origin)
+	# This follows Phase 1 "placeholder" approach from PHASE1_IMPLEMENTATION.md
+	for x in range(-20, 20):
+		for y in range(-20, 20):
+			# Set tile at (x,y) to use atlas coords (0,0) from the tileset
+			ground_layer.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
+	
+	print("[World] Painted ground tiles programmatically")
 ## World script - adds scene transition test trigger
 
 @onready var crafting_ui: Control = $CanvasLayer/CraftingMinigame
@@ -36,8 +51,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _test_crafting() -> void:
 	if crafting_ui:
 		# Simple test pattern: ↑ → ↓ ← then ENTER ENTER
-		var pattern = ["ui_up", "ui_right", "ui_down", "ui_left"]
-		var buttons = ["ui_accept", "ui_accept"]
+		var pattern: Array[String] = ["ui_up", "ui_right", "ui_down", "ui_left"]
+		var buttons: Array[String] = ["ui_accept", "ui_accept"]
 		crafting_ui.start_crafting(pattern, buttons, 2.0)
 
 func _on_crafting_complete(success: bool) -> void:
