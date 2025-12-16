@@ -50,28 +50,28 @@ func test_player_initial_velocity_zero() -> void:
 func test_player_move_right() -> void:
 	var start_pos = player.global_position
 	_sender.action_down("ui_right")
-	await wait_frames(10)
+	await _wait_for_frames(10)
 	_sender.action_up("ui_right")
 	assert_gt(player.global_position.x, start_pos.x, "Player should move right")
 
 func test_player_move_left() -> void:
 	var start_pos = player.global_position
 	_sender.action_down("ui_left")
-	await wait_frames(10)
+	await _wait_for_frames(10)
 	_sender.action_up("ui_left")
 	assert_lt(player.global_position.x, start_pos.x, "Player should move left")
 
 func test_player_move_up() -> void:
 	var start_pos = player.global_position
 	_sender.action_down("ui_up")
-	await wait_frames(10)
+	await _wait_for_frames(10)
 	_sender.action_up("ui_up")
 	assert_lt(player.global_position.y, start_pos.y, "Player should move up")
 
 func test_player_move_down() -> void:
 	var start_pos = player.global_position
 	_sender.action_down("ui_down")
-	await wait_frames(10)
+	await _wait_for_frames(10)
 	_sender.action_up("ui_down")
 	assert_gt(player.global_position.y, start_pos.y, "Player should move down")
 
@@ -81,14 +81,14 @@ func test_player_move_down() -> void:
 
 func test_sprite_flips_left() -> void:
 	_sender.action_down("ui_left")
-	await wait_frames(5)
+	await _wait_for_frames(5)
 	_sender.action_up("ui_left")
 	var sprite = player.get_node("Sprite") as Sprite2D
 	assert_true(sprite.flip_h, "Sprite should flip when moving left")
 
 func test_sprite_not_flipped_right() -> void:
 	_sender.action_down("ui_right")
-	await wait_frames(5)
+	await _wait_for_frames(5)
 	_sender.action_up("ui_right")
 	var sprite = player.get_node("Sprite") as Sprite2D
 	assert_false(sprite.flip_h, "Sprite should not flip when moving right")
@@ -116,6 +116,6 @@ func test_get_facing_tile() -> void:
 # HELPER FUNCTIONS
 # ============================================
 
-func wait_frames(count: int) -> void:
+func _wait_for_frames(count: int) -> void:
 	for i in range(count):
 		await get_tree().process_frame

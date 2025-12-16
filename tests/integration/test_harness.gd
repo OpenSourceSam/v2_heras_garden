@@ -123,10 +123,10 @@ func _simulate_input(action: String, duration: float) -> void:
 	await get_tree().create_timer(duration).timeout
 	Input.action_release(action)
 
-func _take_screenshot(name: String) -> void:
+func _take_screenshot(screenshot_name: String) -> void:
 	await RenderingServer.frame_post_draw
 	var image = get_viewport().get_texture().get_image()
-	var path = SCREENSHOTS_DIR + name + ".png"
+	var path = SCREENSHOTS_DIR + screenshot_name + ".png"
 	var error = image.save_png(path)
 	if error == OK:
 		print("[TestHarness] Screenshot saved: %s" % path)
@@ -148,10 +148,10 @@ func _log_test(test_name: String, passed: bool, message: String) -> void:
 		print("[FAIL] %s: %s" % [result["name"], message])
 
 func _finish_tests() -> void:
-	print("\n" + "=" * 50)
+	print("\n" + "=".repeat(50))
 	print("[TestHarness] Tests Complete!")
 	print("Passed: %d / Failed: %d" % [test_results["passed"], test_results["failed"]])
-	print("=" * 50 + "\n")
+	print("=".repeat(50) + "\n")
 	
 	# Save results to JSON
 	var json_str = JSON.stringify(test_results, "\t")
