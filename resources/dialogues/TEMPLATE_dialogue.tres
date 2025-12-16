@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_template"]
+
+[resource]
+script = ExtResource("1_template")
+id = "example_dialogue"
+lines = [
+	{"speaker": "Circe", "text": "This is example dialogue."},
+	{"speaker": "Hermes", "text": "This is a response."}
+]
+choices = [
+	{"text": "Option 1", "next_id": "dialogue_branch_1"},
+	{"text": "Option 2", "next_id": "dialogue_branch_2"}
+]
+flags_required = []
+flags_to_set = ["example_flag_set"]
+next_dialogue_id = ""
