@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = "act1_hermes_warning"
+lines = Array[Dictionary]([{
+"speaker": "Hermes",
+"text": "Well, well. Little Circe, picking flowers."
+}, {
+"speaker": "Hermes",
+"text": "How pastoral."
+}, {
+"speaker": "Circe",
+"text": "Hermes! What are you doing here?"
+}, {
+"speaker": "Hermes",
+"text": "I go everywhere, darling. Messenger god, remember?"
+}, {
+"speaker": "Hermes",
+"text": "Besides, I heard you were exiled— wait, not exiled yet."
+}, {
+"speaker": "Hermes",
+"text": "You're here voluntarily. Interesting."
+}, {
+"speaker": "Circe",
+"text": "I needed space."
+}, {
+"speaker": "Hermes",
+"text": "And what are those behind your back? Pharmaka, if I'm not mistaken."
+}, {
+"speaker": "Circe",
+"text": "That's none of your business."
+}, {
+"speaker": "Hermes",
+"text": "Circe. Whatever you're planning... think carefully."
+}, {
+"speaker": "Hermes",
+"text": "Pharmaka doesn't forgive mistakes. Trust me, I've seen what it can do."
+}])
+choices = Array[Dictionary]([{
+"text": "I know what I'm doing.",
+"next_id": "",
+"flag_to_set": "hermes_dismissed",
+"flag_required": ""
+}, {
+"text": "I'm just experimenting.",
+"next_id": "",
+"flag_to_set": "hermes_lied",
+"flag_required": ""
+}, {
+"text": "She deserves it.",
+"next_id": "",
+"flag_to_set": "hermes_honest",
+"flag_required": ""
+}])
+flags_required = []
+flags_to_set = ["met_hermes", "act1_hermes_complete"]

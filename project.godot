@@ -21,6 +21,8 @@ GameState="*res://src/autoloads/game_state.gd"
 AudioController="*res://src/autoloads/audio_controller.gd"
 SaveController="*res://src/autoloads/save_controller.gd"
 SceneManager="*res://src/autoloads/scene_manager.gd"
+QuestManager="*res://src/autoloads/quest_manager.gd"
+PlaytestTelemetry="*res://addons/PlaytestTelemetry/PlaytestTelemetry.gd"
 
 [display]
 
@@ -29,6 +31,10 @@ window/size/viewport_height=1240
 window/size/mode=2
 window/size/resizable=false
 window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/PlaytestTelemetry/plugin.cfg")
 
 [input]
 
@@ -44,10 +50,6 @@ ui_select={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":32,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/PlaytestTelemetry/plugin.cfg")
 
 [rendering]
 
