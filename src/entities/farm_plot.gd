@@ -140,14 +140,30 @@ func interact() -> void:
 		State.TILLED:
 			# Player needs to select seed from inventory
 			# This will be handled by UI later
-			# For now, auto-plant wheat if available
-			if GameState.has_item("wheat_seed"):
-				GameState.remove_item("wheat_seed", 1)
-				plant("wheat")
+			# For now, auto-plant first available seed
+			_plant_first_available_seed()
 		State.PLANTED, State.GROWING:
 			water()
 		State.HARVESTABLE:
 			harvest()
+
+func _plant_first_available_seed() -> void:
+	# Check for available seeds in priority order
+	var seed_priority = [
+		["wheat_seed", "wheat"],
+		["nightshade_seed", "nightshade"],
+		["moly_seed", "moly"]
+	]
+	
+	for seed_data in seed_priority:
+		var seed_id = seed_data[0]
+		var target_crop_id = seed_data[1]
+		if GameState.has_item(seed_id):
+			GameState.remove_item(seed_id, 1)
+			plant(target_crop_id)
+			return
+	
+	print("[FarmPlot] No seeds available to plant")
 
 # ============================================
 # HELPERS

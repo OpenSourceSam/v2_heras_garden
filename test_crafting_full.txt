@@ -1,0 +1,1439 @@
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+[GameState] Initialized
+[GameState] Registered crop: wheat
+[GameState] Registered crop: nightshade
+[GameState] Registered crop: moly
+[GameState] Registered item: wheat_seed
+[GameState] Registered item: wheat
+[GameState] Registered item: nightshade_seed
+[GameState] Registered item: nightshade
+[GameState] Registered item: moly_seed
+[GameState] Registered item: moly
+[GameState] Registries loaded
+[GameState] Added 5 x wheat_seed (total: 5)
+[GameState] Added 5 x nightshade_seed (total: 5)
+[GameState] Added 5 x moly_seed (total: 5)
+[GameState] Added starter items
+[AudioController] Initialized
+[SceneManager] Initialized
+[QuestManager] Initialized
+SCRIPT ERROR: Invalid access to property or key 'tree_exited' on a base object of type 'null instance'.
+   at: _ready (res://addons/debug_camera/scripts/DebugCamAutoload.gd:11)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://addons/debug_camera/scripts/DebugCamAutoload.gd:11)
+ERROR: Can't send message. No active debugger
+   at: send_message (core/core_bind.cpp:2199)
+   GDScript backtrace (most recent call first):
+       [0] _deactivate_debug_mode (res://addons/runtime_debug_tools/scripts/debugger_runtime.gd:172)
+       [1] _ready (res://addons/runtime_debug_tools/scripts/debugger_runtime.gd:27)
+ERROR: Can't send message. No active debugger
+   at: send_message (core/core_bind.cpp:2199)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://addons/runtime_debug_tools/scripts/debugger_runtime.gd:29)
+---  GUT  ---
+[1m[INFO]:  [0musing [C:/Users/Sam/AppData/Roaming/Godot/app_userdata/Hera's Garden] for temporary output.
+Godot version:  4.5.1
+GUT version:  9.5.0
+[33m[WARNING]:  [0mIgnoring script res://tests/unit/test_act1_flow.gd because it does not extend GutTest
+SCRIPT ERROR: Parse Error: Identifier "sender" not declared in the current scope.
+   at: GDScript::reload (res://tests/unit/test_crafting.gd:19)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+SCRIPT ERROR: Parse Error: Identifier "sender" not declared in the current scope.
+   at: GDScript::reload (res://tests/unit/test_crafting.gd:20)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+SCRIPT ERROR: Parse Error: Identifier "sender" not declared in the current scope.
+   at: GDScript::reload (res://tests/unit/test_crafting.gd:23)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+SCRIPT ERROR: Parse Error: Identifier "sender" not declared in the current scope.
+   at: GDScript::reload (res://tests/unit/test_crafting.gd:24)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+SCRIPT ERROR: Parse Error: Identifier "sender" not declared in the current scope.
+   at: GDScript::reload (res://tests/unit/test_crafting.gd:27)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+SCRIPT ERROR: Parse Error: Identifier "sender" not declared in the current scope.
+   at: GDScript::reload (res://tests/unit/test_crafting.gd:28)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+SCRIPT ERROR: Parse Error: Identifier "sender" not declared in the current scope.
+   at: GDScript::reload (res://tests/unit/test_crafting.gd:46)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+SCRIPT ERROR: Parse Error: Identifier "sender" not declared in the current scope.
+   at: GDScript::reload (res://tests/unit/test_crafting.gd:47)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+SCRIPT ERROR: Parse Error: Identifier "sender" not declared in the current scope.
+   at: GDScript::reload (res://tests/unit/test_crafting.gd:65)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+SCRIPT ERROR: Parse Error: Identifier "sender" not declared in the current scope.
+   at: GDScript::reload (res://tests/unit/test_crafting.gd:66)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+SCRIPT ERROR: Parse Error: Identifier "sender" not declared in the current scope.
+   at: GDScript::reload (res://tests/unit/test_crafting.gd:83)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+ERROR: Failed to load script "res://tests/unit/test_crafting.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:3041)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+[33m[WARNING]:  [0mIgnoring script res://tests/unit/test_crafting.gd because it does not extend GutTest
+SCRIPT ERROR: Parse Error: Invalid index type "String" for a base of type "Array[Dictionary]".
+   at: GDScript::reload (res://tests/integration/test_crafting_flow.gd:32)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+SCRIPT ERROR: Parse Error: Cannot find member "keys" in base "Array[Dictionary]".
+   at: GDScript::reload (res://tests/integration/test_crafting_flow.gd:99)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+SCRIPT ERROR: Parse Error: Function "keys()" not found in base Array[Dictionary].
+   at: GDScript::reload (res://tests/integration/test_crafting_flow.gd:99)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+SCRIPT ERROR: Parse Error: Cannot find member "keys" in base "Array[Dictionary]".
+   at: GDScript::reload (res://tests/integration/test_crafting_flow.gd:113)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+SCRIPT ERROR: Parse Error: Function "keys()" not found in base Array[Dictionary].
+   at: GDScript::reload (res://tests/integration/test_crafting_flow.gd:113)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+ERROR: Failed to load script "res://tests/integration/test_crafting_flow.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:3041)
+   GDScript backtrace (most recent call first):
+       [0] load_script_using_custom_warnings (res://addons/gut/warnings_manager.gd:159)
+       [1] _parse_script (res://addons/gut/test_collector.gd:76)
+       [2] add_script (res://addons/gut/test_collector.gd:127)
+       [3] add_script (res://addons/gut/gut.gd:1050)
+       [4] add_directory (res://addons/gut/gut.gd:1073)
+       [5] _apply_options (res://addons/gut/gut_config.gd:136)
+       [6] apply_options (res://addons/gut/gut_config.gd:207)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:191)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:238)
+       [9] main (res://addons/gut/cli/gut_cli.gd:284)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+[33m[WARNING]:  [0mIgnoring script res://tests/integration/test_crafting_flow.gd because it does not extend GutTest
+[33m[WARNING]:  [0mIgnoring script res://tests/integration/test_harness.gd because it does not extend GutTest
+[33m[WARNING]:  [0mIgnoring script res://tests/unit/test_crafting.gd because it does not extend GutTest
+[4m
+
+res://tests/unit/test_crop_registry.gd
+[0m* test_wheat_crop_registered
+* test_nightshade_crop_registered
+* test_moly_crop_registered
+* test_wheat_items_registered
+* test_nightshade_items_registered
+* test_moly_items_registered
+* test_wheat_growth_cycle
+[GameState] Planted wheat at (0, 0)
+[GameState] Day advanced to 2
+[GameState] Day advanced to 3
+[GameState] Day advanced to 4
+* test_nightshade_growth_cycle
+[GameState] Planted nightshade at (1, 0)
+[GameState] Day advanced to 2
+[GameState] Day advanced to 3
+[GameState] Day advanced to 4
+[GameState] Day advanced to 5
+[GameState] Day advanced to 6
+* test_moly_growth_cycle
+[GameState] Planted moly at (2, 0)
+[GameState] Day advanced to 2
+[GameState] Day advanced to 3
+[GameState] Day advanced to 4
+[GameState] Day advanced to 5
+[GameState] Day advanced to 6
+[GameState] Day advanced to 7
+[GameState] Day advanced to 8
+* test_starter_seeds_provided
+[1m10/10 passed.
+[0m[4m
+
+res://tests/unit/test_farm_plot.gd
+[0m* test_plant_crop
+[FarmPlot] Ready at grid position (0, 0)
+[GameState] Added 1 x wheat_seed (total: 1)
+[FarmPlot] Interacted - State: EMPTY
+[FarmPlot] Tilled at (0, 0)
+[FarmPlot] Planted wheat at (0, 0)
+* test_grow_crop
+[FarmPlot] Ready at grid position (0, 0)
+[FarmPlot] Cannot plant - not tilled
+[31m    [Failed]:  [0m[0] expected to equal [2]:  
+      at line 31
+[GameState] Day advanced to 2
+[31m    [Failed]:  [0m[0] expected to equal [3]:  
+      at line 40
+* test_harvest_crop
+[FarmPlot] Ready at grid position (0, 0)
+[FarmPlot] Cannot plant - not tilled
+[31m    [Failed]:  [0m[0] expected to equal [4]:  
+      at line 49
+[FarmPlot] Crop not ready to harvest
+[31m    [Failed]:  [0m[0] expected to equal [1]:  
+      at line 52
+[31m    [Failed]:  [0m[0] expected to equal [1]:  
+      at line 53
+[1m1/3 passed.
+[0m[4m
+
+res://tests/unit/test_game_state.gd
+[0m* test_add_item_creates_entry
+[GameState] Added 5 x wheat (total: 5)
+* test_add_item_stacks
+[GameState] Added 3 x wheat (total: 3)
+[GameState] Added 2 x wheat (total: 5)
+* test_remove_item_subtracts
+[GameState] Added 5 x wheat (total: 5)
+[GameState] Removed 2 x wheat
+* test_remove_item_fails_insufficient
+[GameState] Added 2 x wheat (total: 2)
+* test_remove_item_erases_zero
+[GameState] Added 3 x wheat (total: 3)
+[GameState] Removed 3 x wheat
+* test_has_item_true
+[GameState] Added 5 x wheat (total: 5)
+* test_has_item_false
+[GameState] Added 2 x wheat (total: 2)
+* test_has_item_nonexistent
+* test_add_gold
+[GameState] Added 50 gold (total: 150)
+* test_remove_gold_success
+[GameState] Removed 50 gold (total: 50)
+* test_remove_gold_insufficient
+* test_set_flag_default_true
+[GameState] Flag set: met_medusa = true
+* test_set_flag_explicit_false
+[GameState] Flag set: met_medusa = true
+[GameState] Flag set: met_medusa = false
+* test_get_flag_default
+* test_advance_day
+[GameState] Day advanced to 2
+* test_advance_day_multiple
+[GameState] Day advanced to 2
+[GameState] Day advanced to 3
+[GameState] Day advanced to 4
+[GameState] Day advanced to 5
+[GameState] Day advanced to 6
+* test_season_spring
+* test_season_changes_to_summer
+[GameState] Day advanced to 2
+[GameState] Day advanced to 3
+[GameState] Day advanced to 4
+[GameState] Day advanced to 5
+[GameState] Day advanced to 6
+[GameState] Day advanced to 7
+[GameState] Day advanced to 8
+[GameState] Day advanced to 9
+[GameState] Day advanced to 10
+[GameState] Day advanced to 11
+[GameState] Day advanced to 12
+[GameState] Day advanced to 13
+[GameState] Day advanced to 14
+[GameState] Day advanced to 15
+[GameState] Day advanced to 16
+[GameState] Day advanced to 17
+[GameState] Day advanced to 18
+[GameState] Day advanced to 19
+[GameState] Day advanced to 20
+[GameState] Day advanced to 21
+[GameState] Day advanced to 22
+[GameState] Day advanced to 23
+[GameState] Day advanced to 24
+[GameState] Day advanced to 25
+[GameState] Day advanced to 26
+[GameState] Day advanced to 27
+[GameState] Day advanced to 28
+[GameState] Day advanced to 29
+* test_inventory_signal_emitted
+[GameState] Added 1 x wheat (total: 1)
+* test_gold_signal_emitted
+[GameState] Added 25 gold (total: 125)
+* test_flag_signal_emitted
+[GameState] Flag set: test_flag = true
+* test_day_signal_emitted
+[GameState] Day advanced to 2
+[1m22/22 passed.
+[0m[4m
+
+res://tests/unit/test_npc_base.gd
+[0m* test_npc_exists
+ERROR: Node not found: "Sprite" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@23").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:18)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+ERROR: Node not found: "Collision" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@23").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:19)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+[NPC:test_npc] Ready
+* test_npc_in_group
+ERROR: Node not found: "Sprite" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@24").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:18)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+ERROR: Node not found: "Collision" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@24").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:19)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+[NPC:test_npc] Ready
+ERROR: Node not found: "Sprite" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@24").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:18)
+       [1] test_npc_in_group (res://tests/unit/test_npc_base.gd:23)
+       [2] _run_test (res://addons/gut/gut.gd:612)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+ERROR: Node not found: "Collision" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@24").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:19)
+       [1] test_npc_in_group (res://tests/unit/test_npc_base.gd:23)
+       [2] _run_test (res://addons/gut/gut.gd:612)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+[NPC:test_npc] Ready
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Method/function failed. Returning: nullptr
+    [2] <engine-0>Method/function failed. Returning: nullptr
+      at line -1
+* test_npc_in_interactables_group
+ERROR: Node not found: "Sprite" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@25").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:18)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+ERROR: Node not found: "Collision" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@25").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:19)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+[NPC:test_npc] Ready
+ERROR: Node not found: "Sprite" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@25").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:18)
+       [1] test_npc_in_interactables_group (res://tests/unit/test_npc_base.gd:27)
+       [2] _run_test (res://addons/gut/gut.gd:612)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+ERROR: Node not found: "Collision" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@25").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:19)
+       [1] test_npc_in_interactables_group (res://tests/unit/test_npc_base.gd:27)
+       [2] _run_test (res://addons/gut/gut.gd:612)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+[NPC:test_npc] Ready
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Method/function failed. Returning: nullptr
+    [2] <engine-0>Method/function failed. Returning: nullptr
+      at line -1
+* test_npc_id_set
+ERROR: Node not found: "Sprite" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@26").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:18)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+ERROR: Node not found: "Collision" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@26").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:19)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+[NPC:test_npc] Ready
+* test_display_name_set
+ERROR: Node not found: "Sprite" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@27").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:18)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+ERROR: Node not found: "Collision" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@27").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:19)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+[NPC:test_npc] Ready
+* test_dialogue_id_set
+ERROR: Node not found: "Sprite" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@28").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:18)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+ERROR: Node not found: "Collision" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@28").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:19)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+[NPC:test_npc] Ready
+* test_set_dialogue_changes_id
+ERROR: Node not found: "Sprite" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@29").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:18)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+ERROR: Node not found: "Collision" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@29").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:19)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+[NPC:test_npc] Ready
+[NPC:test_npc] Dialogue changed to: new_dialogue
+* test_show_npc
+ERROR: Node not found: "Sprite" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@30").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:18)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+ERROR: Node not found: "Collision" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@30").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:19)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+[NPC:test_npc] Ready
+* test_hide_npc
+ERROR: Node not found: "Sprite" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@31").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:18)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+ERROR: Node not found: "Collision" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@31").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:19)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+[NPC:test_npc] Ready
+* test_is_interactable_default
+ERROR: Node not found: "Sprite" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@32").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:18)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+ERROR: Node not found: "Collision" (relative to "/root/GutRunner/@Node@21/@CharacterBody2D@32").
+   at: get_node (scene/main/node.cpp:1907)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_ready (res://src/entities/npc_base.gd:19)
+       [1] add_child_autofree (res://addons/gut/test.gd:2615)
+       [2] before_each (res://tests/unit/test_npc_base.gd:12)
+       [3] _run_test (res://addons/gut/gut.gd:604)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:815)
+[NPC:test_npc] Ready
+[1m8/10 passed.
+[0m[4m
+
+res://tests/unit/test_player.gd
+[0m* test_player_exists
+[Player] Initialized at (0.0, 0.0)
+ERROR: Parameter "p_child" is null.
+   at: add_child (scene/main/node.cpp:1683)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+SCRIPT ERROR: Invalid type in function 'add_child'. The Object-derived class of argument 1 (RefCounted (GutInputSender)) is not a subclass of the expected argument class.
+   at: add_child_autofree (res://addons/gut/test.gd:2615)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+* test_player_has_sprite
+[Player] Initialized at (0.0, 0.0)
+ERROR: Parameter "p_child" is null.
+   at: add_child (scene/main/node.cpp:1683)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+SCRIPT ERROR: Invalid type in function 'add_child'. The Object-derived class of argument 1 (RefCounted (GutInputSender)) is not a subclass of the expected argument class.
+   at: add_child_autofree (res://addons/gut/test.gd:2615)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+* test_player_has_collision
+[Player] Initialized at (0.0, 0.0)
+ERROR: Parameter "p_child" is null.
+   at: add_child (scene/main/node.cpp:1683)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+SCRIPT ERROR: Invalid type in function 'add_child'. The Object-derived class of argument 1 (RefCounted (GutInputSender)) is not a subclass of the expected argument class.
+   at: add_child_autofree (res://addons/gut/test.gd:2615)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+* test_player_has_camera
+[Player] Initialized at (0.0, 0.0)
+ERROR: Parameter "p_child" is null.
+   at: add_child (scene/main/node.cpp:1683)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+SCRIPT ERROR: Invalid type in function 'add_child'. The Object-derived class of argument 1 (RefCounted (GutInputSender)) is not a subclass of the expected argument class.
+   at: add_child_autofree (res://addons/gut/test.gd:2615)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+* test_player_has_interaction_zone
+[Player] Initialized at (0.0, 0.0)
+ERROR: Parameter "p_child" is null.
+   at: add_child (scene/main/node.cpp:1683)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+SCRIPT ERROR: Invalid type in function 'add_child'. The Object-derived class of argument 1 (RefCounted (GutInputSender)) is not a subclass of the expected argument class.
+   at: add_child_autofree (res://addons/gut/test.gd:2615)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+* test_player_initial_velocity_zero
+[Player] Initialized at (0.0, 0.0)
+ERROR: Parameter "p_child" is null.
+   at: add_child (scene/main/node.cpp:1683)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+SCRIPT ERROR: Invalid type in function 'add_child'. The Object-derived class of argument 1 (RefCounted (GutInputSender)) is not a subclass of the expected argument class.
+   at: add_child_autofree (res://addons/gut/test.gd:2615)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+* test_player_move_right
+[Player] Initialized at (0.0, 0.0)
+ERROR: Parameter "p_child" is null.
+   at: add_child (scene/main/node.cpp:1683)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+SCRIPT ERROR: Invalid type in function 'add_child'. The Object-derived class of argument 1 (RefCounted (GutInputSender)) is not a subclass of the expected argument class.
+   at: add_child_autofree (res://addons/gut/test.gd:2615)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+      at line 55
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+* test_player_move_left
+[Player] Initialized at (0.0, 0.0)
+ERROR: Parameter "p_child" is null.
+   at: add_child (scene/main/node.cpp:1683)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+SCRIPT ERROR: Invalid type in function 'add_child'. The Object-derived class of argument 1 (RefCounted (GutInputSender)) is not a subclass of the expected argument class.
+   at: add_child_autofree (res://addons/gut/test.gd:2615)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+      at line 62
+* test_player_move_up
+[Player] Initialized at (0.0, 0.0)
+ERROR: Parameter "p_child" is null.
+   at: add_child (scene/main/node.cpp:1683)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+       [4] _run_test (res://addons/gut/gut.gd:640)
+       [5] test_player_move_left (res://tests/unit/test_player.gd:62)
+       [6] _wait_for_frames (res://tests/unit/test_player.gd:121)
+SCRIPT ERROR: Invalid type in function 'add_child'. The Object-derived class of argument 1 (RefCounted (GutInputSender)) is not a subclass of the expected argument class.
+   at: add_child_autofree (res://addons/gut/test.gd:2615)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+       [4] _run_test (res://addons/gut/gut.gd:640)
+       [5] test_player_move_left (res://tests/unit/test_player.gd:62)
+       [6] _wait_for_frames (res://tests/unit/test_player.gd:121)
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+    [3] <engine-0>Condition "!E" is true. Returning: false
+    [4] <engine-0>Condition "!E" is true. Returning: false
+      at line 69
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+* test_player_move_down
+[Player] Initialized at (0.0, 0.0)
+ERROR: Parameter "p_child" is null.
+   at: add_child (scene/main/node.cpp:1683)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+SCRIPT ERROR: Invalid type in function 'add_child'. The Object-derived class of argument 1 (RefCounted (GutInputSender)) is not a subclass of the expected argument class.
+   at: add_child_autofree (res://addons/gut/test.gd:2615)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+      at line 76
+* test_sprite_flips_left
+[Player] Initialized at (0.0, 0.0)
+ERROR: Parameter "p_child" is null.
+   at: add_child (scene/main/node.cpp:1683)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+       [4] _run_test (res://addons/gut/gut.gd:640)
+       [5] test_player_move_down (res://tests/unit/test_player.gd:76)
+       [6] _wait_for_frames (res://tests/unit/test_player.gd:121)
+SCRIPT ERROR: Invalid type in function 'add_child'. The Object-derived class of argument 1 (RefCounted (GutInputSender)) is not a subclass of the expected argument class.
+   at: add_child_autofree (res://addons/gut/test.gd:2615)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+       [4] _run_test (res://addons/gut/gut.gd:640)
+       [5] test_player_move_down (res://tests/unit/test_player.gd:76)
+       [6] _wait_for_frames (res://tests/unit/test_player.gd:121)
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+    [3] <engine-0>Condition "!E" is true. Returning: false
+    [4] <engine-0>Condition "!E" is true. Returning: false
+      at line 87
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+* test_sprite_not_flipped_right
+[Player] Initialized at (0.0, 0.0)
+ERROR: Parameter "p_child" is null.
+   at: add_child (scene/main/node.cpp:1683)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+SCRIPT ERROR: Invalid type in function 'add_child'. The Object-derived class of argument 1 (RefCounted (GutInputSender)) is not a subclass of the expected argument class.
+   at: add_child_autofree (res://addons/gut/test.gd:2615)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+      at line 94
+* test_interaction_signal_exists
+[Player] Initialized at (0.0, 0.0)
+ERROR: Parameter "p_child" is null.
+   at: add_child (scene/main/node.cpp:1683)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+       [4] _run_test (res://addons/gut/gut.gd:640)
+       [5] test_sprite_not_flipped_right (res://tests/unit/test_player.gd:94)
+       [6] _wait_for_frames (res://tests/unit/test_player.gd:121)
+SCRIPT ERROR: Invalid type in function 'add_child'. The Object-derived class of argument 1 (RefCounted (GutInputSender)) is not a subclass of the expected argument class.
+   at: add_child_autofree (res://addons/gut/test.gd:2615)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+       [4] _run_test (res://addons/gut/gut.gd:640)
+       [5] test_sprite_not_flipped_right (res://tests/unit/test_player.gd:94)
+       [6] _wait_for_frames (res://tests/unit/test_player.gd:121)
+* test_get_grid_position
+[Player] Initialized at (0.0, 0.0)
+ERROR: Parameter "p_child" is null.
+   at: add_child (scene/main/node.cpp:1683)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+       [4] _run_test (res://addons/gut/gut.gd:640)
+       [5] test_sprite_not_flipped_right (res://tests/unit/test_player.gd:94)
+       [6] _wait_for_frames (res://tests/unit/test_player.gd:121)
+SCRIPT ERROR: Invalid type in function 'add_child'. The Object-derived class of argument 1 (RefCounted (GutInputSender)) is not a subclass of the expected argument class.
+   at: add_child_autofree (res://addons/gut/test.gd:2615)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+       [4] _run_test (res://addons/gut/gut.gd:640)
+       [5] test_sprite_not_flipped_right (res://tests/unit/test_player.gd:94)
+       [6] _wait_for_frames (res://tests/unit/test_player.gd:121)
+* test_get_facing_tile
+[Player] Initialized at (0.0, 0.0)
+ERROR: Parameter "p_child" is null.
+   at: add_child (scene/main/node.cpp:1683)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+       [4] _run_test (res://addons/gut/gut.gd:640)
+       [5] test_sprite_not_flipped_right (res://tests/unit/test_player.gd:94)
+       [6] _wait_for_frames (res://tests/unit/test_player.gd:121)
+SCRIPT ERROR: Invalid type in function 'add_child'. The Object-derived class of argument 1 (RefCounted (GutInputSender)) is not a subclass of the expected argument class.
+   at: add_child_autofree (res://addons/gut/test.gd:2615)
+   GDScript backtrace (most recent call first):
+       [0] add_child_autofree (res://addons/gut/test.gd:2615)
+       [1] before_each (res://tests/unit/test_player.gd:18)
+       [2] _run_test (res://addons/gut/gut.gd:604)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:815)
+       [4] _run_test (res://addons/gut/gut.gd:640)
+       [5] test_sprite_not_flipped_right (res://tests/unit/test_player.gd:94)
+       [6] _wait_for_frames (res://tests/unit/test_player.gd:121)
+[1m9/15 passed.
+[0m[4m
+
+res://tests/unit/test_quest_manager.gd
+[0m* test_start_quest_returns_true
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+* test_start_quest_emits_signal
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+* test_start_quest_duplicate_returns_false
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+[QuestManager] Quest already started: test_quest
+* test_quest_status_not_started
+[QuestManager] Initialized
+* test_quest_status_active
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+* test_is_quest_active_true
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+* test_is_quest_active_false
+[QuestManager] Initialized
+* test_complete_quest_returns_true
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+[GameState] Flag set: quest_test_quest_complete = true
+[QuestManager] Quest completed: test_quest
+* test_complete_quest_emits_signal
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+[GameState] Flag set: quest_test_quest_complete = true
+[QuestManager] Quest completed: test_quest
+* test_complete_quest_inactive_returns_false
+[QuestManager] Initialized
+[QuestManager] Cannot complete quest (not active): nonexistent
+* test_is_quest_completed_true
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+[GameState] Flag set: quest_test_quest_complete = true
+[QuestManager] Quest completed: test_quest
+* test_quest_metadata_stored
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+* test_update_quest_metadata
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+* test_get_active_quests
+[QuestManager] Initialized
+[QuestManager] Quest started: quest1
+[QuestManager] Quest started: quest2
+[GameState] Flag set: quest_quest1_complete = true
+[QuestManager] Quest completed: quest1
+* test_get_completed_quests
+[QuestManager] Initialized
+[QuestManager] Quest started: quest1
+[QuestManager] Quest started: quest2
+[GameState] Flag set: quest_quest1_complete = true
+[QuestManager] Quest completed: quest1
+[1m15/15 passed.
+[0m[4m
+
+res://tests/integration/test_dialogue_flow.gd
+[0m* test_dialogue_loads_correctly
+SCRIPT ERROR: Invalid call. Nonexistent function 'reset_state' in base 'Node (game_state.gd)'.
+   at: before_each (res://tests/integration/test_dialogue_flow.gd:22)
+   GDScript backtrace (most recent call first):
+       [0] before_each (res://tests/integration/test_dialogue_flow.gd:22)
+       [1] _run_test (res://addons/gut/gut.gd:604)
+       [2] _test_the_scripts (res://addons/gut/gut.gd:815)
+* test_dialogue_manager_instantiates
+SCRIPT ERROR: Invalid call. Nonexistent function 'reset_state' in base 'Node (game_state.gd)'.
+   at: before_each (res://tests/integration/test_dialogue_flow.gd:22)
+   GDScript backtrace (most recent call first):
+       [0] before_each (res://tests/integration/test_dialogue_flow.gd:22)
+       [1] _run_test (res://addons/gut/gut.gd:604)
+       [2] _test_the_scripts (res://addons/gut/gut.gd:815)
+[31m    [Failed]:  [0mShould start hidden
+      at line 36
+* test_start_dialogue_shows_ui
+SCRIPT ERROR: Invalid call. Nonexistent function 'reset_state' in base 'Node (game_state.gd)'.
+   at: before_each (res://tests/integration/test_dialogue_flow.gd:22)
+   GDScript backtrace (most recent call first):
+       [0] before_each (res://tests/integration/test_dialogue_flow.gd:22)
+       [1] _run_test (res://addons/gut/gut.gd:604)
+       [2] _test_the_scripts (res://addons/gut/gut.gd:815)
+[DialogueManager] Started dialogue: d_act1_hermes_intro
+* test_dialogue_lines_display
+SCRIPT ERROR: Invalid call. Nonexistent function 'reset_state' in base 'Node (game_state.gd)'.
+   at: before_each (res://tests/integration/test_dialogue_flow.gd:22)
+   GDScript backtrace (most recent call first):
+       [0] before_each (res://tests/integration/test_dialogue_flow.gd:22)
+       [1] _run_test (res://addons/gut/gut.gd:604)
+       [2] _test_the_scripts (res://addons/gut/gut.gd:815)
+[DialogueManager] Started dialogue: d_act1_hermes_intro
+[31m    [Failed]:  [0mShould emit dialogue_started signal
+      at line 57
+* test_dialogue_advances_with_input
+SCRIPT ERROR: Invalid call. Nonexistent function 'reset_state' in base 'Node (game_state.gd)'.
+   at: before_each (res://tests/integration/test_dialogue_flow.gd:22)
+   GDScript backtrace (most recent call first):
+       [0] before_each (res://tests/integration/test_dialogue_flow.gd:22)
+       [1] _run_test (res://addons/gut/gut.gd:604)
+       [2] _test_the_scripts (res://addons/gut/gut.gd:815)
+[DialogueManager] Started dialogue: d_act1_hermes_intro
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+      at line 75
+* test_choices_appear_at_end
+SCRIPT ERROR: Invalid call. Nonexistent function 'reset_state' in base 'Node (game_state.gd)'.
+   at: before_each (res://tests/integration/test_dialogue_flow.gd:22)
+   GDScript backtrace (most recent call first):
+       [0] before_each (res://tests/integration/test_dialogue_flow.gd:22)
+       [1] _run_test (res://addons/gut/gut.gd:604)
+       [2] _test_the_scripts (res://addons/gut/gut.gd:815)
+[DialogueManager] Started dialogue: d_act1_hermes_intro
+[33m    --- Awaiting 0.5 seconds  ---
+[0mERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+[33m    --- Awaiting 0.5 seconds  ---
+[0mERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+[33m    --- Awaiting 0.5 seconds  ---
+[0mERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+[33m    --- Awaiting 0.5 seconds  ---
+[0m[31m    [Failed]:  [0mChoices should be visible at end
+      at line 93
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+    [3] <engine-0>Condition "!E" is true. Returning: false
+    [4] <engine-0>Condition "!E" is true. Returning: false
+    [5] <engine-0>Condition "!E" is true. Returning: false
+    [6] <engine-0>Condition "!E" is true. Returning: false
+      at line 93
+* test_flag_set_after_dialogue
+SCRIPT ERROR: Invalid call. Nonexistent function 'reset_state' in base 'Node (game_state.gd)'.
+   at: before_each (res://tests/integration/test_dialogue_flow.gd:22)
+   GDScript backtrace (most recent call first):
+       [0] before_each (res://tests/integration/test_dialogue_flow.gd:22)
+       [1] _run_test (res://addons/gut/gut.gd:604)
+       [2] _test_the_scripts (res://addons/gut/gut.gd:815)
+[DialogueManager] Started dialogue: d_act1_hermes_intro
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "open_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+ERROR: The InputMap action "toggle_debug" doesn't exist.
+   at: event_get_action_status (core/input/input_map.cpp:266)
+   GDScript backtrace (most recent call first):
+       [0] _input (res://addons/copper_dc/scripts/debug_console.gd:91)
+[33m    --- Awaiting 1 seconds  ---
+[0m[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+    [3] <engine-0>Condition "!E" is true. Returning: false
+    [4] <engine-0>Condition "!E" is true. Returning: false
+    [5] <engine-0>Condition "!E" is true. Returning: false
+    [6] <engine-0>Condition "!E" is true. Returning: false
+    [7] <engine-0>Condition "!E" is true. Returning: false
+    [8] <engine-0>Condition "!E" is true. Returning: false
+    [9] <engine-0>Condition "!E" is true. Returning: false
+    [10] <engine-0>Condition "!E" is true. Returning: false
+      at line 116
+* test_flag_requirement_blocks_dialogue
+SCRIPT ERROR: Invalid call. Nonexistent function 'reset_state' in base 'Node (game_state.gd)'.
+   at: before_each (res://tests/integration/test_dialogue_flow.gd:22)
+   GDScript backtrace (most recent call first):
+       [0] before_each (res://tests/integration/test_dialogue_flow.gd:22)
+       [1] _run_test (res://addons/gut/gut.gd:604)
+       [2] _test_the_scripts (res://addons/gut/gut.gd:815)
+SCRIPT ERROR: Invalid assignment of property or key 'lines' with value of type 'Array' on a base object of type 'Resource (DialogueData)'.
+   at: test_flag_requirement_blocks_dialogue (res://tests/integration/test_dialogue_flow.gd:125)
+   GDScript backtrace (most recent call first):
+       [0] test_flag_requirement_blocks_dialogue (res://tests/integration/test_dialogue_flow.gd:125)
+       [1] _run_test (res://addons/gut/gut.gd:612)
+       [2] _test_the_scripts (res://addons/gut/gut.gd:815)
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-2>Invalid assignment of property or key 'lines' with value of type 'Array' on a base object of type 'Resource (DialogueData)'.
+      at line -1
+* test_choice_selection_sets_flag
+SCRIPT ERROR: Invalid call. Nonexistent function 'reset_state' in base 'Node (game_state.gd)'.
+   at: before_each (res://tests/integration/test_dialogue_flow.gd:22)
+   GDScript backtrace (most recent call first):
+       [0] before_each (res://tests/integration/test_dialogue_flow.gd:22)
+       [1] _run_test (res://addons/gut/gut.gd:604)
+       [2] _test_the_scripts (res://addons/gut/gut.gd:815)
+[DialogueManager] Started dialogue: d_act1_hermes_intro
+[1m3/9 passed.
+[0m
+
+
+
+[33m==============================================[0m
+[33m= 3 Orphans[0m
+[33m==============================================[0m
+res://tests/unit/test_crop_registry.gd
+    - Outside Tests
+[33m        * [DebugCamera3D:<Camera3D#58015614481>]
+        * [<Camera2D#62847452802>(DebugCamera2D.gd)]
+        * [<Camera3D#62864230019>(DebugCamera3D.gd)][0m
+
+
+[33m==============================================
+[0m[33m= Run Summary
+[0m[33m==============================================
+[0m[4m
+res://tests/unit/test_farm_plot.gd
+[0m- test_grow_crop
+[31m    [Failed]:  [0m[0] expected to equal [2]:  
+          at line 31
+[31m    [Failed]:  [0m[0] expected to equal [3]:  
+          at line 40
+- test_harvest_crop
+[31m    [Failed]:  [0m[0] expected to equal [4]:  
+          at line 49
+[31m    [Failed]:  [0m[0] expected to equal [1]:  
+          at line 52
+[31m    [Failed]:  [0m[0] expected to equal [1]:  
+          at line 53
+[4m
+res://tests/unit/test_npc_base.gd
+[0m- test_npc_in_group
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Method/function failed. Returning: nullptr
+    [2] <engine-0>Method/function failed. Returning: nullptr
+          at line -1
+- test_npc_in_interactables_group
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Method/function failed. Returning: nullptr
+    [2] <engine-0>Method/function failed. Returning: nullptr
+          at line -1
+[4m
+res://tests/unit/test_player.gd
+[0m- test_player_move_right
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+          at line 55
+- test_player_move_left
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+          at line 62
+- test_player_move_up
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+    [3] <engine-0>Condition "!E" is true. Returning: false
+    [4] <engine-0>Condition "!E" is true. Returning: false
+          at line 69
+- test_player_move_down
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+          at line 76
+- test_sprite_flips_left
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+    [3] <engine-0>Condition "!E" is true. Returning: false
+    [4] <engine-0>Condition "!E" is true. Returning: false
+          at line 87
+- test_sprite_not_flipped_right
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+          at line 94
+[4m
+res://tests/integration/test_dialogue_flow.gd
+[0m- test_dialogue_manager_instantiates
+[31m    [Failed]:  [0mShould start hidden
+          at line 36
+- test_dialogue_lines_display
+[31m    [Failed]:  [0mShould emit dialogue_started signal
+          at line 57
+- test_dialogue_advances_with_input
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+          at line 75
+- test_choices_appear_at_end
+[31m    [Failed]:  [0mChoices should be visible at end
+          at line 93
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+    [3] <engine-0>Condition "!E" is true. Returning: false
+    [4] <engine-0>Condition "!E" is true. Returning: false
+    [5] <engine-0>Condition "!E" is true. Returning: false
+    [6] <engine-0>Condition "!E" is true. Returning: false
+          at line 93
+- test_flag_set_after_dialogue
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+    [3] <engine-0>Condition "!E" is true. Returning: false
+    [4] <engine-0>Condition "!E" is true. Returning: false
+    [5] <engine-0>Condition "!E" is true. Returning: false
+    [6] <engine-0>Condition "!E" is true. Returning: false
+    [7] <engine-0>Condition "!E" is true. Returning: false
+    [8] <engine-0>Condition "!E" is true. Returning: false
+    [9] <engine-0>Condition "!E" is true. Returning: false
+    [10] <engine-0>Condition "!E" is true. Returning: false
+          at line 116
+- test_flag_requirement_blocks_dialogue
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-2>Invalid assignment of property or key 'lines' with value of type 'Array' on a base object of type 'Resource (DialogueData)'.
+          at line -1
+
+Totals
+------
+Warnings              5
+
+Scripts               7
+Tests                84
+Passing Tests        68
+Failing Tests        16
+Asserts           121/141
+Orphans               3
+Time              6.929s
+
+
+[31m---- 16 failing tests ----
+[0m

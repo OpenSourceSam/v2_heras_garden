@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue"]
+
+[resource]
+script = ExtResource("1_dialogue")
+id = "d_act1_hermes_intro_dismiss"
+lines = [
+	{"speaker": "Hermes", "text": "Famous last words. Very well. Don't say I didn't warn you."},
+	{"speaker": "Hermes", "text": "When this goes wrong—and it will—I'll be back with news. I always am."}
+]
+choices = []
+flags_required = []
+flags_to_set = ["hermes_warned"]

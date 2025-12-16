@@ -36,7 +36,7 @@ func _setup_fade_overlay() -> void:
 	_fade_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_fade_overlay.modulate.a = 0.0 # Start transparent
 	_fade_overlay.z_index = 100 # Above everything
-	get_tree().root.add_child(_fade_overlay)
+	get_tree().root.add_child.call_deferred(_fade_overlay)
 
 # ============================================
 # SCENE MANAGEMENT

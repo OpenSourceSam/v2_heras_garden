@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CropData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/crop_data.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = "nightshade"
+display_name = "Nightshade"
+growth_stages = Array[Texture2D]([])
+days_to_mature = 5
+harvest_item_id = "nightshade"
+seed_item_id = "nightshade_seed"
+sell_price = 25
+regrows = false
+seasons = []

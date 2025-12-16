@@ -7,8 +7,11 @@ signal inventory_changed(item_id: String, new_quantity: int)
 signal gold_changed(new_amount: int)
 signal day_advanced(new_day: int)
 signal flag_changed(flag: String, value: bool)
+signal crop_plant_failed(reason: String)
 signal crop_planted(plot_id: Vector2i, crop_id: String)
 signal crop_harvested(plot_id: Vector2i, item_id: String, quantity: int)
+signal crafting_started(recipe_id: String)
+signal crafting_completed(success: bool, result_item_id: String, quantity: int)
 
 # Constants
 const TILE_SIZE: int = 32
@@ -24,6 +27,7 @@ var farm_plots: Dictionary = {} # { Vector2i: PlotData }
 # Crop Registry (loaded dynamically)
 var _crop_registry: Dictionary = {} # { "crop_id": CropData }
 var _item_registry: Dictionary = {} # { "item_id": ItemData }
+var _recipe_registry: Dictionary = {} # { "recipe_id": RecipeData }
 
 # ============================================
 # INITIALIZATION
@@ -35,6 +39,8 @@ func _ready() -> void:
 	
 	# Give player starter items for testing
 	add_item("wheat_seed", 5)
+	add_item("nightshade_seed", 5)
+	add_item("moly_seed", 5)
 	print("[GameState] Added starter items")
 
 func _load_registries() -> void:
@@ -42,6 +48,14 @@ func _load_registries() -> void:
 	var wheat_crop = load("res://resources/crops/wheat.tres") as CropData
 	if wheat_crop:
 		register_crop(wheat_crop)
+	
+	var nightshade_crop = load("res://resources/crops/nightshade.tres") as CropData
+	if nightshade_crop:
+		register_crop(nightshade_crop)
+	
+	var moly_crop = load("res://resources/crops/moly.tres") as CropData
+	if moly_crop:
+		register_crop(moly_crop)
 	
 	# Load item data
 	var wheat_seed_item = load("res://resources/items/wheat_seed.tres") as ItemData
@@ -51,6 +65,27 @@ func _load_registries() -> void:
 	var wheat_item = load("res://resources/items/wheat.tres") as ItemData
 	if wheat_item:
 		register_item(wheat_item)
+	
+	var nightshade_seed_item = load("res://resources/items/nightshade_seed.tres") as ItemData
+	if nightshade_seed_item:
+		register_item(nightshade_seed_item)
+	
+	var nightshade_item = load("res://resources/items/nightshade.tres") as ItemData
+	if nightshade_item:
+		register_item(nightshade_item)
+	
+	var moly_seed_item = load("res://resources/items/moly_seed.tres") as ItemData
+	if moly_seed_item:
+		register_item(moly_seed_item)
+	
+	var moly_item = load("res://resources/items/moly.tres") as ItemData
+	if moly_item:
+		register_item(moly_item)
+	
+	# Load recipe data
+	var calming_draught_recipe = load("res://resources/recipes/calming_draught.tres") as RecipeData
+	if calming_draught_recipe:
+		register_recipe(calming_draught_recipe)
 	
 	print("[GameState] Registries loaded")
 
@@ -109,6 +144,47 @@ func set_flag(flag: String, value: bool = true) -> void:
 
 func get_flag(flag: String) -> bool:
 	return quest_flags.get(flag, false)
+
+# ============================================
+# CRAFTING MANAGEMENT
+# ============================================
+
+func start_crafting(recipe_id: String) -> bool:
+	var recipe = get_recipe_data(recipe_id)
+	if not recipe:
+		print("[GameState] Recipe not found: %s" % recipe_id)
+		return false
+	
+	# Check ingredients
+	for ingredient in recipe.ingredients:
+		var item_id = ingredient.get("item_id", "")
+		var qty = ingredient.get("quantity", 1)
+		if not has_item(item_id, qty):
+			print("[GameState] Missing ingredient: %s x%d" % [item_id, qty])
+			return false
+	
+	crafting_started.emit(recipe_id)
+	print("[GameState] Started crafting: %s" % recipe_id)
+	return true
+
+func complete_crafting(recipe_id: String, success: bool) -> void:
+	if not success:
+		crafting_completed.emit(false, "", 0)
+		return
+	
+	var recipe = get_recipe_data(recipe_id)
+	if not recipe:
+		return
+	
+	# Consume ingredients
+	for ingredient in recipe.ingredients:
+		remove_item(ingredient["item_id"], ingredient["quantity"])
+	
+	# Add result
+	add_item(recipe.result_item_id, recipe.result_quantity)
+	
+	crafting_completed.emit(true, recipe.result_item_id, recipe.result_quantity)
+	print("[GameState] define Crafted: %s" % recipe.display_name)
 
 # ============================================
 # DAY/SEASON MANAGEMENT
@@ -214,3 +290,10 @@ func register_crop(crop_data: CropData) -> void:
 func register_item(item_data: ItemData) -> void:
 	_item_registry[item_data.id] = item_data
 	print("[GameState] Registered item: %s" % item_data.id)
+
+func register_recipe(recipe_data: RecipeData) -> void:
+	_recipe_registry[recipe_data.id] = recipe_data
+	print("[GameState] Registered recipe: %s" % recipe_data.id)
+
+func get_recipe_data(recipe_id: String) -> RecipeData:
+	return _recipe_registry.get(recipe_id, null)

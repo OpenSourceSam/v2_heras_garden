@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue"]
+
+[resource]
+script = ExtResource("1_dialogue")
+id = "d_act1_hermes_intro"
+lines = [
+	{"speaker": "Hermes", "text": "Well, well. Little Circe, picking flowers. How pastoral."},
+	{"speaker": "Circe", "text": "Hermes! What are you doing here?"},
+	{"speaker": "Hermes", "text": "I go everywhere, darling. But be careful. Pharmaka doesn't forgive mistakes."}
+]
+choices = [
+	{"text": "I know what I'm doing.", "next_id": "d_act1_hermes_intro_dismiss"},
+	{"text": "I'm just experimenting.", "next_id": "d_act1_hermes_intro_lie"},
+	{"text": "She deserves it.", "next_id": "d_act1_hermes_intro_truth"}
+]
+flags_required = []
+flags_to_set = ["met_hermes"]

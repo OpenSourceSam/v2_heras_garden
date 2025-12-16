@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/recipe_data.gd" id="1_recipe"]
+
+[resource]
+script = ExtResource("1_recipe")
+id = "r_transformation_sap"
+display_name = "Transformation Sap"
+description = "A glowing purple-gold liquid extracted from Pharmaka flowers."
+ingredients = {
+"pharmaka_flower": 3
+}
+grinding_pattern = ["ui_up", "ui_right", "ui_down", "ui_left"]
+button_sequence = ["ui_accept", "ui_accept", "ui_cancel"]
+timing_window = 1.5
+result_item_id = "transformation_sap"
+result_quantity = 1

@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://pharmaka_field_scene"]
+
+[ext_resource type="Script" path="res://src/locations/pharmaka_field.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://player_scene" path="res://scenes/entities/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://hermes_scene" path="res://scenes/entities/hermes.tscn" id="2_hermes"]
+[ext_resource type="PackedScene" uid="uid://herb_minigame_scene" path="res://scenes/ui/herb_minigame.tscn" id="3_minigame"]
+[ext_resource type="PackedScene" uid="uid://dialogue_box_scene" path="res://scenes/ui/dialogue_box.tscn" id="4_dialogue"]
+
+[node name="PharmakaField" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Ground" type="ColorRect" parent="."]
+offset_right = 1080.0
+offset_bottom = 1240.0
+color = Color(0.3, 0.5, 0.2, 1)
+mouse_filter = 2
+
+[node name="FieldLabel" type="Label" parent="."]
+offset_left = 400.0
+offset_top = 50.0
+offset_right = 680.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 24
+text = "Pharmaka Field
+(Ancient Battlefield)"
+horizontal_alignment = 1
+
+[node name="InstructionLabel" type="Label" parent="."]
+offset_left = 100.0
+offset_top = 900.0
+offset_right = 980.0
+offset_bottom = 1000.0
+text = "Press E to interact with Hermes
+Walk near plants to find Pharmaka"
+autowrap_mode = 3
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Player" parent="Entities" instance=ExtResource("1_player")]
+position = Vector2(540, 600)
+
+[node name="Hermes" parent="Entities" instance=ExtResource("2_hermes")]
+position = Vector2(700, 400)
+
+[node name="PharmakaTrigger" type="Area2D" parent="Entities"]
+position = Vector2(300, 500)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/PharmakaTrigger"]
+
+[node name="Label" type="Label" parent="Entities/PharmakaTrigger"]
+offset_left = -80.0
+offset_top = -100.0
+offset_right = 80.0
+offset_bottom = -70.0
+text = "Pharmaka Flowers
+[Press E]"
+horizontal_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HerbMinigame" parent="CanvasLayer" instance=ExtResource("3_minigame")]
+visible = false
+
+[node name="DialogueBox" parent="CanvasLayer" groups=["dialogue_ui"] instance=ExtResource("4_dialogue")]
+visible = false

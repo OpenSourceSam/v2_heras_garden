@@ -1,36 +1,23 @@
 extends Control
-## Crafting Minigame - Mortar & Pestle pattern matching
-## See DEVELOPMENT_ROADMAP.md Task 1.4.1
-
-# ============================================
-# SIGNALS
-# ============================================
 
 signal crafting_complete(success: bool)
 
-# ============================================
-# NODE REFERENCES
-# ============================================
-
-@onready var pattern_display: Label = $PatternDisplay
-@onready var progress_bar: ProgressBar = $ProgressBar
-@onready var result_display: Label = $ResultDisplay
-
-# ============================================
-# STATE
-# ============================================
-
-var pattern: Array[String] = [] # ["ui_up", "ui_right", "ui_down", "ui_left"]
-var button_sequence: Array[String] = [] # ["ui_accept", "ui_accept"]
+var pattern: Array[String] = []
+var button_sequence: Array[String] = []
 var current_pattern_index: int = 0
 var current_button_index: int = 0
-var timing_window: float = 1.5 # seconds
+var timing_window: float = 1.5
 var last_input_time: float = 0.0
 var is_grinding_phase: bool = true
 
-# ============================================
-# PUBLIC METHODS
-# ============================================
+func _ready() -> void:
+	# Debug: if run as standalone scene, start test
+	if get_parent() == get_tree().root:
+		start_crafting(
+			["ui_up", "ui_down", "ui_left", "ui_right"],
+			["ui_accept", "ui_accept"],
+			2.0
+		)
 
 func start_crafting(grinding_pattern: Array[String], buttons: Array[String], timing: float = 1.5) -> void:
 	pattern = grinding_pattern
@@ -42,31 +29,37 @@ func start_crafting(grinding_pattern: Array[String], buttons: Array[String], tim
 	last_input_time = Time.get_ticks_msec() / 1000.0
 	
 	visible = true
-	result_display.text = ""
+	set_process_unhandled_input(true)
 	_update_display()
-	print("[CraftingMinigame] Started - Pattern: %d inputs, Buttons: %d, Timing: %.1fs" % [pattern.size(), button_sequence.size(), timing])
-
-# ============================================
-# INPUT HANDLING
-# ============================================
+	print("Crafting started: Pattern=%s, Buttons=%s" % [pattern, button_sequence])
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible:
 		return
-	
+
+	# Only check for key presses
+	if not event is InputEventKey and not event is InputEventJoypadButton:
+		return
+	if not event.pressed:
+		return
+
 	var current_time = Time.get_ticks_msec() / 1000.0
-	
+
 	# Check timing window
 	if current_time - last_input_time > timing_window:
+		print("Time expired! %f vs %f" % [current_time - last_input_time, timing_window])
 		_fail_crafting()
 		return
-	
+
 	if is_grinding_phase:
 		_handle_grinding_input(event)
 	else:
 		_handle_button_input(event)
 
 func _handle_grinding_input(event: InputEvent) -> void:
+	if current_pattern_index >= pattern.size():
+		return # Should have transitioned already
+
 	var expected = pattern[current_pattern_index]
 	
 	if event.is_action_pressed(expected):
@@ -75,86 +68,68 @@ func _handle_grinding_input(event: InputEvent) -> void:
 		last_input_time = Time.get_ticks_msec() / 1000.0
 		_update_display()
 		_play_feedback(true)
-		
+		print("Pattern match: %s" % expected)
+
 		if current_pattern_index >= pattern.size():
 			# Grinding complete, move to button sequence
+			print("Grinding phase complete!")
 			is_grinding_phase = false
 			current_button_index = 0
 			last_input_time = Time.get_ticks_msec() / 1000.0
 			_update_display()
-	
-	# Check for wrong input
-	for action in ["ui_up", "ui_right", "ui_down", "ui_left"]:
-		if action != expected and event.is_action_pressed(action):
-			_play_feedback(false)
-			# Don't fail immediately, just give negative feedback
+			
+			# If no buttons, auto-complete
+			if button_sequence.size() == 0:
+				_complete_crafting(true)
+
+	else:
+		# Check for wrong input (only directional checks to avoid punishing non-related keys)
+		for action in ["ui_up", "ui_right", "ui_down", "ui_left"]:
+			if action != expected and event.is_action_pressed(action):
+				print("Wrong pattern input: %s (expected %s)" % [action, expected])
+				_play_feedback(false)
+				# Optional: Fail on wrong input or just penalize
+				# For now, let's valid failure on wrong directional input
+				# _fail_crafting() 
 
 func _handle_button_input(event: InputEvent) -> void:
+	if current_button_index >= button_sequence.size():
+		return
+
 	var expected = button_sequence[current_button_index]
-	
+
 	if event.is_action_pressed(expected):
 		# Correct input
 		current_button_index += 1
 		last_input_time = Time.get_ticks_msec() / 1000.0
 		_update_display()
 		_play_feedback(true)
-		
+		print("Button match: %s" % expected)
+
 		if current_button_index >= button_sequence.size():
 			# All inputs correct - success!
 			_complete_crafting(true)
-	
-	# Check for wrong input
-	for action in ["ui_accept", "ui_cancel", "ui_select"]:
-		if action != expected and event.is_action_pressed(action):
-			_fail_crafting()
 
-# ============================================
-# COMPLETION
-# ============================================
+	else:
+		# Check for wrong input
+		for action in ["ui_accept", "ui_cancel", "ui_select", "ui_focus_next"]:
+			if action != expected and event.is_action_pressed(action):
+				print("Wrong button input: %s (expected %s)" % [action, expected])
+				_fail_crafting()
 
 func _complete_crafting(success: bool) -> void:
-	if success:
-		result_display.text = "SUCCESS!"
-		result_display.modulate = Color.GREEN
-		print("[CraftingMinigame] SUCCESS")
-	else:
-		result_display.text = "FAILED"
-		result_display.modulate = Color.RED
-		print("[CraftingMinigame] FAILED")
-	
-	await get_tree().create_timer(1.0).timeout
+	print("Crafting complete: Success=%s" % success)
 	crafting_complete.emit(success)
-	visible = false
+	set_process_unhandled_input(false)
+	# visible = false # Let caller handle visibility or wait for animation
 
 func _fail_crafting() -> void:
 	_complete_crafting(false)
 
-# ============================================
-# UI UPDATES
-# ============================================
-
 func _update_display() -> void:
-	if is_grinding_phase:
-		pattern_display.text = "Grind: %d/%d\nPress: %s" % [current_pattern_index, pattern.size(), _format_action(pattern[current_pattern_index] if current_pattern_index < pattern.size() else "")]
-		progress_bar.value = float(current_pattern_index) / float(pattern.size()) * 100.0
-	else:
-		pattern_display.text = "Finish: %d/%d\nPress: %s" % [current_button_index, button_sequence.size(), _format_action(button_sequence[current_button_index] if current_button_index < button_sequence.size() else "")]
-		progress_bar.value = 100.0 + (float(current_button_index) / float(button_sequence.size())) * 100.0
-
-func _format_action(action: String) -> String:
-	match action:
-		"ui_up": return "↑"
-		"ui_down": return "↓"
-		"ui_left": return "←"
-		"ui_right": return "→"
-		"ui_accept": return "ENTER"
-		"ui_cancel": return "ESC"
-		"ui_select": return "SPACE"
-		_: return action
+	# Placeholder for UI updates
+	pass
 
 func _play_feedback(correct: bool) -> void:
-	# TODO: Play sound, show visual effect
-	if correct:
-		print("[CraftingMinigame] ✓ Correct input")
-	else:
-		print("[CraftingMinigame] ✗ Wrong input")
+	# Placeholder for audio/visual feedback
+	pass

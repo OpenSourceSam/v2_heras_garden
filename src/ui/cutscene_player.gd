@@ -59,6 +59,29 @@ func play_cutscene(cutscene_id: String, lines: Array) -> void:
 	
 	_show_current_line()
 
+func play_transformation_scene() -> void:
+	is_playing = true
+	visible = true
+	
+	# Visual setup - dark purple background
+	background.modulate = Color(0.2, 0, 0.4, 1)
+	
+	# Scene sequence
+	speaker_label.text = ""
+	text_label.text = "*The sap burns as it touches the water...*"
+	await get_tree().create_timer(3.0).timeout
+	
+	text_label.text = "*Scylla screams as her form twists and breaks...*"
+	await get_tree().create_timer(3.0).timeout
+	
+	speaker_label.text = "Scylla"
+	text_label.text = "WHAT HAVE YOU DONE?!"
+	await get_tree().create_timer(3.0).timeout
+	
+	# Cleanup
+	background.modulate = Color.WHITE
+	_end_cutscene()
+
 func skip_cutscene() -> void:
 	"""Skip to end of cutscene."""
 	if is_playing:

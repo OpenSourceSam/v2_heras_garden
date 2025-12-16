@@ -98,6 +98,13 @@ func get_quest_data(quest_id: String) -> Dictionary:
 		return _quest_data[quest_id]
 	return {}
 
+func get_quest_data_resource(quest_id: String) -> QuestData:
+	var path = "res://resources/quests/%s.tres" % quest_id
+	if ResourceLoader.exists(path):
+		return load(path) as QuestData
+	push_warning("[QuestManager] QuestData resource not found: " + path)
+	return null
+
 func get_active_quests() -> Array[String]:
 	"""Return list of all active quest IDs."""
 	var active: Array[String] = []

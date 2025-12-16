@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/quest_data.gd" id="1_quest"]
+
+[resource]
+script = ExtResource("1_quest")
+id = "act1_q1_pharmaka"
+title = "Find the Pharmaka"
+description = "Search the ancient battlefield for flowers that glow with Titan blood."
+next_quest_id = "act1_q2_sap"
+start_hooks = []
+end_hooks = ["item_give_pharmaka_flower_3"]
+prerequisites = []

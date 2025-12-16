@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/item_data.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = "nightshade_seed"
+display_name = "Nightshade Seed"
+description = "Plant this to grow nightshade, a pharmaka herb"
+icon = null
+stack_size = 99
+sell_price = 12
+category = "seed"

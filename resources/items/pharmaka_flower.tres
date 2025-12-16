@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/item_data.gd" id="1_item"]
+
+[resource]
+script = ExtResource("1_item")
+id = "pharmaka_flower"
+display_name = "Pharmaka Flower"
+description = "A flower that glows with the blood of Titans."
+icon_path = "res://assets/items/pharmaka_flower.png"
+stackable = true
+max_stack = 99
+value = 0

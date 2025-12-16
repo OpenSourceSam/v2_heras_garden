@@ -1,16 +1,16 @@
-[gd_resource type="Resource" script_class="CropData" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="CropData" load_steps=2 format=3]
 
 [ext_resource type="Script" path="res://src/resources/crop_data.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/sprites/wheat_growth.png" id="2_texture"]
 
 [resource]
 script = ExtResource("1_script")
 id = "wheat"
 display_name = "Wheat"
-growth_stages = Array[Texture2D]([ExtResource("2_texture"), ExtResource("2_texture"), ExtResource("2_texture")])
+growth_stages = Array[Texture2D]([])
 days_to_mature = 3
 harvest_item_id = "wheat"
 seed_item_id = "wheat_seed"
 sell_price = 10
 regrows = false
 seasons = []
+

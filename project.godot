@@ -22,7 +22,9 @@ AudioController="*res://src/autoloads/audio_controller.gd"
 SaveController="*res://src/autoloads/save_controller.gd"
 SceneManager="*res://src/autoloads/scene_manager.gd"
 QuestManager="*res://src/autoloads/quest_manager.gd"
-PlaytestTelemetry="*res://addons/PlaytestTelemetry/PlaytestTelemetry.gd"
+DebugCam="*res://addons/debug_camera/scripts/DebugCamAutoload.gd"
+RuntimeDebugTools="*res://addons/runtime_debug_tools/scenes/remote_inspector.tscn"
+debug_console="*res://addons/copper_dc/debug_console.tscn"
 
 [display]
 
@@ -34,7 +36,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/PlaytestTelemetry/plugin.cfg")
+enabled=PackedStringArray("res://addons/audio_manager/plugin.cfg", "res://addons/copper_dc/plugin.cfg", "res://addons/debug_camera/plugin.cfg", "res://addons/godot_mcp_bridge/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/runtime_debug_tools/plugin.cfg")
 
 [input]
 

@@ -28,9 +28,15 @@ var is_text_scrolling: bool = false
 var text_scroll_speed: float = 30.0 # characters per second
 var _scroll_tween: Tween = null
 
+
 # ============================================
 # DIALOGUE FLOW
 # ============================================
+
+func _ready() -> void:
+	# Debug: if run as standalone scene, start test
+	if get_parent() == get_tree().root:
+		start_dialogue("test_greeting")
 
 func start_dialogue(dialogue_id: String) -> void:
 	var dialogue_data = load("res://resources/dialogues/%s.tres" % dialogue_id) as DialogueData

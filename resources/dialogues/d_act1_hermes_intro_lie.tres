@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue"]
+
+[resource]
+script = ExtResource("1_dialogue")
+id = "d_act1_hermes_intro_lie"
+lines = [
+	{"speaker": "Hermes", "text": "Mm-hmm. 'Experimenting.' Right."},
+	{"speaker": "Hermes", "text": "Just remember: pharmaka shows who you really are."}
+]
+choices = []
+flags_required = []
+flags_to_set = ["hermes_warned"]

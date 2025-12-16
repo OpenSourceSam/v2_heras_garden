@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "calming_draught"
+display_name = "Calming Draught"
+description = "A soothing potion made from nightshade."
+ingredients = [{
+"item_id": "nightshade",
+"quantity": 2
+}, {
+"item_id": "wheat",
+"quantity": 1
+}]
+grinding_pattern = Array[String](["ui_up", "ui_down", "ui_left", "ui_right"])
+button_sequence = Array[String](["ui_accept", "ui_accept"])
+timing_window = 2.0
+result_item_id = "calming_draught"
+result_quantity = 1

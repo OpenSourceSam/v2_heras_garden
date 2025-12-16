@@ -38,14 +38,15 @@ func _ready() -> void:
 	print("[Player] Initialized at %s" % global_position)
 	
 	# Enable telemetry tracking if available
-	_setup_telemetry()
+	# _setup_telemetry()  # Disabled - PlaytestTelemetry has type compatibility issues
 
 func _setup_telemetry() -> void:
 	# Check if PlaytestTelemetry is available
 	var telemetry = get_node_or_null("/root/PlaytestTelemetry")
 	if telemetry and telemetry.has_method("record_properties"):
-		telemetry.record_properties(self, ["global_position", "velocity", "is_moving"])
-		print("[Player] Telemetry enabled")
+		# NOTE: Disabled due to array type mismatch with addon
+		# telemetry.record_properties(self, ["global_position", "velocity", "is_moving"])
+		print("[Player] Telemetry skipped - type compatibility issue")
 
 # ============================================
 # PHYSICS
@@ -101,12 +102,21 @@ func _try_interact() -> void:
 			print("[Player] Interacted with body: %s" % body.name)
 			return
 	
-	# Then check areas
+	# Then check areas (and their parents)
 	for area in areas:
+		# Check if area itself has interact method
 		if area.has_method("interact"):
 			area.interact()
 			interacted_with.emit(area)
 			print("[Player] Interacted with area: %s" % area.name)
+			return
+		
+		# Check if area's parent has interact method (for entities like FarmPlot)
+		var parent = area.get_parent()
+		if parent and parent.has_method("interact"):
+			parent.interact()
+			interacted_with.emit(parent)
+			print("[Player] Interacted with area parent: %s" % parent.name)
 			return
 	
 	print("[Player] Nothing to interact with")

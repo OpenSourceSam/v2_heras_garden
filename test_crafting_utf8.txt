@@ -1,0 +1,527 @@
+﻿Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+[GameState] Initialized
+[GameState] Registered crop: wheat
+[GameState] Registered crop: nightshade
+[GameState] Registered crop: moly
+[GameState] Registered item: wheat_seed
+[GameState] Registered item: wheat
+[GameState] Registered item: nightshade_seed
+[GameState] Registered item: nightshade
+[GameState] Registered item: moly_seed
+[GameState] Registered item: moly
+[GameState] Registries loaded
+[GameState] Added 5 x wheat_seed (total: 5)
+[GameState] Added 5 x nightshade_seed (total: 5)
+[GameState] Added 5 x moly_seed (total: 5)
+[GameState] Added starter items
+[AudioController] Initialized
+[SceneManager] Initialized
+[QuestManager] Initialized
+---  GUT  ---
+[1m[INFO]:  [0musing [C:/Users/Sam/AppData/Roaming/Godot/app_userdata/Hera's Garden] for temporary output.
+Godot version:  4.5.1
+GUT version:  9.5.0
+[33m[WARNING]:  [0mIgnoring script res://tests/unit/test_act1_flow.gd because it does not extend GutTest
+[33m[WARNING]:  [0mIgnoring script res://tests/unit/test_crafting.gd because it does not extend GutTest
+[33m[WARNING]:  [0mIgnoring script res://tests/integration/test_crafting_flow.gd because it does not extend GutTest
+[33m[WARNING]:  [0mIgnoring script res://tests/integration/test_harness.gd because it does not extend GutTest
+[33m[WARNING]:  [0mIgnoring script res://tests/unit/test_crafting.gd because it does not extend GutTest
+[4m
+
+res://tests/unit/test_crop_registry.gd
+[0m* test_wheat_crop_registered
+* test_nightshade_crop_registered
+* test_moly_crop_registered
+* test_wheat_items_registered
+* test_nightshade_items_registered
+* test_moly_items_registered
+* test_wheat_growth_cycle
+[GameState] Planted wheat at (0, 0)
+[GameState] Day advanced to 2
+[GameState] Day advanced to 3
+[GameState] Day advanced to 4
+* test_nightshade_growth_cycle
+[GameState] Planted nightshade at (1, 0)
+[GameState] Day advanced to 2
+[GameState] Day advanced to 3
+[GameState] Day advanced to 4
+[GameState] Day advanced to 5
+[GameState] Day advanced to 6
+* test_moly_growth_cycle
+[GameState] Planted moly at (2, 0)
+[GameState] Day advanced to 2
+[GameState] Day advanced to 3
+[GameState] Day advanced to 4
+[GameState] Day advanced to 5
+[GameState] Day advanced to 6
+[GameState] Day advanced to 7
+[GameState] Day advanced to 8
+* test_starter_seeds_provided
+[1m10/10 passed.
+[0m[4m
+
+res://tests/unit/test_farm_plot.gd
+[0m* test_plant_crop
+[FarmPlot] Ready at grid position (0, 0)
+[GameState] Added 1 x wheat_seed (total: 1)
+[FarmPlot] Interacted - State: EMPTY
+[FarmPlot] Tilled at (0, 0)
+[FarmPlot] Planted wheat at (0, 0)
+* test_grow_crop
+[FarmPlot] Ready at grid position (0, 0)
+[FarmPlot] Cannot plant - not tilled
+[31m    [Failed]:  [0m[0] expected to equal [2]:  
+      at line 31
+[GameState] Day advanced to 2
+[31m    [Failed]:  [0m[0] expected to equal [3]:  
+      at line 40
+* test_harvest_crop
+[FarmPlot] Ready at grid position (0, 0)
+[FarmPlot] Cannot plant - not tilled
+[31m    [Failed]:  [0m[0] expected to equal [4]:  
+      at line 49
+[FarmPlot] Crop not ready to harvest
+[31m    [Failed]:  [0m[0] expected to equal [1]:  
+      at line 52
+[31m    [Failed]:  [0m[0] expected to equal [1]:  
+      at line 53
+[1m1/3 passed.
+[0m[4m
+
+res://tests/unit/test_game_state.gd
+[0m* test_add_item_creates_entry
+[GameState] Added 5 x wheat (total: 5)
+* test_add_item_stacks
+[GameState] Added 3 x wheat (total: 3)
+[GameState] Added 2 x wheat (total: 5)
+* test_remove_item_subtracts
+[GameState] Added 5 x wheat (total: 5)
+[GameState] Removed 2 x wheat
+* test_remove_item_fails_insufficient
+[GameState] Added 2 x wheat (total: 2)
+* test_remove_item_erases_zero
+[GameState] Added 3 x wheat (total: 3)
+[GameState] Removed 3 x wheat
+* test_has_item_true
+[GameState] Added 5 x wheat (total: 5)
+* test_has_item_false
+[GameState] Added 2 x wheat (total: 2)
+* test_has_item_nonexistent
+* test_add_gold
+[GameState] Added 50 gold (total: 150)
+* test_remove_gold_success
+[GameState] Removed 50 gold (total: 50)
+* test_remove_gold_insufficient
+* test_set_flag_default_true
+[GameState] Flag set: met_medusa = true
+* test_set_flag_explicit_false
+[GameState] Flag set: met_medusa = true
+[GameState] Flag set: met_medusa = false
+* test_get_flag_default
+* test_advance_day
+[GameState] Day advanced to 2
+* test_advance_day_multiple
+[GameState] Day advanced to 2
+[GameState] Day advanced to 3
+[GameState] Day advanced to 4
+[GameState] Day advanced to 5
+[GameState] Day advanced to 6
+* test_season_spring
+* test_season_changes_to_summer
+[GameState] Day advanced to 2
+[GameState] Day advanced to 3
+[GameState] Day advanced to 4
+[GameState] Day advanced to 5
+[GameState] Day advanced to 6
+[GameState] Day advanced to 7
+[GameState] Day advanced to 8
+[GameState] Day advanced to 9
+[GameState] Day advanced to 10
+[GameState] Day advanced to 11
+[GameState] Day advanced to 12
+[GameState] Day advanced to 13
+[GameState] Day advanced to 14
+[GameState] Day advanced to 15
+[GameState] Day advanced to 16
+[GameState] Day advanced to 17
+[GameState] Day advanced to 18
+[GameState] Day advanced to 19
+[GameState] Day advanced to 20
+[GameState] Day advanced to 21
+[GameState] Day advanced to 22
+[GameState] Day advanced to 23
+[GameState] Day advanced to 24
+[GameState] Day advanced to 25
+[GameState] Day advanced to 26
+[GameState] Day advanced to 27
+[GameState] Day advanced to 28
+[GameState] Day advanced to 29
+* test_inventory_signal_emitted
+[GameState] Added 1 x wheat (total: 1)
+* test_gold_signal_emitted
+[GameState] Added 25 gold (total: 125)
+* test_flag_signal_emitted
+[GameState] Flag set: test_flag = true
+* test_day_signal_emitted
+[GameState] Day advanced to 2
+[1m22/22 passed.
+[0m[4m
+
+res://tests/unit/test_npc_base.gd
+[0m* test_npc_exists
+[NPC:test_npc] Ready
+* test_npc_in_group
+[NPC:test_npc] Ready
+[NPC:test_npc] Ready
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Method/function failed. Returning: nullptr
+    [2] <engine-0>Method/function failed. Returning: nullptr
+      at line -1
+* test_npc_in_interactables_group
+[NPC:test_npc] Ready
+[NPC:test_npc] Ready
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Method/function failed. Returning: nullptr
+    [2] <engine-0>Method/function failed. Returning: nullptr
+      at line -1
+* test_npc_id_set
+[NPC:test_npc] Ready
+* test_display_name_set
+[NPC:test_npc] Ready
+* test_dialogue_id_set
+[NPC:test_npc] Ready
+* test_set_dialogue_changes_id
+[NPC:test_npc] Ready
+[NPC:test_npc] Dialogue changed to: new_dialogue
+* test_show_npc
+[NPC:test_npc] Ready
+* test_hide_npc
+[NPC:test_npc] Ready
+* test_is_interactable_default
+[NPC:test_npc] Ready
+[1m8/10 passed.
+[0m[4m
+
+res://tests/unit/test_player.gd
+[0m* test_player_exists
+[Player] Initialized at (0.0, 0.0)
+* test_player_has_sprite
+[Player] Initialized at (0.0, 0.0)
+* test_player_has_collision
+[Player] Initialized at (0.0, 0.0)
+* test_player_has_camera
+[Player] Initialized at (0.0, 0.0)
+* test_player_has_interaction_zone
+[Player] Initialized at (0.0, 0.0)
+* test_player_initial_velocity_zero
+[Player] Initialized at (0.0, 0.0)
+* test_player_move_right
+[Player] Initialized at (0.0, 0.0)
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+      at line 55
+* test_player_move_left
+[Player] Initialized at (0.0, 0.0)
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+      at line 62
+* test_player_move_up
+[Player] Initialized at (0.0, 0.0)
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+    [3] <engine-0>Condition "!E" is true. Returning: false
+    [4] <engine-0>Condition "!E" is true. Returning: false
+      at line 69
+* test_player_move_down
+[Player] Initialized at (0.0, 0.0)
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+      at line 76
+* test_sprite_flips_left
+[Player] Initialized at (0.0, 0.0)
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+    [3] <engine-0>Condition "!E" is true. Returning: false
+    [4] <engine-0>Condition "!E" is true. Returning: false
+      at line 87
+* test_sprite_not_flipped_right
+[Player] Initialized at (0.0, 0.0)
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+      at line 94
+* test_interaction_signal_exists
+[Player] Initialized at (0.0, 0.0)
+* test_get_grid_position
+[Player] Initialized at (0.0, 0.0)
+* test_get_facing_tile
+[Player] Initialized at (0.0, 0.0)
+[1m9/15 passed.
+[0m[4m
+
+res://tests/unit/test_quest_manager.gd
+[0m* test_start_quest_returns_true
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+* test_start_quest_emits_signal
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+* test_start_quest_duplicate_returns_false
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+[QuestManager] Quest already started: test_quest
+* test_quest_status_not_started
+[QuestManager] Initialized
+* test_quest_status_active
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+* test_is_quest_active_true
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+* test_is_quest_active_false
+[QuestManager] Initialized
+* test_complete_quest_returns_true
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+[GameState] Flag set: quest_test_quest_complete = true
+[QuestManager] Quest completed: test_quest
+* test_complete_quest_emits_signal
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+[GameState] Flag set: quest_test_quest_complete = true
+[QuestManager] Quest completed: test_quest
+* test_complete_quest_inactive_returns_false
+[QuestManager] Initialized
+[QuestManager] Cannot complete quest (not active): nonexistent
+* test_is_quest_completed_true
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+[GameState] Flag set: quest_test_quest_complete = true
+[QuestManager] Quest completed: test_quest
+* test_quest_metadata_stored
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+* test_update_quest_metadata
+[QuestManager] Initialized
+[QuestManager] Quest started: test_quest
+* test_get_active_quests
+[QuestManager] Initialized
+[QuestManager] Quest started: quest1
+[QuestManager] Quest started: quest2
+[GameState] Flag set: quest_quest1_complete = true
+[QuestManager] Quest completed: quest1
+* test_get_completed_quests
+[QuestManager] Initialized
+[QuestManager] Quest started: quest1
+[QuestManager] Quest started: quest2
+[GameState] Flag set: quest_quest1_complete = true
+[QuestManager] Quest completed: quest1
+[1m15/15 passed.
+[0m[4m
+
+res://tests/integration/test_dialogue_flow.gd
+[0m* test_dialogue_loads_correctly
+* test_dialogue_manager_instantiates
+[31m    [Failed]:  [0mShould start hidden
+      at line 36
+* test_start_dialogue_shows_ui
+[DialogueManager] Started dialogue: d_act1_hermes_intro
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+      at line 43
+* test_dialogue_lines_display
+[DialogueManager] Started dialogue: d_act1_hermes_intro
+[31m    [Failed]:  [0mShould emit dialogue_started signal
+      at line 57
+* test_dialogue_advances_with_input
+[DialogueManager] Started dialogue: d_act1_hermes_intro
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+      at line 75
+* test_choices_appear_at_end
+[DialogueManager] Started dialogue: d_act1_hermes_intro
+[33m    --- Awaiting 0.5 seconds  ---
+[0m[33m    --- Awaiting 0.5 seconds  ---
+[0m[33m    --- Awaiting 0.5 seconds  ---
+[0m[33m    --- Awaiting 0.5 seconds  ---
+[0m[31m    [Failed]:  [0mChoices should be visible at end
+      at line 93
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+    [3] <engine-0>Condition "!E" is true. Returning: false
+    [4] <engine-0>Condition "!E" is true. Returning: false
+    [5] <engine-0>Condition "!E" is true. Returning: false
+    [6] <engine-0>Condition "!E" is true. Returning: false
+      at line 93
+* test_flag_set_after_dialogue
+[DialogueManager] Started dialogue: d_act1_hermes_intro
+[33m    --- Awaiting 1 seconds  ---
+[0m[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+    [3] <engine-0>Condition "!E" is true. Returning: false
+    [4] <engine-0>Condition "!E" is true. Returning: false
+    [5] <engine-0>Condition "!E" is true. Returning: false
+    [6] <engine-0>Condition "!E" is true. Returning: false
+    [7] <engine-0>Condition "!E" is true. Returning: false
+    [8] <engine-0>Condition "!E" is true. Returning: false
+    [9] <engine-0>Condition "!E" is true. Returning: false
+    [10] <engine-0>Condition "!E" is true. Returning: false
+      at line 116
+* test_flag_requirement_blocks_dialogue
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-2>Invalid assignment of property or key 'lines' with value of type 'Array' on a base object of type 'Resource (DialogueData)'.
+      at line -1
+* test_choice_selection_sets_flag
+[DialogueManager] Started dialogue: d_act1_hermes_intro
+[1m2/9 passed.
+[0m
+
+
+
+[33m==============================================[0m
+[33m= 3 Orphans[0m
+[33m==============================================[0m
+res://tests/unit/test_crop_registry.gd
+    - Outside Tests
+[33m        * [DebugCamera3D:<Camera3D#58015614481>]
+        * [<Camera2D#62847452802>(DebugCamera2D.gd)]
+        * [<Camera3D#62864230019>(DebugCamera3D.gd)][0m
+
+
+[33m==============================================
+[0m[33m= Run Summary
+[0m[33m==============================================
+[0m[4m
+res://tests/unit/test_farm_plot.gd
+[0m- test_grow_crop
+[31m    [Failed]:  [0m[0] expected to equal [2]:  
+          at line 31
+[31m    [Failed]:  [0m[0] expected to equal [3]:  
+          at line 40
+- test_harvest_crop
+[31m    [Failed]:  [0m[0] expected to equal [4]:  
+          at line 49
+[31m    [Failed]:  [0m[0] expected to equal [1]:  
+          at line 52
+[31m    [Failed]:  [0m[0] expected to equal [1]:  
+          at line 53
+[4m
+res://tests/unit/test_npc_base.gd
+[0m- test_npc_in_group
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Method/function failed. Returning: nullptr
+    [2] <engine-0>Method/function failed. Returning: nullptr
+          at line -1
+- test_npc_in_interactables_group
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Method/function failed. Returning: nullptr
+    [2] <engine-0>Method/function failed. Returning: nullptr
+          at line -1
+[4m
+res://tests/unit/test_player.gd
+[0m- test_player_move_right
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+          at line 55
+- test_player_move_left
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+          at line 62
+- test_player_move_up
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+    [3] <engine-0>Condition "!E" is true. Returning: false
+    [4] <engine-0>Condition "!E" is true. Returning: false
+          at line 69
+- test_player_move_down
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+          at line 76
+- test_sprite_flips_left
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+    [3] <engine-0>Condition "!E" is true. Returning: false
+    [4] <engine-0>Condition "!E" is true. Returning: false
+          at line 87
+- test_sprite_not_flipped_right
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+          at line 94
+[4m
+res://tests/integration/test_dialogue_flow.gd
+[0m- test_dialogue_manager_instantiates
+[31m    [Failed]:  [0mShould start hidden
+          at line 36
+- test_start_dialogue_shows_ui
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+          at line 43
+- test_dialogue_lines_display
+[31m    [Failed]:  [0mShould emit dialogue_started signal
+          at line 57
+- test_dialogue_advances_with_input
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+          at line 75
+- test_choices_appear_at_end
+[31m    [Failed]:  [0mChoices should be visible at end
+          at line 93
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+    [3] <engine-0>Condition "!E" is true. Returning: false
+    [4] <engine-0>Condition "!E" is true. Returning: false
+    [5] <engine-0>Condition "!E" is true. Returning: false
+    [6] <engine-0>Condition "!E" is true. Returning: false
+          at line 93
+- test_flag_set_after_dialogue
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-0>Condition "!E" is true. Returning: false
+    [2] <engine-0>Condition "!E" is true. Returning: false
+    [3] <engine-0>Condition "!E" is true. Returning: false
+    [4] <engine-0>Condition "!E" is true. Returning: false
+    [5] <engine-0>Condition "!E" is true. Returning: false
+    [6] <engine-0>Condition "!E" is true. Returning: false
+    [7] <engine-0>Condition "!E" is true. Returning: false
+    [8] <engine-0>Condition "!E" is true. Returning: false
+    [9] <engine-0>Condition "!E" is true. Returning: false
+    [10] <engine-0>Condition "!E" is true. Returning: false
+          at line 116
+- test_flag_requirement_blocks_dialogue
+[31m    [Failed]:  [0mUnexpected Errors:
+    [1] <engine-2>Invalid assignment of property or key 'lines' with value of type 'Array' on a base object of type 'Resource (DialogueData)'.
+          at line -1
+
+Totals
+------
+Warnings              5
+
+Scripts               7
+Tests                84
+Passing Tests        67
+Failing Tests        17
+Asserts           121/142
+Orphans               3
+Time              6.074s
+
+
+[31m---- 17 failing tests ----
+[0m
