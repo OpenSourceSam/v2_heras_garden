@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GameState="*res://src/autoloads/game_state.gd"
 AudioController="*res://src/autoloads/audio_controller.gd"
 SaveController="*res://src/autoloads/save_controller.gd"
+SceneManager="*res://src/autoloads/scene_manager.gd"
 
 [display]
 
