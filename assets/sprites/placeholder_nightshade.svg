@@ -1,0 +1,7 @@
+<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Purple berries -->
+  <circle cx="10" cy="10" r="5" fill="#9370DB"/>
+  <circle cx="22" cy="10" r="5" fill="#9370DB"/>
+  <circle cx="10" cy="22" r="5" fill="#9370DB"/>
+  <circle cx="22" cy="22" r="5" fill="#9370DB"/>
+</svg>

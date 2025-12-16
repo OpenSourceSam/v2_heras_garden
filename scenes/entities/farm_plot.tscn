@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://farm_plot_001"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(32, 32)
+
+[node name="FarmPlot" type="Node2D"]
+
+[node name="SoilSprite" type="Sprite2D" parent="."]
+modulate = Color(0.545098, 0.270588, 0.0745098, 1)
+scale = Vector2(32, 32)
+texture = null
+
+[node name="CropSprite" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 1, 0, 1)
+scale = Vector2(24, 24)
+texture = null
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_1")
