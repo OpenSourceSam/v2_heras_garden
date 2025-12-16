@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/item_data.gd" id="1_item_data"]
+
+[resource]
+script = ExtResource("1_item_data")
+id = "moly"
+display_name = "Moly"
+description = "Sacred white flower with golden roots. Used to cure transformations."
+icon = null
+stack_size = 99
+sell_price = 50
+category = "pharmaka"

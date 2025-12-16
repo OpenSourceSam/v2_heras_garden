@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CropData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/crop_data.gd" id="1_crop_data"]
+
+[resource]
+script = ExtResource("1_crop_data")
+id = "moly"
+display_name = "Moly"
+growth_stages = Array[Texture2D]([null, null, null, null, null])
+days_to_mature = 7
+harvest_item_id = "moly"
+seed_item_id = "moly_seed"
+sell_price = 50
+regrows = false
+seasons = []
