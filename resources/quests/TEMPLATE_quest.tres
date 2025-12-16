@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/quest_data.gd" id="1_quest_data"]
+
+[resource]
+script = ExtResource("1_quest_data")
+id = "prologue"
+display_name = "Prologue: The Transformation"
+description = "Witness Circe's jealousy transform Scylla into a monster."
+objectives = [{
+"id": "watch_scylla_transform",
+"description": "Watch the transformation scene",
+"type": "cutscene",
+"required": true
+}, {
+"id": "speak_to_circe",
+"description": "Speak with Circe after the transformation",
+"type": "dialogue",
+"required": true
+}]
+rewards = [{
+"type": "flag",
+"value": "prologue_complete"
+}, {
+"type": "gold",
+"value": 0
+}]
+prerequisite_flags = []
+next_quest_id = "identify_pharmaka"

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/recipe_data.gd" id="1_recipe_data"]
+
+[resource]
+script = ExtResource("1_recipe_data")
+id = "transformation_sap"
+display_name = "Transformation Sap"
+description = "A potent brew that transforms living beings."
+ingredients = [{
+"item_id": "nightshade",
+"quantity": 3
+}, {
+"item_id": "moly",
+"quantity": 1
+}]
+result_item_id = "transformation_sap"
+crafting_time = 5.0
+difficulty = "hard"
+required_tool = "mortar_pestle"
