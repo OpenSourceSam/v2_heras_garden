@@ -1,0 +1,13 @@
+﻿{
+  "mcpServers": {
+    "godot": {
+      "command": "npx",
+      "args": ["-y", "godot-mcp-cli"],
+      "env": {
+        "GODOT_PROJECT_PATH": "C:/Users/Sam/Documents/GitHub/v2_heras_garden",
+        "GODOT_EXECUTABLE": "godot"
+      },
+      "description": "MCP server for Godot Engine integration"
+    }
+  }
+}
