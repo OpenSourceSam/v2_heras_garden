@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://farm_plot_scene"]
+
+[ext_resource type="Script" path="res://src/entities/farm_plot.gd" id="1_plot"]
+
+[node name="FarmPlot" type="Node2D"]
+script = ExtResource("1_plot")
+
+[node name="SoilSprite" type="Sprite2D" parent="."]
+modulate = Color(0.545098, 0.368627, 0.247059, 1)
+
+[node name="CropSprite" type="Sprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

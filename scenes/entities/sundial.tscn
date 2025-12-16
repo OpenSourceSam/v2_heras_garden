@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://sundial_scene"]
+
+[ext_resource type="Script" path="res://src/entities/sundial.gd" id="1_sundial"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(32, 32)
+
+[node name="Sundial" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_sundial")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.8, 0.7, 0.3, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_top = -20.0
+text = "SUN"
+horizontal_alignment = 1

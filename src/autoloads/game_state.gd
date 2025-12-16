@@ -17,13 +17,13 @@ const TILE_SIZE: int = 32
 var current_day: int = 1
 var current_season: String = "spring"
 var gold: int = 100
-var inventory: Dictionary = {}  # { "item_id": quantity }
-var quest_flags: Dictionary = {}  # { "flag_name": bool }
-var farm_plots: Dictionary = {}  # { Vector2i: PlotData }
+var inventory: Dictionary = {} # { "item_id": quantity }
+var quest_flags: Dictionary = {} # { "flag_name": bool }
+var farm_plots: Dictionary = {} # { Vector2i: PlotData }
 
 # Crop Registry (loaded dynamically)
-var _crop_registry: Dictionary = {}  # { "crop_id": CropData }
-var _item_registry: Dictionary = {}  # { "item_id": ItemData }
+var _crop_registry: Dictionary = {} # { "crop_id": CropData }
+var _item_registry: Dictionary = {} # { "item_id": ItemData }
 
 # ============================================
 # INITIALIZATION
@@ -32,11 +32,27 @@ var _item_registry: Dictionary = {}  # { "item_id": ItemData }
 func _ready() -> void:
 	print("[GameState] Initialized")
 	_load_registries()
+	
+	# Give player starter items for testing
+	add_item("wheat_seed", 5)
+	print("[GameState] Added starter items")
 
 func _load_registries() -> void:
-	# TODO: Load all CropData and ItemData resources
-	# For now, this is a stub that will be filled in Phase 1
-	print("[GameState] Registries loaded (stub)")
+	# Load crop data
+	var wheat_crop = load("res://resources/crops/wheat.tres") as CropData
+	if wheat_crop:
+		register_crop(wheat_crop)
+	
+	# Load item data
+	var wheat_seed_item = load("res://resources/items/wheat_seed.tres") as ItemData
+	if wheat_seed_item:
+		register_item(wheat_seed_item)
+	
+	var wheat_item = load("res://resources/items/wheat.tres") as ItemData
+	if wheat_item:
+		register_item(wheat_item)
+	
+	print("[GameState] Registries loaded")
 
 # ============================================
 # INVENTORY MANAGEMENT
