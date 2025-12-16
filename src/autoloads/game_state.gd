@@ -34,9 +34,38 @@ func _ready() -> void:
 	_load_registries()
 
 func _load_registries() -> void:
-	# TODO: Load all CropData and ItemData resources
-	# For now, this is a stub that will be filled in Phase 1
-	print("[GameState] Registries loaded (stub)")
+	# Load all CropData resources
+	var crop_paths = [
+		"res://resources/crops/wheat.tres",
+		"res://resources/crops/nightshade.tres",
+		"res://resources/crops/moly.tres"
+	]
+
+	for path in crop_paths:
+		var crop = load(path) as CropData
+		if crop:
+			register_crop(crop)
+		else:
+			push_error("Failed to load crop: %s" % path)
+
+	# Load all ItemData resources
+	var item_paths = [
+		"res://resources/items/wheat.tres",
+		"res://resources/items/wheat_seed.tres",
+		"res://resources/items/nightshade.tres",
+		"res://resources/items/nightshade_seed.tres",
+		"res://resources/items/moly.tres",
+		"res://resources/items/moly_seed.tres"
+	]
+
+	for path in item_paths:
+		var item = load(path) as ItemData
+		if item:
+			register_item(item)
+		else:
+			push_error("Failed to load item: %s" % path)
+
+	print("[GameState] Registries loaded: %d crops, %d items" % [_crop_registry.size(), _item_registry.size()])
 
 # ============================================
 # INVENTORY MANAGEMENT

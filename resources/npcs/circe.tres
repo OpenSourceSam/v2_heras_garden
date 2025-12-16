@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="NPCData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/npc_data.gd" id="1_npc_data"]
+
+[resource]
+script = ExtResource("1_npc_data")
+id = "circe"
+display_name = "Circe"
+sprite_frames = null
+default_dialogue_id = "circe_intro"
+gift_preferences = {
+"moly": 10,
+"nightshade": 5
+}
+schedule = [{
+"time": "0600",
+"location": "garden",
+"animation": "tending"
+}, {
+"time": "1200",
+"location": "workshop",
+"animation": "crafting"
+}, {
+"time": "1800",
+"location": "garden",
+"animation": "idle"
+}]

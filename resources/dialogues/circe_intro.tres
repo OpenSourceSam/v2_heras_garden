@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "circe_intro"
+lines = [{
+"speaker": "Circe",
+"text": "Welcome to Aiaia, traveler. I am Circe, daughter of Helios.",
+"emotion": "neutral"
+}, {
+"speaker": "Circe",
+"text": "My garden holds many pharmaka - herbs of great power.",
+"emotion": "thoughtful"
+}, {
+"speaker": "Circe",
+"text": "Perhaps you could help me tend to it?",
+"emotion": "hopeful"
+}]
+choices = [{
+"text": "I'll help you with your garden.",
+"next_id": "circe_accept_farming",
+"flag_required": ""
+}, {
+"text": "What kind of herbs do you grow?",
+"next_id": "circe_explain_pharmaka",
+"flag_required": ""
+}]
+flags_required = []
+flags_to_set = ["met_circe"]
+next_dialogue_id = ""
