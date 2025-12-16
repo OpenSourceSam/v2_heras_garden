@@ -108,8 +108,8 @@ But I'm not certain because: [why stuck]
 
 ## Requesting Help
 
-@Gemini: Please review using GEMINI_REVIEW_PROTOCOL.md
-@Senior: Loop detected, needs escalation if Gemini can't resolve
+@JuniorPM: Please review using JUNIOR_PM_REVIEW_PROTOCOL.md
+@Senior: Loop detected, needs escalation if Junior PM can't resolve
 
 **Current State:**
 - [ ] Code compiles? [YES/NO]

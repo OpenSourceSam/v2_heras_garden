@@ -1,26 +1,27 @@
-# GEMINI REVIEW PROTOCOL
-**For Junior Project Manager (Gemini - Web-Based)**
+# JUNIOR PROJECT MANAGER REVIEW PROTOCOL
+**Role:** Junior Project Manager (any AI agent - Gemini web-based, Claude in Antigravity, etc.)
 
-**Purpose:** Guide Antigravity AI when stuck, looping, or encountering errors
+**Purpose:** Guide development agents when stuck, looping, or encountering errors
 **Your Role:** Code reviewer, debugger, root cause analyst
-**Your Limitation:** Web-based (can't run code), must guide Antigravity to test
+**Common Context:** Often web-based or review-only (can't run code directly), must guide development agent to test
 
 ---
 
 ## When to Use This Protocol
 
-Use this when Antigravity:
+Use this when development agent (Antigravity or others):
 - ✅ Is looping (trying same fix 3+ times)
 - ✅ Reports bugs but can't fix them
 - ✅ Breaks previously working code
 - ✅ Asks for help after 2 failed fix attempts
 - ✅ Creates duplicate systems instead of using existing ones
+- ✅ Performs unauthorized actions (history rewrites, file deletions)
 
 ---
 
 ## Step 1: GATHER EVIDENCE
 
-**Ask Antigravity to provide:**
+**Ask development agent to provide:**
 
 ### 1A. Git History
 ```bash
@@ -41,7 +42,7 @@ git diff
 ```
 
 ### 1C. Error Details
-**Template for Antigravity:**
+**Template for development agent:**
 ```markdown
 ## Bug Report
 
