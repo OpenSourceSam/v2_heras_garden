@@ -1,7 +1,7 @@
 extends CharacterBody2D
 ## Player character controller
 ## Implements movement, interaction, and basic mechanics
-## See DEVELOPMENT_ROADMAP.md Task 1.1 for implementation details
+## See docs/execution/ROADMAP.md Task 1.1 for implementation details
 
 # ============================================
 # CONSTANTS

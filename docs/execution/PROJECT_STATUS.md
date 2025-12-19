@@ -4,7 +4,7 @@ Last Updated: 2025-12-19
 Current Phase: Phase 1 (in progress, scaffolding only)
 Status: Documentation consolidated, constants drift fixed
 
-Reference: DOCS_MAP.md
+Reference: docs/overview/DOCS_MAP.md
 
 ---
 
@@ -25,9 +25,9 @@ Reference: DOCS_MAP.md
 
 ### Documentation Consolidation (Complete)
 - Archived 7 deprecated/redundant docs to `_docs/archive/`
-- Renamed `DEVELOPMENT_ROADMAP.md` to `ROADMAP.md` (single source for all phases)
+- Renamed `DEVELOPMENT_ROADMAP.md` to `docs/execution/ROADMAP.md` (single source for all phases)
 - Created `_docs/WORKFLOW_GUIDE.md` (consolidated workflow reference)
-- Updated `DOCS_MAP.md` with new canonical structure
+- Updated `docs/overview/DOCS_MAP.md` with new canonical structure
 - Deleted junk files (nul, txt, tgz)
 
 ### Constants Drift Fix (Complete)
@@ -71,11 +71,11 @@ Reference: DOCS_MAP.md
 
 **Primary Docs:**
 - `README.md` - Project overview
-- `CONSTITUTION.md` - Immutable technical rules
-- `SCHEMA.md` - Data structures
-- `PROJECT_STATUS.md` - This file
-- `ROADMAP.md` - All phase implementation details
-- `Storyline.md` - Narrative
+- `docs/design/CONSTITUTION.md` - Immutable technical rules
+- `docs/design/SCHEMA.md` - Data structures
+- `docs/execution/PROJECT_STATUS.md` - This file
+- `docs/execution/ROADMAP.md` - All phase implementation details
+- `docs/design/Storyline.md` - Narrative
 
 **Workflow:**
 - `_docs/WORKFLOW_GUIDE.md` - Process rules for contributors

@@ -11,7 +11,7 @@ First-class context for AI agents (Claude, Codex, etc.) working on this project.
 | Project | Godot 4.5 narrative farming game |
 | Target | Retroid Pocket Classic (Android, 1080x1240, d-pad) |
 | Phase | 1 - Core Systems |
-| First Read | PROJECT_STATUS.md |
+| First Read | docs/execution/PROJECT_STATUS.md |
 
 ---
 
@@ -40,14 +40,14 @@ Read in this order when starting:
 
 | Priority | File | Purpose |
 |----------|------|---------|
-| 1 | PROJECT_STATUS.md | Current state, what's done, next steps |
-| 2 | ROADMAP.md | Implementation templates with code |
-| 3 | CONSTITUTION.md | Immutable rules (TILE_SIZE=32, etc.) |
-| 4 | SCHEMA.md | Exact property names for data structures |
+| 1 | docs/execution/PROJECT_STATUS.md | Current state, what's done, next steps |
+| 2 | docs/execution/ROADMAP.md | Implementation templates with code |
+| 3 | docs/design/CONSTITUTION.md | Immutable rules (TILE_SIZE=32, etc.) |
+| 4 | docs/design/SCHEMA.md | Exact property names for data structures |
 
 Other references:
-- `DOCS_MAP.md` - Index of all documentation
-- `Storyline.md` - Full narrative (read when implementing story)
+- `docs/overview/DOCS_MAP.md` - Index of all documentation
+- `docs/design/Storyline.md` - Full narrative (read when implementing story)
 - `RESTRUCTURE.md` - Repo restructure plan (read before moving files)
 
 ---
@@ -57,18 +57,18 @@ Other references:
 ### Before ANY Task
 
 ```
-1. Read PROJECT_STATUS.md
+1. Read docs/execution/PROJECT_STATUS.md
    - What phase are we in?
    - What's already done?
    - What's the next task?
 
-2. Find task in ROADMAP.md
+2. Find task in docs/execution/ROADMAP.md
    - Locate section (e.g., 1.2.1)
    - Read the FULL subsection
    - Note the code template
 
 3. If touching data:
-   - Check SCHEMA.md for exact property names
+   - Check docs/design/SCHEMA.md for exact property names
    - Never guess - copy/paste names
 ```
 
@@ -80,13 +80,13 @@ Other references:
    - Complete, validate, commit, then next
 
 2. Follow template EXACTLY
-   - Copy code from ROADMAP.md
+   - Copy code from docs/execution/ROADMAP.md
    - Fill obvious placeholders only
    - Don't "improve" or add features
 
 3. Validate continuously
    - Check file locations match PROJECT_STRUCTURE.md
-   - Verify property names against SCHEMA.md
+   - Verify property names against docs/design/SCHEMA.md
    - Test in isolation before integrating
 ```
 
@@ -96,7 +96,7 @@ Other references:
 1. Run tests
    godot --headless --script tests/run_tests.gd
 
-2. Update PROJECT_STATUS.md
+2. Update docs/execution/PROJECT_STATUS.md
    - Mark task complete
    - Update progress percentage
    - Note any issues found
@@ -126,7 +126,7 @@ Use this format after completing any task:
 **Validation:**
 - [x] Tests pass (5/5)
 - [x] No runtime errors
-- [x] Matches ROADMAP.md template
+- [x] Matches docs/execution/ROADMAP.md template
 
 **Next Task:** X.X.Y - [Brief description]
 ```
@@ -154,8 +154,8 @@ godot --headless --script tests/run_tests.gd
 
 Before committing, verify:
 - [ ] File in correct location (src/ for .gd, scenes/ for .tscn)
-- [ ] Property names match SCHEMA.md
-- [ ] Code matches ROADMAP.md template
+- [ ] Property names match docs/design/SCHEMA.md
+- [ ] Code matches docs/execution/ROADMAP.md template
 - [ ] No TODO stubs left incomplete
 
 ---
@@ -213,7 +213,7 @@ git commit -m "<type>: <summary>"
 git push
 ```
 
-### 2. Update PROJECT_STATUS.md
+### 2. Update docs/execution/PROJECT_STATUS.md
 
 Include:
 - What was completed
@@ -225,7 +225,7 @@ Include:
 
 Your work should be reviewable by reading:
 1. Git log (what changed)
-2. PROJECT_STATUS.md (current state)
+2. docs/execution/PROJECT_STATUS.md (current state)
 3. reports/ folder (detailed work logs if applicable)
 
 ---
@@ -237,10 +237,10 @@ Things that have caused problems in this project:
 | Don't | Do Instead |
 |-------|------------|
 | Implement multiple subsections at once | ONE task, validate, commit, then next |
-| Guess property names | Copy from SCHEMA.md |
-| Add features not in ROADMAP.md | Stick to template exactly |
+| Guess property names | Copy from docs/design/SCHEMA.md |
+| Add features not in docs/execution/ROADMAP.md | Stick to template exactly |
 | Skip validation | Run tests before every commit |
-| Commit without updating status | Always update PROJECT_STATUS.md |
+| Commit without updating status | Always update docs/execution/PROJECT_STATUS.md |
 | Use magic numbers | Use Constants.TILE_SIZE etc. |
 | Embed scripts in .tscn | Reference scripts from src/ |
 | Leave TODO stubs unmarked | Document incomplete work in status |
@@ -285,11 +285,11 @@ git log --oneline -5
 
 ## When Stuck
 
-1. Re-read ROADMAP.md section for your task
-2. Check SCHEMA.md for correct property names
-3. Check CONSTITUTION.md for rules that might apply
+1. Re-read docs/execution/ROADMAP.md section for your task
+2. Check docs/design/SCHEMA.md for correct property names
+3. Check docs/design/CONSTITUTION.md for rules that might apply
 4. Look at existing implementations for patterns
-5. Document the blocker in PROJECT_STATUS.md
+5. Document the blocker in docs/execution/PROJECT_STATUS.md
 6. Ask for clarification rather than guessing
 
 ---

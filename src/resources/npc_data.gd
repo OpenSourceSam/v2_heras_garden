@@ -1,6 +1,6 @@
 extends Resource
 class_name NPCData
-## Defines an NPC character - see SCHEMA.md for property documentation
+## Defines an NPC character - see docs/design/SCHEMA.md for property documentation
 ##
 ## Schedule Dictionary Structure:
 ## {

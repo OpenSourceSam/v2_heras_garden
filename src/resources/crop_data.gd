@@ -1,8 +1,8 @@
 extends Resource
 class_name CropData
-## Defines a crop type - see SCHEMA.md for property documentation
+## Defines a crop type - see docs/design/SCHEMA.md for property documentation
 ##
-## CRITICAL: Use exact property names defined in SCHEMA.md
+## CRITICAL: Use exact property names defined in docs/design/SCHEMA.md
 ## - growth_stages (NOT "sprites", "textures", "stages_textures")
 ## - days_to_mature (NOT "growth_time", "days")
 

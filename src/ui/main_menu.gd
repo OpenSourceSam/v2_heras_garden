@@ -1,7 +1,7 @@
 extends Control
 ## Main Menu UI Controller
 ## Handles button presses and scene transitions
-## See DEVELOPMENT_ROADMAP.md for Phase 1 implementation
+## See docs/execution/ROADMAP.md for Phase 1 implementation
 
 # ============================================
 # NODE REFERENCES

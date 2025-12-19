@@ -29,114 +29,120 @@ Legend:
 v2_heras_garden/
 |-- .mcp.json                    [current]  MCP tooling config
 |-- .claude/                     [current]  Assistant config (optional use)
-|-- project.godot                 [current]  Godot project config
-|-- icon.svg                      [current]
-|-- icon.svg.import               [current]  Godot import metadata
-|-- .gitignore                    [current]
-|-- README.md                     [current]
-|-- CONSTITUTION.md               [current]
-|-- SCHEMA.md                     [current]
-|-- PROJECT_STRUCTURE.md          [current]
-|-- DOCS_MAP.md                   [current]  Canonical documentation map
-|-- DEVELOPMENT_WORKFLOW.md       [current]
-|-- DEVELOPMENT_ROADMAP.md        [current]
-|-- PHASE_2_ROADMAP.md            [current]
-|-- PHASES_3_TO_5_OUTLINE.md      [current]
-|-- PLAYTESTER_GUIDE.md           [current]
-|-- PROJECT_STATUS.md             [current]
-|-- PROJECT_SUMMARY.md            [current]
-|-- Storyline.md                  [current]
-|-- ASSET_CHECKLIST.md            [current]
-|-- ANTIGRAVITY_FEEDBACK.md       [current]
-|-- TEST_SCRIPT.gd                [current]  Legacy validation script
-|-- TEST_SCRIPT.gd.uid            [current]  Godot UID metadata
-|-- godot-mcp-cli-1.0.7.tgz       [current]  Tooling archive (cleanup candidate)
-|-- New Text Document.txt         [current]  Cleanup candidate
-|-- nul                           [current]  Cleanup candidate
-|-- reports/                      [current]
+|-- project.godot                [current]  Godot project config
+|-- icon.svg                     [current]
+|-- icon.svg.import              [current]  Godot import metadata
+|-- .gitignore                   [current]
+|-- README.md                    [current]
+|-- agent.md                     [current]
+|-- RESTRUCTURE.md               [current]  Repo restructure instructions
+|-- PROJECT_STRUCTURE.md         [current]
+|-- TEST_SCRIPT.gd               [current]  Legacy validation script
+|-- TEST_SCRIPT.gd.uid           [current]  Godot UID metadata
+|-- reports/                     [current]
 |   |-- 2025-12-18-code-review.md [current]
 |   |-- antigravity_stability_review.md [current]
 |   |-- project_recommendations_dec_2025.md [current]
 |   |-- 2025-12-19-project-update.md [current]
 |   |-- 2025-12-19-stopgap-roadmap.md [current]
 |   `-- 2025-12-19-structure-audit.md [current]
-|-- _docs/                        [current]  Long-form docs and archives
-|   `-- workflow_consolidation_2025-12-19.md [current]
-|-- src/                          [current]  All GDScript code
-|   |-- autoloads/                [current]
-|   |   |-- game_state.gd         [current]
-|   |   |-- audio_controller.gd   [current]
-|   |   |-- save_controller.gd    [current]
-|   |   `-- scene_manager.gd      [current]
-|   |-- core/                     [current]
-|   |   `-- constants.gd          [current]
-|   |-- resources/                [current]
-|   |   |-- crop_data.gd          [current]
-|   |   |-- item_data.gd          [current]
-|   |   |-- dialogue_data.gd      [current]
-|   |   `-- npc_data.gd           [current]
-|   |-- entities/                 [current]
-|   |   |-- player.gd             [current]
-|   |   |-- farm_plot.gd          [current]
-|   |   |-- npc.gd                [planned]
-|   |   `-- interactable.gd       [planned]
-|   `-- ui/                       [current]
-|       |-- main_menu.gd          [current]
-|       |-- dialogue_box.gd       [current]
-|       |-- debug_hud.gd          [current]
-|       `-- inventory_ui.gd       [planned]
-|-- scenes/                       [current]  All .tscn files
-|   |-- entities/                 [current]
-|   |   |-- player.tscn           [current]
-|   |   |-- farm_plot.tscn        [current]
-|   |   `-- npc.tscn              [planned]
-|   |-- ui/                       [current]
-|   |   |-- main_menu.tscn        [current]
-|   |   |-- dialogue_box.tscn     [current]
-|   |   `-- hud.tscn              [planned]
-|   |-- _debug/                   [current]
-|   |   `-- debug_hud.tscn        [current]
-|   `-- world.tscn                [current]
-|-- resources/                    [current]  All .tres data files
-|   |-- crops/                    [current]
-|   |   |-- TEMPLATE_crop.tres    [current]
-|   |   |-- wheat.tres            [current]
-|   |   |-- moly.tres             [current]
-|   |   |-- nightshade.tres       [current]
-|   |   `-- tomato.tres           [planned]
-|   |-- items/                    [current]
-|   |   |-- TEMPLATE_item.tres    [current]
-|   |   |-- wheat_seed.tres       [current]
-|   |   |-- wheat.tres            [current]
-|   |   |-- moly_seed.tres        [current]
-|   |   |-- moly.tres             [current]
-|   |   |-- nightshade_seed.tres  [current]
-|   |   `-- nightshade.tres       [current]
-|   |-- dialogues/                [current]
+|-- docs/                        [current]  Canonical documentation
+|   |-- overview/
+|   |   |-- DOCS_MAP.md          [current]
+|   |   `-- README.md            [current]
+|   |-- design/
+|   |   |-- CONSTITUTION.md      [current]
+|   |   |-- SCHEMA.md            [current]
+|   |   `-- Storyline.md         [current]
+|   `-- execution/
+|       |-- PROJECT_STATUS.md    [current]
+|       `-- ROADMAP.md           [current]
+|-- _docs/                       [current]  Long-form docs and archives
+|   |-- WORKFLOW_GUIDE.md        [current]
+|   `-- archive/                 [current]
+|       |-- ANTIGRAVITY_FEEDBACK.md [current]
+|       |-- ASSET_CHECKLIST.md   [current]
+|       |-- DEVELOPMENT_WORKFLOW.md [current]
+|       |-- PHASES_3_TO_5_OUTLINE.md [current]
+|       |-- PHASE_2_ROADMAP.md   [current]
+|       |-- PLAYTESTER_GUIDE.md  [current]
+|       `-- PROJECT_SUMMARY.md   [current]
+|-- tools/                       [current]
+|-- src/                         [current]  All GDScript code
+|   |-- autoloads/               [current]
+|   |   |-- game_state.gd        [current]
+|   |   |-- audio_controller.gd  [current]
+|   |   |-- save_controller.gd   [current]
+|   |   `-- scene_manager.gd     [current]
+|   |-- core/                    [current]
+|   |   `-- constants.gd         [current]
+|   |-- resources/               [current]
+|   |   |-- crop_data.gd         [current]
+|   |   |-- item_data.gd         [current]
+|   |   |-- dialogue_data.gd     [current]
+|   |   `-- npc_data.gd          [current]
+|   |-- entities/                [current]
+|   |   |-- player.gd            [current]
+|   |   |-- farm_plot.gd         [current]
+|   |   |-- npc.gd               [planned]
+|   |   `-- interactable.gd      [planned]
+|   `-- ui/                      [current]
+|       |-- main_menu.gd         [current]
+|       |-- dialogue_box.gd      [current]
+|       |-- debug_hud.gd         [current]
+|       `-- inventory_ui.gd      [planned]
+|-- scenes/                      [current]  All .tscn files
+|   |-- entities/                [current]
+|   |   |-- player.tscn          [current]
+|   |   |-- farm_plot.tscn       [current]
+|   |   `-- npc.tscn             [planned]
+|   |-- ui/                      [current]
+|   |   |-- main_menu.tscn       [current]
+|   |   |-- dialogue_box.tscn    [current]
+|   |   `-- hud.tscn             [planned]
+|   |-- _debug/                  [current]
+|   |   `-- debug_hud.tscn       [current]
+|   `-- world.tscn               [current]
+|-- resources/                   [current]  All .tres data files
+|   |-- crops/                   [current]
+|   |   |-- TEMPLATE_crop.tres   [current]
+|   |   |-- wheat.tres           [current]
+|   |   |-- moly.tres            [current]
+|   |   |-- nightshade.tres      [current]
+|   |   `-- tomato.tres          [planned]
+|   |-- items/                   [current]
+|   |   |-- TEMPLATE_item.tres   [current]
+|   |   |-- wheat_seed.tres      [current]
+|   |   |-- wheat.tres           [current]
+|   |   |-- moly_seed.tres       [current]
+|   |   |-- moly.tres            [current]
+|   |   |-- nightshade_seed.tres [current]
+|   |   `-- nightshade.tres      [current]
+|   |-- dialogues/               [current]
 |   |   |-- TEMPLATE_dialogue.tres [current]
-|   |   `-- circe_intro.tres      [current]
-|   `-- npcs/                     [current]
-|       `-- circe.tres            [current]
-|-- assets/                       [current]
-|   |-- sprites/                  [current]
+|   |   `-- circe_intro.tres     [current]
+|   `-- npcs/                    [current]
+|       `-- circe.tres           [current]
+|-- assets/                      [current]
+|   |-- sprites/                 [current]
 |   |   `-- PLACEHOLDER_README.md [current]
-|   |-- audio/                    [current]
-|   `-- fonts/                    [current]
-|-- tests/                        [current]
-|   |-- run_tests.gd              [current]
-|   `-- smoke_test_scene.gd       [current]
-|-- addons/                       [current]
-|-- .vscode/                      [optional]
-|-- .venv/                        [local-only]
-|-- .godot/                       [local-only]
-|-- Simple Testing for Godot/     [local-only]
-|-- godot_state_charts_examples/  [local-only]
+|   |-- audio/                   [current]
+|   `-- fonts/                   [current]
+|-- tests/                       [current]
+|   |-- run_tests.gd             [current]
+|   `-- smoke_test_scene.gd      [current]
+|-- addons/                      [current]
+|-- .vscode/                     [optional]
+|-- .venv/                       [local-only]
+|-- .godot/                      [local-only]
+|-- Simple Testing for Godot/    [local-only]
+|-- godot_state_charts_examples/ [local-only]
 `-- Godot_v4.5.1-stable_win64.exe/ [local-only]
 ```
 
 Notes:
 - The tree lists required and planned items; it is not an exhaustive listing of every asset.
-- If a planned item becomes active work, update this file and PROJECT_STATUS.md together.
+- If a planned item becomes active work, update this file and docs/execution/PROJECT_STATUS.md together.
 
 ---
 
@@ -154,7 +160,7 @@ Notes:
 ### Rule 2: Script Attachment
 
 - Scenes should reference scripts once that system is implemented.
-- If a scene is a placeholder without a script, it must be noted in PROJECT_STATUS.md.
+- If a scene is a placeholder without a script, it must be noted in docs/execution/PROJECT_STATUS.md.
 
 Example:
 ```
@@ -184,7 +190,7 @@ GameState="*res://src/autoloads/game_state.gd"
 
 1) Node names in scenes must match `@onready` paths in scripts.
 2) Debug scenes live under `scenes/_debug/` and scripts under `src/ui/`.
-3) If a scene exists without a script, it must be called out in PROJECT_STATUS.md.
+3) If a scene exists without a script, it must be called out in docs/execution/PROJECT_STATUS.md.
 4) Never embed scripts directly in .tscn files; always reference `src/`.
 
 ---
@@ -257,14 +263,14 @@ Phase 4: Polish
 
 Use this before starting a new task or merging branches:
 
-1) Root files exist: `project.godot`, `README.md`, `PROJECT_STATUS.md`.
+1) Root files exist: `project.godot`, `README.md`, `docs/execution/PROJECT_STATUS.md`.
 2) `src/` contains `autoloads/`, `core/`, `resources/`, `entities/`, `ui/`.
 3) `scenes/` contains `entities/`, `ui/`, `_debug/`, and `world.tscn`.
 4) Every implemented system has a script attached to its scene.
 5) `resources/` contains templates and at least one real example per type.
 6) `assets/` contains placeholder or real assets for active features.
 7) `tests/` has a runnable entry point and no syntax corruption.
-8) Planned files are either created or explicitly listed in PROJECT_STATUS.md.
+8) Planned files are either created or explicitly listed in docs/execution/PROJECT_STATUS.md.
 9) Any new directory is added to this file before use.
 
 ---
@@ -273,7 +279,7 @@ Use this before starting a new task or merging branches:
 
 1) Update this file first for any structural changes.
 2) Then create/move files to match the updated structure.
-3) Finally, update PROJECT_STATUS.md to reflect actual state.
+3) Finally, update docs/execution/PROJECT_STATUS.md to reflect actual state.
 
 ---
 

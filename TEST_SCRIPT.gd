@@ -65,11 +65,12 @@ func _init() -> void:
 	# Test 5: Documentation exists
 	print("[TEST 5] Checking documentation...")
 	var docs = [
-		"res://CONSTITUTION.md",
-		"res://SCHEMA.md",
-		"res://DEVELOPMENT_ROADMAP.md",
-		"res://PROJECT_SUMMARY.md",
-		"res://Storyline.md"
+		"res://docs/design/CONSTITUTION.md",
+		"res://docs/design/SCHEMA.md",
+		"res://docs/execution/ROADMAP.md",
+		"res://docs/execution/PROJECT_STATUS.md",
+		"res://docs/design/Storyline.md",
+		"res://docs/overview/DOCS_MAP.md"
 	]
 	for doc_path in docs:
 		if FileAccess.file_exists(doc_path):

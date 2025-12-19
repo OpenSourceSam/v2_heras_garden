@@ -12,9 +12,9 @@ Note: Phase-specific roadmaps have been archived to _docs/archive/. This is now 
 ## CRITICAL: READ FIRST
 
 Before implementing ANY feature:
-1. ✅ Read `CONSTITUTION.md` (immutable rules)
-2. ✅ Read `SCHEMA.md` (data structures)
-3. ✅ Read `Storyline.md` (narrative context)
+1. ✅ Read `docs/design/CONSTITUTION.md` (immutable rules)
+2. ✅ Read `docs/design/SCHEMA.md` (data structures)
+3. ✅ Read `docs/design/Storyline.md` (narrative context)
 4. ✅ Check this roadmap for dependencies
 5. ✅ Verify autoloads are registered
 6. ✅ Test in isolation before integrating
@@ -649,7 +649,7 @@ Tested: Simple patterns work correctly
 #### 1.4.2 - Recipe System
 ```
 □ Create RecipeData resource class
-□ Define recipes in SCHEMA.md
+□ Define recipes in docs/design/SCHEMA.md
 □ Implement crafting UI integration
 □ Connect to inventory system
 ```

@@ -10,12 +10,13 @@
 | File | Purpose |
 |------|---------|
 | `README.md` | Project overview for GitHub |
-| `CONSTITUTION.md` | Immutable technical rules |
-| `SCHEMA.md` | Data structures and exact property names |
-| `PROJECT_STATUS.md` | Current phase, progress, blockers, next steps |
+| `docs/overview/DOCS_MAP.md` | Index of canonical documents |
+| `docs/design/CONSTITUTION.md` | Immutable technical rules |
+| `docs/design/SCHEMA.md` | Data structures and exact property names |
+| `docs/execution/PROJECT_STATUS.md` | Current phase, progress, blockers, next steps |
 | `PROJECT_STRUCTURE.md` | Repo layout and file placement rules |
-| `ROADMAP.md` | Implementation tasks and templates (all phases) |
-| `Storyline.md` | Full narrative arc and story beats |
+| `docs/execution/ROADMAP.md` | Implementation tasks and templates (all phases) |
+| `docs/design/Storyline.md` | Full narrative arc and story beats |
 
 ---
 
@@ -24,6 +25,8 @@
 | File | Purpose |
 |------|---------|
 | `_docs/WORKFLOW_GUIDE.md` | Process rules and guardrails for contributors |
+| `RESTRUCTURE.md` | Repo restructure plan and safety checklist |
+| `agent.md` | Agent workflow, reporting, and testing standards |
 
 ---
 
@@ -58,9 +61,9 @@ These documents have been consolidated or superseded. They are preserved in `_do
 |---------------|-------------|
 | `DEVELOPMENT_WORKFLOW.md` | `_docs/WORKFLOW_GUIDE.md` |
 | `ANTIGRAVITY_FEEDBACK.md` | `_docs/WORKFLOW_GUIDE.md` |
-| `DEVELOPMENT_ROADMAP.md` | `ROADMAP.md` |
-| `PHASE_2_ROADMAP.md` | `ROADMAP.md` |
-| `PHASES_3_TO_5_OUTLINE.md` | `ROADMAP.md` |
+| `DEVELOPMENT_ROADMAP.md` | `docs/execution/ROADMAP.md` |
+| `PHASE_2_ROADMAP.md` | `docs/execution/ROADMAP.md` |
+| `PHASES_3_TO_5_OUTLINE.md` | `docs/execution/ROADMAP.md` |
 | `PROJECT_SUMMARY.md` | `README.md` |
 | `PLAYTESTER_GUIDE.md` | (archived until release) |
 | `ASSET_CHECKLIST.md` | (archived, low priority) |
@@ -70,7 +73,7 @@ These documents have been consolidated or superseded. They are preserved in `_do
 ## Notes
 
 - If a new canonical doc is added, update this file and `PROJECT_STRUCTURE.md` together.
-- Reports are time-stamped and represent snapshots; always check `PROJECT_STATUS.md` for current state.
+- Reports are time-stamped and represent snapshots; always check `docs/execution/PROJECT_STATUS.md` for current state.
 
 ---
 

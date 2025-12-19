@@ -1,6 +1,6 @@
 extends Node
 ## GameState - Central state management singleton
-## See SCHEMA.md for data structure definitions
+## See docs/design/SCHEMA.md for data structure definitions
 
 # Signals
 signal inventory_changed(item_id: String, new_quantity: int)

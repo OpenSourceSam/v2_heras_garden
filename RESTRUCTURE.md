@@ -28,14 +28,14 @@ Create this structure and move files:
 docs/
   overview/
     README.md (create - docs landing page)
-    DOCS_MAP.md (move from root)
+    docs/overview/DOCS_MAP.md (move from root)
   design/
-    Storyline.md (move from root)
-    CONSTITUTION.md (move from root)
-    SCHEMA.md (move from root)
+    docs/design/Storyline.md (move from root)
+    docs/design/CONSTITUTION.md (move from root)
+    docs/design/SCHEMA.md (move from root)
   execution/
-    PROJECT_STATUS.md (move from root)
-    ROADMAP.md (move from root)
+    docs/execution/PROJECT_STATUS.md (move from root)
+    docs/execution/ROADMAP.md (move from root)
 ```
 
 Keep in root:
@@ -47,7 +47,7 @@ Keep in root:
 - agent.md
 
 After moving docs:
-- Update `DOCS_MAP.md` with the new locations.
+- Update `docs/overview/DOCS_MAP.md` with the new locations.
 
 ---
 
@@ -646,5 +646,5 @@ godot --headless --script tests/run_tests.gd
 Notes:
 - Use `git mv` for all moves.
 - Commit after each phase.
-- Update `DOCS_MAP.md` after docs move.
+- Update `docs/overview/DOCS_MAP.md` after docs move.
 - Update `agent.md` directory map after the restructure is complete.

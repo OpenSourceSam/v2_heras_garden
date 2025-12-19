@@ -9,7 +9,7 @@ class_name Constants
 # GAME SETTINGS
 # ============================================
 
-## Core tile size (immutable - see CONSTITUTION.md)
+## Core tile size (immutable - see docs/design/CONSTITUTION.md)
 const TILE_SIZE: int = 32
 
 ## Target viewport size (Retroid Pocket Classic)

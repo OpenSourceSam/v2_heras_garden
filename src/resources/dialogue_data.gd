@@ -1,6 +1,6 @@
 extends Resource
 class_name DialogueData
-## Defines a dialogue sequence - see SCHEMA.md for property documentation
+## Defines a dialogue sequence - see docs/design/SCHEMA.md for property documentation
 ##
 ## Line Dictionary Structure:
 ## {

@@ -1,8 +1,8 @@
 extends Resource
 class_name ItemData
-## Defines an item type - see SCHEMA.md for property documentation
+## Defines an item type - see docs/design/SCHEMA.md for property documentation
 ##
-## CRITICAL: Use exact property names defined in SCHEMA.md
+## CRITICAL: Use exact property names defined in docs/design/SCHEMA.md
 ## - id (NOT "item_id", "name")
 ## - display_name (NOT "name", "item_name")
 ## - category (NOT "type", "item_type")

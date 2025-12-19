@@ -1,6 +1,6 @@
 extends Node
 ## Scene Manager - Handles scene transitions with fade effects
-## See DEVELOPMENT_ROADMAP.md Task 1.2.2 for implementation details
+## See docs/execution/ROADMAP.md Task 1.2.2 for implementation details
 
 # ============================================
 # SIGNALS

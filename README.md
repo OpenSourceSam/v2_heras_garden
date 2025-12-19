@@ -18,11 +18,11 @@ A cozy farming game for the Retroid Pocket Classic, built with Godot 4.5.1.
 
 ```
 v2_heras_garden/
-├── CONSTITUTION.md          # ⚠️  Immutable technical rules
-├── SCHEMA.md                # ⚠️  Data structure definitions
+├── docs/design/CONSTITUTION.md          # ⚠️  Immutable technical rules
+├── docs/design/SCHEMA.md                # ⚠️  Data structure definitions
 ├── PROJECT_STRUCTURE.md     # Folder organization
-├── DEVELOPMENT_WORKFLOW.md  # Guide for developers
-├── PROJECT_STATUS.md        # Current phase and progress
+├── _docs/WORKFLOW_GUIDE.md  # Guide for developers
+├── docs/execution/PROJECT_STATUS.md        # Current phase and progress
 │
 ├── src/                     # All GDScript code
 │   ├── autoloads/           # Singletons (GameState, AudioController, SaveController)
@@ -44,21 +44,21 @@ v2_heras_garden/
 **If you're an AI working on this project, START HERE:**
 
 1. **Read foundation documents:**
-   - `CONSTITUTION.md` - Immutable technical rules
-   - `SCHEMA.md` - Data structure definitions
+   - `docs/design/CONSTITUTION.md` - Immutable technical rules
+   - `docs/design/SCHEMA.md` - Data structure definitions
    - `PROJECT_STRUCTURE.md` - File organization
-   - `DEVELOPMENT_WORKFLOW.md` - Step-by-step guide
-   - `PROJECT_STATUS.md` - Current phase and tasks
+   - `_docs/WORKFLOW_GUIDE.md` - Step-by-step guide
+   - `docs/execution/PROJECT_STATUS.md` - Current phase and tasks
 
 2. **Verify current state:**
    ```bash
-   cat PROJECT_STATUS.md  # Check current phase
+   cat docs/execution/PROJECT_STATUS.md  # Check current phase
    git log --oneline -5   # Check recent commits
    ```
 
 3. **Follow the rules:**
    - Never hardcode tile sizes (use `TILE_SIZE = 32`)
-   - Always check `SCHEMA.md` for property names
+   - Always check `docs/design/SCHEMA.md` for property names
    - Verify autoloads are registered in `project.godot`
    - Test each phase before moving to next
 
@@ -74,7 +74,7 @@ v2_heras_garden/
 | **Phase 3** | Content (NPCs, dialogue, quests) | ⚪ Not Started |
 | **Phase 4** | Polish (UI, audio, balance) | ⚪ Not Started |
 
-See `PROJECT_STATUS.md` for detailed progress.
+See `docs/execution/PROJECT_STATUS.md` for detailed progress.
 
 ---
 
@@ -105,7 +105,7 @@ V1 failed due to:
 
 V2 prevents these with:
 - Pre-registered autoloads in `project.godot`
-- `SCHEMA.md` as single source of truth
+- `docs/design/SCHEMA.md` as single source of truth
 - Checklist-driven development workflow
 - Named constants (`TILE_SIZE = 32`)
 - Complete each phase before starting next
@@ -115,14 +115,14 @@ V2 prevents these with:
 ## Contributing
 
 **For AI agents:**
-- Follow `DEVELOPMENT_WORKFLOW.md` step-by-step
+- Follow `_docs/WORKFLOW_GUIDE.md` step-by-step
 - Never skip phases
 - Always verify before assuming
 - Commit after each completed step
 
 **For humans:**
-- Read `CONSTITUTION.md` before making changes
-- Follow existing patterns in `SCHEMA.md`
+- Read `docs/design/CONSTITUTION.md` before making changes
+- Follow existing patterns in `docs/design/SCHEMA.md`
 - Test thoroughly before committing
 
 ---
@@ -143,4 +143,4 @@ _To be determined_
 
 **Status:** 🚧 Phase 0 in progress - Foundation being built
 
-See `PROJECT_STATUS.md` for current task list.
+See `docs/execution/PROJECT_STATUS.md` for current task list.

@@ -18,7 +18,7 @@ ANTIGRAVITY_FEEDBACK.md files, which have been archived to _docs/archive/.
 3) Phase readiness statements differ from current reality:
    - Both docs assume Phase 1 has not started; current repo includes partial Phase 1 scaffolding and wiring.
 4) Roadmap authority conflict:
-   - DEVELOPMENT_WORKFLOW.md treats DEVELOPMENT_ROADMAP.md as authoritative; the senior PM has paused it for overhaul.
+   - DEVELOPMENT_WORKFLOW.md treats docs/execution/ROADMAP.md as authoritative; the senior PM has paused it for overhaul.
 5) Tooling availability statements may be outdated:
    - ANTIGRAVITY_FEEDBACK.md states MCP is unavailable for testing; this should be reconfirmed.
 
@@ -39,10 +39,10 @@ When you join a conversation about this project, **follow this protocol:**
 ### 1. Read Foundation Documents (5 minutes)
 
 ```
-□ Read CONSTITUTION.md (immutable rules)
-□ Read SCHEMA.md (data structures)
+□ Read docs/design/CONSTITUTION.md (immutable rules)
+□ Read docs/design/SCHEMA.md (data structures)
 □ Read PROJECT_STRUCTURE.md (file organization)
-□ Read PROJECT_STATUS.md (current phase)
+□ Read docs/execution/PROJECT_STATUS.md (current phase)
 □ Read this file (DEVELOPMENT_WORKFLOW.md)
 ```
 
@@ -50,7 +50,7 @@ When you join a conversation about this project, **follow this protocol:**
 
 ```bash
 # Check which phase we're in
-cat PROJECT_STATUS.md
+cat docs/execution/PROJECT_STATUS.md
 
 # Verify autoloads are registered
 grep -A 5 "\[autoload\]" project.godot
@@ -77,7 +77,7 @@ Before writing ANY code:
 # ❌ DON'T assume this exists:
 var crop = CropRegistry.get_crop("wheat")
 
-# ✅ DO check SCHEMA.md first:
+# ✅ DO check docs/design/SCHEMA.md first:
 var crop = GameState.get_crop_data("wheat")  # If this method exists
 ```
 
@@ -89,7 +89,7 @@ var crop = GameState.get_crop_data("wheat")  # If this method exists
 
 **Acceptance Criteria:**
 - [ ] All folders created
-- [ ] CONSTITUTION.md, SCHEMA.md, PROJECT_STRUCTURE.md exist
+- [ ] docs/design/CONSTITUTION.md, docs/design/SCHEMA.md, PROJECT_STRUCTURE.md exist
 - [ ] project.godot has autoloads registered
 - [ ] All autoload scripts exist and compile
 - [ ] All resource class definitions exist
@@ -97,11 +97,11 @@ var crop = GameState.get_crop_data("wheat")  # If this method exists
 
 **Deliverables:**
 ```
-✅ CONSTITUTION.md
-✅ SCHEMA.md
+✅ docs/design/CONSTITUTION.md
+✅ docs/design/SCHEMA.md
 ✅ PROJECT_STRUCTURE.md
 ✅ DEVELOPMENT_WORKFLOW.md
-✅ PROJECT_STATUS.md
+✅ docs/execution/PROJECT_STATUS.md
 ✅ project.godot
 ✅ src/autoloads/game_state.gd
 ✅ src/autoloads/audio_controller.gd
@@ -118,7 +118,7 @@ var crop = GameState.get_crop_data("wheat")  # If this method exists
 1. Create all files listed above
 2. Run tests to verify compilation
 3. Commit: `git commit -m "feat: Phase 0 foundation complete"`
-4. Update PROJECT_STATUS.md to Phase 1
+4. Update docs/execution/PROJECT_STATUS.md to Phase 1
 
 ---
 
@@ -457,7 +457,7 @@ Closes #1
    - Note the exact error text
    - Note the file and line number
 
-2. **Check CONSTITUTION.md**
+2. **Check docs/design/CONSTITUTION.md**
    - Is this a known V1 failure mode?
    - What's the prescribed solution?
 
@@ -467,7 +467,7 @@ Closes #1
    ```
 
 4. **Verify Property Names**
-   - Check SCHEMA.md for exact property name
+   - Check docs/design/SCHEMA.md for exact property name
    - Don't guess or hallucinate
 
 5. **Test in Isolation**
@@ -485,7 +485,7 @@ Closes #1
 
 ### When Ending Your Session:
 
-1. **Update PROJECT_STATUS.md**
+1. **Update docs/execution/PROJECT_STATUS.md**
    - What phase/step did you complete?
    - What's next?
 
@@ -497,7 +497,7 @@ Closes #1
    ```
 
 3. **Document Blockers**
-   - Add any issues to PROJECT_STATUS.md
+   - Add any issues to docs/execution/PROJECT_STATUS.md
    - Flag incomplete work clearly
 
 4. **Leave Clear Next Steps**
@@ -514,21 +514,21 @@ Closes #1
 
 **Before writing ANY code:**
 ```
-□ Read CONSTITUTION.md
-□ Read SCHEMA.md
+□ Read docs/design/CONSTITUTION.md
+□ Read docs/design/SCHEMA.md
 □ Check project.godot for autoloads
 □ Verify TILE_SIZE = 32
 □ Check actual node paths in scenes
-□ Use exact property names from SCHEMA.md
+□ Use exact property names from docs/design/SCHEMA.md
 □ Test in isolation before integrating
 ```
 
 **When stuck:**
 ```
 □ Check error message carefully
-□ Check CONSTITUTION.md for known issues
+□ Check docs/design/CONSTITUTION.md for known issues
 □ Verify autoload registration
-□ Verify property names in SCHEMA.md
+□ Verify property names in docs/design/SCHEMA.md
 □ Test scene in isolation
 □ Ask for help
 ```
@@ -556,14 +556,14 @@ Closes #1
 ### ✅ What Has Been Completed (Phase 0)
 
 **Documentation Foundation:**
-- ✅ CONSTITUTION.md - Immutable technical rules (CORRECTED: Now says HERA'S GARDEN)
-- ✅ SCHEMA.md - Data structure definitions (exact property names)
-- ✅ DEVELOPMENT_ROADMAP.md - Step-by-step Phase 1 implementation guide with code templates
+- ✅ docs/design/CONSTITUTION.md - Immutable technical rules (CORRECTED: Now says HERA'S GARDEN)
+- ✅ docs/design/SCHEMA.md - Data structure definitions (exact property names)
+- ✅ docs/execution/ROADMAP.md - Step-by-step Phase 1 implementation guide with code templates
 - ✅ PROJECT_SUMMARY.md - Quick reference
-- ✅ PROJECT_STATUS.md - Current progress tracker
+- ✅ docs/execution/PROJECT_STATUS.md - Current progress tracker
 - ✅ PLAYTESTER_GUIDE.md - Testing instructions
-- ✅ Storyline.md - Complete narrative (HERA'S GARDEN - 4,687 lines)
-- ✅ PHASE_2_ROADMAP.md - Quest-by-quest story implementation plan
+- ✅ docs/design/Storyline.md - Complete narrative (HERA'S GARDEN - 4,687 lines)
+- ✅ docs/execution/ROADMAP.md - Quest-by-quest story implementation plan
 - ✅ ASSET_CHECKLIST.md - Complete asset inventory (~150 assets documented)
 
 **Godot Project Structure:**
@@ -602,7 +602,7 @@ Closes #1
 **Critical Understanding:**
 - The placeholder scenes exist but are **non-functional** without scripts
 - This is **intentional** - Phase 1 starts with implementing these scripts
-- Follow DEVELOPMENT_ROADMAP.md exactly - it has complete code templates
+- Follow docs/execution/ROADMAP.md exactly - it has complete code templates
 
 ### 📊 Project Readiness Assessment
 
@@ -676,13 +676,13 @@ grep -i "TODO\|FIXME" src/entities/player.gd
 ```
 
 **Validate against template:**
-- Read the code template from DEVELOPMENT_ROADMAP.md
+- Read the code template from docs/execution/ROADMAP.md
 - Compare line-by-line with your implementation
 - Ensure no deviations unless documented
 
 #### 3. **Dependency Verification**
 
-**Check property names match SCHEMA.md:**
+**Check property names match docs/design/SCHEMA.md:**
 ```bash
 # Example: Verify you're using correct CropData properties
 grep "growth_stages" src/entities/farm_plot.gd
@@ -722,12 +722,12 @@ grep "node name=" scenes/entities/player.tscn
 ```gdscript
 # Example workflow for implementing farm_plot.gd:
 
-1. Read SCHEMA.md → Check CropData properties
+1. Read docs/design/SCHEMA.md → Check CropData properties
 2. Read src/autoloads/game_state.gd → Check available methods
-3. Read DEVELOPMENT_ROADMAP.md → Check code template
+3. Read docs/execution/ROADMAP.md → Check code template
 4. Write src/entities/farm_plot.gd using EXACT template
 5. Read your own file back → Verify it matches template
-6. Grep for property names → Ensure they match SCHEMA.md
+6. Grep for property names → Ensure they match docs/design/SCHEMA.md
 7. Commit only if all validations pass
 ```
 
@@ -742,12 +742,12 @@ grep "node name=" scenes/entities/player.tscn
 **Code Quality:**
 - [ ] Extends correct base class (CharacterBody2D, Node2D, etc.)
 - [ ] All @onready vars reference nodes that exist in scene
-- [ ] All property names match SCHEMA.md exactly
+- [ ] All property names match docs/design/SCHEMA.md exactly
 - [ ] All constants use defined values (TILE_SIZE, not magic numbers)
 - [ ] All autoload calls reference registered autoloads
 
 **Template Adherence:**
-- [ ] Code matches DEVELOPMENT_ROADMAP.md template
+- [ ] Code matches docs/execution/ROADMAP.md template
 - [ ] No additions beyond template (unless explicitly instructed)
 - [ ] No omissions from template
 - [ ] Function signatures match exactly
@@ -767,7 +767,7 @@ grep "node name=" scenes/entities/player.tscn
 **Overzealous does NOT mean:** Working too quickly or completing tasks efficiently
 
 **Overzealous MEANS:**
-- 🚨 **Diverging from the plan** (implementing something not in DEVELOPMENT_ROADMAP.md)
+- 🚨 **Diverging from the plan** (implementing something not in docs/execution/ROADMAP.md)
 - 🚨 **Writing too much code** (adding features beyond the task scope)
 - 🚨 **Adding unnecessary things** (helper functions, optimizations, extras not requested)
 - 🚨 **Going beyond boundaries** (implementing Task 1.1.2 when only 1.1.1 was assigned)
@@ -794,7 +794,7 @@ grep "node name=" scenes/entities/player.tscn
 - Deviates from tested roadmap
 
 **Correct Approach:**
-- ✅ Read the task in DEVELOPMENT_ROADMAP.md
+- ✅ Read the task in docs/execution/ROADMAP.md
 - ✅ Implement ONLY what's in the code template
 - ✅ If template seems incomplete, **ask** before adding
 - ✅ Trust the roadmap - features omitted now may be in later phases
@@ -810,7 +810,7 @@ grep "node name=" scenes/entities/player.tscn
 
 ### 🚨 Pattern 2: Diverging from Code Templates
 
-**Symptom:** Writing code that differs from DEVELOPMENT_ROADMAP.md templates
+**Symptom:** Writing code that differs from docs/execution/ROADMAP.md templates
 
 **Examples:**
 - ❌ Template shows simple movement, you add acceleration/deceleration
@@ -824,7 +824,7 @@ grep "node name=" scenes/entities/player.tscn
 - May introduce bugs not present in template
 
 **Correct Approach:**
-- ✅ Copy template code EXACTLY from DEVELOPMENT_ROADMAP.md
+- ✅ Copy template code EXACTLY from docs/execution/ROADMAP.md
 - ✅ Only fill in obvious placeholders (like scene paths)
 - ✅ If you think template has an error, **ask** before changing
 - ✅ Use template as-is even if you think you can "improve" it
@@ -866,7 +866,7 @@ grep "node name=" scenes/entities/player.tscn
 
 ### 🚨 Pattern 4: Hallucinating Property Names
 
-**Symptom:** Guessing property names instead of checking SCHEMA.md
+**Symptom:** Guessing property names instead of checking docs/design/SCHEMA.md
 
 **Examples:**
 - ❌ `crop_data.sprites` (wrong - should be `growth_stages`)
@@ -881,7 +881,7 @@ grep "node name=" scenes/entities/player.tscn
 
 **Correct Approach:**
 - ✅ **BEFORE** writing any code that uses a property:
-  1. Read SCHEMA.md
+  1. Read docs/design/SCHEMA.md
   2. Find the exact property name
   3. Copy-paste it into your code
 - ✅ When uncertain, grep existing code: `grep "growth_stages" src/resources/crop_data.gd`
@@ -892,13 +892,13 @@ grep "node name=" scenes/entities/player.tscn
 # After writing code, check property usage
 grep "crop_data\." src/entities/farm_plot.gd
 
-# For each property found, verify it exists in SCHEMA.md
-# Read SCHEMA.md and confirm each property name is correct
+# For each property found, verify it exists in docs/design/SCHEMA.md
+# Read docs/design/SCHEMA.md and confirm each property name is correct
 ```
 
 ---
 
-### 🚨 Pattern 5: Ignoring CONSTITUTION.md Rules
+### 🚨 Pattern 5: Ignoring docs/design/CONSTITUTION.md Rules
 
 **Symptom:** Not following immutable technical rules
 
@@ -915,7 +915,7 @@ grep "crop_data\." src/entities/farm_plot.gd
 - Repeats V1 architectural failures
 
 **Correct Approach:**
-- ✅ Read CONSTITUTION.md section relevant to your task
+- ✅ Read docs/design/CONSTITUTION.md section relevant to your task
 - ✅ Check project.godot for autoload registration before referencing
 - ✅ Use constants: `GameState.TILE_SIZE` not `32`
 - ✅ Follow folder structure strictly
@@ -984,8 +984,8 @@ grep "crop_data\." src/entities/farm_plot.gd
 **Step 3: Read Related Files**
 ```bash
 # Re-read the original specification
-# Find the task in DEVELOPMENT_ROADMAP.md
-grep -A 50 "1.1.2 - Player Movement" DEVELOPMENT_ROADMAP.md
+# Find the task in docs/execution/ROADMAP.md
+grep -A 50 "1.1.2 - Player Movement" docs/execution/ROADMAP.md
 
 # Read the code template again
 # Compare your implementation line-by-line
@@ -1008,15 +1008,15 @@ grep "GameState" project.godot
 
 **Step 5: Validate Property Names**
 ```bash
-# Read SCHEMA.md to verify property names
-grep "velocity\|move_and_slide" SCHEMA.md
+# Read docs/design/SCHEMA.md to verify property names
+grep "velocity\|move_and_slide" docs/design/SCHEMA.md
 
-# Check CONSTITUTION.md for relevant rules
-grep -A 10 "TILE_SIZE\|NODE PATH" CONSTITUTION.md
+# Check docs/design/CONSTITUTION.md for relevant rules
+grep -A 10 "TILE_SIZE\|NODE PATH" docs/design/CONSTITUTION.md
 ```
 
 **Step 6: Cross-Reference Template**
-- Read DEVELOPMENT_ROADMAP.md code template for this task
+- Read docs/execution/ROADMAP.md code template for this task
 - Open your implementation side-by-side (mentally)
 - Note EVERY difference, even small ones:
   - Different variable names?
@@ -1076,8 +1076,8 @@ The @onready reference $Sprite fails to find the node."
 
 **Ask yourself:**
 1. What is the SMALLEST change that fixes the root cause?
-2. Does the fix align with DEVELOPMENT_ROADMAP.md template?
-3. Does the fix violate any CONSTITUTION.md rules?
+2. Does the fix align with docs/execution/ROADMAP.md template?
+3. Does the fix violate any docs/design/CONSTITUTION.md rules?
 4. Will the fix affect other systems?
 
 **Document the planned fix:**
@@ -1121,7 +1121,7 @@ grep "node name=\"Sprite\"" scenes/entities/player.tscn
 Use the "Validation Checklist" from earlier:
 - [ ] File structure correct
 - [ ] Code matches template
-- [ ] Property names match SCHEMA.md
+- [ ] Property names match docs/design/SCHEMA.md
 - [ ] Node references align with scene structure
 - [ ] No new issues introduced
 
@@ -1217,7 +1217,7 @@ Phase 7: Reflect
 
 ```
 STEP 1: Read Task Specification
-├─ Open DEVELOPMENT_ROADMAP.md
+├─ Open docs/execution/ROADMAP.md
 ├─ Find your current task (e.g., 1.1.1)
 ├─ Read the ENTIRE section (goals, tasks, code template, test criteria)
 └─ Understand what success looks like
@@ -1229,13 +1229,13 @@ STEP 2: Verify Prerequisites
 └─ If dependencies missing → STOP and report
 
 STEP 3: Read Related Documentation
-├─ Check SCHEMA.md for property names you'll use
-├─ Check CONSTITUTION.md for relevant rules
+├─ Check docs/design/SCHEMA.md for property names you'll use
+├─ Check docs/design/CONSTITUTION.md for relevant rules
 ├─ Read related files (e.g., if modifying scene, read the .tscn file first)
 └─ Take notes on exact property names and constants
 
 STEP 4: Implement (Following Template EXACTLY)
-├─ Copy code template from DEVELOPMENT_ROADMAP.md
+├─ Copy code template from docs/execution/ROADMAP.md
 ├─ Paste into appropriate file
 ├─ Fill in any placeholders (file paths, etc.)
 ├─ DO NOT add code beyond template
@@ -1250,12 +1250,12 @@ STEP 5: Self-Validate
 
 STEP 6: Commit
 ├─ Stage changes: git add <files>
-├─ Commit with template message from DEVELOPMENT_ROADMAP.md
+├─ Commit with template message from docs/execution/ROADMAP.md
 ├─ Check commit succeeded: git log -1
 └─ Verify working tree clean: git status
 
 STEP 7: Update Status
-├─ Edit PROJECT_STATUS.md
+├─ Edit docs/execution/PROJECT_STATUS.md
 ├─ Mark current task as complete
 ├─ Update progress percentage if applicable
 └─ Commit status update
@@ -1280,9 +1280,9 @@ STEP 8: Report and Stop
 - ❌ NEVER add code not in template (unless explicitly requested)
 - ✅ Copy template exactly, fill obvious placeholders only
 
-**Rule 3: Property Names from SCHEMA.md**
+**Rule 3: Property Names from docs/design/SCHEMA.md**
 - ❌ NEVER guess property names
-- ✅ Read SCHEMA.md, copy-paste exact names
+- ✅ Read docs/design/SCHEMA.md, copy-paste exact names
 
 **Rule 4: Validate Before Commit**
 - ❌ NEVER commit without running validation checklist
@@ -1339,15 +1339,15 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 **Validation Results:**
 - [List of checks performed]
 - ✅ File created in correct location
-- ✅ Code matches DEVELOPMENT_ROADMAP.md template
-- ✅ Property names verified against SCHEMA.md
+- ✅ Code matches docs/execution/ROADMAP.md template
+- ✅ Property names verified against docs/design/SCHEMA.md
 - ✅ No syntax errors (grep checks passed)
 - ✅ Committed with message: "feat: implement player movement system"
 
 **Files Changed:**
 - src/entities/player.gd (new file, 45 lines)
 - scenes/entities/player.tscn (modified, attached script)
-- PROJECT_STATUS.md (marked 1.1.2 complete)
+- docs/execution/PROJECT_STATUS.md (marked 1.1.2 complete)
 
 **Next Task:** X.X.Y (Describe next task)
 
@@ -1367,10 +1367,10 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 **Task Level:**
 - Current subsection fully implemented (file created, code written)
 - All validation checks passed (see checklist)
-- Code matches DEVELOPMENT_ROADMAP.md template
-- Property names verified against SCHEMA.md
+- Code matches docs/execution/ROADMAP.md template
+- Property names verified against docs/design/SCHEMA.md
 - Commit completed successfully
-- PROJECT_STATUS.md updated
+- docs/execution/PROJECT_STATUS.md updated
 - User approved: "Proceed" or "Continue"
 
 **Section Level:**
@@ -1384,7 +1384,7 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 **Immediately stop if:**
 - Validation check fails (file in wrong place, property name wrong, etc.)
 - Code doesn't match template (unexplained deviations)
-- You can't find required information (property not in SCHEMA.md)
+- You can't find required information (property not in docs/design/SCHEMA.md)
 - You've completed current subsection (don't auto-continue)
 - You've completed full section (e.g., all of 1.1)
 - You encounter unexpected behavior/bug
@@ -1407,8 +1407,8 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 
 **Technical Questions:**
 - Template seems to have an error or omission
-- Property name not found in SCHEMA.md
-- CONSTITUTION.md rule conflicts with task
+- Property name not found in docs/design/SCHEMA.md
+- docs/design/CONSTITUTION.md rule conflicts with task
 - Unclear how to implement something
 - Need clarification on spec
 
@@ -1438,21 +1438,21 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 
 **Priority 1 (Read Fully):**
 1. ✅ This file (ANTIGRAVITY_FEEDBACK.md) - Current document
-2. CONSTITUTION.md - Immutable technical rules
-3. SCHEMA.md - Data structure definitions
+2. docs/design/CONSTITUTION.md - Immutable technical rules
+3. docs/design/SCHEMA.md - Data structure definitions
 
 **Priority 2 (Read Task-Specific Section):**
-4. DEVELOPMENT_ROADMAP.md (Read ONLY your current task section)
+4. docs/execution/ROADMAP.md (Read ONLY your current task section)
    - Example: If doing Task 1.1.1, read Task 1.1.1 section only
    - Don't read ahead (prevents confusion and scope creep)
 
 **Priority 3 (Reference as Needed):**
-5. PROJECT_STATUS.md - Verify current phase and dependencies
+5. docs/execution/PROJECT_STATUS.md - Verify current phase and dependencies
 6. PROJECT_SUMMARY.md - Quick reference if need context
 
 **Not Immediately Needed:**
-7. Storyline.md - (Read when implementing Phase 2 story quests)
-8. PHASE_2_ROADMAP.md - (Not needed until Phase 1 complete)
+7. docs/design/Storyline.md - (Read when implementing Phase 2 story quests)
+8. docs/execution/ROADMAP.md - (Not needed until Phase 1 complete)
 9. ASSET_CHECKLIST.md - (For asset creation, not code implementation)
 10. PLAYTESTER_GUIDE.md - (For testing after features implemented)
 
@@ -1529,9 +1529,9 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 ### Golden Rules:
 
 1. **ONE task at a time** - Never implement multiple subsections simultaneously
-2. **EXACT template adherence** - Copy templates from DEVELOPMENT_ROADMAP.md exactly
+2. **EXACT template adherence** - Copy templates from docs/execution/ROADMAP.md exactly
 3. **VALIDATE immediately** - Use grep, ls, file reads to verify correctness
-4. **CHECK SCHEMA.md** - Never guess property names, always verify
+4. **CHECK docs/design/SCHEMA.md** - Never guess property names, always verify
 5. **STOP at checkpoints** - Report completion, wait for approval to continue
 6. **DEBUG systematically** - Follow debugging workflow, don't jump to fixes
 7. **COMMIT granularly** - One subsection = one commit
@@ -1556,7 +1556,7 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 
 - Code matches template exactly
 - All validation checks pass
-- Property names match SCHEMA.md
+- Property names match docs/design/SCHEMA.md
 - Commits are clean and well-documented
 - You stay within subsection boundaries
 - Senior AI can continue from your work seamlessly
@@ -1587,12 +1587,12 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 - [ ] I understand template adherence is mandatory
 
 **Step 2: Read Core Documentation**
-- [ ] Read CONSTITUTION.md (immutable rules)
-- [ ] Read SCHEMA.md (data structures)
-- [ ] Read PROJECT_STATUS.md (current state)
+- [ ] Read docs/design/CONSTITUTION.md (immutable rules)
+- [ ] Read docs/design/SCHEMA.md (data structures)
+- [ ] Read docs/execution/PROJECT_STATUS.md (current state)
 
 **Step 3: Start First Task**
-- [ ] Read DEVELOPMENT_ROADMAP.md Task 1.1.1 section ONLY
+- [ ] Read docs/execution/ROADMAP.md Task 1.1.1 section ONLY
 - [ ] Verify prerequisite files exist
 - [ ] Implement Task 1.1.1 using exact template
 - [ ] Validate using checklist
