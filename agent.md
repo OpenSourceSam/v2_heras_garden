@@ -48,6 +48,7 @@ Read in this order when starting:
 Other references:
 - `DOCS_MAP.md` - Index of all documentation
 - `Storyline.md` - Full narrative (read when implementing story)
+- `RESTRUCTURE.md` - Repo restructure plan (read before moving files)
 
 ---
 
