@@ -45,7 +45,7 @@
 
 **Expected:**
 - Purple background
-- Title: "CIRCE'S GARDEN"
+- Title: "HERA'S GARDEN"
 - 4 buttons (New Game, Continue, Settings, Quit)
 
 ### Test 3: Player Scene

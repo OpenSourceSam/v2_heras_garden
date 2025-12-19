@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://dialogue_box_001"]
+[gd_scene load_steps=2 format=3 uid="uid://dialogue_box_001"]
+
+[ext_resource type="Script" path="res://src/ui/dialogue_box.gd" id="1_script"]
 
 [node name="DialogueBox" type="CanvasLayer"]
+script = ExtResource("1_script")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 12

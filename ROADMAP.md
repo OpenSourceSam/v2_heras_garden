@@ -1,8 +1,11 @@
-# CIRCE'S GARDEN - COMPLETE DEVELOPMENT ROADMAP
+# HERA'S GARDEN - DEVELOPMENT ROADMAP
 
-**Version:** 2.0
-**Last Updated:** December 16, 2025
+**Version:** 2.1
+**Last Updated:** December 19, 2025
+**Status:** CANONICAL - Consolidated from DEVELOPMENT_ROADMAP.md, PHASE_2_ROADMAP.md, PHASES_3_TO_5_OUTLINE.md
 **Purpose:** Explicit, step-by-step implementation guide for AI agents
+
+Note: Phase-specific roadmaps have been archived to _docs/archive/. This is now the single source of truth.
 
 ---
 
@@ -23,7 +26,7 @@ Before implementing ANY feature:
 ## PROJECT OVERVIEW
 
 ### Game Summary
-- **Title:** Circe's Garden
+- **Title:** Hera's Garden
 - **Genre:** Narrative Farming Game / Greek Tragedy
 - **Platform:** Retroid Pocket Classic (1080×1240 Android)
 - **Engine:** Godot 4.5.1

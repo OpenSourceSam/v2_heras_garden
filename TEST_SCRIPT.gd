@@ -3,9 +3,9 @@ extends SceneTree
 ## Run with: godot --headless --script TEST_SCRIPT.gd
 
 func _init() -> void:
-	print("=" * 60)
-	print("CIRCE'S GARDEN - PHASE 0 VALIDATION")
-	print("=" * 60)
+	print("=".repeat(60))
+	print("HERA'S GARDEN - PHASE 0 VALIDATION")
+	print("=".repeat(60))
 	print("")
 
 	var all_passed = true
@@ -13,11 +13,11 @@ func _init() -> void:
 	# Test 1: Autoloads exist
 	print("[TEST 1] Checking autoloads...")
 	var autoloads = ["GameState", "AudioController", "SaveController"]
-	for autoload in autoloads:
-		if has_node("/root/" + autoload):
-			print("  ✅ %s found" % autoload)
+	for autoload_name in autoloads:
+		if root.has_node(autoload_name):
+			print("  ✅ %s found" % autoload_name)
 		else:
-			print("  ❌ %s NOT FOUND" % autoload)
+			print("  ❌ %s NOT FOUND" % autoload_name)
 			all_passed = false
 
 	print("")
@@ -25,18 +25,18 @@ func _init() -> void:
 	# Test 2: Resource classes
 	print("[TEST 2] Checking resource classes...")
 	var classes = ["CropData", "ItemData", "DialogueData", "NPCData"]
-	for class_name in classes:
-		if ClassDB.class_exists(class_name):
-			print("  ✅ %s exists" % class_name)
+	for cls_name in classes:
+		if ClassDB.class_exists(cls_name):
+			print("  ✅ %s exists" % cls_name)
 		else:
-			print("  ❌ %s NOT FOUND" % class_name)
+			print("  ❌ %s NOT FOUND" % cls_name)
 			all_passed = false
 
 	print("")
 
 	# Test 3: Constants
 	print("[TEST 3] Checking constants...")
-	var game_state = get_node_or_null("/root/GameState")
+	var game_state = root.get_node_or_null("GameState")
 	if game_state and game_state.TILE_SIZE == 32:
 		print("  ✅ TILE_SIZE = 32")
 	else:
@@ -79,7 +79,7 @@ func _init() -> void:
 			all_passed = false
 
 	print("")
-	print("=" * 60)
+	print("=".repeat(60))
 
 	if all_passed:
 		print("✅ PHASE 0 VALIDATION PASSED")

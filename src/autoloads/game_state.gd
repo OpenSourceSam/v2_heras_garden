@@ -10,8 +10,7 @@ signal flag_changed(flag: String, value: bool)
 signal crop_planted(plot_id: Vector2i, crop_id: String)
 signal crop_harvested(plot_id: Vector2i, item_id: String, quantity: int)
 
-# Constants
-const TILE_SIZE: int = 32
+# Note: For TILE_SIZE and other constants, use Constants.TILE_SIZE (see src/core/constants.gd)
 
 # State
 var current_day: int = 1

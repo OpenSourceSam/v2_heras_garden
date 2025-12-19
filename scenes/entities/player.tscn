@@ -1,16 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://player_scene_001"]
+[gd_scene load_steps=4 format=3 uid="uid://player_scene_001"]
+
+[ext_resource type="Script" path="res://src/entities/player.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://placeholder_circe" path="res://assets/sprites/placeholder_circe.svg" id="2_placeholder"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
 radius = 14.0
 height = 28.0
 
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0.843137, 0, 1)
 position = Vector2(0, -16)
-scale = Vector2(32, 32)
-texture = null
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_placeholder")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -14)

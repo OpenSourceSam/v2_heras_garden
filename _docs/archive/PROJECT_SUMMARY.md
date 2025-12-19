@@ -1,4 +1,4 @@
-# CIRCE'S GARDEN - PROJECT SUMMARY
+# HERA'S GARDEN - PROJECT SUMMARY
 
 **Quick reference for AI agents joining this project**
 

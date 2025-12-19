@@ -118,8 +118,8 @@ const SCENE_TEST: String = "res://scenes/test_scene.tscn"
 # SAVE/LOAD
 # ============================================
 
-## Save file path
-const SAVE_FILE_PATH: String = "user://circe_garden_save.dat"
+## Save file path (JSON format)
+const SAVE_FILE_PATH: String = "user://savegame.json"
 
 ## Save file version (for compatibility checks)
-const SAVE_VERSION: int = 1
+const SAVE_VERSION: int = 2

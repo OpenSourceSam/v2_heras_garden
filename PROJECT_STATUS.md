@@ -1,176 +1,138 @@
-# CIRCE'S GARDEN V2 - PROJECT STATUS
+# HERA'S GARDEN V2 - PROJECT STATUS
 
-**Last Updated:** December 16, 2025
-**Current Phase:** Phase 0 → Phase 1 Transition
-**Status:** ✅ Foundation Complete → 🟡 Core Systems Ready
+Last Updated: 2025-12-19
+Current Phase: Phase 1 (in progress, scaffolding only)
+Status: Documentation consolidated, constants drift fixed
+
+Reference: DOCS_MAP.md
 
 ---
 
-## PHASE COMPLETION
+## Phase Completion
 
 | Phase | Status | Progress |
-|-------|--------|----------|
-| Phase 0: Foundation | ✅ Complete | 100% |
-| Phase 1: Core Systems | 🟡 Ready to Start | 0% |
-| Phase 2: Story Implementation | ⚪ Not Started | 0% |
-| Phase 3: Minigames & Polish | ⚪ Not Started | 0% |
-| Phase 4: Content & Balance | ⚪ Not Started | 0% |
-| Phase 5: Deployment | ⚪ Not Started | 0% |
+|------|--------|----------|
+| Phase 0: Foundation | Complete | 100% |
+| Phase 1: Core Systems | In Progress (scaffolding only) | 15% |
+| Phase 2: Story Implementation | Not Started | 0% |
+| Phase 3: Minigames and Polish | Not Started | 0% |
+| Phase 4: Content and Balance | Not Started | 0% |
+| Phase 5: Deployment | Not Started | 0% |
 
 ---
 
-## PHASE 0: FOUNDATION ✅ COMPLETE
+## Recent Changes (2025-12-19)
 
-**Goal:** Set up project structure, governance docs, and autoloads.
+### Documentation Consolidation (Complete)
+- Archived 7 deprecated/redundant docs to `_docs/archive/`
+- Renamed `DEVELOPMENT_ROADMAP.md` to `ROADMAP.md` (single source for all phases)
+- Created `_docs/WORKFLOW_GUIDE.md` (consolidated workflow reference)
+- Updated `DOCS_MAP.md` with new canonical structure
+- Deleted junk files (nul, txt, tgz)
 
-### Completed ✅
+### Constants Drift Fix (Complete)
+- Removed duplicate TILE_SIZE from `game_state.gd`
+- Updated `save_controller.gd` to use `Constants.SAVE_FILE_PATH` and `Constants.SAVE_VERSION`
+- All constants now centralized in `src/core/constants.gd`
 
-- [x] CONSTITUTION.md created
-- [x] SCHEMA.md created
-- [x] PROJECT_STRUCTURE.md created
-- [x] DEVELOPMENT_WORKFLOW.md created
-- [x] PROJECT_STATUS.md created (this file)
-- [x] project.godot with autoloads registered
-- [x] src/autoloads/game_state.gd
-- [x] src/autoloads/audio_controller.gd
-- [x] src/autoloads/save_controller.gd
-- [x] src/resources/*.gd (class definitions)
-- [x] tests/run_tests.gd
-- [x] .gitignore
-- [x] Storyline.md (from user - **CIRCE'S GARDEN**)
-- [x] DEVELOPMENT_ROADMAP.md (Phase 1 detailed)
-- [x] PROJECT_SUMMARY.md (quick reference)
+### Scene Wiring (Complete - by Jr Engineer)
+- Farm plot, main menu, dialogue box, and debug HUD scenes now have scripts attached
 
-### Acceptance Criteria ✅
-
-- [x] All foundation files exist
-- [x] Godot project structure correct
-- [x] Autoloads pre-registered
-- [x] Resource classes defined
-- [x] Comprehensive roadmap created
-- [x] Tests exist (will run when Godot available)
-- [x] Git committed and pushed
+### Test Runner Repair (Complete - by Jr Engineer)
+- Fixed encoding corruption in `tests/run_tests.gd`
+- Added Test 5 for scene wiring validation
 
 ---
 
-## PHASE 1: CORE SYSTEMS
+## Current Implementation Reality (Snapshot)
 
-**Goal:** Implement foundational game systems (player, farming, crafting, dialogue).
+**Scenes and Wiring:**
+- Player scene: Script attached, movement works
+- Farm plot scene: Script attached (TODO stub)
+- Main menu scene: Script attached (TODO stub)
+- Dialogue box scene: Script attached (TODO stub)
+- Debug HUD scene: Script attached to `src/ui/debug_hud.gd`
+- World scene: TileMapLayer exists but NO PAINTED TILES
 
-### 1.1 - Player System
-- [ ] 1.1.1: Player scene creation (CharacterBody2D, Sprite, Camera)
-- [ ] 1.1.2: Movement script (100px/sec, sprite flipping)
-- [ ] 1.1.3: Interaction system (Area2D, E key, signals)
+**Scripts:**
+- Player: Movement implemented, interaction is TODO stub
+- Farm plot: Full lifecycle is TODO stub
+- Dialogue box: TODO stub
+- SceneManager: TODO stub for transitions
+- Constants: Centralized, used by GameState and SaveController
 
-### 1.2 - World & Scene Management
-- [ ] 1.2.1: World scene with TileMapLayer (painted!)
-- [ ] 1.2.2: Scene transition system (SceneManager autoload)
-
-### 1.3 - Farming System
-- [ ] 1.3.1: Farm plot entity (scene + sprites)
-- [ ] 1.3.2: Farm plot script (states, methods, crop data)
-- [ ] 1.3.3: Day/night system (sundial, advance_day)
-
-### 1.4 - Crafting System
-- [ ] 1.4.1: Mortar & pestle minigame (patterns, buttons, timing)
-- [ ] 1.4.2: Recipe system (RecipeData, ingredient checking)
-
-### 1.5 - Dialogue System
-- [ ] 1.5.1: DialogueBox UI (speaker, text, choices)
-- [ ] 1.5.2: Dialogue manager (scrolling, flags, branching)
-
-### Acceptance Criteria
-
-- [ ] Player can move and interact with objects
-- [ ] Can complete full crop cycle (till → plant → water → harvest)
-- [ ] Crafting minigame works with simple pattern
-- [ ] Dialogue displays with text scrolling and choices
-- [ ] All systems tested in isolation
-- [ ] No console errors on game startup
+**Tests:**
+- Test runner repaired and functional
+- 5 tests: autoloads, resource classes, TILE_SIZE, GameState init, scene wiring
 
 ---
 
-## KNOWN ISSUES
+## Canonical Documentation (New Structure)
 
-_None yet - Phase 0 only (documentation)._
+**Primary Docs:**
+- `README.md` - Project overview
+- `CONSTITUTION.md` - Immutable technical rules
+- `SCHEMA.md` - Data structures
+- `PROJECT_STATUS.md` - This file
+- `ROADMAP.md` - All phase implementation details
+- `Storyline.md` - Narrative
 
----
+**Workflow:**
+- `_docs/WORKFLOW_GUIDE.md` - Process rules for contributors
 
-## BLOCKERS
-
-_None currently._
-
----
-
-## NEXT STEPS FOR NEXT AGENT
-
-**YOU ARE HERE:** Phase 0 complete, Phase 1 ready to start
-
-### 1. Read Documentation First (30 min):
-```
-Priority Order:
-1. CONSTITUTION.md      (5 min - immutable rules)
-2. SCHEMA.md            (5 min - data structures)
-3. PROJECT_SUMMARY.md   (5 min - quick overview)
-4. DEVELOPMENT_ROADMAP.md (10 min - detailed tasks)
-5. Storyline.md         (20 min - full narrative)
-```
-
-### 2. Understand the Game:
-- **Title:** CIRCE'S GARDEN (NOT Hera's Garden!)
-- **Story:** Circe transforms Scylla into monster → guilt → redemption → mercy kill
-- **Gameplay:** Farm pharmaka herbs → Craft potions → Progress through tragic story
-- **Platform:** Retroid Pocket Classic (1080×1240 Android, d-pad only)
-
-### 3. Start Phase 1:
-```
-□ Begin with Task 1.1.1 (Player scene creation)
-□ Follow code templates in DEVELOPMENT_ROADMAP.md
-□ Test after each subsection
-□ Commit using provided message template
-□ Continue sequentially through Phase 1
-```
-
-### 4. Critical Reminders:
-- ✅ Check SCHEMA.md for exact property names (don't guess!)
-- ✅ Verify autoloads registered in project.godot
-- ✅ Paint tiles before testing TileMapLayer (don't leave empty!)
-- ✅ Use `TILE_SIZE = 32` constant (no magic numbers)
-- ✅ Test each feature in isolation before integrating
-- ✅ Commit after each completed subsection
+**Archived Docs (in `_docs/archive/`):**
+- DEVELOPMENT_WORKFLOW.md
+- ANTIGRAVITY_FEEDBACK.md
+- PHASE_2_ROADMAP.md
+- PHASES_3_TO_5_OUTLINE.md
+- PROJECT_SUMMARY.md
+- PLAYTESTER_GUIDE.md
+- ASSET_CHECKLIST.md
 
 ---
 
-## RECENT COMMITS
+## Known Issues
 
-```
-8c3dfe4 - feat: add comprehensive development roadmap for Circe's Garden
-1d598fb - feat: Initialize Hera's Garden v2 foundation (Phase 0 complete)
-```
+**HIGH Priority:**
+- World TileMapLayer has no painted tiles (blocks gameplay testing)
 
----
+**MEDIUM Priority:**
+- Player sprite node named "Sprite2D" (template says "Sprite")
 
-## NOTES
-
-### Project Identity
-- **IMPORTANT:** Game is **CIRCE'S GARDEN** (not Hera's Garden)
-- Story based on Madeline Miller's *Circe* (Greek mythology)
-- Themes: Jealousy → Guilt → Redemption through Mercy
-
-### V1 Lessons Applied
-- ✅ Autoloads pre-registered (no runtime crashes)
-- ✅ Property names documented in SCHEMA.md (no hallucinations)
-- ✅ TILE_SIZE = 32 constant (no magic numbers)
-- ✅ Development roadmap with code templates (no guesswork)
-- ✅ Designed for segmented work (isolate errors)
-
-### Development Philosophy
-- **Sequential phases:** Complete → Test → Verify → Commit → Next
-- **Isolated development:** Test each feature alone before integrating
-- **Explicit templates:** Code provided, not described
-- **Error containment:** Segmented work prevents cascading failures
-- **AI-friendly:** Less-capable systems can follow step-by-step
+**LOW Priority:**
+- MCP runtime introspection times out
 
 ---
 
-**End of PROJECT_STATUS.md**
+## Phase 1 Required Systems (High Level)
+
+- [x] Player movement
+- [ ] Player interaction system
+- [ ] Farm plot lifecycle (till, plant, grow, harvest)
+- [ ] World scene setup and TileMap painting
+- [ ] Crafting minigame (minimal)
+- [ ] Dialogue system (minimal)
+- [ ] Scene transitions (basic)
+
+---
+
+## Next Steps (Immediate)
+
+1. Paint tiles in world.tscn (requires Godot editor)
+2. Implement player interaction system (add InteractionZone)
+3. Implement farm plot state machine and crop lifecycle
+4. Implement basic dialogue system
+5. Implement scene transitions in SceneManager
+
+---
+
+## Project Identity
+
+- Title: Hera's Garden
+- Main character: Circe
+- Inspiration: Greek mythology and the novel "Circe"
+- Platform: Retroid Pocket Classic (Android 14, 1080x1240, d-pad only)
+
+---
+
+End of PROJECT_STATUS.md

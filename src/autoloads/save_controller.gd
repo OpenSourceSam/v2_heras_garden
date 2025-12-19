@@ -1,8 +1,6 @@
 extends Node
 ## SaveController - Save/Load game state to user://
-
-const SAVE_PATH: String = "user://savegame.json"
-const SAVE_VERSION: int = 2
+## Uses Constants.SAVE_FILE_PATH and Constants.SAVE_VERSION from src/core/constants.gd
 
 # ============================================
 # SAVE GAME
@@ -10,7 +8,7 @@ const SAVE_VERSION: int = 2
 
 func save_game() -> bool:
 	var save_data: Dictionary = {
-		"version": SAVE_VERSION,
+		"version": Constants.SAVE_VERSION,
 		"timestamp": Time.get_datetime_string_from_system(),
 		"current_day": GameState.current_day,
 		"current_season": GameState.current_season,
@@ -21,16 +19,16 @@ func save_game() -> bool:
 	}
 
 	var json_string = JSON.stringify(save_data, "\t")
-	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	var file := FileAccess.open(Constants.SAVE_FILE_PATH, FileAccess.WRITE)
 
 	if not file:
-		push_error("[SaveController] Could not open save file for writing: %s" % SAVE_PATH)
+		push_error("[SaveController] Could not open save file for writing: %s" % Constants.SAVE_FILE_PATH)
 		return false
 
 	file.store_string(json_string)
 	file.close()
 
-	print("[SaveController] Game saved to %s" % SAVE_PATH)
+	print("[SaveController] Game saved to %s" % Constants.SAVE_FILE_PATH)
 	return true
 
 func _serialize_farm_plots() -> Dictionary:
@@ -46,12 +44,12 @@ func _serialize_farm_plots() -> Dictionary:
 
 func load_game() -> bool:
 	if not save_exists():
-		print("[SaveController] No save file found at %s" % SAVE_PATH)
+		print("[SaveController] No save file found at %s" % Constants.SAVE_FILE_PATH)
 		return false
 
-	var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
+	var file := FileAccess.open(Constants.SAVE_FILE_PATH, FileAccess.READ)
 	if not file:
-		push_error("[SaveController] Could not open save file for reading: %s" % SAVE_PATH)
+		push_error("[SaveController] Could not open save file for reading: %s" % Constants.SAVE_FILE_PATH)
 		return false
 
 	var json_string = file.get_as_text()
@@ -71,8 +69,8 @@ func load_game() -> bool:
 		return false
 
 	# Version check
-	if save_data.get("version", 0) != SAVE_VERSION:
-		push_warning("[SaveController] Save file version mismatch (expected %d, got %d)" % [SAVE_VERSION, save_data.get("version", 0)])
+	if save_data.get("version", 0) != Constants.SAVE_VERSION:
+		push_warning("[SaveController] Save file version mismatch (expected %d, got %d)" % [Constants.SAVE_VERSION, save_data.get("version", 0)])
 		# Could implement migration logic here
 
 	# Restore state
@@ -83,7 +81,7 @@ func load_game() -> bool:
 	GameState.quest_flags = save_data.get("quest_flags", {}).duplicate()
 	GameState.farm_plots = _deserialize_farm_plots(save_data.get("farm_plots", {}))
 
-	print("[SaveController] Game loaded from %s" % SAVE_PATH)
+	print("[SaveController] Game loaded from %s" % Constants.SAVE_FILE_PATH)
 	print("[SaveController] Day: %d, Gold: %d, Inventory items: %d" % [GameState.current_day, GameState.gold, GameState.inventory.size()])
 
 	# Emit signals to update UI
@@ -107,18 +105,18 @@ func _deserialize_farm_plots(serialized: Dictionary) -> Dictionary:
 # ============================================
 
 func save_exists() -> bool:
-	return FileAccess.file_exists(SAVE_PATH)
+	return FileAccess.file_exists(Constants.SAVE_FILE_PATH)
 
 func delete_save() -> void:
 	if save_exists():
-		DirAccess.remove_absolute(SAVE_PATH)
+		DirAccess.remove_absolute(Constants.SAVE_FILE_PATH)
 		print("[SaveController] Save file deleted")
 
 func get_save_info() -> Dictionary:
 	if not save_exists():
 		return {}
 
-	var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
+	var file := FileAccess.open(Constants.SAVE_FILE_PATH, FileAccess.READ)
 	if not file:
 		return {}
 

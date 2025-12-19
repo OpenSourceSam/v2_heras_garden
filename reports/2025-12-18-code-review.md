@@ -1,4 +1,4 @@
-# Code Review and Recommendations - Circe's Garden v2
+# Code Review and Recommendations - Hera's Garden v2
 
 Date: 2025-12-18
 Scope: Core scripts under `src/`, key scenes under `scenes/`, project config (`project.godot`), tests in `tests/`, and top-level docs.
@@ -28,7 +28,7 @@ The foundation layer (autoloads, resource classes, tests) exists, but the projec
 
 ### High
 4. Documentation identity and phase status drift creates onboarding confusion.
-   - `README.md` and `DEVELOPMENT_WORKFLOW.md` use "Hera's Garden" while `PROJECT_STATUS.md` and `DEVELOPMENT_ROADMAP.md` use "Circe's Garden".
+   - `README.md` and `DEVELOPMENT_WORKFLOW.md` use "Hera's Garden" while `PROJECT_STATUS.md` and `DEVELOPMENT_ROADMAP.md` use "Hera's Garden".
    - Phase 0 is marked in progress in `README.md`, but complete in `PROJECT_STATUS.md`.
 
 5. Widespread encoding corruption in docs and comments makes guidance hard to read.
@@ -65,7 +65,7 @@ The foundation layer (autoloads, resource classes, tests) exists, but the projec
    - Whichever path you choose, update save/load to serialize the authoritative state only.
 
 3. Consolidate and clean documentation for identity, phase status, and process.
-   - Standardize on "Circe's Garden" across `README.md`, `PROJECT_STATUS.md`, `DEVELOPMENT_WORKFLOW.md`, and `DEVELOPMENT_ROADMAP.md`.
+   - Standardize on "Hera's Garden" across `README.md`, `PROJECT_STATUS.md`, `DEVELOPMENT_WORKFLOW.md`, and `DEVELOPMENT_ROADMAP.md`.
    - Fix encoding corruption to restore readable text.
    - Add a short "Current Implementation State" table to `PROJECT_STATUS.md` so contributors can see what is stubbed.
 

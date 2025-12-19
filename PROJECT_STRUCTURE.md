@@ -1,142 +1,162 @@
-# HERA'S GARDEN V2 - PROJECT STRUCTURE
+# HERA'S GARDEN V2 - PROJECT STRUCTURE (SOURCE OF TRUTH)
 
-**Purpose:** Define the canonical folder organization and file placement rules.
+Purpose: Define canonical repo layout and file placement rules for Hera's Garden.
+Scope: This document must be updated before structural changes are made.
 
 ---
 
-## FOLDER TREE
+## Document Outline (Authoritative)
+
+1) Canonical folder tree (current + planned)
+2) File placement rules
+3) Scene/script wiring rules
+4) Naming conventions
+5) Phase-based file map (required by phase end)
+6) Structure audit checklist
+7) Change control
+
+---
+
+## Canonical Folder Tree
+
+Legend:
+- [current] exists in repo
+- [planned] expected by design, not yet present
+- [optional] useful but not required
+- [local-only] not part of the repo source of truth
 
 ```
 v2_heras_garden/
-│
-├── project.godot                  # Godot project config (AUTOLOADS REGISTERED HERE)
-├── icon.svg                       # Godot project icon
-├── .gitignore                     # Git ignore rules
-│
-├── CONSTITUTION.md                # ⚠️  Immutable technical rules
-├── SCHEMA.md                      # ⚠️  Data structure definitions
-├── PROJECT_STRUCTURE.md           # This file
-├── DEVELOPMENT_WORKFLOW.md        # Guide for agentic coders
-├── PROJECT_STATUS.md              # Current phase and completion status
-├── README.md                      # Project overview
-│
-├── src/                           # ALL GDSCRIPT CODE GOES HERE
-│   ├── autoloads/                 # Singleton scripts only
-│   │   ├── game_state.gd          # Central state management
-│   │   ├── audio_controller.gd    # Sound/music controller
-│   │   └── save_controller.gd     # Save/load system
-│   │
-│   ├── resources/                 # Resource class definitions (.gd)
-│   │   ├── crop_data.gd           # CropData class
-│   │   ├── item_data.gd           # ItemData class
-│   │   ├── dialogue_data.gd       # DialogueData class
-│   │   └── npc_data.gd            # NPCData class
-│   │
-│   ├── entities/                  # Game object scripts
-│   │   ├── player.gd              # Player controller
-│   │   ├── farm_plot.gd           # Individual farm plot
-│   │   ├── npc.gd                 # NPC base behavior
-│   │   └── interactable.gd        # Base interactable class
-│   │
-│   └── ui/                        # UI scripts
-│       ├── inventory_ui.gd        # Inventory panel
-│       ├── dialogue_box.gd        # Dialogue display
-│       └── main_menu.gd           # Main menu
-│
-├── scenes/                        # ALL .TSCN FILES GO HERE
-│   ├── ui/
-│   │   ├── main_menu.tscn
-│   │   ├── hud.tscn
-│   │   ├── inventory_panel.tscn
-│   │   └── dialogue_box.tscn
-│   │
-│   ├── entities/
-│   │   ├── player.tscn
-│   │   ├── farm_plot.tscn
-│   │   └── npc.tscn
-│   │
-│   └── world.tscn                 # Main game world
-│
-├── resources/                     # ALL .TRES DATA FILES GO HERE
-│   ├── crops/                     # CropData resources
-│   │   ├── wheat.tres
-│   │   ├── tomato.tres
-│   │   └── carrot.tres
-│   │
-│   ├── items/                     # ItemData resources
-│   │   ├── wheat_seed.tres
-│   │   ├── wheat.tres
-│   │   ├── watering_can.tres
-│   │   └── hoe.tres
-│   │
-│   ├── dialogues/                 # DialogueData resources
-│   │   ├── medusa_intro.tres
-│   │   ├── medusa_daily.tres
-│   │   └── hera_monologue.tres
-│   │
-│   └── npcs/                      # NPCData resources
-│       ├── medusa.tres
-│       └── demeter.tres
-│
-├── assets/                        # RAW ASSET FILES (sprites, audio, fonts)
-│   ├── sprites/
-│   │   ├── characters/
-│   │   │   ├── hera_spritesheet.png
-│   │   │   └── medusa_spritesheet.png
-│   │   ├── crops/
-│   │   │   ├── wheat_stages.png
-│   │   │   └── tomato_stages.png
-│   │   ├── tiles/
-│   │   │   ├── grass_tileset.png
-│   │   │   └── farm_tileset.png
-│   │   └── ui/
-│   │       ├── inventory_slot.png
-│   │       └── dialogue_box.png
-│   │
-│   ├── audio/
-│   │   ├── music/
-│   │   │   ├── main_theme.ogg
-│   │   │   └── night_theme.ogg
-│   │   └── sfx/
-│   │       ├── plant_seed.wav
-│   │       ├── harvest.wav
-│   │       └── footstep.wav
-│   │
-│   └── fonts/
-│       └── main_font.ttf
-│
-├── _docs/                         # DOCUMENTATION (markdown)
-│   ├── STORYLINE.md               # Complete narrative script
-│   ├── HARDWARE.md                # Target device specs (Retroid Pocket)
-│   ├── POSTMORTEM_V1.md           # Lessons learned from V1
-│   └── API_REFERENCE.md           # Code API documentation
-│
-└── tests/                         # TEST SCRIPTS
-    ├── run_tests.gd               # Main test runner
-    ├── test_autoloads.gd          # Autoload existence tests
-    ├── test_resources.gd          # Resource loading tests
-    └── test_game_state.gd         # GameState logic tests
+|-- .mcp.json                    [current]  MCP tooling config
+|-- .claude/                     [current]  Assistant config (optional use)
+|-- project.godot                 [current]  Godot project config
+|-- icon.svg                      [current]
+|-- icon.svg.import               [current]  Godot import metadata
+|-- .gitignore                    [current]
+|-- README.md                     [current]
+|-- CONSTITUTION.md               [current]
+|-- SCHEMA.md                     [current]
+|-- PROJECT_STRUCTURE.md          [current]
+|-- DOCS_MAP.md                   [current]  Canonical documentation map
+|-- DEVELOPMENT_WORKFLOW.md       [current]
+|-- DEVELOPMENT_ROADMAP.md        [current]
+|-- PHASE_2_ROADMAP.md            [current]
+|-- PHASES_3_TO_5_OUTLINE.md      [current]
+|-- PLAYTESTER_GUIDE.md           [current]
+|-- PROJECT_STATUS.md             [current]
+|-- PROJECT_SUMMARY.md            [current]
+|-- Storyline.md                  [current]
+|-- ASSET_CHECKLIST.md            [current]
+|-- ANTIGRAVITY_FEEDBACK.md       [current]
+|-- TEST_SCRIPT.gd                [current]  Legacy validation script
+|-- TEST_SCRIPT.gd.uid            [current]  Godot UID metadata
+|-- godot-mcp-cli-1.0.7.tgz       [current]  Tooling archive (cleanup candidate)
+|-- New Text Document.txt         [current]  Cleanup candidate
+|-- nul                           [current]  Cleanup candidate
+|-- reports/                      [current]
+|   |-- 2025-12-18-code-review.md [current]
+|   |-- antigravity_stability_review.md [current]
+|   |-- project_recommendations_dec_2025.md [current]
+|   |-- 2025-12-19-project-update.md [current]
+|   |-- 2025-12-19-stopgap-roadmap.md [current]
+|   `-- 2025-12-19-structure-audit.md [current]
+|-- _docs/                        [current]  Long-form docs and archives
+|   `-- workflow_consolidation_2025-12-19.md [current]
+|-- src/                          [current]  All GDScript code
+|   |-- autoloads/                [current]
+|   |   |-- game_state.gd         [current]
+|   |   |-- audio_controller.gd   [current]
+|   |   |-- save_controller.gd    [current]
+|   |   `-- scene_manager.gd      [current]
+|   |-- core/                     [current]
+|   |   `-- constants.gd          [current]
+|   |-- resources/                [current]
+|   |   |-- crop_data.gd          [current]
+|   |   |-- item_data.gd          [current]
+|   |   |-- dialogue_data.gd      [current]
+|   |   `-- npc_data.gd           [current]
+|   |-- entities/                 [current]
+|   |   |-- player.gd             [current]
+|   |   |-- farm_plot.gd          [current]
+|   |   |-- npc.gd                [planned]
+|   |   `-- interactable.gd       [planned]
+|   `-- ui/                       [current]
+|       |-- main_menu.gd          [current]
+|       |-- dialogue_box.gd       [current]
+|       |-- debug_hud.gd          [current]
+|       `-- inventory_ui.gd       [planned]
+|-- scenes/                       [current]  All .tscn files
+|   |-- entities/                 [current]
+|   |   |-- player.tscn           [current]
+|   |   |-- farm_plot.tscn        [current]
+|   |   `-- npc.tscn              [planned]
+|   |-- ui/                       [current]
+|   |   |-- main_menu.tscn        [current]
+|   |   |-- dialogue_box.tscn     [current]
+|   |   `-- hud.tscn              [planned]
+|   |-- _debug/                   [current]
+|   |   `-- debug_hud.tscn        [current]
+|   `-- world.tscn                [current]
+|-- resources/                    [current]  All .tres data files
+|   |-- crops/                    [current]
+|   |   |-- TEMPLATE_crop.tres    [current]
+|   |   |-- wheat.tres            [current]
+|   |   |-- moly.tres             [current]
+|   |   |-- nightshade.tres       [current]
+|   |   `-- tomato.tres           [planned]
+|   |-- items/                    [current]
+|   |   |-- TEMPLATE_item.tres    [current]
+|   |   |-- wheat_seed.tres       [current]
+|   |   |-- wheat.tres            [current]
+|   |   |-- moly_seed.tres        [current]
+|   |   |-- moly.tres             [current]
+|   |   |-- nightshade_seed.tres  [current]
+|   |   `-- nightshade.tres       [current]
+|   |-- dialogues/                [current]
+|   |   |-- TEMPLATE_dialogue.tres [current]
+|   |   `-- circe_intro.tres      [current]
+|   `-- npcs/                     [current]
+|       `-- circe.tres            [current]
+|-- assets/                       [current]
+|   |-- sprites/                  [current]
+|   |   `-- PLACEHOLDER_README.md [current]
+|   |-- audio/                    [current]
+|   `-- fonts/                    [current]
+|-- tests/                        [current]
+|   |-- run_tests.gd              [current]
+|   `-- smoke_test_scene.gd       [current]
+|-- addons/                       [current]
+|-- .vscode/                      [optional]
+|-- .venv/                        [local-only]
+|-- .godot/                       [local-only]
+|-- Simple Testing for Godot/     [local-only]
+|-- godot_state_charts_examples/  [local-only]
+`-- Godot_v4.5.1-stable_win64.exe/ [local-only]
 ```
+
+Notes:
+- The tree lists required and planned items; it is not an exhaustive listing of every asset.
+- If a planned item becomes active work, update this file and PROJECT_STATUS.md together.
 
 ---
 
-## FILE PLACEMENT RULES
+## File Placement Rules
 
 ### Rule 1: Scripts vs Scenes vs Data
 
-| Type | Extension | Location | Example |
-|------|-----------|----------|---------|
-| Script | .gd | `src/` | `src/entities/player.gd` |
-| Scene | .tscn | `scenes/` | `scenes/entities/player.tscn` |
-| Data | .tres | `resources/` | `resources/crops/wheat.tres` |
-| Asset | .png/.wav/.ttf | `assets/` | `assets/sprites/tiles/grass.png` |
+| Type  | Extension | Location     | Example                          |
+|-------|-----------|--------------|----------------------------------|
+| Script | .gd     | `src/`        | `src/entities/player.gd`         |
+| Scene  | .tscn   | `scenes/`     | `scenes/entities/player.tscn`    |
+| Data   | .tres   | `resources/`  | `resources/crops/wheat.tres`     |
+| Asset  | .png/.wav/.ttf | `assets/` | `assets/sprites/tiles/grass.png` |
 
 ### Rule 2: Script Attachment
 
-**Scene files (.tscn) DO NOT contain embedded scripts.**
+- Scenes should reference scripts once that system is implemented.
+- If a scene is a placeholder without a script, it must be noted in PROJECT_STATUS.md.
 
-Every scene references its script via path:
-
+Example:
 ```
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("res://src/entities/player.gd")
@@ -145,7 +165,6 @@ script = ExtResource("res://src/entities/player.gd")
 ### Rule 3: Resource Loading
 
 All .tres files load their class definition:
-
 ```
 [gd_resource type="CropData" load_steps=5 format=3]
 [ext_resource type="Script" path="res://src/resources/crop_data.gd"]
@@ -154,7 +173,6 @@ All .tres files load their class definition:
 ### Rule 4: Autoload Paths
 
 Autoloads reference `src/autoloads/*.gd`:
-
 ```ini
 [autoload]
 GameState="*res://src/autoloads/game_state.gd"
@@ -162,198 +180,101 @@ GameState="*res://src/autoloads/game_state.gd"
 
 ---
 
-## NAMING CONVENTIONS
+## Scene and Script Wiring Rules
+
+1) Node names in scenes must match `@onready` paths in scripts.
+2) Debug scenes live under `scenes/_debug/` and scripts under `src/ui/`.
+3) If a scene exists without a script, it must be called out in PROJECT_STATUS.md.
+4) Never embed scripts directly in .tscn files; always reference `src/`.
+
+---
+
+## Naming Conventions
 
 ### Files
 
-| Type | Convention | Example |
-|------|------------|---------|
-| Scripts | `snake_case.gd` | `game_state.gd` |
-| Scenes | `snake_case.tscn` | `farm_plot.tscn` |
-| Resources | `snake_case.tres` | `wheat.tres` |
-| Assets | `descriptive_name.png` | `hera_spritesheet.png` |
+| Type      | Convention        | Example               |
+|-----------|-------------------|-----------------------|
+| Scripts   | `snake_case.gd`   | `game_state.gd`       |
+| Scenes    | `snake_case.tscn` | `farm_plot.tscn`      |
+| Resources | `snake_case.tres` | `wheat.tres`          |
+| Assets    | `descriptive.png` | `hera_spritesheet.png`|
 
 ### Classes
-
 ```gdscript
 class_name CropData  # PascalCase
 ```
 
 ### Variables
-
 ```gdscript
 var current_day: int = 1          # snake_case
 const TILE_SIZE: int = 32         # SCREAMING_SNAKE_CASE
 ```
 
 ### Functions
-
 ```gdscript
 func add_item(item_id: String) -> void:  # snake_case
 ```
 
 ### Signals
-
 ```gdscript
-signal inventory_changed(item_id: String)  # snake_case
+signal inventory_changed(item_id: String)
 ```
 
 ### Node Names
-
 ```
 Player              # PascalCase
 Sprite              # PascalCase
-CollisionShape2D    # Match Godot type names
+CollisionShape2D    # Godot type name
 ```
 
 ---
 
-## IMPORT PATTERNS
+## Phase-Based File Map (Required by End of Phase)
 
-### Loading Resources
+Phase 0: Foundation
+- Required: docs, autoloads, resource classes, tests.
 
-```gdscript
-# Preload (compile-time)
-const WHEAT_DATA: CropData = preload("res://resources/crops/wheat.tres")
+Phase 1: Core Loop
+- Required: player, farm plot, world, interaction, dialogue UI basics.
+- Status: files exist but wiring and implementations are incomplete.
 
-# Load (runtime)
-var crop: CropData = load("res://resources/crops/wheat.tres")
+Phase 2: Persistence
+- Required: save/load logic and tests.
+- Planned: `tests/test_save_load.gd`.
 
-# Via GameState registry
-var crop: CropData = GameState.get_crop_data("wheat")
-```
+Phase 3: Content Expansion
+- Required: npc, dialogue data, additional crops.
+- Planned: `src/entities/npc.gd`, `scenes/entities/npc.tscn`.
 
-### Instancing Scenes
-
-```gdscript
-# Preload scene
-const FARM_PLOT_SCENE = preload("res://scenes/entities/farm_plot.tscn")
-
-# Instance at runtime
-var plot = FARM_PLOT_SCENE.instantiate()
-add_child(plot)
-```
-
-### Accessing Autoloads
-
-```gdscript
-# Direct access (autoloads are global)
-GameState.add_item("wheat", 1)
-AudioController.play_sfx("harvest")
-SaveController.save_game()
-```
+Phase 4: Polish
+- Required: HUD/inventory UI scenes and scripts, audio assets.
+- Planned: `scenes/ui/hud.tscn`, `src/ui/inventory_ui.gd`.
 
 ---
 
-## PHASE-BASED FILE CREATION
+## Structure Audit Checklist (New)
 
-### Phase 0: Foundation
-**Goal:** Set up structure, no runtime code yet.
+Use this before starting a new task or merging branches:
 
-**Files to Create:**
-```
-✅ CONSTITUTION.md
-✅ SCHEMA.md
-✅ PROJECT_STRUCTURE.md
-✅ DEVELOPMENT_WORKFLOW.md
-✅ PROJECT_STATUS.md
-✅ project.godot (with autoloads registered)
-✅ src/autoloads/*.gd (all three)
-✅ src/resources/*.gd (class definitions only)
-✅ .gitignore
-```
-
-### Phase 1: Core Loop
-**Goal:** Player can plant and harvest one crop.
-
-**Files to Create:**
-```
-□ src/entities/player.gd
-□ scenes/entities/player.tscn
-□ src/entities/farm_plot.gd
-□ scenes/entities/farm_plot.tscn
-□ scenes/world.tscn (with TileMapLayer)
-□ resources/crops/wheat.tres
-□ resources/items/wheat_seed.tres
-□ resources/items/wheat.tres
-□ assets/sprites/crops/wheat_stages.png (placeholder)
-□ assets/sprites/tiles/grass_tileset.png (placeholder)
-```
-
-### Phase 2: Persistence
-**Goal:** Save and load game state.
-
-**Files to Enhance:**
-```
-□ src/autoloads/save_controller.gd (implement save/load)
-□ tests/test_save_load.gd
-```
-
-### Phase 3: Content Expansion
-**Goal:** Multiple crops, NPCs, dialogue.
-
-**Files to Create:**
-```
-□ resources/crops/tomato.tres
-□ resources/crops/carrot.tres
-□ src/entities/npc.gd
-□ scenes/entities/npc.tscn
-□ resources/npcs/medusa.tres
-□ resources/dialogues/medusa_intro.tres
-□ src/ui/dialogue_box.gd
-□ scenes/ui/dialogue_box.tscn
-```
-
-### Phase 4: Polish
-**Goal:** UI, audio, balance.
-
-**Files to Create:**
-```
-□ src/ui/inventory_ui.gd
-□ scenes/ui/inventory_panel.tscn
-□ scenes/ui/hud.tscn
-□ assets/audio/sfx/*.wav
-□ assets/audio/music/*.ogg
-```
+1) Root files exist: `project.godot`, `README.md`, `PROJECT_STATUS.md`.
+2) `src/` contains `autoloads/`, `core/`, `resources/`, `entities/`, `ui/`.
+3) `scenes/` contains `entities/`, `ui/`, `_debug/`, and `world.tscn`.
+4) Every implemented system has a script attached to its scene.
+5) `resources/` contains templates and at least one real example per type.
+6) `assets/` contains placeholder or real assets for active features.
+7) `tests/` has a runnable entry point and no syntax corruption.
+8) Planned files are either created or explicitly listed in PROJECT_STATUS.md.
+9) Any new directory is added to this file before use.
 
 ---
 
-## GITIGNORE RULES
+## Change Control
 
-```gitignore
-# Godot 4+ generated files
-.godot/
-
-# Exported builds
-build/
-export/
-
-# OS generated
-.DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Logs
-*.log
-```
+1) Update this file first for any structural changes.
+2) Then create/move files to match the updated structure.
+3) Finally, update PROJECT_STATUS.md to reflect actual state.
 
 ---
 
-## QUICK CHECKLIST: BEFORE CREATING ANY FILE
-
-```
-□ What type is it? (script/scene/data/asset)
-□ What folder does it belong in?
-□ Does it follow naming conventions?
-□ Is it needed for the CURRENT phase?
-□ Are its dependencies already created?
-```
-
----
-
-**End of PROJECT_STRUCTURE.md**
+End of PROJECT_STRUCTURE.md

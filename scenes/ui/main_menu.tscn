@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://main_menu_001"]
+[gd_scene load_steps=2 format=3 uid="uid://main_menu_001"]
+
+[ext_resource type="Script" path="res://src/ui/main_menu.gd" id="1_script"]
 
 [node name="MainMenu" type="Control"]
+script = ExtResource("1_script")
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,7 +36,7 @@ grow_vertical = 2
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "CIRCE'S GARDEN"
+text = "HERA'S GARDEN"
 horizontal_alignment = 1
 
 [node name="Subtitle" type="Label" parent="VBoxContainer"]

@@ -34,12 +34,18 @@ func _ready() -> void:
 # ============================================
 
 func _physics_process(delta: float) -> void:
-	# TODO (Task 1.1.2): Implement player movement
-	# - Get input direction with Input.get_vector()
-	# - Set velocity based on SPEED constant
-	# - Call move_and_slide()
-	# - Update sprite flip_h based on direction
-	pass
+	# Get input direction
+	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+
+	# Set velocity based on SPEED constant
+	velocity = direction * SPEED
+
+	# Move the player
+	move_and_slide()
+
+	# Update sprite flip based on direction
+	if direction.x != 0:
+		$Sprite2D.flip_h = direction.x < 0
 
 # ============================================
 # INTERACTION

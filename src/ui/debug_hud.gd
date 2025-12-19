@@ -136,13 +136,13 @@ func toggle_visibility() -> void:
 func _find_player() -> void:
 	# Try to find player node in scene tree
 	var root = get_tree().root
-	player = _find_node_by_type(root, CharacterBody2D)
+	player = _find_player_node(root)
 
-func _find_node_by_type(node: Node, type) -> Node:
-	if node is type and node.name == "Player":
+func _find_player_node(node: Node) -> Node:
+	if node is CharacterBody2D and node.name == "Player":
 		return node
 	for child in node.get_children():
-		var result = _find_node_by_type(child, type)
+		var result = _find_player_node(child)
 		if result:
 			return result
 	return null

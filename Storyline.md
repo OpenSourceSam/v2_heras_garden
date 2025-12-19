@@ -1,4 +1,4 @@
-# CIRCE'S GARDEN: Complete Storyline & Dialogue Script
+# HERA'S GARDEN: Complete Storyline & Dialogue Script
 
  
 
@@ -4344,7 +4344,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **[Post-Credits Text:]**
 
-*"Thank you for playing Circe's Garden."*
+*"Thank you for playing Hera's Garden."*
 
 *"Continue playing in Free-Play Mode, or start New Game+."*
 
@@ -4448,7 +4448,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **[Post-Credits Text:]**
 
-*"Thank you for playing Circe's Garden."*
+*"Thank you for playing Hera's Garden."*
 
 *"Continue playing in Free-Play Mode, or start New Game+."*
 

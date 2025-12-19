@@ -34,3 +34,6 @@ Thumbs.db
 *.tmp
 *.bak
 *.backup
+
+# MCP config (contains tokens)
+.mcp.json

@@ -1,4 +1,4 @@
-# CIRCE'S GARDEN - ASSET CHECKLIST
+# HERA'S GARDEN - ASSET CHECKLIST
 
 **Purpose:** Complete list of all assets needed for the game
 
