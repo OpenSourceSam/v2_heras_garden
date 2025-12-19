@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://player_scene_001"]
 
-[ext_resource type="Script" path="res://src/entities/player.gd" id="1_script"]
+[ext_resource type="Script" path="res://game/features/player/player.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://placeholder_circe" path="res://assets/sprites/placeholder_circe.svg" id="2_placeholder"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
