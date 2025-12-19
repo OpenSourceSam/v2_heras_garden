@@ -11,16 +11,17 @@ config_version=5
 [application]
 
 config/name="Hera's Garden"
-run/main_scene="res://scenes/ui/main_menu.tscn"
+run/main_scene="res://game/features/ui/main_menu.tscn"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-GameState="*res://src/autoloads/game_state.gd"
-AudioController="*res://src/autoloads/audio_controller.gd"
-SaveController="*res://src/autoloads/save_controller.gd"
-SceneManager="*res://src/autoloads/scene_manager.gd"
+GameState="*res://game/autoload/game_state.gd"
+AudioController="*res://game/autoload/audio_controller.gd"
+SaveController="*res://game/autoload/save_controller.gd"
+SceneManager="*res://game/autoload/scene_manager.gd"
+Constants="*res://game/autoload/constants.gd"
 MCPInputHandler="*res://addons/godot_mcp/mcp_input_handler.gd"
 
 [display]

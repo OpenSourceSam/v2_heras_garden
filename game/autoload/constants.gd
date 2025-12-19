@@ -3,8 +3,6 @@ extends Node
 ## DO NOT INSTANTIATE - Use as Constants.TILE_SIZE
 ## Readonly values used throughout the project
 
-class_name Constants
-
 # ============================================
 # GAME SETTINGS
 # ============================================

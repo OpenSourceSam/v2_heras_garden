@@ -6,6 +6,10 @@ var passed: int = 0
 var failed: int = 0
 
 func _init() -> void:
+	# Defer execution so autoloads are initialized before tests run.
+	call_deferred("_run_all_tests")
+
+func _run_all_tests() -> void:
 	print("=".repeat(60))
 	print("HERA'S GARDEN V2 - TEST SUITE")
 	print("=".repeat(60))
@@ -66,14 +70,21 @@ func _test_autoloads() -> bool:
 # ============================================
 
 func _test_resource_classes() -> bool:
-	var classes_to_check = ["CropData", "ItemData", "DialogueData", "NPCData"]
+	var resource_scripts = {
+		"CropData": "res://src/resources/crop_data.gd",
+		"ItemData": "res://src/resources/item_data.gd",
+		"DialogueData": "res://src/resources/dialogue_data.gd",
+		"NPCData": "res://src/resources/npc_data.gd",
+	}
 	var all_exist = true
 
-	for cls_name in classes_to_check:
-		if ClassDB.class_exists(cls_name):
-			print("  [OK] %s class exists" % cls_name)
+	for cls_name in resource_scripts.keys():
+		var script_path = resource_scripts[cls_name]
+		var script = load(script_path)
+		if script:
+			print("  [OK] %s script loads" % cls_name)
 		else:
-			print("  [FAIL] %s class NOT FOUND" % cls_name)
+			print("  [FAIL] %s script failed to load (%s)" % [cls_name, script_path])
 			all_exist = false
 
 	return all_exist
@@ -83,21 +94,16 @@ func _test_resource_classes() -> bool:
 # ============================================
 
 func _test_tile_size() -> bool:
-	var game_state = root.get_node_or_null("GameState")
-	if not game_state:
-		print("  [FAIL] GameState not found")
+	var constants = root.get_node_or_null("Constants")
+	if not constants:
+		print("  [FAIL] Constants autoload not found")
 		return false
 
-	var tile_size = game_state.get("TILE_SIZE")
-	if tile_size == null:
-		print("  [FAIL] TILE_SIZE constant not defined")
-		return false
-
-	if tile_size == 32:
-		print("  [OK] TILE_SIZE = %d (correct)" % tile_size)
+	if constants.TILE_SIZE == 32:
+		print("  [OK] TILE_SIZE = %d (correct)" % constants.TILE_SIZE)
 		return true
 
-	print("  [FAIL] TILE_SIZE = %d (expected 32)" % tile_size)
+	print("  [FAIL] TILE_SIZE = %d (expected 32)" % constants.TILE_SIZE)
 	return false
 
 # ============================================
