@@ -64,6 +64,10 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 ### Scene Manager Transition (Implemented - by Jr Engineer)
 - Implemented SceneManager per template with fade stubs (manual transition test pending)
 
+### Scene Transitions (Basic - by Jr Engineer)
+- Implemented ColorRect + Tween fade in/out in SceneManager
+- Headless tests pass; manual scene_test_a/b button validation still recommended
+
 ### Farm Plot Lifecycle Script (Complete - by Jr Engineer)
 - Implemented farm plot state machine and crop lifecycle per roadmap template
 
@@ -180,7 +184,7 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 - [x] World scene setup and TileMap painting
 - [x] Crafting minigame (minimal)
 - [x] Dialogue system (minimal)
-- [ ] Scene transitions (basic)
+- [x] Scene transitions (basic)
  - [x] Day/Night system (advance_day + sundial)
 
 ---
