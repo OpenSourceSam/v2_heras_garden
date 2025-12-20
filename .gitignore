@@ -43,3 +43,6 @@ Thumbs.db
 
 # Local runtime snapshots (not tracked)
 RUNTIME_STATUS.md
+
+# Local Godot binaries (not tracked)
+Godot_v4.5.1-stable_win64.exe/
