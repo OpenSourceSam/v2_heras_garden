@@ -59,9 +59,8 @@ git log --oneline -5
 ```
 
 ### Editor Notes
-- **IMPORTANT:** `project.godot` is read-only to prevent auto-edits. Temporarily unlock with `attrib -R project.godot` when editor needs to write settings, then re-lock with `attrib +R project.godot`
+- `project.godot` is writable; git hook guard protects critical autoload lines
 - Close Godot editor before moving files with `git mv` to preserve history
-- World scene TileMapLayer exists but has NO PAINTED TILES - requires editor work
 
 ---
 
@@ -154,6 +153,7 @@ Save/load handled by `SaveController` autoload:
 4. **Test in isolation** - Load scenes individually before integrating into main game
 5. **Commit after each subsection** - Small, focused commits with clear messages
 6. **Update PROJECT_STATUS.md** - Mark tasks complete and note any issues
+7. **Keep docs in sync** - When completing tasks, update CLAUDE.md status/blockers if they've changed
 
 ### Workflow Steps (for ANY task)
 
@@ -304,24 +304,24 @@ Before any commit:
 
 ## Phase Status and Next Steps
 
-**Current Phase:** Phase 1 - Core Systems (15% complete)
+**Current Phase:** Phase 1 - Core Systems (~60% complete)
 
 **What's Done:**
-- âœ… Foundation (Phase 0): Docs, autoloads, resource classes, tests
-- âœ… Player movement and interaction system
-- âœ… Scene wiring (scripts attached to scenes)
-- âœ… Constants centralization
-- âœ… Restructure to feature-based organization
+- Foundation (Phase 0): Docs, autoloads, resource classes, tests
+- Player movement and interaction system
+- Farm plot lifecycle (till, plant, grow, harvest)
+- World scene TileMapLayer painted
+- Dialogue system (scrolling text + choices)
+- Scene transitions with fade
+- Crafting minigame + recipe system
+- Day/Night system (sundial)
 
-**What's Next (Immediate):**
-1. Paint tiles in world.tscn TileMapLayer (requires Godot editor)
-2. Implement farm plot lifecycle (till, plant, grow, harvest)
-3. Implement basic dialogue system
-4. Implement scene transitions in SceneManager
-5. Implement minimal crafting minigame
+**What's Next:**
+1. Wire dialogue system to NPCs
+2. Implement inventory UI
+3. Connect crafting to gameplay loop
 
-**Blockers:**
-- World scene TileMapLayer has no painted tiles (blocks gameplay testing)
+**Note:** Always check `docs/execution/PROJECT_STATUS.md` for current status - this section may lag behind.
 
 ---
 
