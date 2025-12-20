@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4]
+[gd_scene load_steps=7 format=4]
 
 [ext_resource type="TileSet" path="res://game/shared/resources/tiles/placeholder_grass_tileset.tres" id="1_1u0pp"]
 [ext_resource type="PackedScene" path="res://game/features/player/player.tscn" id="1_player"]
@@ -6,6 +6,10 @@
 [ext_resource type="Script" path="res://game/features/player/player.gd" id="3_i02xo"]
 [ext_resource type="Script" path="res://game/features/npcs/npc_spawner.gd" id="4_npc_spawner"]
 [ext_resource type="PackedScene" path="res://game/features/world/boat.tscn" id="5_boat"]
+[ext_resource type="Script" path="res://game/features/world/quest_trigger.gd" id="6_quest_trigger"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_quest"]
+size = Vector2(48, 24)
 
 [node name="World" type="Node2D"]
 
@@ -45,6 +49,128 @@ position = Vector2(224, -32)
 
 [node name="Daedalus" type="Marker2D" parent="NPCs/NPCSpawner/SpawnPoints"]
 position = Vector2(288, -32)
+
+[node name="QuestTriggers" type="Node2D" parent="."]
+
+[node name="Quest1" type="Area2D" parent="QuestTriggers"]
+position = Vector2(-192, 64)
+script = ExtResource("6_quest_trigger")
+required_flag = "prologue_complete"
+set_flag_on_enter = "quest_1_active"
+trigger_dialogue = "act1_herb_identification"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest1"]
+shape = SubResource("RectangleShape2D_quest")
+
+[node name="Quest2" type="Area2D" parent="QuestTriggers"]
+position = Vector2(-128, 64)
+script = ExtResource("6_quest_trigger")
+required_flag = "quest_1_complete"
+set_flag_on_enter = "quest_2_active"
+trigger_dialogue = "act1_extract_sap"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest2"]
+shape = SubResource("RectangleShape2D_quest")
+
+[node name="Quest3" type="Area2D" parent="QuestTriggers"]
+position = Vector2(-64, 64)
+script = ExtResource("6_quest_trigger")
+required_flag = "quest_2_complete"
+set_flag_on_enter = "quest_3_active"
+trigger_dialogue = "act1_confront_scylla"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest3"]
+shape = SubResource("RectangleShape2D_quest")
+
+[node name="Quest4" type="Area2D" parent="QuestTriggers"]
+position = Vector2(0, 64)
+script = ExtResource("6_quest_trigger")
+required_flag = "quest_3_complete"
+set_flag_on_enter = "quest_4_active"
+trigger_dialogue = "act2_farming_tutorial"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest4"]
+shape = SubResource("RectangleShape2D_quest")
+
+[node name="Quest5" type="Area2D" parent="QuestTriggers"]
+position = Vector2(64, 64)
+script = ExtResource("6_quest_trigger")
+required_flag = "quest_4_complete"
+set_flag_on_enter = "quest_5_active"
+trigger_dialogue = "act2_calming_draught"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest5"]
+shape = SubResource("RectangleShape2D_quest")
+
+[node name="Quest6" type="Area2D" parent="QuestTriggers"]
+position = Vector2(128, 64)
+script = ExtResource("6_quest_trigger")
+required_flag = "quest_5_complete"
+set_flag_on_enter = "quest_6_active"
+trigger_dialogue = "act2_reversal_elixir"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest6"]
+shape = SubResource("RectangleShape2D_quest")
+
+[node name="Quest7" type="Area2D" parent="QuestTriggers"]
+position = Vector2(192, 64)
+script = ExtResource("6_quest_trigger")
+required_flag = "quest_6_complete"
+set_flag_on_enter = "quest_7_active"
+trigger_dialogue = "act2_daedalus_arrives"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest7"]
+shape = SubResource("RectangleShape2D_quest")
+
+[node name="Quest8" type="Area2D" parent="QuestTriggers"]
+position = Vector2(256, 64)
+script = ExtResource("6_quest_trigger")
+required_flag = "quest_7_complete"
+set_flag_on_enter = "quest_8_active"
+trigger_dialogue = "act2_binding_ward"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest8"]
+shape = SubResource("RectangleShape2D_quest")
+
+[node name="Quest9" type="Area2D" parent="QuestTriggers"]
+position = Vector2(320, 64)
+script = ExtResource("6_quest_trigger")
+required_flag = "quest_8_complete"
+set_flag_on_enter = "quest_9_active"
+trigger_dialogue = "act3_sacred_earth"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest9"]
+shape = SubResource("RectangleShape2D_quest")
+
+[node name="Quest10" type="Area2D" parent="QuestTriggers"]
+position = Vector2(384, 64)
+script = ExtResource("6_quest_trigger")
+required_flag = "quest_9_complete"
+set_flag_on_enter = "quest_10_active"
+trigger_dialogue = "act3_moon_tears"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest10"]
+shape = SubResource("RectangleShape2D_quest")
+
+[node name="Quest11" type="Area2D" parent="QuestTriggers"]
+position = Vector2(448, 64)
+script = ExtResource("6_quest_trigger")
+required_flag = "quest_10_complete"
+set_flag_on_enter = "quest_11_active"
+trigger_dialogue = "act3_final_confrontation"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest11"]
+shape = SubResource("RectangleShape2D_quest")
+
+[node name="Epilogue" type="Area2D" parent="QuestTriggers"]
+position = Vector2(512, 64)
+script = ExtResource("6_quest_trigger")
+required_flag = "quest_11_complete"
+set_flag_on_enter = "free_play_unlocked"
+trigger_dialogue = "epilogue_ending_choice"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Epilogue"]
+shape = SubResource("RectangleShape2D_quest")
 
 [node name="Player" type="CharacterBody2D" parent="." instance=ExtResource("1_player")]
 script = ExtResource("3_i02xo")

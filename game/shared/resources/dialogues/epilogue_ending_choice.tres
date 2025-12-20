@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "epilogue_ending_choice"
+lines = [{"speaker": "Circe", "text": "A new path begins. What will I choose?"}]
+choices = []
+flags_required = []
+flags_to_set = ["free_play_unlocked"]
+next_dialogue_id = ""

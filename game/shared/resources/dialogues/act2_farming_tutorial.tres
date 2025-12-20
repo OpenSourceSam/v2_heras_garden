@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "act2_farming_tutorial"
+lines = [{"speaker": "Circe", "text": "The garden will sustain me."},
+{"speaker": "Circe", "text": "Till, plant, water, and wait."}]
+choices = []
+flags_required = []
+flags_to_set = ["quest_4_complete", "garden_built"]
+next_dialogue_id = ""

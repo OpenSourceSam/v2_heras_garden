@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://scylla_transformation_001"]
+
+[ext_resource type="PackedScene" path="res://game/features/cutscenes/cutscene_base.tscn" id="1_base"]
+[ext_resource type="Script" path="res://game/features/cutscenes/scylla_transformation.gd" id="2_script"]
+
+[node name="ScyllaTransformation" instance=ExtResource("1_base")]
+script = ExtResource("2_script")

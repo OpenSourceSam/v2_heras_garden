@@ -421,6 +421,27 @@ if GameState.get_flag("met_medusa"):
 - `prologue_opening`
 - `aiaia_arrival`
 
+**Act 1:**
+- `act1_herb_identification`
+- `act1_extract_sap`
+- `act1_confront_scylla`
+
+**Act 2:**
+- `act2_farming_tutorial`
+- `act2_calming_draught`
+- `act2_reversal_elixir`
+- `act2_daedalus_arrives`
+- `act2_binding_ward`
+
+**Act 3:**
+- `act3_sacred_earth`
+- `act3_moon_tears`
+- `act3_ultimate_crafting`
+- `act3_final_confrontation`
+
+**Epilogue:**
+- `epilogue_ending_choice`
+
 ---
 
 ## QUICK REFERENCE: COMMON ACCESS PATTERNS

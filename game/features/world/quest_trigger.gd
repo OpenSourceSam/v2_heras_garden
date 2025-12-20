@@ -22,5 +22,6 @@ func _on_body_entered(body: Node2D) -> void:
 		GameState.set_flag(set_flag_on_enter, true)
 
 	if trigger_dialogue != "":
-		# Start dialogue
-		pass
+		var dialogue_box = get_tree().get_first_node_in_group("dialogue_ui")
+		if dialogue_box and dialogue_box.has_method("start_dialogue"):
+			dialogue_box.start_dialogue(trigger_dialogue)
