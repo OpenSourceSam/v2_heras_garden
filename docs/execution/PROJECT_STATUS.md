@@ -87,6 +87,9 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 ### Scene Manager Transition Test (Complete - by Jr Engineer)
 - Added two test scenes to validate SceneManager transitions (manual test confirmed)
 
+### Crafting Minigame (Complete - by Jr Engineer)
+- Added crafting minigame scene and input logic per roadmap template
+
 ### Repo Hygiene (Complete - by Jr Engineer)
 - Logged GitHub Issue #3 for `nul` file and `.claude/settings.local.json` noise
 - Added `.claude/settings.local.json` to `.gitignore` and removed from tracking
@@ -170,7 +173,7 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 - [x] Player interaction system
 - [x] Farm plot lifecycle (till, plant, grow, harvest)
 - [x] World scene setup and TileMap painting
-- [ ] Crafting minigame (minimal)
+- [x] Crafting minigame (minimal)
 - [x] Dialogue system (minimal)
 - [ ] Scene transitions (basic)
  - [x] Day/Night system (advance_day + sundial)
@@ -179,7 +182,7 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 
 ## Next Steps (Immediate)
 
-1. Implement crafting minigame (minimal)
+1. Implement recipe system (Task 1.4.2)
 2. Review whether to keep or remove SceneManager test scenes after validation
 
 ---

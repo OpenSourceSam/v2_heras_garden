@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://crafting_minigame_001"]
+
+[ext_resource type="Script" path="res://game/features/ui/crafting_minigame.gd" id="1_script"]
+
+[node name="CraftingMinigame" type="Control"]
+script = ExtResource("1_script")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 0.8)
+
+[node name="MortarSprite" type="Sprite2D" parent="."]
+position = Vector2(540, 620)
+
+[node name="IngredientsContainer" type="Control" parent="."]
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 240.0
+offset_bottom = 240.0
+
+[node name="PatternDisplay" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 40.0
+offset_right = 200.0
+offset_bottom = 80.0
+horizontal_alignment = 1
+text = "Pattern"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 90.0
+offset_right = 200.0
+offset_bottom = 110.0
+value = 0.0
+
+[node name="ResultDisplay" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 120.0
+offset_right = 200.0
+offset_bottom = 160.0
+horizontal_alignment = 1
+text = ""
