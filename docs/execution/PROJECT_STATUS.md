@@ -17,7 +17,7 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 |------|--------|----------|
 | Phase 0: Foundation | Complete | 100% |
 | Phase 1: Core Systems | In Progress (scaffolding only) | 15% |
-| Phase 2: Story Implementation | In Progress (Prologue started) | 5% |
+| Phase 2: Story Implementation | In Progress (Prologue + cutscenes started) | 10% |
 | Phase 3: Minigames and Polish | Not Started | 0% |
 | Phase 4: Content and Balance | Not Started | 0% |
 | Phase 5: Deployment | Not Started | 0% |
@@ -70,6 +70,10 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 
 ### Prologue Dialogue Data (In Progress - by Jr Engineer)
 - Added initial prologue dialogue resources (Helios palace + Aiaia arrival)
+
+### Cutscene System (In Progress - by Jr Engineer)
+- Added cutscene base scene and script
+- Added CutsceneManager autoload (registered in project.godot)
 
 ### Farm Plot Lifecycle Script (Complete - by Jr Engineer)
 - Implemented farm plot state machine and crop lifecycle per roadmap template
@@ -173,6 +177,7 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 
 **MEDIUM Priority:**
 - Root `.gdignore` appeared twice during restructure (causes Godot to ignore project). Delete if it reappears; keep editor closed during moves.
+- Unreviewed local modifications detected in `CLAUDE.md` and `agent.md`; Senior PM should review source and intent before merge.
 
 **LOW Priority:**
 - MCP runtime introspection times out

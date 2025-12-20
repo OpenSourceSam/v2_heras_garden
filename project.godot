@@ -22,6 +22,7 @@ GameState="*res://game/autoload/game_state.gd"
 AudioController="*res://game/autoload/audio_controller.gd"
 SaveController="*res://game/autoload/save_controller.gd"
 SceneManager="*res://game/autoload/scene_manager.gd"
+CutsceneManager="*res://game/autoload/cutscene_manager.gd"
 Constants="*res://game/autoload/constants.gd"
 MCPInputHandler="*res://addons/godot_mcp/mcp_input_handler.gd"
 
