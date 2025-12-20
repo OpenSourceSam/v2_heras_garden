@@ -37,3 +37,9 @@ Thumbs.db
 
 # MCP config (contains tokens)
 .mcp.json
+
+# Local agent settings
+.claude/settings.local.json
+
+# Local runtime snapshots (not tracked)
+RUNTIME_STATUS.md

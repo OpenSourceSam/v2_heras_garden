@@ -1,4 +1,4 @@
-# HERA'S GARDEN - DEVELOPMENT ROADMAP
+﻿# CIRCE'S GARDEN - DEVELOPMENT ROADMAP
 
 **Version:** 2.1
 **Last Updated:** December 19, 2025
@@ -12,29 +12,29 @@ Note: Phase-specific roadmaps have been archived to _docs/archive/. This is now 
 ## CRITICAL: READ FIRST
 
 Before implementing ANY feature:
-1. ✅ Read `docs/design/CONSTITUTION.md` (immutable rules)
-2. ✅ Read `docs/design/SCHEMA.md` (data structures)
-3. ✅ Read `docs/design/Storyline.md` (narrative context)
-4. ✅ Check this roadmap for dependencies
-5. ✅ Verify autoloads are registered
-6. ✅ Test in isolation before integrating
+1. âœ… Read `docs/design/CONSTITUTION.md` (immutable rules)
+2. âœ… Read `docs/design/SCHEMA.md` (data structures)
+3. âœ… Read `docs/design/Storyline.md` (narrative context)
+4. âœ… Check this roadmap for dependencies
+5. âœ… Verify autoloads are registered
+6. âœ… Test in isolation before integrating
 
-**Golden Rule:** Complete → Test → Verify → Commit → Move to Next
+**Golden Rule:** Complete â†’ Test â†’ Verify â†’ Commit â†’ Move to Next
 
 ---
 
 ## PROJECT OVERVIEW
 
 ### Game Summary
-- **Title:** Hera's Garden
+- **Title:** Circe's Garden
 - **Genre:** Narrative Farming Game / Greek Tragedy
-- **Platform:** Retroid Pocket Classic (1080×1240 Android)
+- **Platform:** Retroid Pocket Classic (1080Ã—1240 Android)
 - **Engine:** Godot 4.5.1
 - **Playtime:** 65-90 minutes (story) + endless free-play
-- **Theme:** Jealousy → Guilt → Redemption through Mercy
+- **Theme:** Jealousy â†’ Guilt â†’ Redemption through Mercy
 
 ### Core Mechanics
-1. **Farming System:** Plant → Water → Wait → Harvest pharmaka herbs
+1. **Farming System:** Plant â†’ Water â†’ Wait â†’ Harvest pharmaka herbs
 2. **Crafting System:** Grind herbs with directional patterns + button prompts
 3. **Narrative System:** Linear story with dialogue choices
 4. **Minigames:** Herb identification, moon tear catching, weaving
@@ -44,7 +44,7 @@ Before implementing ANY feature:
 
 ## DEVELOPMENT PHASES
 
-### Phase 0: Foundation ✅ COMPLETE
+### Phase 0: Foundation âœ… COMPLETE
 - [x] Governance documents
 - [x] Project structure
 - [x] Autoloads registered
@@ -97,15 +97,15 @@ Before implementing ANY feature:
 
 #### 1.1.1 - Player Scene Creation
 ```
-□ Create scenes/entities/player.tscn
-□ Add CharacterBody2D as root node
-□ Add Sprite2D child node (name: "Sprite")
-□ Add CollisionShape2D child (name: "Collision")
+â–¡ Create scenes/entities/player.tscn
+â–¡ Add CharacterBody2D as root node
+â–¡ Add Sprite2D child node (name: "Sprite")
+â–¡ Add CollisionShape2D child (name: "Collision")
   - Shape: CapsuleShape2D (radius: 14, height: 28)
-□ Add Camera2D child (name: "Camera")
+â–¡ Add Camera2D child (name: "Camera")
   - Enabled: true
   - Zoom: (2.0, 2.0) for pixel art
-□ Save scene
+â–¡ Save scene
 ```
 
 **Verification:**
@@ -115,11 +115,11 @@ Before implementing ANY feature:
 
 #### 1.1.2 - Player Movement Script
 ```
-□ Create src/entities/player.gd
-□ Extend CharacterBody2D
-□ Implement movement with d-pad input
-□ Implement physics using move_and_slide()
-□ Add animation state (idle vs walking)
+â–¡ Create src/entities/player.gd
+â–¡ Extend CharacterBody2D
+â–¡ Implement movement with d-pad input
+â–¡ Implement physics using move_and_slide()
+â–¡ Add animation state (idle vs walking)
 ```
 
 **Code Template:**
@@ -163,11 +163,11 @@ Tested: Player moves smoothly in all directions
 
 #### 1.1.3 - Interaction System
 ```
-□ Add Area2D child to player (name: "InteractionZone")
-□ Add CollisionShape2D to InteractionZone (CircleShape2D, radius: 32)
-□ Implement interaction detection
-□ Add "interact" input action (E key)
-□ Emit signal when interacting with objects
+â–¡ Add Area2D child to player (name: "InteractionZone")
+â–¡ Add CollisionShape2D to InteractionZone (CircleShape2D, radius: 32)
+â–¡ Implement interaction detection
+â–¡ Add "interact" input action (E key)
+â–¡ Emit signal when interacting with objects
 ```
 
 **Code Addition:**
@@ -213,14 +213,14 @@ Tested: Can interact with test objects
 
 #### 1.2.1 - World Scene Creation
 ```
-□ Create scenes/world.tscn
-□ Add Node2D as root
-□ Add TileMapLayer (name: "Ground")
+â–¡ Create scenes/world.tscn
+â–¡ Add Node2D as root
+â–¡ Add TileMapLayer (name: "Ground")
   - Tile size: 32x32
   - Create basic tileset from placeholder sprite
-□ Paint tiles in editor (minimum 20x20 area)
-□ Add Node2D container (name: "Interactables")
-□ Instance player.tscn as child
+â–¡ Paint tiles in editor (minimum 20x20 area)
+â–¡ Add Node2D container (name: "Interactables")
+â–¡ Instance player.tscn as child
 ```
 
 **Critical:** TileMapLayer MUST have painted tiles. Do not leave empty.
@@ -234,9 +234,9 @@ Tested: Can interact with test objects
 
 #### 1.2.2 - Scene Transition System
 ```
-□ Create src/autoloads/scene_manager.gd
-□ Register in project.godot as SceneManager
-□ Implement scene loading with fade transition
+â–¡ Create src/autoloads/scene_manager.gd
+â–¡ Register in project.godot as SceneManager
+â–¡ Implement scene loading with fade transition
 ```
 
 **Code:**
@@ -300,19 +300,19 @@ Tested: Smooth transitions between scenes
 
 #### 1.3.1 - Farm Plot Entity
 ```
-□ Create scenes/entities/farm_plot.tscn
-□ Add Node2D as root
-□ Add Sprite2D for tilled soil
-□ Add Sprite2D for crop growth stages
-□ Add Area2D for interaction detection
+â–¡ Create scenes/entities/farm_plot.tscn
+â–¡ Add Node2D as root
+â–¡ Add Sprite2D for tilled soil
+â–¡ Add Sprite2D for crop growth stages
+â–¡ Add Area2D for interaction detection
 ```
 
 #### 1.3.2 - Farm Plot Script
 ```
-□ Create src/entities/farm_plot.gd
-□ Implement states: EMPTY, TILLED, PLANTED, GROWING, HARVESTABLE
-□ Implement methods: till(), plant(), water(), advance_growth(), harvest()
-□ Connect to GameState for crop data
+â–¡ Create src/entities/farm_plot.gd
+â–¡ Implement states: EMPTY, TILLED, PLANTED, GROWING, HARVESTABLE
+â–¡ Implement methods: till(), plant(), water(), advance_growth(), harvest()
+â–¡ Connect to GameState for crop data
 ```
 
 **State Machine:**
@@ -449,7 +449,7 @@ func interact() -> void:
 ```
 feat: implement farm plot system
 
-- State machine: EMPTY → TILLED → PLANTED → GROWING → HARVESTABLE
+- State machine: EMPTY â†’ TILLED â†’ PLANTED â†’ GROWING â†’ HARVESTABLE
 - Methods: till, plant, water, advance_growth, harvest
 - Connects to GameState for crop data and inventory
 - Supports regrowing crops
@@ -461,10 +461,10 @@ Tested: Full crop lifecycle works
 
 #### 1.3.3 - Day/Night System
 ```
-□ Add day counter to GameState
-□ Create sundial interactable object
-□ Implement advance_day() method
-□ Update all farm plots when day advances
+â–¡ Add day counter to GameState
+â–¡ Create sundial interactable object
+â–¡ Implement advance_day() method
+â–¡ Update all farm plots when day advances
 ```
 
 **GameState Enhancement:**
@@ -506,22 +506,22 @@ func interact() -> void:
 
 #### 1.4.1 - Mortar & Pestle Minigame
 ```
-□ Create scenes/ui/crafting_minigame.tscn
-□ Implement directional input pattern matching
-□ Implement button prompt sequence
-□ Add visual/audio feedback
-□ Difficulty scaling (timing windows)
+â–¡ Create scenes/ui/crafting_minigame.tscn
+â–¡ Implement directional input pattern matching
+â–¡ Implement button prompt sequence
+â–¡ Add visual/audio feedback
+â–¡ Difficulty scaling (timing windows)
 ```
 
 **Scene Structure:**
 ```
 CraftingMinigame (Control)
-├─ Background (ColorRect)
-├─ MortarSprite (Sprite2D)
-├─ IngredientsContainer (Control)
-├─ PatternDisplay (Label)
-├─ ProgressBar (ProgressBar)
-└─ ResultDisplay (Label)
+â”œâ”€ Background (ColorRect)
+â”œâ”€ MortarSprite (Sprite2D)
+â”œâ”€ IngredientsContainer (Control)
+â”œâ”€ PatternDisplay (Label)
+â”œâ”€ ProgressBar (ProgressBar)
+â””â”€ ResultDisplay (Label)
 ```
 
 **Script:**
@@ -626,7 +626,7 @@ func _play_feedback(correct: bool) -> void:
 
 **Test:**
 1. Create test scene with crafting minigame
-2. Start with simple pattern: ↑ → ↓ ← (4 inputs)
+2. Start with simple pattern: â†‘ â†’ â†“ â† (4 inputs)
 3. Add button sequence: A A (2 inputs)
 4. Timing: 2.0 seconds
 5. Verify: Correct inputs succeed, wrong inputs fail
@@ -648,10 +648,10 @@ Tested: Simple patterns work correctly
 
 #### 1.4.2 - Recipe System
 ```
-□ Create RecipeData resource class
-□ Define recipes in docs/design/SCHEMA.md
-□ Implement crafting UI integration
-□ Connect to inventory system
+â–¡ Create RecipeData resource class
+â–¡ Define recipes in docs/design/SCHEMA.md
+â–¡ Implement crafting UI integration
+â–¡ Connect to inventory system
 ```
 
 **RecipeData Class:**
@@ -707,21 +707,21 @@ func _on_crafting_complete(success: bool) -> void:
 
 #### 1.5.1 - DialogueBox UI
 ```
-□ Create scenes/ui/dialogue_box.tscn
-□ Add background panel
-□ Add speaker name label
-□ Add text label (scrolling)
-□ Add choice buttons container
-□ Add continue prompt
+â–¡ Create scenes/ui/dialogue_box.tscn
+â–¡ Add background panel
+â–¡ Add speaker name label
+â–¡ Add text label (scrolling)
+â–¡ Add choice buttons container
+â–¡ Add continue prompt
 ```
 
 #### 1.5.2 - Dialogue Manager
 ```
-□ Implement dialogue tree traversal
-□ Text scrolling animation
-□ Choice handling
-□ Flag checking/setting
-□ Signal emission for game events
+â–¡ Implement dialogue tree traversal
+â–¡ Text scrolling animation
+â–¡ Choice handling
+â–¡ Flag checking/setting
+â–¡ Signal emission for game events
 ```
 
 **DialogueManager Code:**

@@ -1,4 +1,4 @@
-# HERA'S GARDEN V2 - TECHNICAL CONSTITUTION
+﻿# CIRCE'S GARDEN V2 - TECHNICAL CONSTITUTION
 
 **Version:** 2.0
 **Last Updated:** December 16, 2025
@@ -8,7 +8,7 @@
 
 ## PURPOSE
 
-This document defines the **immutable technical rules** for Hera's Garden V2. Every AI agent and developer MUST reference this document before writing any code. These rules prevent the architectural failures that plagued V1.
+This document defines the **immutable technical rules** for Circe's Garden V2. Every AI agent and developer MUST reference this document before writing any code. These rules prevent the architectural failures that plagued V1.
 
 ---
 
@@ -40,7 +40,7 @@ AudioController="*res://game/autoload/audio_controller.gd"
 SaveController="*res://game/autoload/save_controller.gd"
 ```
 
-**V1 Failure:** DialogueManager existed but wasn't registered → runtime crashes.
+**V1 Failure:** DialogueManager existed but wasn't registered â†’ runtime crashes.
 
 **Workflow:**
 1. Create autoload script first
@@ -58,11 +58,11 @@ SaveController="*res://game/autoload/save_controller.gd"
 
 | Resource | Property | Type | V1 Hallucinations |
 |----------|----------|------|-------------------|
-| CropData | `growth_stages` | Array[Texture2D] | ❌ sprites, stages_textures |
-| CropData | `days_to_mature` | int | ❌ growth_time, days |
-| ItemData | `id` | String (snake_case) | ❌ item_id, name |
-| GameState | `inventory` | Dictionary | ❌ player_inventory |
-| GameState | `quest_flags` | Dictionary | ❌ flags, questFlags |
+| CropData | `growth_stages` | Array[Texture2D] | âŒ sprites, stages_textures |
+| CropData | `days_to_mature` | int | âŒ growth_time, days |
+| ItemData | `id` | String (snake_case) | âŒ item_id, name |
+| GameState | `inventory` | Dictionary | âŒ player_inventory |
+| GameState | `quest_flags` | Dictionary | âŒ flags, questFlags |
 
 **Enforcement:** When referencing ANY property, check `SCHEMA.md` first.
 
@@ -72,20 +72,20 @@ SaveController="*res://game/autoload/save_controller.gd"
 
 ```
 src/
-  autoloads/     → Singleton scripts ONLY
-  resources/     → Resource class definitions (.gd files)
-  entities/      → Game object scripts (player.gd, npc.gd, etc.)
-  ui/            → UI scripts
+  autoloads/     â†’ Singleton scripts ONLY
+  resources/     â†’ Resource class definitions (.gd files)
+  entities/      â†’ Game object scripts (player.gd, npc.gd, etc.)
+  ui/            â†’ UI scripts
 
-scenes/          → .tscn files ONLY
-resources/       → .tres data files ONLY
+scenes/          â†’ .tscn files ONLY
+resources/       â†’ .tres data files ONLY
 assets/
-  sprites/       → PNG/JPG sprite sheets
-  audio/         → WAV/OGG sound files
-  fonts/         → TTF font files
+  sprites/       â†’ PNG/JPG sprite sheets
+  audio/         â†’ WAV/OGG sound files
+  fonts/         â†’ TTF font files
 
-_docs/           → Documentation (markdown)
-tests/           → Test scripts
+_docs/           â†’ Documentation (markdown)
+tests/           â†’ Test scripts
 ```
 
 **Rules:**
@@ -105,7 +105,7 @@ tests/           → Test scripts
 2. Restart Godot editor (or reload project)
 3. Create data: `resources/crops/wheat.tres` (type: CropData)
 
-**V1 Failure:** Created .tres files before class existed → corrupted resources.
+**V1 Failure:** Created .tres files before class existed â†’ corrupted resources.
 
 ---
 
@@ -120,7 +120,7 @@ tests/           → Test scripts
 - [ ] Tiles PAINTED in editor (not empty)
 - [ ] Layer tested in isolation
 
-**V1 Failure:** Empty TileMapLayer → player fell through world.
+**V1 Failure:** Empty TileMapLayer â†’ player fell through world.
 
 ---
 
@@ -192,7 +192,7 @@ var crops = CropRegistry.get_all_crops()  # CropRegistry might not exist
 ### Phase 1: Core Loop (Vertical Slice)
 - [ ] Player movement
 - [ ] Single crop type (wheat)
-- [ ] Plant → Grow → Harvest
+- [ ] Plant â†’ Grow â†’ Harvest
 - [ ] Test: Can complete one crop cycle
 
 ### Phase 2: Persistence
@@ -209,7 +209,7 @@ var crops = CropRegistry.get_all_crops()  # CropRegistry might not exist
 - [ ] Audio
 - [ ] Balance
 
-**V1 Failure:** Tried to build everything at once → nothing worked.
+**V1 Failure:** Tried to build everything at once â†’ nothing worked.
 
 ---
 
@@ -220,6 +220,8 @@ var crops = CropRegistry.get_all_crops()  # CropRegistry might not exist
 ### Test Runner:
 ```bash
 godot --headless --script tests/run_tests.gd
+# If `godot` isn't on PATH, use the bundled executable:
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64_console.exe --headless --script tests/run_tests.gd
 ```
 
 ### Required Tests:
@@ -290,13 +292,13 @@ claude/<task-description>-<session-id>
 **Before writing ANY code:**
 
 ```
-□ Read CONSTITUTION.md
-□ Read SCHEMA.md
-□ Check project.godot for autoloads
-□ Verify TILE_SIZE = 32
-□ Check actual node paths in scenes
-□ Use exact property names from SCHEMA.md
-□ Test in isolation before integrating
+â–¡ Read CONSTITUTION.md
+â–¡ Read SCHEMA.md
+â–¡ Check project.godot for autoloads
+â–¡ Verify TILE_SIZE = 32
+â–¡ Check actual node paths in scenes
+â–¡ Use exact property names from SCHEMA.md
+â–¡ Test in isolation before integrating
 ```
 
 **Golden Rule:**

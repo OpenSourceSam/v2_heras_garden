@@ -1,4 +1,4 @@
-# HERA'S GARDEN V2 - PROJECT STATUS
+﻿# CIRCE'S GARDEN V2 - PROJECT STATUS
 
 Last Updated: 2025-12-19
 Current Phase: Phase 1 (in progress, scaffolding only)
@@ -6,7 +6,8 @@ Status: Documentation consolidated; restructure Phase 3-4 completed (paths updat
 
 Reference: docs/overview/DOCS_MAP.md
 Senior PM Note: Review GitHub Issues for new error reports.
-Note: `project.godot` read-only lock removed (2025-12-19). The narrow guard in git hooks still protects critical autoload lines from unwanted changes.
+Note: `project.godot` is writable; the narrow guard in git hooks still protects critical autoload lines from unwanted changes.
+Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issues + this file for reviewable status.
 
 ---
 
@@ -57,6 +58,29 @@ Note: `project.godot` read-only lock removed (2025-12-19). The narrow guard in g
 - Added InteractionZone to player scene and interaction signal/logic
 - Aligned player sprite node name to "Sprite" per template
 
+### World Scene TileMap (Complete - by Jr Engineer)
+- Created placeholder tileset and painted a 20x20 tile area in `world.tscn`
+
+### Scene Manager Transition (Implemented - by Jr Engineer)
+- Implemented SceneManager per template with fade stubs (manual transition test pending)
+
+### Farm Plot Lifecycle Script (Complete - by Jr Engineer)
+- Implemented farm plot state machine and crop lifecycle per roadmap template
+
+### Day/Night System (Complete - by Jr Engineer)
+- Added Sundial interactable to advance the day and update crops
+
+### main_menu.tscn Encoding Fix (Complete - by Jr Engineer)
+- Removed UTF-8 BOM that caused a scene parse error during tests
+
+### Input and Interaction Fixes (Complete - by Jr Engineer)
+- Added WASD bindings to ui_left/right/up/down input actions
+- Interaction now skips self and targets the first interactable body
+
+### Repo Hygiene (Complete - by Jr Engineer)
+- Logged GitHub Issue #3 for `nul` file and `.claude/settings.local.json` noise
+- Added `.claude/settings.local.json` to `.gitignore` and removed from tracking
+
 ### CLAUDE.md Created (Complete)
 - Created comprehensive guidance file for future Claude Code instances
 - Covers architecture, commands, workflow, patterns, and anti-patterns
@@ -77,14 +101,15 @@ Note: `project.godot` read-only lock removed (2025-12-19). The narrow guard in g
 - Main menu scene: Script attached (TODO stub)
 - Dialogue box scene: Script attached (TODO stub)
 - Debug HUD scene: Script attached to `game/features/ui/debug_hud.gd`
-- World scene: TileMapLayer exists but NO PAINTED TILES
+- World scene: TileMapLayer painted with placeholder tileset
 
 **Scripts:**
 - Player: Movement and interaction implemented
-- Farm plot: Full lifecycle is TODO stub
+- Farm plot: Full lifecycle implemented
 - Dialogue box: TODO stub
-- SceneManager: TODO stub for transitions
+- SceneManager: Template transition with fade stubs
 - Constants: Centralized, used by GameState and SaveController
+- Sundial: Interactable advances day via GameState
 
 **Tests:**
 - Test runner repaired and functional
@@ -119,7 +144,7 @@ Note: `project.godot` read-only lock removed (2025-12-19). The narrow guard in g
 ## Known Issues
 
 **HIGH Priority:**
-- World TileMapLayer has no painted tiles (blocks gameplay testing)
+- None currently logged
 
 **MEDIUM Priority:**
 - Root `.gdignore` appeared twice during restructure (causes Godot to ignore project). Delete if it reappears; keep editor closed during moves.
@@ -133,27 +158,26 @@ Note: `project.godot` read-only lock removed (2025-12-19). The narrow guard in g
 
 - [x] Player movement
 - [x] Player interaction system
-- [ ] Farm plot lifecycle (till, plant, grow, harvest)
-- [ ] World scene setup and TileMap painting
+- [x] Farm plot lifecycle (till, plant, grow, harvest)
+- [x] World scene setup and TileMap painting
 - [ ] Crafting minigame (minimal)
 - [ ] Dialogue system (minimal)
 - [ ] Scene transitions (basic)
+ - [x] Day/Night system (advance_day + sundial)
 
 ---
 
 ## Next Steps (Immediate)
 
-1. Paint tiles in `game/features/world/world.tscn` (requires Godot editor)
-2. Implement player interaction system (add InteractionZone)
-3. Implement farm plot state machine and crop lifecycle
-4. Implement basic dialogue system
-5. Implement scene transitions in SceneManager
+1. Implement basic dialogue system
+2. Validate SceneManager transitions with two test scenes
+3. Implement crafting minigame (minimal)
 
 ---
 
 ## Project Identity
 
-- Title: Hera's Garden
+- Title: Circe's Garden
 - Main character: Circe
 - Inspiration: Greek mythology and the novel "Circe"
 - Platform: Retroid Pocket Classic (Android 14, 1080x1240, d-pad only)

@@ -51,6 +51,7 @@ var connection_list: Array[Resource] = []
 var installer: FormatterInstaller = null
 var formatter_cache_dir: String
 var menu: FormatterMenu = null
+var uninstall_command_registered := false
 
 
 func _init() -> void:
@@ -304,10 +305,16 @@ func add_uninstall_command() -> void:
 			COMMAND_PALETTE_CATEGORY + COMMAND_PALETTE_UNINSTALL,
 			uninstall_formatter,
 		)
+		uninstall_command_registered = true
+	else:
+		uninstall_command_registered = false
 
 
 func remove_uninstall_command() -> void:
+	if not uninstall_command_registered:
+		return
 	EditorInterface.get_command_palette().remove_command(COMMAND_PALETTE_CATEGORY + COMMAND_PALETTE_UNINSTALL)
+	uninstall_command_registered = false
 
 
 func add_report_issue_command() -> void:

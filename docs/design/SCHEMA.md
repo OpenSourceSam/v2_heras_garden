@@ -1,4 +1,4 @@
-# HERA'S GARDEN V2 - DATA SCHEMA
+﻿# CIRCE'S GARDEN V2 - DATA SCHEMA
 
 **Version:** 2.0
 **Last Updated:** December 15, 2025
@@ -32,9 +32,9 @@ extends Resource
 ```
 
 **Property Enforcement:**
-- ✅ `growth_stages` (NOT "sprites", "textures", "stages_textures")
-- ✅ `days_to_mature` (NOT "growth_time", "days", "maturity_days")
-- ✅ `id` in snake_case (NOT "name", "crop_id")
+- âœ… `growth_stages` (NOT "sprites", "textures", "stages_textures")
+- âœ… `days_to_mature` (NOT "growth_time", "days", "maturity_days")
+- âœ… `id` in snake_case (NOT "name", "crop_id")
 
 **Example Data File:** `resources/crops/wheat.tres`
 
@@ -56,9 +56,9 @@ extends Resource
 ```
 
 **Property Enforcement:**
-- ✅ `id` in snake_case (NOT "item_id", "name")
-- ✅ `display_name` (NOT "name", "item_name")
-- ✅ `category` (NOT "type", "item_type")
+- âœ… `id` in snake_case (NOT "item_id", "name")
+- âœ… `display_name` (NOT "name", "item_name")
+- âœ… `category` (NOT "type", "item_type")
 
 **Example Data File:** `resources/items/wheat_seed.tres`
 
@@ -172,9 +172,9 @@ func harvest_crop(position: Vector2i) -> void
 ```
 
 **Property Enforcement:**
-- ✅ `inventory` (NOT "player_inventory", "items")
-- ✅ `quest_flags` (NOT "flags", "questFlags")
-- ✅ `farm_plots` (NOT "plots", "planted_crops")
+- âœ… `inventory` (NOT "player_inventory", "items")
+- âœ… `quest_flags` (NOT "flags", "questFlags")
+- âœ… `farm_plots` (NOT "plots", "planted_crops")
 
 ---
 
@@ -240,9 +240,9 @@ func delete_save() -> void
 **Required Nodes:**
 ```
 Player (CharacterBody2D)
-├─ Sprite2D (name: "Sprite")
-├─ CollisionShape2D (name: "Collision")
-└─ Camera2D (name: "Camera")
+â”œâ”€ Sprite2D (name: "Sprite")
+â”œâ”€ CollisionShape2D (name: "Collision")
+â””â”€ Camera2D (name: "Camera")
 ```
 
 **Script Properties:**
@@ -258,8 +258,8 @@ var velocity: Vector2 = Vector2.ZERO
 **Required Nodes:**
 ```
 FarmPlot (Node2D)
-├─ Sprite2D (name: "TilledSprite")      # Shows tilled dirt
-└─ Sprite2D (name: "CropSprite")        # Shows growing crop
+â”œâ”€ Sprite2D (name: "TilledSprite")      # Shows tilled dirt
+â””â”€ Sprite2D (name: "CropSprite")        # Shows growing crop
 ```
 
 **Script Properties:**
@@ -277,11 +277,11 @@ var is_watered: bool = false
 **Required Nodes:**
 ```
 World (Node2D)
-├─ TileMapLayer (name: "Ground")         # Grass, paths, etc.
-├─ TileMapLayer (name: "FarmArea")       # Tillable soil
-├─ Node2D (name: "FarmPlots")            # Container for farm_plot instances
-├─ Node2D (name: "NPCs")                 # Container for NPC instances
-└─ Player (instance)
+â”œâ”€ TileMapLayer (name: "Ground")         # Grass, paths, etc.
+â”œâ”€ TileMapLayer (name: "FarmArea")       # Tillable soil
+â”œâ”€ Node2D (name: "FarmPlots")            # Container for farm_plot instances
+â”œâ”€ Node2D (name: "NPCs")                 # Container for NPC instances
+â””â”€ Player (instance)
 ```
 
 ---

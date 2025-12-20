@@ -11,15 +11,13 @@ const SPEED: float = 100.0
 # ============================================
 # NODE REFERENCES
 # ============================================
-# TODO (Task 1.1.2): Add @onready references after scene structure is verified
-# @onready var sprite: Sprite2D = $Sprite
-# @onready var interaction_zone: Area2D = $InteractionZone
+@onready var sprite: Sprite2D = $Sprite
+@onready var interaction_zone: Area2D = $InteractionZone
 
 # ============================================
 # SIGNALS
 # ============================================
-# TODO (Task 1.1.3): Add interaction signal
-# signal interacted_with(target: Node)
+signal interacted_with(target: Node)
 
 # ============================================
 # LIFECYCLE
@@ -45,21 +43,24 @@ func _physics_process(delta: float) -> void:
 
 	# Update sprite flip based on direction
 	if direction.x != 0:
-		$Sprite2D.flip_h = direction.x < 0
+		sprite.flip_h = direction.x < 0
 
 # ============================================
 # INTERACTION
 # ============================================
 
 func _unhandled_input(event: InputEvent) -> void:
-	# TODO (Task 1.1.3): Implement interaction input
-	# - Check for "interact" action press
-	# - Call _try_interact() when pressed
-	pass
+	if event.is_action_pressed("interact"):
+		_try_interact()
 
 func _try_interact() -> void:
-	# TODO (Task 1.1.3): Implement interaction logic
-	# - Get overlapping bodies from interaction_zone
-	# - Check if target has interact() method
-	# - Call target.interact() and emit signal
-	pass
+	var bodies = interaction_zone.get_overlapping_bodies()
+	if bodies.size() == 0:
+		return
+	for body in bodies:
+		if body == self:
+			continue
+		if body.has_method("interact"):
+			body.interact()
+			interacted_with.emit(body)
+			return

@@ -1,0 +1,7 @@
+#!/bin/sh
+python scripts/guards/check_project_godot_autoload.py
+status=$?
+if [ $status -ne 0 ]; then
+	echo "Blocked commit: project.godot autoload guard failed."
+	exit $status
+fi

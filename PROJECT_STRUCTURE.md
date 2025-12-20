@@ -1,6 +1,6 @@
-# HERA'S GARDEN V2 - PROJECT STRUCTURE (SOURCE OF TRUTH)
+﻿# CIRCE'S GARDEN V2 - PROJECT STRUCTURE (SOURCE OF TRUTH)
 
-Purpose: Define canonical repo layout and file placement rules for Hera's Garden.
+Purpose: Define canonical repo layout and file placement rules for Circe's Garden.
 Scope: This document must be updated before structural changes are made.
 
 ---

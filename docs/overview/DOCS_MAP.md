@@ -1,4 +1,4 @@
-# Documentation Map - Hera's Garden v2
+﻿# Documentation Map - Circe's Garden v2
 
 **Purpose:** Single-page index of canonical documents.
 **Last Updated:** 2025-12-19

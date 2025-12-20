@@ -1,4 +1,4 @@
-# HERA'S GARDEN V2 - WORKFLOW GUIDE
+﻿# CIRCE'S GARDEN V2 - WORKFLOW GUIDE
 
 **Purpose:** Comprehensive guide for AI agents and developers working on this project.
 **Last Updated:** 2025-12-19
@@ -26,7 +26,7 @@ ANTIGRAVITY_FEEDBACK.md files, which have been archived to _docs/archive/.
 
 ## Source A: DEVELOPMENT_WORKFLOW.md (Verbatim)
 
-# HERA'S GARDEN V2 - DEVELOPMENT WORKFLOW
+# CIRCE'S GARDEN V2 - DEVELOPMENT WORKFLOW
 
 **Purpose:** Guide for AI agents and developers working on this project.
 
@@ -39,11 +39,11 @@ When you join a conversation about this project, **follow this protocol:**
 ### 1. Read Foundation Documents (5 minutes)
 
 ```
-□ Read docs/design/CONSTITUTION.md (immutable rules)
-□ Read docs/design/SCHEMA.md (data structures)
-□ Read PROJECT_STRUCTURE.md (file organization)
-□ Read docs/execution/PROJECT_STATUS.md (current phase)
-□ Read this file (DEVELOPMENT_WORKFLOW.md)
+â–¡ Read docs/design/CONSTITUTION.md (immutable rules)
+â–¡ Read docs/design/SCHEMA.md (data structures)
+â–¡ Read PROJECT_STRUCTURE.md (file organization)
+â–¡ Read docs/execution/PROJECT_STATUS.md (current phase)
+â–¡ Read this file (DEVELOPMENT_WORKFLOW.md)
 ```
 
 ### 2. Verify Current State
@@ -65,19 +65,19 @@ git log --oneline -5
 Before writing ANY code:
 
 ```
-□ "What phase are we currently in?"
-□ "What specific task am I implementing?"
-□ "Has the foundation been tested?"
-□ "Are there any known blockers?"
+â–¡ "What phase are we currently in?"
+â–¡ "What specific task am I implementing?"
+â–¡ "Has the foundation been tested?"
+â–¡ "Are there any known blockers?"
 ```
 
 ### 4. Verify Before Assuming
 
 ```gdscript
-# ❌ DON'T assume this exists:
+# âŒ DON'T assume this exists:
 var crop = CropRegistry.get_crop("wheat")
 
-# ✅ DO check docs/design/SCHEMA.md first:
+# âœ… DO check docs/design/SCHEMA.md first:
 var crop = GameState.get_crop_data("wheat")  # If this method exists
 ```
 
@@ -85,7 +85,7 @@ var crop = GameState.get_crop_data("wheat")  # If this method exists
 
 ## DEVELOPMENT PHASES
 
-### Phase 0: Foundation ✅
+### Phase 0: Foundation âœ…
 
 **Acceptance Criteria:**
 - [ ] All folders created
@@ -95,23 +95,26 @@ var crop = GameState.get_crop_data("wheat")  # If this method exists
 - [ ] All resource class definitions exist
 - [ ] Tests pass: `godot --headless --script tests/run_tests.gd`
 
+Note: If `godot` isn't on PATH, use the bundled executable:
+`.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64_console.exe --headless --script tests/run_tests.gd`
+
 **Deliverables:**
 ```
-✅ docs/design/CONSTITUTION.md
-✅ docs/design/SCHEMA.md
-✅ PROJECT_STRUCTURE.md
-✅ DEVELOPMENT_WORKFLOW.md
-✅ docs/execution/PROJECT_STATUS.md
-✅ project.godot
-✅ src/autoloads/game_state.gd
-✅ src/autoloads/audio_controller.gd
-✅ src/autoloads/save_controller.gd
-✅ src/resources/crop_data.gd
-✅ src/resources/item_data.gd
-✅ src/resources/dialogue_data.gd
-✅ src/resources/npc_data.gd
-✅ tests/run_tests.gd
-✅ .gitignore
+âœ… docs/design/CONSTITUTION.md
+âœ… docs/design/SCHEMA.md
+âœ… PROJECT_STRUCTURE.md
+âœ… DEVELOPMENT_WORKFLOW.md
+âœ… docs/execution/PROJECT_STATUS.md
+âœ… project.godot
+âœ… src/autoloads/game_state.gd
+âœ… src/autoloads/audio_controller.gd
+âœ… src/autoloads/save_controller.gd
+âœ… src/resources/crop_data.gd
+âœ… src/resources/item_data.gd
+âœ… src/resources/dialogue_data.gd
+âœ… src/resources/npc_data.gd
+âœ… tests/run_tests.gd
+âœ… .gitignore
 ```
 
 **How to Complete:**
@@ -139,10 +142,10 @@ var crop = GameState.get_crop_data("wheat")  # If this method exists
 
 #### Step 1.1: Player Movement
 ```
-□ Create src/entities/player.gd
-□ Create scenes/entities/player.tscn
-□ Implement basic movement (CharacterBody2D)
-□ Test: Player moves smoothly with WASD
+â–¡ Create src/entities/player.gd
+â–¡ Create scenes/entities/player.tscn
+â–¡ Implement basic movement (CharacterBody2D)
+â–¡ Test: Player moves smoothly with WASD
 ```
 
 **Implementation:**
@@ -162,23 +165,23 @@ func _physics_process(delta: float) -> void:
 
 #### Step 1.2: World Setup
 ```
-□ Create scenes/world.tscn
-□ Add TileMapLayer node (name: "Ground")
-□ Create simple tileset (32x32 grass tiles)
-□ Paint tiles in editor
-□ Add Player instance to world
-□ Test: Player moves on grass
+â–¡ Create scenes/world.tscn
+â–¡ Add TileMapLayer node (name: "Ground")
+â–¡ Create simple tileset (32x32 grass tiles)
+â–¡ Paint tiles in editor
+â–¡ Add Player instance to world
+â–¡ Test: Player moves on grass
 ```
 
 **Critical:** TileMapLayer MUST have painted tiles. Don't leave it empty.
 
 #### Step 1.3: Farm Plot System
 ```
-□ Create src/entities/farm_plot.gd
-□ Create scenes/entities/farm_plot.tscn
-□ Implement plant/grow/harvest logic
-□ Add farm_plot instances to world
-□ Test: Farm plots visible and interactable
+â–¡ Create src/entities/farm_plot.gd
+â–¡ Create scenes/entities/farm_plot.tscn
+â–¡ Implement plant/grow/harvest logic
+â–¡ Add farm_plot instances to world
+â–¡ Test: Farm plots visible and interactable
 ```
 
 **Implementation:**
@@ -206,17 +209,17 @@ func _update_sprite() -> void:
 
 #### Step 1.4: Interaction System
 ```
-□ Add Area2D to farm_plot.tscn for detection
-□ Add interaction input (E key)
-□ Wire up plant/harvest actions
-□ Test: Press E near plot → plants seed or harvests
+â–¡ Add Area2D to farm_plot.tscn for detection
+â–¡ Add interaction input (E key)
+â–¡ Wire up plant/harvest actions
+â–¡ Test: Press E near plot â†’ plants seed or harvests
 ```
 
 #### Step 1.5: Growth System
 ```
-□ Implement day advance in GameState
-□ Connect day advance to farm plot updates
-□ Test: Advance day → crops grow
+â–¡ Implement day advance in GameState
+â–¡ Connect day advance to farm plot updates
+â–¡ Test: Advance day â†’ crops grow
 ```
 
 **Implementation:**
@@ -240,12 +243,12 @@ func _update_all_crops() -> void:
 
 #### Step 1.6: Inventory Integration
 ```
-□ Create simple HUD with inventory display
-□ Wire up inventory_changed signal
-□ Test: Harvest crop → inventory count increases
+â–¡ Create simple HUD with inventory display
+â–¡ Wire up inventory_changed signal
+â–¡ Test: Harvest crop â†’ inventory count increases
 ```
 
-**Test:** Plant wheat → advance 3 days → harvest → inventory shows "Wheat: 1"
+**Test:** Plant wheat â†’ advance 3 days â†’ harvest â†’ inventory shows "Wheat: 1"
 
 ---
 
@@ -264,23 +267,23 @@ func _update_all_crops() -> void:
 
 #### Step 2.1: Implement Save
 ```
-□ Enhance save_controller.gd with save logic
-□ Serialize GameState data to JSON
-□ Test: Save game → check user://savegame.json exists
+â–¡ Enhance save_controller.gd with save logic
+â–¡ Serialize GameState data to JSON
+â–¡ Test: Save game â†’ check user://savegame.json exists
 ```
 
 #### Step 2.2: Implement Load
 ```
-□ Enhance save_controller.gd with load logic
-□ Restore GameState from JSON
-□ Rebuild farm plots from save data
-□ Test: Load game → state restored correctly
+â–¡ Enhance save_controller.gd with load logic
+â–¡ Restore GameState from JSON
+â–¡ Rebuild farm plots from save data
+â–¡ Test: Load game â†’ state restored correctly
 ```
 
 #### Step 2.3: UI Integration
 ```
-□ Add Save/Load buttons to main menu
-□ Test: Save → quit → load → verify all state
+â–¡ Add Save/Load buttons to main menu
+â–¡ Test: Save â†’ quit â†’ load â†’ verify all state
 ```
 
 ---
@@ -293,42 +296,42 @@ func _update_all_crops() -> void:
 
 #### Step 3.1: Additional Crops
 ```
-□ Create resources/crops/tomato.tres
-□ Create resources/crops/carrot.tres
-□ Add item data for seeds and harvests
-□ Test: Can plant/grow/harvest all crops
+â–¡ Create resources/crops/tomato.tres
+â–¡ Create resources/crops/carrot.tres
+â–¡ Add item data for seeds and harvests
+â–¡ Test: Can plant/grow/harvest all crops
 ```
 
 #### Step 3.2: NPC System
 ```
-□ Create src/entities/npc.gd
-□ Create scenes/entities/npc.tscn
-□ Implement basic movement/idle behavior
-□ Test: NPC visible and animated
+â–¡ Create src/entities/npc.gd
+â–¡ Create scenes/entities/npc.tscn
+â–¡ Implement basic movement/idle behavior
+â–¡ Test: NPC visible and animated
 ```
 
 #### Step 3.3: Dialogue System
 ```
-□ Create src/ui/dialogue_box.gd
-□ Create scenes/ui/dialogue_box.tscn
-□ Implement line-by-line text display
-□ Test: Dialogue displays correctly
+â–¡ Create src/ui/dialogue_box.gd
+â–¡ Create scenes/ui/dialogue_box.tscn
+â–¡ Implement line-by-line text display
+â–¡ Test: Dialogue displays correctly
 ```
 
 #### Step 3.4: First NPC (Medusa)
 ```
-□ Create resources/npcs/medusa.tres
-□ Create resources/dialogues/medusa_intro.tres
-□ Add Medusa to world
-□ Wire up interaction
-□ Test: Talk to Medusa → dialogue appears
+â–¡ Create resources/npcs/medusa.tres
+â–¡ Create resources/dialogues/medusa_intro.tres
+â–¡ Add Medusa to world
+â–¡ Wire up interaction
+â–¡ Test: Talk to Medusa â†’ dialogue appears
 ```
 
 #### Step 3.5: Quest Flags
 ```
-□ Implement flag setting in dialogue
-□ Test flag-gated content
-□ Test: Complete quest → flag set → new dialogue available
+â–¡ Implement flag setting in dialogue
+â–¡ Test flag-gated content
+â–¡ Test: Complete quest â†’ flag set â†’ new dialogue available
 ```
 
 ---
@@ -341,24 +344,24 @@ func _update_all_crops() -> void:
 
 #### Step 4.1: Audio Integration
 ```
-□ Add SFX for plant/harvest/walk
-□ Add background music
-□ Test: All sounds play correctly
+â–¡ Add SFX for plant/harvest/walk
+â–¡ Add background music
+â–¡ Test: All sounds play correctly
 ```
 
 #### Step 4.2: UI Polish
 ```
-□ Create proper inventory panel
-□ Add tooltips
-□ Add animations
-□ Test: UI feels responsive
+â–¡ Create proper inventory panel
+â–¡ Add tooltips
+â–¡ Add animations
+â–¡ Test: UI feels responsive
 ```
 
 #### Step 4.3: Balance Pass
 ```
-□ Adjust crop prices
-□ Adjust growth times
-□ Test: Gameplay feels balanced
+â–¡ Adjust crop prices
+â–¡ Adjust growth times
+â–¡ Test: Gameplay feels balanced
 ```
 
 ---
@@ -381,10 +384,10 @@ godot --headless --script tests/run_tests.gd
 
 **After ANY change:**
 ```
-□ Does the game launch without errors?
-□ Can I complete the core loop? (plant → harvest)
-□ Does save/load work?
-□ Are there any console errors?
+â–¡ Does the game launch without errors?
+â–¡ Can I complete the core loop? (plant â†’ harvest)
+â–¡ Does save/load work?
+â–¡ Are there any console errors?
 ```
 
 ---
@@ -432,19 +435,19 @@ Closes #1
 
 **Commit after each sub-step:**
 ```
-✅ Completed Step 1.1 (Player Movement)
-   → git commit -m "feat: add player movement"
+âœ… Completed Step 1.1 (Player Movement)
+   â†’ git commit -m "feat: add player movement"
 
-✅ Completed Step 1.2 (World Setup)
-   → git commit -m "feat: create world with tilemap"
+âœ… Completed Step 1.2 (World Setup)
+   â†’ git commit -m "feat: create world with tilemap"
 ```
 
 ### Push Frequency
 
 **Push after each phase milestone:**
 ```
-✅ Phase 0 complete → git push
-✅ Phase 1 Step 1-3 complete → git push
+âœ… Phase 0 complete â†’ git push
+âœ… Phase 1 Step 1-3 complete â†’ git push
 ```
 
 ---
@@ -514,23 +517,23 @@ Closes #1
 
 **Before writing ANY code:**
 ```
-□ Read docs/design/CONSTITUTION.md
-□ Read docs/design/SCHEMA.md
-□ Check project.godot for autoloads
-□ Verify TILE_SIZE = 32
-□ Check actual node paths in scenes
-□ Use exact property names from docs/design/SCHEMA.md
-□ Test in isolation before integrating
+â–¡ Read docs/design/CONSTITUTION.md
+â–¡ Read docs/design/SCHEMA.md
+â–¡ Check project.godot for autoloads
+â–¡ Verify TILE_SIZE = 32
+â–¡ Check actual node paths in scenes
+â–¡ Use exact property names from docs/design/SCHEMA.md
+â–¡ Test in isolation before integrating
 ```
 
 **When stuck:**
 ```
-□ Check error message carefully
-□ Check docs/design/CONSTITUTION.md for known issues
-□ Verify autoload registration
-□ Verify property names in docs/design/SCHEMA.md
-□ Test scene in isolation
-□ Ask for help
+â–¡ Check error message carefully
+â–¡ Check docs/design/CONSTITUTION.md for known issues
+â–¡ Verify autoload registration
+â–¡ Verify property names in docs/design/SCHEMA.md
+â–¡ Test scene in isolation
+â–¡ Ask for help
 ```
 
 ---
@@ -547,78 +550,78 @@ Closes #1
 **Created:** December 16, 2025
 **Updated:** December 16, 2025 (Revised)
 **Purpose:** Provide explicit guardrails, tool documentation, and workflow boundaries
-**Status:** Phase 0 Complete → Phase 1 Ready to Start
+**Status:** Phase 0 Complete â†’ Phase 1 Ready to Start
 
 ---
 
-## 🔍 PROJECT AUDIT - CURRENT STATE
+## ðŸ” PROJECT AUDIT - CURRENT STATE
 
-### ✅ What Has Been Completed (Phase 0)
+### âœ… What Has Been Completed (Phase 0)
 
 **Documentation Foundation:**
-- ✅ docs/design/CONSTITUTION.md - Immutable technical rules (CORRECTED: Now says HERA'S GARDEN)
-- ✅ docs/design/SCHEMA.md - Data structure definitions (exact property names)
-- ✅ docs/execution/ROADMAP.md - Step-by-step Phase 1 implementation guide with code templates
-- ✅ PROJECT_SUMMARY.md - Quick reference
-- ✅ docs/execution/PROJECT_STATUS.md - Current progress tracker
-- ✅ PLAYTESTER_GUIDE.md - Testing instructions
-- ✅ docs/design/Storyline.md - Complete narrative (HERA'S GARDEN - 4,687 lines)
-- ✅ docs/execution/ROADMAP.md - Quest-by-quest story implementation plan
-- ✅ ASSET_CHECKLIST.md - Complete asset inventory (~150 assets documented)
+- âœ… docs/design/CONSTITUTION.md - Immutable technical rules (CORRECTED: Now says Circe's Garden)
+- âœ… docs/design/SCHEMA.md - Data structure definitions (exact property names)
+- âœ… docs/execution/ROADMAP.md - Step-by-step Phase 1 implementation guide with code templates
+- âœ… PROJECT_SUMMARY.md - Quick reference
+- âœ… docs/execution/PROJECT_STATUS.md - Current progress tracker
+- âœ… PLAYTESTER_GUIDE.md - Testing instructions
+- âœ… docs/design/Storyline.md - Complete narrative (CIRCE'S GARDEN - 4,687 lines)
+- âœ… docs/execution/ROADMAP.md - Quest-by-quest story implementation plan
+- âœ… ASSET_CHECKLIST.md - Complete asset inventory (~150 assets documented)
 
 **Godot Project Structure:**
-- ✅ project.godot - Autoloads pre-registered (GameState, AudioController, SaveController)
-- ✅ src/autoloads/game_state.gd - Central state management with TILE_SIZE = 32
-- ✅ src/autoloads/audio_controller.gd - Audio system stub
-- ✅ src/autoloads/save_controller.gd - Save/load system stub
-- ✅ src/resources/crop_data.gd - CropData resource class (class_name defined)
-- ✅ src/resources/item_data.gd - ItemData resource class
-- ✅ src/resources/dialogue_data.gd - DialogueData resource class
-- ✅ src/resources/npc_data.gd - NPCData resource class
-- ✅ resources/crops/TEMPLATE_crop.tres - Example crop data file
-- ✅ scenes/ui/main_menu.tscn - Placeholder menu scene (purple background, title, buttons)
-- ✅ scenes/entities/player.tscn - Placeholder player scene (**NO SCRIPT ATTACHED YET**)
-- ✅ scenes/entities/farm_plot.tscn - Placeholder farm plot scene (**NO SCRIPT YET**)
-- ✅ scenes/world.tscn - Placeholder world scene (blue background, player instance)
-- ✅ TEST_SCRIPT.gd - Automated Phase 0 validation script
+- âœ… project.godot - Autoloads pre-registered (GameState, AudioController, SaveController)
+- âœ… src/autoloads/game_state.gd - Central state management with TILE_SIZE = 32
+- âœ… src/autoloads/audio_controller.gd - Audio system stub
+- âœ… src/autoloads/save_controller.gd - Save/load system stub
+- âœ… src/resources/crop_data.gd - CropData resource class (class_name defined)
+- âœ… src/resources/item_data.gd - ItemData resource class
+- âœ… src/resources/dialogue_data.gd - DialogueData resource class
+- âœ… src/resources/npc_data.gd - NPCData resource class
+- âœ… resources/crops/TEMPLATE_crop.tres - Example crop data file
+- âœ… scenes/ui/main_menu.tscn - Placeholder menu scene (purple background, title, buttons)
+- âœ… scenes/entities/player.tscn - Placeholder player scene (**NO SCRIPT ATTACHED YET**)
+- âœ… scenes/entities/farm_plot.tscn - Placeholder farm plot scene (**NO SCRIPT YET**)
+- âœ… scenes/world.tscn - Placeholder world scene (blue background, player instance)
+- âœ… TEST_SCRIPT.gd - Automated Phase 0 validation script
 
 **Git Status:**
-- ✅ All Phase 0 work committed and pushed
-- ✅ Branch: claude/access-data-bnkZr
-- ✅ Working tree: CLEAN
-- ✅ Ready for Phase 1 implementation
+- âœ… All Phase 0 work committed and pushed
+- âœ… Branch: claude/access-data-bnkZr
+- âœ… Working tree: CLEAN
+- âœ… Ready for Phase 1 implementation
 
-### ❌ What Has NOT Been Implemented Yet
+### âŒ What Has NOT Been Implemented Yet
 
 **Phase 1 Tasks (ALL PENDING - 0% Complete):**
-- ❌ Player movement script (src/entities/player.gd) - **FILE DOES NOT EXIST**
-- ❌ Farm plot script (src/entities/farm_plot.gd) - **FILE DOES NOT EXIST**
-- ❌ Interaction system - **NOT IMPLEMENTED**
-- ❌ Scene transition system (SceneManager autoload) - **NOT IMPLEMENTED**
-- ❌ Farming state machine - **NOT IMPLEMENTED**
-- ❌ Crafting system - **NOT IMPLEMENTED**
-- ❌ Dialogue system - **NOT IMPLEMENTED**
+- âŒ Player movement script (src/entities/player.gd) - **FILE DOES NOT EXIST**
+- âŒ Farm plot script (src/entities/farm_plot.gd) - **FILE DOES NOT EXIST**
+- âŒ Interaction system - **NOT IMPLEMENTED**
+- âŒ Scene transition system (SceneManager autoload) - **NOT IMPLEMENTED**
+- âŒ Farming state machine - **NOT IMPLEMENTED**
+- âŒ Crafting system - **NOT IMPLEMENTED**
+- âŒ Dialogue system - **NOT IMPLEMENTED**
 
 **Critical Understanding:**
 - The placeholder scenes exist but are **non-functional** without scripts
 - This is **intentional** - Phase 1 starts with implementing these scripts
 - Follow docs/execution/ROADMAP.md exactly - it has complete code templates
 
-### 📊 Project Readiness Assessment
+### ðŸ“Š Project Readiness Assessment
 
 | Category | Status | Notes |
 |----------|--------|-------|
-| Documentation | ✅ Excellent | Comprehensive roadmap with code templates |
-| Structure | ✅ Complete | All folders, autoloads, resource classes set up |
-| Implementation | ⚪ Not Started | Phase 1 tasks are 0% complete - ready to begin |
-| Code Quality | ✅ Clean | No implementation = no bugs yet |
-| Clarity | ✅ Very High | Step-by-step instructions with exact code provided |
+| Documentation | âœ… Excellent | Comprehensive roadmap with code templates |
+| Structure | âœ… Complete | All folders, autoloads, resource classes set up |
+| Implementation | âšª Not Started | Phase 1 tasks are 0% complete - ready to begin |
+| Code Quality | âœ… Clean | No implementation = no bugs yet |
+| Clarity | âœ… Very High | Step-by-step instructions with exact code provided |
 
 **Verdict:** Project is in **IDEAL** state to begin Phase 1 implementation.
 
 ---
 
-## 🛠️ AVAILABLE TOOLS & TESTING STRATEGY
+## ðŸ› ï¸ AVAILABLE TOOLS & TESTING STRATEGY
 
 ### Standard Development Tools
 
@@ -722,12 +725,12 @@ grep "node name=" scenes/entities/player.tscn
 ```gdscript
 # Example workflow for implementing farm_plot.gd:
 
-1. Read docs/design/SCHEMA.md → Check CropData properties
-2. Read src/autoloads/game_state.gd → Check available methods
-3. Read docs/execution/ROADMAP.md → Check code template
+1. Read docs/design/SCHEMA.md â†’ Check CropData properties
+2. Read src/autoloads/game_state.gd â†’ Check available methods
+3. Read docs/execution/ROADMAP.md â†’ Check code template
 4. Write src/entities/farm_plot.gd using EXACT template
-5. Read your own file back → Verify it matches template
-6. Grep for property names → Ensure they match docs/design/SCHEMA.md
+5. Read your own file back â†’ Verify it matches template
+6. Grep for property names â†’ Ensure they match docs/design/SCHEMA.md
 7. Commit only if all validations pass
 ```
 
@@ -760,30 +763,30 @@ grep "node name=" scenes/entities/player.tscn
 
 ---
 
-## ⚠️ OVERZEALOUS BEHAVIOR PATTERNS (CRITICAL)
+## âš ï¸ OVERZEALOUS BEHAVIOR PATTERNS (CRITICAL)
 
 ### Understanding "Overzealous"
 
 **Overzealous does NOT mean:** Working too quickly or completing tasks efficiently
 
 **Overzealous MEANS:**
-- 🚨 **Diverging from the plan** (implementing something not in docs/execution/ROADMAP.md)
-- 🚨 **Writing too much code** (adding features beyond the task scope)
-- 🚨 **Adding unnecessary things** (helper functions, optimizations, extras not requested)
-- 🚨 **Going beyond boundaries** (implementing Task 1.1.2 when only 1.1.1 was assigned)
+- ðŸš¨ **Diverging from the plan** (implementing something not in docs/execution/ROADMAP.md)
+- ðŸš¨ **Writing too much code** (adding features beyond the task scope)
+- ðŸš¨ **Adding unnecessary things** (helper functions, optimizations, extras not requested)
+- ðŸš¨ **Going beyond boundaries** (implementing Task 1.1.2 when only 1.1.1 was assigned)
 
-### 🚨 Pattern 1: Scope Creep - Adding Unnecessary Features
+### ðŸš¨ Pattern 1: Scope Creep - Adding Unnecessary Features
 
 **Symptom:** Implementing features not in the roadmap
 
 **Examples:**
-- ❌ Task: "Implement player movement"
+- âŒ Task: "Implement player movement"
   Overzealous: Adds animation system, particle effects, footstep sounds
 
-- ❌ Task: "Create farm plot entity"
+- âŒ Task: "Create farm plot entity"
   Overzealous: Adds fertilizer system, crop diseases, weather effects
 
-- ❌ Task: "Implement dialogue box"
+- âŒ Task: "Implement dialogue box"
   Overzealous: Adds voice acting system, portrait animations, typewriter sound
 
 **Why This Fails:**
@@ -794,10 +797,10 @@ grep "node name=" scenes/entities/player.tscn
 - Deviates from tested roadmap
 
 **Correct Approach:**
-- ✅ Read the task in docs/execution/ROADMAP.md
-- ✅ Implement ONLY what's in the code template
-- ✅ If template seems incomplete, **ask** before adding
-- ✅ Trust the roadmap - features omitted now may be in later phases
+- âœ… Read the task in docs/execution/ROADMAP.md
+- âœ… Implement ONLY what's in the code template
+- âœ… If template seems incomplete, **ask** before adding
+- âœ… Trust the roadmap - features omitted now may be in later phases
 
 **Red Flags:**
 - "I also added..." (unless explicitly requested)
@@ -808,14 +811,14 @@ grep "node name=" scenes/entities/player.tscn
 
 ---
 
-### 🚨 Pattern 2: Diverging from Code Templates
+### ðŸš¨ Pattern 2: Diverging from Code Templates
 
 **Symptom:** Writing code that differs from docs/execution/ROADMAP.md templates
 
 **Examples:**
-- ❌ Template shows simple movement, you add acceleration/deceleration
-- ❌ Template uses `Input.get_vector()`, you create custom input buffering
-- ❌ Template has 50 lines, your version has 200 lines
+- âŒ Template shows simple movement, you add acceleration/deceleration
+- âŒ Template uses `Input.get_vector()`, you create custom input buffering
+- âŒ Template has 50 lines, your version has 200 lines
 
 **Why This Fails:**
 - Templates are tested and designed to work together
@@ -824,21 +827,21 @@ grep "node name=" scenes/entities/player.tscn
 - May introduce bugs not present in template
 
 **Correct Approach:**
-- ✅ Copy template code EXACTLY from docs/execution/ROADMAP.md
-- ✅ Only fill in obvious placeholders (like scene paths)
-- ✅ If you think template has an error, **ask** before changing
-- ✅ Use template as-is even if you think you can "improve" it
+- âœ… Copy template code EXACTLY from docs/execution/ROADMAP.md
+- âœ… Only fill in obvious placeholders (like scene paths)
+- âœ… If you think template has an error, **ask** before changing
+- âœ… Use template as-is even if you think you can "improve" it
 
 ---
 
-### 🚨 Pattern 3: Writing Too Much Code in One Session
+### ðŸš¨ Pattern 3: Writing Too Much Code in One Session
 
 **Symptom:** Creating multiple files or implementing multiple subsections at once
 
 **Examples:**
-- ❌ Creating player.gd, farm_plot.gd, dialogue_manager.gd all at once
-- ❌ Implementing tasks 1.1.1, 1.1.2, and 1.1.3 together
-- ❌ "I finished all of Section 1.1 in one go"
+- âŒ Creating player.gd, farm_plot.gd, dialogue_manager.gd all at once
+- âŒ Implementing tasks 1.1.1, 1.1.2, and 1.1.3 together
+- âŒ "I finished all of Section 1.1 in one go"
 
 **Why This Fails:**
 - Cannot isolate which code caused bugs
@@ -848,11 +851,11 @@ grep "node name=" scenes/entities/player.tscn
 - If something fails, have to undo large amounts of work
 
 **Correct Approach:**
-- ✅ Implement ONE subsection per session (e.g., 1.1.1 only)
-- ✅ Validate that ONE piece thoroughly
-- ✅ Commit it
-- ✅ Report completion and ask to proceed to next subsection
-- ✅ Then (and only then) start next subsection
+- âœ… Implement ONE subsection per session (e.g., 1.1.1 only)
+- âœ… Validate that ONE piece thoroughly
+- âœ… Commit it
+- âœ… Report completion and ask to proceed to next subsection
+- âœ… Then (and only then) start next subsection
 
 **Size Limits:**
 | Work Type | Maximum Per Session |
@@ -864,28 +867,28 @@ grep "node name=" scenes/entities/player.tscn
 
 ---
 
-### 🚨 Pattern 4: Hallucinating Property Names
+### ðŸš¨ Pattern 4: Hallucinating Property Names
 
 **Symptom:** Guessing property names instead of checking docs/design/SCHEMA.md
 
 **Examples:**
-- ❌ `crop_data.sprites` (wrong - should be `growth_stages`)
-- ❌ `crop_data.growth_time` (wrong - should be `days_to_mature`)
-- ❌ `GameState.player_inventory` (wrong - should be `GameState.inventory`)
-- ❌ `item.item_id` (wrong - should be `item.id`)
+- âŒ `crop_data.sprites` (wrong - should be `growth_stages`)
+- âŒ `crop_data.growth_time` (wrong - should be `days_to_mature`)
+- âŒ `GameState.player_inventory` (wrong - should be `GameState.inventory`)
+- âŒ `item.item_id` (wrong - should be `item.id`)
 
 **Why This Fails:**
-- Property doesn't exist → runtime error
+- Property doesn't exist â†’ runtime error
 - Code won't work when actually run
 - Breaks integration with other systems that use correct names
 
 **Correct Approach:**
-- ✅ **BEFORE** writing any code that uses a property:
+- âœ… **BEFORE** writing any code that uses a property:
   1. Read docs/design/SCHEMA.md
   2. Find the exact property name
   3. Copy-paste it into your code
-- ✅ When uncertain, grep existing code: `grep "growth_stages" src/resources/crop_data.gd`
-- ✅ Never guess - verify
+- âœ… When uncertain, grep existing code: `grep "growth_stages" src/resources/crop_data.gd`
+- âœ… Never guess - verify
 
 **Mandatory Check:**
 ```bash
@@ -898,15 +901,15 @@ grep "crop_data\." src/entities/farm_plot.gd
 
 ---
 
-### 🚨 Pattern 5: Ignoring docs/design/CONSTITUTION.md Rules
+### ðŸš¨ Pattern 5: Ignoring docs/design/CONSTITUTION.md Rules
 
 **Symptom:** Not following immutable technical rules
 
 **Examples:**
-- ❌ Using hardcoded numbers: `position = Vector2(16, 16)` (should use TILE_SIZE)
-- ❌ Referencing autoload before checking registration: `DialogueManager.start()` (not registered yet)
-- ❌ Creating .tres files before class exists: `wheat.tres` created before `crop_data.gd`
-- ❌ Not matching folder structure: Putting script in `scenes/` instead of `src/`
+- âŒ Using hardcoded numbers: `position = Vector2(16, 16)` (should use TILE_SIZE)
+- âŒ Referencing autoload before checking registration: `DialogueManager.start()` (not registered yet)
+- âŒ Creating .tres files before class exists: `wheat.tres` created before `crop_data.gd`
+- âŒ Not matching folder structure: Putting script in `scenes/` instead of `src/`
 
 **Why This Fails:**
 - Violates project standards (inconsistent codebase)
@@ -915,22 +918,22 @@ grep "crop_data\." src/entities/farm_plot.gd
 - Repeats V1 architectural failures
 
 **Correct Approach:**
-- ✅ Read docs/design/CONSTITUTION.md section relevant to your task
-- ✅ Check project.godot for autoload registration before referencing
-- ✅ Use constants: `GameState.TILE_SIZE` not `32`
-- ✅ Follow folder structure strictly
-- ✅ Verify resource class exists before creating .tres file
+- âœ… Read docs/design/CONSTITUTION.md section relevant to your task
+- âœ… Check project.godot for autoload registration before referencing
+- âœ… Use constants: `GameState.TILE_SIZE` not `32`
+- âœ… Follow folder structure strictly
+- âœ… Verify resource class exists before creating .tres file
 
 ---
 
-### 🚨 Pattern 6: Jumping Into Fixes Without Debugging
+### ðŸš¨ Pattern 6: Jumping Into Fixes Without Debugging
 
 **Symptom:** Finding a bug and immediately trying to fix it without understanding root cause
 
 **Examples:**
-- ❌ "Player movement doesn't work, let me rewrite the whole function"
-- ❌ "Getting an error, I'll add a null check here"
-- ❌ "Farm plot isn't tilling, let me add more debug prints randomly"
+- âŒ "Player movement doesn't work, let me rewrite the whole function"
+- âŒ "Getting an error, I'll add a null check here"
+- âŒ "Farm plot isn't tilling, let me add more debug prints randomly"
 
 **Why This Fails:**
 - May fix symptom but not root cause
@@ -938,11 +941,11 @@ grep "crop_data\." src/entities/farm_plot.gd
 - Wastes time on wrong solution
 - Makes code messier with band-aid fixes
 
-**Correct Approach:** See "Debugging Workflow" section below ⬇️
+**Correct Approach:** See "Debugging Workflow" section below â¬‡ï¸
 
 ---
 
-## 🐛 COMPREHENSIVE DEBUGGING WORKFLOW
+## ðŸ› COMPREHENSIVE DEBUGGING WORKFLOW
 
 ### When You Encounter a Bug or Unexpected Behavior
 
@@ -953,9 +956,9 @@ grep "crop_data\." src/entities/farm_plot.gd
 ### Phase 1: STOP and DOCUMENT
 
 **Step 1: Stop Coding**
-- 🛑 **Pause** - Do not write any more code
-- 🛑 **Do not attempt a quick fix**
-- 🛑 **Step back from the problem**
+- ðŸ›‘ **Pause** - Do not write any more code
+- ðŸ›‘ **Do not attempt a quick fix**
+- ðŸ›‘ **Step back from the problem**
 
 **Step 2: Document the Bug**
 ```markdown
@@ -1157,44 +1160,44 @@ Use the "Validation Checklist" from earlier:
 
 ```
 Found unexpected behavior
-│
-├─→ Error message visible?
-│   ├─ Yes → Read error message, identify line number, go to Phase 2
-│   └─ No → Go to Phase 2 (gather information)
-│
+â”‚
+â”œâ”€â†’ Error message visible?
+â”‚   â”œâ”€ Yes â†’ Read error message, identify line number, go to Phase 2
+â”‚   â””â”€ No â†’ Go to Phase 2 (gather information)
+â”‚
 Phase 2: Gather Information
-├─ Re-read specification
-├─ Check dependencies
-├─ Validate property names
-└─ Cross-reference template
-│
+â”œâ”€ Re-read specification
+â”œâ”€ Check dependencies
+â”œâ”€ Validate property names
+â””â”€ Cross-reference template
+â”‚
 Phase 3: Analyze
-├─ Form hypotheses (at least 3)
-├─ Test each hypothesis systematically
-└─ Identify root cause
-│
+â”œâ”€ Form hypotheses (at least 3)
+â”œâ”€ Test each hypothesis systematically
+â””â”€ Identify root cause
+â”‚
 Phase 4: Plan Fix
-├─ Determine minimal change
-├─ Check against rules
-└─ Document plan
-│
+â”œâ”€ Determine minimal change
+â”œâ”€ Check against rules
+â””â”€ Document plan
+â”‚
 Phase 5: Implement
-├─ Make change
-└─ Verify change applied
-│
+â”œâ”€ Make change
+â””â”€ Verify change applied
+â”‚
 Phase 6: Validate
-├─ Run all checks
-└─ Document fix
-│
+â”œâ”€ Run all checks
+â””â”€ Document fix
+â”‚
 Phase 7: Reflect
-└─ Update process
+â””â”€ Update process
 ```
 
 ---
 
 ### Red Flags During Debugging
 
-**🚨 Stop and reassess if you find yourself:**
+**ðŸš¨ Stop and reassess if you find yourself:**
 - Adding random debug prints without hypothesis
 - Rewriting large sections of code
 - Adding try-catch or null checks without understanding why they're needed
@@ -1202,7 +1205,7 @@ Phase 7: Reflect
 - Making multiple changes at once
 - "Let me just try this..." approaches
 
-**✅ You're debugging correctly when:**
+**âœ… You're debugging correctly when:**
 - You can explain the root cause clearly
 - Your fix is minimal and targeted
 - You can predict the outcome of the fix
@@ -1211,61 +1214,61 @@ Phase 7: Reflect
 
 ---
 
-## 🔒 STRICT WORKFLOW GUARDRAILS
+## ðŸ”’ STRICT WORKFLOW GUARDRAILS
 
 ### Mandatory Workflow for EVERY Task
 
 ```
 STEP 1: Read Task Specification
-├─ Open docs/execution/ROADMAP.md
-├─ Find your current task (e.g., 1.1.1)
-├─ Read the ENTIRE section (goals, tasks, code template, test criteria)
-└─ Understand what success looks like
+â”œâ”€ Open docs/execution/ROADMAP.md
+â”œâ”€ Find your current task (e.g., 1.1.1)
+â”œâ”€ Read the ENTIRE section (goals, tasks, code template, test criteria)
+â””â”€ Understand what success looks like
 
 STEP 2: Verify Prerequisites
-├─ Check dependencies listed in task
-├─ Verify required files exist (use ls, Read)
-├─ Verify autoloads registered if needed (grep project.godot)
-└─ If dependencies missing → STOP and report
+â”œâ”€ Check dependencies listed in task
+â”œâ”€ Verify required files exist (use ls, Read)
+â”œâ”€ Verify autoloads registered if needed (grep project.godot)
+â””â”€ If dependencies missing â†’ STOP and report
 
 STEP 3: Read Related Documentation
-├─ Check docs/design/SCHEMA.md for property names you'll use
-├─ Check docs/design/CONSTITUTION.md for relevant rules
-├─ Read related files (e.g., if modifying scene, read the .tscn file first)
-└─ Take notes on exact property names and constants
+â”œâ”€ Check docs/design/SCHEMA.md for property names you'll use
+â”œâ”€ Check docs/design/CONSTITUTION.md for relevant rules
+â”œâ”€ Read related files (e.g., if modifying scene, read the .tscn file first)
+â””â”€ Take notes on exact property names and constants
 
 STEP 4: Implement (Following Template EXACTLY)
-├─ Copy code template from docs/execution/ROADMAP.md
-├─ Paste into appropriate file
-├─ Fill in any placeholders (file paths, etc.)
-├─ DO NOT add code beyond template
-└─ DO NOT "improve" or "optimize" unless explicitly asked
+â”œâ”€ Copy code template from docs/execution/ROADMAP.md
+â”œâ”€ Paste into appropriate file
+â”œâ”€ Fill in any placeholders (file paths, etc.)
+â”œâ”€ DO NOT add code beyond template
+â””â”€ DO NOT "improve" or "optimize" unless explicitly asked
 
 STEP 5: Self-Validate
-├─ Read your own code back (use Read tool)
-├─ Compare line-by-line with template
-├─ Run validation checks (grep for property names, check file structure)
-├─ Use validation checklist from "Testing Strategy" section
-└─ If validation fails → Debug using debugging workflow
+â”œâ”€ Read your own code back (use Read tool)
+â”œâ”€ Compare line-by-line with template
+â”œâ”€ Run validation checks (grep for property names, check file structure)
+â”œâ”€ Use validation checklist from "Testing Strategy" section
+â””â”€ If validation fails â†’ Debug using debugging workflow
 
 STEP 6: Commit
-├─ Stage changes: git add <files>
-├─ Commit with template message from docs/execution/ROADMAP.md
-├─ Check commit succeeded: git log -1
-└─ Verify working tree clean: git status
+â”œâ”€ Stage changes: git add <files>
+â”œâ”€ Commit with template message from docs/execution/ROADMAP.md
+â”œâ”€ Check commit succeeded: git log -1
+â””â”€ Verify working tree clean: git status
 
 STEP 7: Update Status
-├─ Edit docs/execution/PROJECT_STATUS.md
-├─ Mark current task as complete
-├─ Update progress percentage if applicable
-└─ Commit status update
+â”œâ”€ Edit docs/execution/PROJECT_STATUS.md
+â”œâ”€ Mark current task as complete
+â”œâ”€ Update progress percentage if applicable
+â””â”€ Commit status update
 
 STEP 8: Report and Stop
-├─ Report: "Task X.X.X complete"
-├─ List what was implemented
-├─ List validation results (all checks passed)
-├─ Ask: "Ready to proceed to Task X.X.Y?"
-└─ WAIT for approval before continuing
+â”œâ”€ Report: "Task X.X.X complete"
+â”œâ”€ List what was implemented
+â”œâ”€ List validation results (all checks passed)
+â”œâ”€ Ask: "Ready to proceed to Task X.X.Y?"
+â””â”€ WAIT for approval before continuing
 ```
 
 ---
@@ -1273,53 +1276,53 @@ STEP 8: Report and Stop
 ### Hard Rules (NEVER Violate)
 
 **Rule 1: ONE Subsection at a Time**
-- ❌ NEVER implement 1.1.1 AND 1.1.2 together
-- ✅ Implement 1.1.1 → Validate → Commit → Report → Wait → Then 1.1.2
+- âŒ NEVER implement 1.1.1 AND 1.1.2 together
+- âœ… Implement 1.1.1 â†’ Validate â†’ Commit â†’ Report â†’ Wait â†’ Then 1.1.2
 
 **Rule 2: EXACT Template Adherence**
-- ❌ NEVER add code not in template (unless explicitly requested)
-- ✅ Copy template exactly, fill obvious placeholders only
+- âŒ NEVER add code not in template (unless explicitly requested)
+- âœ… Copy template exactly, fill obvious placeholders only
 
 **Rule 3: Property Names from docs/design/SCHEMA.md**
-- ❌ NEVER guess property names
-- ✅ Read docs/design/SCHEMA.md, copy-paste exact names
+- âŒ NEVER guess property names
+- âœ… Read docs/design/SCHEMA.md, copy-paste exact names
 
 **Rule 4: Validate Before Commit**
-- ❌ NEVER commit without running validation checklist
-- ✅ Check file structure, property names, template match
+- âŒ NEVER commit without running validation checklist
+- âœ… Check file structure, property names, template match
 
 **Rule 5: Stop at Checkpoints**
-- ❌ NEVER auto-continue to next section
-- ✅ Report completion, wait for approval
+- âŒ NEVER auto-continue to next section
+- âœ… Report completion, wait for approval
 
 **Rule 6: Debug Systematically**
-- ❌ NEVER jump into random fixes
-- ✅ Follow debugging workflow: Stop → Document → Analyze → Plan → Fix
+- âŒ NEVER jump into random fixes
+- âœ… Follow debugging workflow: Stop â†’ Document â†’ Analyze â†’ Plan â†’ Fix
 
 **Rule 7: No Premature Optimization**
-- ❌ NEVER add performance optimizations not requested
-- ✅ Implement functionality first, optimize later if asked
+- âŒ NEVER add performance optimizations not requested
+- âœ… Implement functionality first, optimize later if asked
 
 ---
 
 ### Acceptable Work Increments
 
-**✅ ONE Subsection Per Session:**
+**âœ… ONE Subsection Per Session:**
 ```
 Session 1: Task 1.1.1 (Player scene creation)
-├─ Read spec → Implement → Validate → Commit → Report → STOP
+â”œâ”€ Read spec â†’ Implement â†’ Validate â†’ Commit â†’ Report â†’ STOP
 
 Session 2: Task 1.1.2 (Player movement script)
-├─ Read spec → Implement → Validate → Commit → Report → STOP
+â”œâ”€ Read spec â†’ Implement â†’ Validate â†’ Commit â†’ Report â†’ STOP
 
 Session 3: Task 1.1.3 (Interaction system)
-├─ Read spec → Implement → Validate → Commit → Report → STOP
+â”œâ”€ Read spec â†’ Implement â†’ Validate â†’ Commit â†’ Report â†’ STOP
 ```
 
-**❌ NOT Acceptable:**
+**âŒ NOT Acceptable:**
 ```
 Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
-├─ Too much at once → Hard to validate → Errors accumulate → ❌
+â”œâ”€ Too much at once â†’ Hard to validate â†’ Errors accumulate â†’ âŒ
 ```
 
 ---
@@ -1338,11 +1341,11 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 
 **Validation Results:**
 - [List of checks performed]
-- ✅ File created in correct location
-- ✅ Code matches docs/execution/ROADMAP.md template
-- ✅ Property names verified against docs/design/SCHEMA.md
-- ✅ No syntax errors (grep checks passed)
-- ✅ Committed with message: "feat: implement player movement system"
+- âœ… File created in correct location
+- âœ… Code matches docs/execution/ROADMAP.md template
+- âœ… Property names verified against docs/design/SCHEMA.md
+- âœ… No syntax errors (grep checks passed)
+- âœ… Committed with message: "feat: implement player movement system"
 
 **Files Changed:**
 - src/entities/player.gd (new file, 45 lines)
@@ -1360,9 +1363,9 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 
 ---
 
-## 🎯 GO / NO-GO CRITERIA
+## ðŸŽ¯ GO / NO-GO CRITERIA
 
-### ✅ You Are CLEAR to Proceed When:
+### âœ… You Are CLEAR to Proceed When:
 
 **Task Level:**
 - Current subsection fully implemented (file created, code written)
@@ -1379,7 +1382,7 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 - Git working tree clean
 - User approved: "Move to next section"
 
-### 🛑 You Must STOP When:
+### ðŸ›‘ You Must STOP When:
 
 **Immediately stop if:**
 - Validation check fails (file in wrong place, property name wrong, etc.)
@@ -1403,7 +1406,7 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 **Need Guidance:** [What information/decision needed]
 ```
 
-### ❓ You Must ASK Senior AI (Me, Claude) When:
+### â“ You Must ASK Senior AI (Me, Claude) When:
 
 **Technical Questions:**
 - Template seems to have an error or omission
@@ -1432,12 +1435,12 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 
 ---
 
-## 📖 REQUIRED READING ORDER
+## ðŸ“– REQUIRED READING ORDER
 
 **Before Starting ANY Work:**
 
 **Priority 1 (Read Fully):**
-1. ✅ This file (ANTIGRAVITY_FEEDBACK.md) - Current document
+1. âœ… This file (ANTIGRAVITY_FEEDBACK.md) - Current document
 2. docs/design/CONSTITUTION.md - Immutable technical rules
 3. docs/design/SCHEMA.md - Data structure definitions
 
@@ -1458,14 +1461,14 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 
 ---
 
-## 🧭 VIBE CODING PRINCIPLES (For Agentic Workflows)
+## ðŸ§­ VIBE CODING PRINCIPLES (For Agentic Workflows)
 
 ### Based on Google and Claude's Agentic Coding Guidelines
 
 **Principle 1: Explicit Over Implicit**
-- Template code is provided → Use it exactly
-- Property names documented → Copy them
-- Folder structure defined → Follow it
+- Template code is provided â†’ Use it exactly
+- Property names documented â†’ Copy them
+- Folder structure defined â†’ Follow it
 - DON'T rely on "common sense" or "best practices" - rely on documentation
 
 **Principle 2: Verify Before Implement**
@@ -1487,7 +1490,7 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 - Makes debugging easier later
 
 **Principle 5: Fail Fast, Fail Clearly**
-- If validation fails → STOP immediately
+- If validation fails â†’ STOP immediately
 - Report the failure clearly
 - Don't try to work around it
 - Get help rather than guess
@@ -1524,7 +1527,7 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 
 ---
 
-## 🎓 SUMMARY - KEY TAKEAWAYS
+## ðŸŽ“ SUMMARY - KEY TAKEAWAYS
 
 ### Golden Rules:
 
@@ -1539,18 +1542,18 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 
 ### What "Overzealous" Means:
 
-- ❌ Adding features not in roadmap
-- ❌ Writing code beyond template scope
-- ❌ "Improving" or "optimizing" without being asked
-- ❌ Implementing multiple subsections at once
-- ❌ Diverging from specifications
+- âŒ Adding features not in roadmap
+- âŒ Writing code beyond template scope
+- âŒ "Improving" or "optimizing" without being asked
+- âŒ Implementing multiple subsections at once
+- âŒ Diverging from specifications
 
 ### What "Overzealous" Does NOT Mean:
 
-- ✅ Working efficiently
-- ✅ Completing tasks correctly
-- ✅ Following instructions precisely
-- ✅ Finishing assigned subsection quickly
+- âœ… Working efficiently
+- âœ… Completing tasks correctly
+- âœ… Following instructions precisely
+- âœ… Finishing assigned subsection quickly
 
 ### You Are Successful When:
 
@@ -1574,7 +1577,7 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 
 ---
 
-## 🚀 READY TO START?
+## ðŸš€ READY TO START?
 
 ### Next Immediate Actions:
 
@@ -1583,7 +1586,7 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 - [ ] I understand "overzealous" means scope creep, not speed
 - [ ] I understand I should NOT ask user to review code (they're non-technical)
 - [ ] I understand I SHOULD ask to proceed to next task after completing current one
-- [ ] I understand debugging workflow: Stop → Document → Analyze → Plan → Fix
+- [ ] I understand debugging workflow: Stop â†’ Document â†’ Analyze â†’ Plan â†’ Fix
 - [ ] I understand template adherence is mandatory
 
 **Step 2: Read Core Documentation**
@@ -1609,7 +1612,7 @@ Session 1: Tasks 1.1.1 + 1.1.2 + 1.1.3 + 1.2.1 all at once
 - Debug systematically
 - Stay within scope
 
-**Good luck, Antigravity AI. Follow the guardrails and you'll succeed.** 🎯
+**Good luck, Antigravity AI. Follow the guardrails and you'll succeed.** ðŸŽ¯
 
 ---
 

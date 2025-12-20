@@ -1,4 +1,4 @@
-# Docs Overview - Hera's Garden v2
+﻿# Docs Overview - Circe's Garden v2
 
 Start here if you are new.
 

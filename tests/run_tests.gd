@@ -1,5 +1,5 @@
-extends SceneTree
-## Automated test runner for Hera's Garden v2
+﻿extends SceneTree
+## Automated test runner for Circe's Garden v2
 ## Run with: godot --headless --script tests/run_tests.gd
 
 var passed: int = 0
@@ -11,7 +11,7 @@ func _init() -> void:
 
 func _run_all_tests() -> void:
 	print("=".repeat(60))
-	print("HERA'S GARDEN V2 - TEST SUITE")
+	print("CIRCE'S GARDEN V2 - TEST SUITE")
 	print("=".repeat(60))
 	print("")
 

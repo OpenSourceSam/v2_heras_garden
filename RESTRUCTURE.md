@@ -1,4 +1,4 @@
-# RESTRUCTURE.md - Repo Restructure Plan (Hera's Garden v2)
+﻿# RESTRUCTURE.md - Repo Restructure Plan (Circe's Garden v2)
 
 This file is the executable restructure plan for Codex or any engineer. Follow it in order. Do not skip validation steps. Use `git mv` for all moves to preserve history.
 
@@ -7,6 +7,9 @@ Key rules:
 - Move one feature at a time, commit after each step.
 - Do not edit `project.godot` until Phase 4.
 - If anything breaks, use the rollback steps.
+
+Godot CLI note:
+- If `godot` isn't on PATH, use `.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64_console.exe` for headless commands and `.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe` for editor commands.
 
 ---
 

@@ -1,4 +1,4 @@
-# HERA'S GARDEN: Complete Storyline & Dialogue Script
+﻿# CIRCE'S GARDEN: Complete Storyline & Dialogue Script
 
  
 
@@ -46,7 +46,7 @@
 
  
 
-Circe, daughter of Helios, has just committed a terrible act of jealousy. Using pharmaka (magical herbs where Titan blood was spilled), she transformed the nymph Scylla into a six-headed monster—all because Scylla won the love of Glaucos, the sailor-turned-god Circe herself had created.
+Circe, daughter of Helios, has just committed a terrible act of jealousy. Using pharmaka (magical herbs where Titan blood was spilled), she transformed the nymph Scylla into a six-headed monsterâ€”all because Scylla won the love of Glaucos, the sailor-turned-god Circe herself had created.
 
  
 
@@ -88,7 +88,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 - Multiple failed attempts
 
-- NPC interactions (Hermes, Aeëtes, Daedalus)
+- NPC interactions (Hermes, AeÃ«tes, Daedalus)
 
 - Accept that reversal is impossible
 
@@ -124,7 +124,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Age:** Immortal (appears ~25)
 
-**Personality:** Jealous → Guilty → Remorseful → Wise
+**Personality:** Jealous â†’ Guilty â†’ Remorseful â†’ Wise
 
 **Voice:** Internal struggle, self-aware, poetic
 
@@ -162,7 +162,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Role:** Tragic victim of Circe's jealousy
 
-**Transformation:** Beautiful nymph → Six-headed monster
+**Transformation:** Beautiful nymph â†’ Six-headed monster
 
 **Voice:** Pain, confusion, rage
 
@@ -212,7 +212,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-### Aeëtes (Supporting NPC)
+### AeÃ«tes (Supporting NPC)
 
  
 
@@ -420,7 +420,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**[On the table: A note from Aeëtes (Circe's brother), written in elegant script.]**
+**[On the table: A note from AeÃ«tes (Circe's brother), written in elegant script.]**
 
  
 
@@ -434,7 +434,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 >
 
-> *The pharmaka flowers bloom where Titan blood was spilled during the great war. Look for the glow—subtle, golden, like captured sunlight.*
+> *The pharmaka flowers bloom where Titan blood was spilled during the great war. Look for the glowâ€”subtle, golden, like captured sunlight.*
 
 >
 
@@ -446,13 +446,13 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 >
 
-> *— Your brother, Aeëtes"*
+> *â€” Your brother, AeÃ«tes"*
 
  
 
 **Circe:** (reading aloud, then to herself)
 
-*"Pharmaka... the magic Aeëtes told me about."*
+*"Pharmaka... the magic AeÃ«tes told me about."*
 
 *"Transforms living things."*
 
@@ -478,7 +478,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**[Player explores island. Finds glowing area near cliffs—ancient battlefield where Titans fought Olympians.]**
+**[Player explores island. Finds glowing area near cliffsâ€”ancient battlefield where Titans fought Olympians.]**
 
  
 
@@ -536,7 +536,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 *[Harvests flower]*
 
-**System:** *"Obtained: 1× Pharmaka Flower"*
+**System:** *"Obtained: 1Ã— Pharmaka Flower"*
 
  
 
@@ -564,7 +564,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**System:** *"Obtained: 3× Pharmaka Flowers"*
+**System:** *"Obtained: 3Ã— Pharmaka Flowers"*
 
  
 
@@ -598,7 +598,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 *"I go everywhere, darling. Messenger god, remember?"*
 
-*"Besides, I heard you were exiled— wait, not exiled yet."*
+*"Besides, I heard you were exiledâ€” wait, not exiled yet."*
 
 *"You're here voluntarily. Interesting."*
 
@@ -682,7 +682,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Hermes:** (backing away, grinning)
 
-*"I'll leave you to it. But when this goes wrong—and it will—*
+*"I'll leave you to it. But when this goes wrongâ€”and it willâ€”*
 
 *I'll be back with news. I always am."*
 
@@ -718,7 +718,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Circe:** (approaching)
 
-*"The mortar. Aeëtes said to grind the flowers here."*
+*"The mortar. AeÃ«tes said to grind the flowers here."*
 
 *"Let's see what this magic can do."*
 
@@ -736,7 +736,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 *"Grind the flowers using D-pad directional inputs."*
 
-*"Follow the pattern: ↑ → ↓ ←"*
+*"Follow the pattern: â†‘ â†’ â†“ â†"*
 
 *"Repeat 3 times."*
 
@@ -750,7 +750,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**[Pattern: ↑ → ↓ ← (12 total inputs, slow pace, 2 seconds per input window)]**
+**[Pattern: â†‘ â†’ â†“ â† (12 total inputs, slow pace, 2 seconds per input window)]**
 
  
 
@@ -782,7 +782,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**System:** *"Obtained: 1× Transformation Sap"*
+**System:** *"Obtained: 1Ã— Transformation Sap"*
 
  
 
@@ -938,7 +938,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 *"Oh! Did Glaucos send you? Is he planning something?"*
 
-*"He's so romantic. I knew he'd—"*
+*"He's so romantic. I knew he'dâ€”"*
 
  
 
@@ -1038,7 +1038,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Circe:** (voice shaking)
 
-*"Not your fault? You're vain, cruel, heartless—"*
+*"Not your fault? You're vain, cruel, heartlessâ€”"*
 
  
 
@@ -1104,7 +1104,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Scylla:** (seeing vial, alarmed)
 
-*"Circe, what is that? What are you—"*
+*"Circe, what is that? What are youâ€”"*
 
  
 
@@ -1176,7 +1176,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Circe:** (shaking)
 
-*"I... I didn't mean for it to be so—"*
+*"I... I didn't mean for it to be soâ€”"*
 
  
 
@@ -1194,7 +1194,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Circe:** (terrified)
 
-*"Scylla, wait! I can fix—"*
+*"Scylla, wait! I can fixâ€”"*
 
  
 
@@ -1272,7 +1272,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Circe:** (looking up, desperate)
 
-*"Father, I didn't mean—"*
+*"Father, I didn't meanâ€”"*
 
  
 
@@ -1288,7 +1288,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Circe:** (standing, defensive)
 
-*"That's not my fault! She chose to—"*
+*"That's not my fault! She chose toâ€”"*
 
  
 
@@ -1296,7 +1296,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 *"You caused this! You and your jealousy!"*
 
-*"Your brother Aeëtes taught you pharmaka, didn't he?"*
+*"Your brother AeÃ«tes taught you pharmaka, didn't he?"*
 
  
 
@@ -1320,7 +1320,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Circe:** (stunned)
 
-*"Eternity? Father, please—"*
+*"Eternity? Father, pleaseâ€”"*
 
  
 
@@ -1404,7 +1404,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Circe:** (turning, hopeful)
 
-*"Hermes! Zeus said no visitors—"*
+*"Hermes! Zeus said no visitorsâ€”"*
 
  
 
@@ -1470,7 +1470,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Circe:** (catches it, confused)
 
-*"Why would you—"*
+*"Why would youâ€”"*
 
  
 
@@ -1492,7 +1492,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Hermes:**
 
-*"The basics. Aeëtes says they're versatile."*
+*"The basics. AeÃ«tes says they're versatile."*
 
 *"Plant them. See what happens."*
 
@@ -1560,7 +1560,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 *"Press A on grass to till soil."*
 
-*"Create 9 plots (3×3 grid)."*
+*"Create 9 plots (3Ã—3 grid)."*
 
  
 
@@ -1578,7 +1578,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**[Player opens inventory. Sees: 3× Moly Seeds, 3× Nightshade Seeds, 3× Lotus Seeds]**
+**[Player opens inventory. Sees: 3Ã— Moly Seeds, 3Ã— Nightshade Seeds, 3Ã— Lotus Seeds]**
 
  
 
@@ -1626,7 +1626,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 *"Pharmaka grows faster than mortal plants."*
 
-*"Two days, Aeëtes said."*
+*"Two days, AeÃ«tes said."*
 
  
 
@@ -1644,7 +1644,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**Text:** *"DAY 1 → DAY 2"*
+**Text:** *"DAY 1 â†’ DAY 2"*
 
  
 
@@ -1662,7 +1662,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**Text:** *"DAY 2 → DAY 3"*
+**Text:** *"DAY 2 â†’ DAY 3"*
 
  
 
@@ -1688,7 +1688,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **System:**
 
-*"Obtained: 3× Moly, 3× Nightshade, 3× Lotus"*
+*"Obtained: 3Ã— Moly, 3Ã— Nightshade, 3Ã— Lotus"*
 
  
 
@@ -1722,7 +1722,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Circe:** (opening book)
 
-*"Aeëtes left his notes here."*
+*"AeÃ«tes left his notes here."*
 
 *"Let's see... calming potions..."*
 
@@ -1734,7 +1734,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 *"Recipe Unlocked: Calming Draught"*
 
-*"Requires: 2× Moly, 1× Lotus"*
+*"Requires: 2Ã— Moly, 1Ã— Lotus"*
 
  
 
@@ -1770,7 +1770,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **System Prompt:**
 
-*"Grinding Pattern: ↑ ↑ → → ↓ ↓ ← ←"*
+*"Grinding Pattern: â†‘ â†‘ â†’ â†’ â†“ â†“ â† â†"*
 
 *"Repeat 2 times (16 total inputs)."*
 
@@ -1814,7 +1814,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**[Buttons flash on screen in sequence: A → A → B]**
+**[Buttons flash on screen in sequence: A â†’ A â†’ B]**
 
  
 
@@ -1832,7 +1832,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **System:**
 
-*"Crafted: 1× Calming Draught"*
+*"Crafted: 1Ã— Calming Draught"*
 
  
 
@@ -1998,7 +1998,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Hermes:** (skeptical)
 
-*"Can it? Aeëtes said pharmaka doesn't undo pharmaka."*
+*"Can it? AeÃ«tes said pharmaka doesn't undo pharmaka."*
 
  
 
@@ -2012,7 +2012,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Hermes:**
 
-*"Aeëtes? He's halfway across the world with his kingdom."*
+*"AeÃ«tes? He's halfway across the world with his kingdom."*
 
  
 
@@ -2058,7 +2058,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Circe:** (alone again)
 
-*"Aeëtes will know. He has to."*
+*"AeÃ«tes will know. He has to."*
 
  
 
@@ -2080,11 +2080,11 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**[Morning. Aeëtes stands in Circe's garden, examining her plants. He's tall, regal, similar features to Circe but sharper.]**
+**[Morning. AeÃ«tes stands in Circe's garden, examining her plants. He's tall, regal, similar features to Circe but sharper.]**
 
  
 
-**Aeëtes:** (not turning as Circe approaches)
+**AeÃ«tes:** (not turning as Circe approaches)
 
 *"Your garden is adequate. The Moly is healthy."*
 
@@ -2096,7 +2096,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**Aeëtes:** (turns, expression stern)
+**AeÃ«tes:** (turns, expression stern)
 
 *"Hermes said you needed help. I assume this is about Scylla."*
 
@@ -2108,7 +2108,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**Aeëtes:**
+**AeÃ«tes:**
 
 *"A mistake? You created an abomination."*
 
@@ -2124,7 +2124,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**Aeëtes:** (shakes head)
+**AeÃ«tes:** (shakes head)
 
 *"I told you when we were children: pharmaka doesn't undo pharmaka."*
 
@@ -2134,11 +2134,11 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Circe:** (desperate)
 
-*"There has to be a way! You know more than anyone—"*
+*"There has to be a way! You know more than anyoneâ€”"*
 
  
 
-**Aeëtes:** (interrupting)
+**AeÃ«tes:** (interrupting)
 
 *"I know this: you used raw pharmaka on a living being."*
 
@@ -2154,7 +2154,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**Aeëtes:** (pause, considering)
+**AeÃ«tes:** (pause, considering)
 
 *"There are... legends. Unproven theories."*
 
@@ -2170,7 +2170,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**Aeëtes:**
+**AeÃ«tes:**
 
 *"Ending. Petrification. Turning living flesh to stone."*
 
@@ -2184,7 +2184,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**Aeëtes:**
+**AeÃ«tes:**
 
 *"I'm saying that might be the only mercy left."*
 
@@ -2200,7 +2200,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**Aeëtes:** (sighs)
+**AeÃ«tes:** (sighs)
 
 *"Very well. I'll teach you a recipe. It's theoretical."*
 
@@ -2214,7 +2214,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 *"Recipe Unlocked: Reversal Elixir"*
 
-*"Requires: 2× Moly, 2× Nightshade, 1× Saffron"*
+*"Requires: 2Ã— Moly, 2Ã— Nightshade, 1Ã— Saffron"*
 
  
 
@@ -2224,7 +2224,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**Aeëtes:**
+**AeÃ«tes:**
 
 *"It grows only during the full moon. Sacred groves."*
 
@@ -2244,7 +2244,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**Aeëtes:**
+**AeÃ«tes:**
 
 *"Saffron looks like any other flower. But its stamens are red, not yellow."*
 
@@ -2274,7 +2274,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **[If player selects wrong plant:]**
 
-**Aeëtes:**
+**AeÃ«tes:**
 
 *"No. Look at the stamens, not the petals."*
 
@@ -2284,11 +2284,11 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **System:**
 
-*"Obtained: 3× Saffron"*
+*"Obtained: 3Ã— Saffron"*
 
  
 
-**Aeëtes:**
+**AeÃ«tes:**
 
 *"Good. You're learning to see. Now plant more Moly and Nightshade."*
 
@@ -2304,7 +2304,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**[Player returns to Aiaia garden. Plants 6× Moly, 6× Nightshade.]**
+**[Player returns to Aiaia garden. Plants 6Ã— Moly, 6Ã— Nightshade.]**
 
  
 
@@ -2318,7 +2318,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **System:**
 
-*"Obtained: 6× Moly, 6× Nightshade"*
+*"Obtained: 6Ã— Moly, 6Ã— Nightshade"*
 
  
 
@@ -2354,7 +2354,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **System Prompt:**
 
-*"Grinding Pattern: ↑ → ← ↓ ↑ ← → ↓"*
+*"Grinding Pattern: â†‘ â†’ â† â†“ â†‘ â† â†’ â†“"*
 
 *"Repeat 2 times (16 total inputs)."*
 
@@ -2398,7 +2398,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **System:**
 
-*"Crafted: 1× Reversal Elixir"*
+*"Crafted: 1Ã— Reversal Elixir"*
 
  
 
@@ -2408,7 +2408,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**Aeëtes:** (watching)
+**AeÃ«tes:** (watching)
 
 *"I hope so, sister. But prepare for disappointment."*
 
@@ -2558,7 +2558,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Circe:** (falling to knees)
 
-*"No. No, it was supposed to—"*
+*"No. No, it was supposed toâ€”"*
 
  
 
@@ -2570,7 +2570,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Circe:**
 
-*"Scylla, please, I can try again—"*
+*"Scylla, please, I can try againâ€”"*
 
  
 
@@ -2606,11 +2606,11 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**[Aeëtes sits beside her]**
+**[AeÃ«tes sits beside her]**
 
  
 
-**Aeëtes:**
+**AeÃ«tes:**
 
 *"I told you. Pharmaka doesn't undo pharmaka."*
 
@@ -2622,7 +2622,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**Aeëtes:** (quiet)
+**AeÃ«tes:** (quiet)
 
 *"You already know."*
 
@@ -2634,7 +2634,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**Aeëtes:** (nods)
+**AeÃ«tes:** (nods)
 
 *"It's not a cure. It's an ending."*
 
@@ -2648,7 +2648,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**Aeëtes:**
+**AeÃ«tes:**
 
 *"Then she suffers. Forever."*
 
@@ -2656,11 +2656,11 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**[Aeëtes stands]**
+**[AeÃ«tes stands]**
 
  
 
-**Aeëtes:**
+**AeÃ«tes:**
 
 *"Think about it. When you're ready, I'll teach you the recipe."*
 
@@ -2668,7 +2668,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**[Aeëtes vanishes in golden light]**
+**[AeÃ«tes vanishes in golden light]**
 
  
 
@@ -3032,7 +3032,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **System:**
 
-*"Obtained: 3× Sacred Earth"*
+*"Obtained: 3Ã— Sacred Earth"*
 
  
 
@@ -3044,7 +3044,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**[Player plants 6× Moly. Advances time 2 days. Harvests.]**
+**[Player plants 6Ã— Moly. Advances time 2 days. Harvests.]**
 
  
 
@@ -3066,7 +3066,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Grinding Pattern:**
 
-*"↑ → ↓ ← → ↑ ← ↓ ← →"*
+*"â†‘ â†’ â†“ â† â†’ â†‘ â† â†“ â† â†’"*
 
 *"Repeat 3 times (30 total inputs)."*
 
@@ -3092,7 +3092,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **System:**
 
-*"Crafted: 1× Binding Ward"*
+*"Crafted: 1Ã— Binding Ward"*
 
  
 
@@ -3136,7 +3136,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **Circe:**
 
-*"Scylla, you've killed so many—"*
+*"Scylla, you've killed so manyâ€”"*
 
  
 
@@ -3260,7 +3260,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**[She opens Aeëtes's recipe book. Finds the final page: "Petrification Potion"]**
+**[She opens AeÃ«tes's recipe book. Finds the final page: "Petrification Potion"]**
 
  
 
@@ -3386,7 +3386,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **System:**
 
-*"Obtained: 3× Moon Tears"*
+*"Obtained: 3Ã— Moon Tears"*
 
  
 
@@ -3438,7 +3438,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **System:**
 
-*"Obtained: 1× Divine Blood"*
+*"Obtained: 1Ã— Divine Blood"*
 
  
 
@@ -3506,7 +3506,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 *"EXPERT GRINDING PATTERN:"*
 
-*"↑ → ↓ ← → ↑ ← ↓ ← → ↑ →"*
+*"â†‘ â†’ â†“ â† â†’ â†‘ â† â†“ â† â†’ â†‘ â†’"*
 
 *"Repeat 3 times (36 total inputs)."*
 
@@ -4212,7 +4212,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
  
 
-**[Daedalus's loom sits nearby. Aeëtes's recipe book on the table.]**
+**[Daedalus's loom sits nearby. AeÃ«tes's recipe book on the table.]**
 
  
 
@@ -4344,7 +4344,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **[Post-Credits Text:]**
 
-*"Thank you for playing Hera's Garden."*
+*"Thank you for playing Circe's Garden."*
 
 *"Continue playing in Free-Play Mode, or start New Game+."*
 
@@ -4448,7 +4448,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 **[Post-Credits Text:]**
 
-*"Thank you for playing Hera's Garden."*
+*"Thank you for playing Circe's Garden."*
 
 *"Continue playing in Free-Play Mode, or start New Game+."*
 
@@ -4494,7 +4494,7 @@ Now exiled to the island of Aiaia, Circe must face the consequences of her actio
 
 2. *"Heard about that clever sailor, Odysseus. He's headed this way."*
 
-3. *"Your sister Pasiphaë sends her regards. Well, no, she didn't. I lied."*
+3. *"Your sister PasiphaÃ« sends her regards. Well, no, she didn't. I lied."*
 
 4. *"The sailors speak of Scylla's statue now. They call it a warning."*
 
@@ -4684,4 +4684,4 @@ var quests = {
 
 **All dialogue:** Original, written for this game
 
-**All mechanics:** Designed for D-pad only, 310×270 resolution
+**All mechanics:** Designed for D-pad only, 310Ã—270 resolution

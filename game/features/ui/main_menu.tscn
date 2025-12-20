@@ -36,7 +36,7 @@ grow_vertical = 2
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "HERA'S GARDEN"
+text = "CIRCE'S GARDEN"
 horizontal_alignment = 1
 
 [node name="Subtitle" type="Label" parent="VBoxContainer"]
@@ -64,3 +64,5 @@ text = "Settings"
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+

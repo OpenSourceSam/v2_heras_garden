@@ -1,10 +1,10 @@
-extends SceneTree
+﻿extends SceneTree
 ## Quick validation script for Phase 0
 ## Run with: godot --headless --script TEST_SCRIPT.gd
 
 func _init() -> void:
 	print("=".repeat(60))
-	print("HERA'S GARDEN - PHASE 0 VALIDATION")
+	print("CIRCE'S GARDEN - PHASE 0 VALIDATION")
 	print("=".repeat(60))
 	print("")
 
@@ -15,9 +15,9 @@ func _init() -> void:
 	var autoloads = ["GameState", "AudioController", "SaveController"]
 	for autoload_name in autoloads:
 		if root.has_node(autoload_name):
-			print("  ✅ %s found" % autoload_name)
+			print("  âœ… %s found" % autoload_name)
 		else:
-			print("  ❌ %s NOT FOUND" % autoload_name)
+			print("  âŒ %s NOT FOUND" % autoload_name)
 			all_passed = false
 
 	print("")
@@ -27,9 +27,9 @@ func _init() -> void:
 	var classes = ["CropData", "ItemData", "DialogueData", "NPCData"]
 	for cls_name in classes:
 		if ClassDB.class_exists(cls_name):
-			print("  ✅ %s exists" % cls_name)
+			print("  âœ… %s exists" % cls_name)
 		else:
-			print("  ❌ %s NOT FOUND" % cls_name)
+			print("  âŒ %s NOT FOUND" % cls_name)
 			all_passed = false
 
 	print("")
@@ -38,9 +38,9 @@ func _init() -> void:
 	print("[TEST 3] Checking constants...")
 	var game_state = root.get_node_or_null("GameState")
 	if game_state and game_state.TILE_SIZE == 32:
-		print("  ✅ TILE_SIZE = 32")
+		print("  âœ… TILE_SIZE = 32")
 	else:
-		print("  ❌ TILE_SIZE incorrect or missing")
+		print("  âŒ TILE_SIZE incorrect or missing")
 		all_passed = false
 
 	print("")
@@ -55,9 +55,9 @@ func _init() -> void:
 	]
 	for scene_path in scenes:
 		if FileAccess.file_exists(scene_path):
-			print("  ✅ %s exists" % scene_path)
+			print("  âœ… %s exists" % scene_path)
 		else:
-			print("  ❌ %s NOT FOUND" % scene_path)
+			print("  âŒ %s NOT FOUND" % scene_path)
 			all_passed = false
 
 	print("")
@@ -74,19 +74,19 @@ func _init() -> void:
 	]
 	for doc_path in docs:
 		if FileAccess.file_exists(doc_path):
-			print("  ✅ %s exists" % doc_path)
+			print("  âœ… %s exists" % doc_path)
 		else:
-			print("  ❌ %s NOT FOUND" % doc_path)
+			print("  âŒ %s NOT FOUND" % doc_path)
 			all_passed = false
 
 	print("")
 	print("=".repeat(60))
 
 	if all_passed:
-		print("✅ PHASE 0 VALIDATION PASSED")
+		print("âœ… PHASE 0 VALIDATION PASSED")
 		print("Ready to begin Phase 1 implementation")
 		quit(0)
 	else:
-		print("❌ PHASE 0 VALIDATION FAILED")
+		print("âŒ PHASE 0 VALIDATION FAILED")
 		print("Fix errors before proceeding")
 		quit(1)
