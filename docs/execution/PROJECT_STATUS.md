@@ -1,6 +1,6 @@
 ﻿# CIRCE'S GARDEN V2 - PROJECT STATUS
 
-Last Updated: 2025-12-19
+Last Updated: 2025-12-20
 Current Phase: Phase 1 (in progress, scaffolding only)
 Status: Documentation consolidated; restructure Phase 3-4 completed (paths updated)
 
@@ -78,6 +78,7 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 ### NPC System (In Progress - by Jr Engineer)
 - Added NPC base scene/script and placeholder NPC scenes
 - Added NPC spawner and spawn points in world scene
+ - NPC interaction now passes dialogue_id to DialogueBox for proper loading
 
 ### Quest Tracking (In Progress - by Jr Engineer)
 - Added quest flag conventions to SCHEMA.md

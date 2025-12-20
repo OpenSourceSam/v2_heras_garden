@@ -8,12 +8,11 @@ class_name NPCBase
 @onready var sprite: Sprite2D = $Sprite
 
 func interact() -> void:
-	var dialogue_path = "res://game/shared/resources/dialogues/%s.tres" % dialogue_id
-	var dialogue = load(dialogue_path)
-	if dialogue:
-		var dialogue_box = get_tree().get_first_node_in_group("dialogue_ui")
-		if dialogue_box and dialogue_box.has_method("start_dialogue"):
-			dialogue_box.start_dialogue(dialogue)
+	if dialogue_id == "":
+		return
+	var dialogue_box = get_tree().get_first_node_in_group("dialogue_ui")
+	if dialogue_box and dialogue_box.has_method("start_dialogue"):
+		dialogue_box.start_dialogue(dialogue_id)
 
 func set_facing(direction: Vector2) -> void:
 	if direction.x != 0:
