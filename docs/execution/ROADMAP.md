@@ -878,12 +878,673 @@ func _end_dialogue() -> void:
 
 ---
 
-## NEXT: PHASE 2 ROADMAP
+## PHASE 2: STORYLINE IMPLEMENTATION (DETAILED)
 
-Once Phase 1 is complete and tested, the next document will detail:
-- Prologue cutscene implementation
-- Act 1 quest implementation
-- NPC system
-- Minigame refinements
+### 2.1 - Cutscene System
 
-**End of Phase 1 Roadmap**
+#### 2.1.1 - Cutscene Base Scene
+```
+□ Create game/features/cutscenes/cutscene_base.tscn
+□ Root: Control (full_rect anchors)
+□ Add: Background (TextureRect)
+□ Add: Overlay (ColorRect) - modulate for fades
+□ Add: NarrationLabel (RichTextLabel)
+□ Add: AnimationPlayer
+□ Create game/features/cutscenes/cutscene_base.gd
+```
+
+**Scene Structure:**
+```
+CutsceneBase (Control)
+├─ Background (TextureRect)
+├─ Overlay (ColorRect)
+├─ NarrationLabel (RichTextLabel)
+└─ AnimationPlayer
+```
+
+**Key Code:**
+```gdscript
+extends Control
+class_name CutsceneBase
+
+signal cutscene_finished
+
+@onready var background: TextureRect = $Background
+@onready var overlay: ColorRect = $Overlay
+@onready var narration: RichTextLabel = $NarrationLabel
+@onready var anim: AnimationPlayer = $AnimationPlayer
+
+func play_cutscene(name: String) -> void:
+	anim.play(name)
+	await anim.animation_finished
+	cutscene_finished.emit()
+
+func fade_in(duration: float = 1.0) -> void:
+	var tween = create_tween()
+	overlay.modulate.a = 1.0
+	tween.tween_property(overlay, "modulate:a", 0.0, duration)
+
+func fade_out(duration: float = 1.0) -> void:
+	var tween = create_tween()
+	tween.tween_property(overlay, "modulate:a", 1.0, duration)
+
+func show_text(text: String, duration: float = 3.0) -> void:
+	narration.text = text
+	narration.visible = true
+	await get_tree().create_timer(duration).timeout
+	narration.visible = false
+```
+
+**Test:**
+1. Instance cutscene_base in a test scene
+2. Call play_cutscene("test") with a simple animation
+3. Verify: animation plays, signal emits
+
+**Commit:**
+```
+feat: add cutscene base scene and script
+```
+
+#### 2.1.2 - CutsceneManager Autoload
+```
+□ Create game/autoload/cutscene_manager.gd
+□ Register in project.godot (autoload section)
+□ Methods: play_cutscene(path), is_playing()
+```
+
+**Key Code:**
+```gdscript
+extends Node
+
+var current_cutscene: CutsceneBase = null
+
+func play_cutscene(scene_path: String) -> void:
+	var scene = load(scene_path).instantiate()
+	get_tree().root.add_child(scene)
+	current_cutscene = scene
+	await scene.cutscene_finished
+	scene.queue_free()
+	current_cutscene = null
+
+func is_playing() -> bool:
+	return current_cutscene != null
+```
+
+**Test:**
+1. Register autoload in project.godot
+2. Call CutsceneManager.play_cutscene() from any script
+3. Verify: scene loads, plays, cleans up
+
+**Commit:**
+```
+feat: add CutsceneManager autoload
+```
+
+---
+
+### 2.2 - NPC System
+
+#### 2.2.1 - NPC Base Scene
+```
+□ Create game/features/npcs/npc_base.tscn
+□ Root: CharacterBody2D
+□ Add: Sprite2D
+□ Add: CollisionShape2D
+□ Add: InteractionZone (Area2D + CollisionShape2D)
+□ Add node to group "interactable"
+□ Create game/features/npcs/npc_base.gd
+```
+
+**Scene Structure:**
+```
+NPCBase (CharacterBody2D) [group: interactable]
+├─ Sprite (Sprite2D)
+├─ Collision (CollisionShape2D)
+└─ InteractionZone (Area2D)
+   └─ CollisionShape2D
+```
+
+**Key Code:**
+```gdscript
+extends CharacterBody2D
+class_name NPCBase
+
+@export var npc_id: String = ""
+@export var dialogue_id: String = ""
+@export var portrait: Texture2D = null
+
+@onready var sprite: Sprite2D = $Sprite
+
+func interact() -> void:
+	var dialogue_path = "res://game/shared/resources/dialogues/%s.tres" % dialogue_id
+	var dialogue = load(dialogue_path)
+	if dialogue:
+		var dialogue_box = get_tree().get_first_node_in_group("dialogue_ui")
+		if dialogue_box and dialogue_box.has_method("start_dialogue"):
+			dialogue_box.start_dialogue(dialogue)
+
+func set_facing(direction: Vector2) -> void:
+	if direction.x != 0:
+		sprite.flip_h = direction.x < 0
+```
+
+**Test:**
+1. Place NPC in world scene
+2. Walk player to NPC, press interact
+3. Verify: Dialogue starts
+
+**Commit:**
+```
+feat: add NPC base scene with interaction
+```
+
+#### 2.2.2 - NPC Spawner
+```
+□ Add Marker2D spawn points to world.tscn
+□ Create game/features/npcs/npc_spawner.gd
+□ Spawn/despawn NPCs based on GameState flags
+```
+
+**Key Code:**
+```gdscript
+extends Node
+
+@export var npc_scenes: Dictionary = {
+	"hermes": preload("res://game/features/npcs/hermes.tscn"),
+	"aeetes": preload("res://game/features/npcs/aeetes.tscn"),
+	"daedalus": preload("res://game/features/npcs/daedalus.tscn")
+}
+
+var spawned_npcs: Dictionary = {}
+
+func _ready() -> void:
+	GameState.flag_changed.connect(_on_flag_changed)
+	_update_npcs()
+
+func _on_flag_changed(_flag: String, _value: bool) -> void:
+	_update_npcs()
+
+func _update_npcs() -> void:
+	# Hermes: appears after prologue, before quest 3 complete
+	_set_npc_visible("hermes",
+		GameState.get_flag("prologue_complete") and
+		not GameState.get_flag("quest_3_complete"))
+
+	# Aeetes: appears during quest 6
+	_set_npc_visible("aeetes",
+		GameState.get_flag("quest_6_active"))
+
+	# Daedalus: appears during quest 7
+	_set_npc_visible("daedalus",
+		GameState.get_flag("quest_7_active"))
+
+func _set_npc_visible(npc_id: String, visible: bool) -> void:
+	if visible and npc_id not in spawned_npcs:
+		_spawn_npc(npc_id)
+	elif not visible and npc_id in spawned_npcs:
+		_despawn_npc(npc_id)
+
+func _spawn_npc(npc_id: String) -> void:
+	var spawn_point = get_node_or_null("SpawnPoints/" + npc_id.capitalize())
+	if spawn_point and npc_id in npc_scenes:
+		var npc = npc_scenes[npc_id].instantiate()
+		npc.global_position = spawn_point.global_position
+		add_child(npc)
+		spawned_npcs[npc_id] = npc
+
+func _despawn_npc(npc_id: String) -> void:
+	if npc_id in spawned_npcs:
+		spawned_npcs[npc_id].queue_free()
+		spawned_npcs.erase(npc_id)
+```
+
+**Test:**
+1. Set prologue_complete flag
+2. Verify: Hermes spawns at spawn point
+3. Set quest_3_complete
+4. Verify: Hermes despawns
+
+**Commit:**
+```
+feat: add NPC spawner with flag-based visibility
+```
+
+---
+
+### 2.3 - Quest Tracking
+
+#### 2.3.1 - Quest Flags in GameState
+```
+□ Add quest flag convention to SCHEMA.md
+□ No new code needed - use existing set_flag/get_flag
+```
+
+**Add to SCHEMA.md:**
+
+## Quest Flags
+| Flag | Type | Description |
+|------|------|-------------|
+| quest_X_active | bool | Quest X is available |
+| quest_X_complete | bool | Quest X finished |
+| prologue_complete | bool | Opening sequence done |
+| transformed_scylla | bool | Scylla transformed |
+| exiled_to_aiaia | bool | Zeus declared exile |
+| garden_built | bool | Farming tutorial done |
+| met_daedalus | bool | Daedalus visited |
+| scylla_wants_death | bool | Scylla asked to die |
+| scylla_petrified | bool | Final quest complete |
+| ending_chosen | String | "witch" or "healer" |
+| free_play_unlocked | bool | Post-game mode |
+
+**Commit:**
+```
+docs: add quest flag convention to SCHEMA.md
+```
+
+#### 2.3.2 - Quest Trigger Areas
+```
+□ Create game/features/world/quest_trigger.gd
+□ Area2D that checks flags and triggers events
+```
+
+**Key Code:**
+```gdscript
+extends Area2D
+class_name QuestTrigger
+
+@export var required_flag: String = ""
+@export var set_flag_on_enter: String = ""
+@export var trigger_dialogue: String = ""
+@export var one_shot: bool = true
+
+var triggered: bool = false
+
+func _on_body_entered(body: Node2D) -> void:
+	if triggered and one_shot:
+		return
+	if not body.is_in_group("player"):
+		return
+	if required_flag != "" and not GameState.get_flag(required_flag):
+		return
+
+	triggered = true
+
+	if set_flag_on_enter != "":
+		GameState.set_flag(set_flag_on_enter, true)
+
+	if trigger_dialogue != "":
+		# Start dialogue
+		pass
+```
+
+**Commit:**
+```
+feat: add quest trigger area component
+```
+
+---
+
+### 2.4 - Location Scenes
+
+#### 2.4.1 - Scylla's Cove
+```
+□ Create game/features/locations/scylla_cove.tscn
+□ TileMapLayer for cave environment
+□ PlayerSpawn (Marker2D)
+□ ScyllaPosition (Marker2D)
+□ ReturnTrigger (Area2D) - returns to Aiaia
+```
+
+**Scene Structure:**
+```
+ScyllaCove (Node2D)
+├─ TileMapLayer
+├─ PlayerSpawn (Marker2D)
+├─ ScyllaPosition (Marker2D)
+├─ ReturnTrigger (Area2D)
+│  └─ CollisionShape2D
+└─ ScyllaNPC (instance of scylla.tscn)
+```
+
+**ReturnTrigger Code:**
+```gdscript
+extends Area2D
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		SceneManager.change_scene("res://game/features/world/world.tscn")
+```
+
+**Test:**
+1. Transition to scylla_cove
+2. Verify: Player spawns at PlayerSpawn
+3. Walk to ReturnTrigger
+4. Verify: Returns to world
+
+**Commit:**
+```
+feat: add Scylla's Cove location scene
+```
+
+#### 2.4.2 - Boat Travel
+```
+□ Create game/features/world/boat.tscn
+□ StaticBody2D with interaction
+□ Shows destination choice or auto-travels based on quest
+```
+
+**Key Code:**
+```gdscript
+extends StaticBody2D
+
+func interact() -> void:
+	# Determine destination based on quest state
+	if GameState.get_flag("quest_3_active") or GameState.get_flag("quest_5_active") \
+		or GameState.get_flag("quest_6_active") or GameState.get_flag("quest_8_active") \
+		or GameState.get_flag("quest_11_active"):
+		SceneManager.change_scene("res://game/features/locations/scylla_cove.tscn")
+	elif GameState.get_flag("quest_9_active"):
+		SceneManager.change_scene("res://game/features/locations/sacred_grove.tscn")
+	else:
+		# Show "nowhere to go" message
+		print("No destination available")
+```
+
+**Commit:**
+```
+feat: add boat travel interactable
+```
+
+---
+
+### 2.5 - Minigames
+
+#### 2.5.1 - Herb Identification
+```
+□ Create game/features/minigames/herb_identification.tscn
+□ Grid of plant sprites
+□ D-pad navigation, A to select
+□ Correct plants have subtle visual difference
+□ 3 rounds with increasing difficulty
+```
+
+**Scene Structure:**
+```
+HerbIdentification (Control)
+├─ Background (ColorRect)
+├─ PlantGrid (GridContainer)
+│  └─ [PlantSlot x 20-30]
+├─ InstructionLabel (Label)
+├─ AttemptsLabel (Label)
+└─ RoundLabel (Label)
+```
+
+**Key Code:**
+```gdscript
+extends Control
+
+signal minigame_complete(success: bool, items: Array)
+
+@export var plants_per_round: Array[int] = [20, 25, 30]
+@export var correct_per_round: Array[int] = [3, 3, 3]
+@export var max_wrong: int = 5
+
+var current_round: int = 0
+var correct_found: int = 0
+var wrong_count: int = 0
+var selected_index: int = 0
+var plant_slots: Array[Control] = []
+
+func _ready() -> void:
+	_setup_round(0)
+
+func _setup_round(round_num: int) -> void:
+	current_round = round_num
+	correct_found = 0
+	# Generate plants - correct ones have subtle glow/different stamen color
+	_generate_plants(plants_per_round[round_num], correct_per_round[round_num])
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		_select_current()
+	# D-pad navigation
+	elif event.is_action_pressed("ui_right"):
+		_move_selection(1)
+	elif event.is_action_pressed("ui_left"):
+		_move_selection(-1)
+	elif event.is_action_pressed("ui_down"):
+		_move_selection(5)  # Move down row
+	elif event.is_action_pressed("ui_up"):
+		_move_selection(-5)
+
+func _select_current() -> void:
+	var plant = plant_slots[selected_index]
+	if plant.get_meta("is_correct", false):
+		correct_found += 1
+		plant.modulate = Color.GREEN
+		if correct_found >= correct_per_round[current_round]:
+			_advance_round()
+	else:
+		wrong_count += 1
+		plant.modulate = Color.RED
+		if wrong_count >= max_wrong:
+			minigame_complete.emit(false, [])
+
+func _advance_round() -> void:
+	current_round += 1
+	if current_round >= plants_per_round.size():
+		# All rounds complete
+		var items = ["pharmaka_flower", "pharmaka_flower", "pharmaka_flower"]
+		minigame_complete.emit(true, items)
+	else:
+		_setup_round(current_round)
+```
+
+**Test:**
+1. Start minigame
+2. Select correct plants (glowing ones)
+3. Verify: advances round after 3 correct
+4. Verify: fails after 5 wrong
+
+**Commit:**
+```
+feat: add herb identification minigame
+```
+
+#### 2.5.2 - Moon Tear Catching
+```
+□ Create game/features/minigames/moon_tears.tscn
+□ Tears fall from top, player moves to catch
+□ Press A when tear reaches player
+□ Collect 3 to complete
+```
+
+**Key Code:**
+```gdscript
+extends Control
+
+signal minigame_complete(success: bool, items: Array)
+
+var tears_caught: int = 0
+var player_x: float = 0.5  # 0-1 screen position
+const MOVE_SPEED: float = 0.02
+
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("ui_left"):
+		player_x = max(0.1, player_x - MOVE_SPEED)
+	if Input.is_action_pressed("ui_right"):
+		player_x = min(0.9, player_x + MOVE_SPEED)
+	$PlayerMarker.position.x = size.x * player_x
+
+func _on_tear_reached_player(tear: Node2D) -> void:
+	if Input.is_action_just_pressed("ui_accept"):
+		tears_caught += 1
+		tear.queue_free()
+		if tears_caught >= 3:
+			minigame_complete.emit(true, ["moon_tear", "moon_tear", "moon_tear"])
+```
+
+**Commit:**
+```
+feat: add moon tear catching minigame
+```
+
+#### 2.5.3 - Sacred Earth Digging
+```
+□ Create game/features/minigames/sacred_earth.tscn
+□ Button mash A to fill progress bar
+□ 10 second timer
+```
+
+**Key Code:**
+```gdscript
+extends Control
+
+signal minigame_complete(success: bool, items: Array)
+
+var progress: float = 0.0
+var time_remaining: float = 10.0
+const PROGRESS_PER_PRESS: float = 0.03
+const DECAY_RATE: float = 0.01
+
+func _process(delta: float) -> void:
+	time_remaining -= delta
+	progress = max(0, progress - DECAY_RATE * delta)
+
+	if progress >= 1.0:
+		minigame_complete.emit(true, ["sacred_earth", "sacred_earth", "sacred_earth"])
+	elif time_remaining <= 0:
+		minigame_complete.emit(false, [])
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		progress += PROGRESS_PER_PRESS
+```
+
+**Commit:**
+```
+feat: add sacred earth digging minigame
+```
+
+---
+
+### 2.6 - Advanced Crafting
+
+#### 2.6.1 - Difficulty Tiers
+```
+□ Extend crafting_minigame.gd with difficulty enum
+□ Add retry logic for Petrification Potion
+```
+
+**Key Code (add to existing crafting_minigame.gd):**
+```gdscript
+enum Difficulty { TUTORIAL, EASY, MEDIUM, HARD, EXPERT }
+
+const DIFFICULTY_SETTINGS = {
+	Difficulty.TUTORIAL: {"inputs": 12, "buttons": 0, "timing": 2.0, "retry": false},
+	Difficulty.EASY: {"inputs": 12, "buttons": 0, "timing": 2.0, "retry": false},
+	Difficulty.MEDIUM: {"inputs": 16, "buttons": 4, "timing": 1.5, "retry": false},
+	Difficulty.HARD: {"inputs": 16, "buttons": 6, "timing": 1.0, "retry": false},
+	Difficulty.EXPERT: {"inputs": 36, "buttons": 10, "timing": 0.6, "retry": true}
+}
+
+var allow_retry: bool = false
+
+func start_with_difficulty(diff: Difficulty, recipe: RecipeData) -> void:
+	var settings = DIFFICULTY_SETTINGS[diff]
+	allow_retry = settings.retry
+	timing_window = settings.timing
+	_generate_pattern(settings.inputs)
+	_generate_buttons(settings.buttons)
+
+func _on_crafting_failed() -> void:
+	if allow_retry:
+		# Don't consume ingredients, let player retry
+		_reset_minigame()
+	else:
+		crafting_complete.emit(false)
+```
+
+**Commit:**
+```
+feat: add crafting difficulty tiers
+```
+
+---
+
+### 2.7 - 2.11 Content Implementation (Quest-Driven)
+
+Each content quest follows the same pattern:
+```
+□ DialogueData resources in game/shared/resources/dialogues/
+□ Quest trigger placement in world
+□ Flag checks and sets (GameState)
+□ Any special cutscenes or minigame calls
+```
+
+#### 2.7.1 - Prologue Opening
+```
+□ Create game/features/cutscenes/prologue_opening.tscn
+□ Inherit cutscene_base.tscn
+□ Create AnimationPlayer keyframes:
+   - 0.0s: Black screen, quote text
+   - 3.0s: Fade in Helios palace background
+   - 5.0s: Narration text 1
+   - 8.0s: Narration text 2
+   - 12.0s: Fade out
+   - 13.0s: Load world scene, set prologue_complete flag
+□ Create dialogues: prologue_opening.tres, aiaia_arrival.tres
+```
+
+**Commit:**
+```
+feat: implement prologue opening cutscene
+```
+
+#### 2.8 - Act 1 Quests
+```
+□ Herb identification quest (minigame)
+□ Crafting tutorial quest (easy difficulty)
+□ Scylla transformation cutscene + flag set
+```
+
+#### 2.9 - Act 2 Quests
+```
+□ Farming tutorial quest
+□ Calming draught crafting
+□ Reversal elixir crafting
+□ Daedalus arrival + loom gift
+□ Binding ward crafting
+```
+
+#### 2.10 - Act 3 Quests
+```
+□ Moon tears minigame
+□ Sacred earth digging minigame
+□ Ultimate crafting (expert difficulty)
+□ Final confrontation cutscene
+```
+
+#### 2.11 - Epilogue & Endings
+```
+□ Ending choice dialogue
+□ Set ending_chosen flag
+□ Unlock free play
+```
+
+---
+
+### 2.12 - Integration Testing
+```
+□ Full playthrough: Prologue -> Epilogue
+□ Verify both endings reachable
+□ Save/load at each quest
+□ 65-90 min total
+```
+
+**Commit:**
+```
+test: add Phase 2 integration test checklist
+```
+
+**End of Phase 2 Roadmap**
