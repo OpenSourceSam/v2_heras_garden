@@ -90,6 +90,11 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 ### Crafting Minigame (Complete - by Jr Engineer)
 - Added crafting minigame scene and input logic per roadmap template
 
+### Recipe System (Complete - by Jr Engineer)
+- Added RecipeData resource class and placeholder recipe resource
+- Added crafting controller scene/script to connect recipes, inventory, and minigame
+- Updated SCHEMA.md with RecipeData properties
+
 ### Repo Hygiene (Complete - by Jr Engineer)
 - Logged GitHub Issue #3 for `nul` file and `.claude/settings.local.json` noise
 - Added `.claude/settings.local.json` to `.gitignore` and removed from tracking
@@ -182,7 +187,7 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 
 ## Next Steps (Immediate)
 
-1. Implement recipe system (Task 1.4.2)
+1. Implement scene transitions (basic)
 2. Review whether to keep or remove SceneManager test scenes after validation
 
 ---

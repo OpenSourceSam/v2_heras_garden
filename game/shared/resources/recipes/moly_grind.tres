@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/recipe_data.gd" id="1_recipe_data"]
+
+[resource]
+script = ExtResource("1_recipe_data")
+id = "moly_grind"
+display_name = "Ground Moly"
+description = "Crushed moly petals into a fine powder."
+ingredients = [{"item_id": "moly", "quantity": 2}]
+grinding_pattern = ["ui_up", "ui_right", "ui_down", "ui_left"]
+button_sequence = ["ui_accept", "ui_accept"]
+timing_window = 1.5
+result_item_id = "moly"
+result_quantity = 1

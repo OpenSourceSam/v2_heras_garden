@@ -1,7 +1,7 @@
 ﻿# CIRCE'S GARDEN V2 - DATA SCHEMA
 
 **Version:** 2.0
-**Last Updated:** December 15, 2025
+**Last Updated:** December 19, 2025
 **Purpose:** Single source of truth for all data structures and property names
 
 ---
@@ -61,6 +61,32 @@ extends Resource
 - âœ… `category` (NOT "type", "item_type")
 
 **Example Data File:** `resources/items/wheat_seed.tres`
+
+---
+
+### RecipeData (`src/resources/recipe_data.gd`)
+
+```gdscript
+class_name RecipeData
+extends Resource
+
+@export var id: String = ""                         # Unique identifier (snake_case: "moly_grind")
+@export var display_name: String = ""               # Human-readable name ("Ground Moly")
+@export var description: String = ""                # Flavor text
+@export var ingredients: Array[Dictionary] = []     # [{"item_id": "moly", "quantity": 2}]
+@export var grinding_pattern: Array[String] = []    # ["ui_up", "ui_right", ...]
+@export var button_sequence: Array[String] = []     # ["ui_accept", "ui_cancel", ...]
+@export var timing_window: float = 1.5              # Input timing window (seconds)
+@export var result_item_id: String = ""             # ItemData.id for crafting result
+@export var result_quantity: int = 1                # Amount produced
+```
+
+**Property Enforcement:**
+- âœ… `ingredients` (NOT "items", "inputs")
+- âœ… `grinding_pattern` (NOT "grind_pattern")
+- âœ… `button_sequence` (NOT "button_inputs")
+
+**Example Data File:** `game/shared/resources/recipes/moly_grind.tres`
 
 ---
 
