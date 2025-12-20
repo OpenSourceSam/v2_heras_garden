@@ -1548,3 +1548,978 @@ test: add Phase 2 integration test checklist
 ```
 
 **End of Phase 2 Roadmap**
+
+---
+
+## PHASE 3: MINIGAMES & POLISH (DETAILED)
+
+**Duration:** 1-2 weeks
+**Dependencies:** Phase 1 + 2 complete
+
+---
+
+### 3.1 - Inventory UI System
+
+**Goal:** Complete grid-based inventory panel with D-pad navigation
+
+**Scene Structure:**
+```
+InventoryPanel (Control) [group: ui_panel]
+├─ Background (ColorRect)
+├─ TitleLabel (Label) - "Inventory"
+├─ ItemGrid (GridContainer) - 4 columns
+│  └─ [ItemSlot x 24] (TextureRect + Label)
+├─ DetailsPanel (Panel)
+│  ├─ ItemIcon (TextureRect)
+│  ├─ ItemName (Label)
+│  └─ ItemDescription (RichTextLabel)
+├─ GoldDisplay (HBoxContainer)
+│  ├─ CoinIcon (TextureRect)
+│  └─ GoldAmount (Label)
+└─ CloseHint (Label) - "B: Close"
+```
+
+#### 3.1.1 - Item Slot Component
+```
+□ Create game/features/ui/item_slot.tscn
+□ TextureRect for item icon (32x32)
+□ Label for quantity (bottom-right corner)
+□ Selected highlight (ColorRect or outline)
+□ Create game/features/ui/item_slot.gd
+```
+
+**Key Code (item_slot.gd):**
+```gdscript
+extends Control
+
+var item_id: String = ""
+var quantity: int = 0
+
+@onready var icon: TextureRect = $Icon
+@onready var qty_label: Label = $QuantityLabel
+@onready var highlight: ColorRect = $Highlight
+
+func set_item(id: String, qty: int) -> void:
+    item_id = id
+    quantity = qty
+
+    var item_data = _load_item_data(id)
+    if item_data:
+        icon.texture = item_data.icon
+        icon.visible = true
+        qty_label.text = str(qty) if qty > 1 else ""
+        qty_label.visible = qty > 1
+    else:
+        clear()
+
+func clear() -> void:
+    item_id = ""
+    quantity = 0
+    icon.texture = null
+    icon.visible = false
+    qty_label.visible = false
+
+func set_selected(selected: bool) -> void:
+    highlight.visible = selected
+
+func has_item() -> bool:
+    return item_id != ""
+
+func _load_item_data(id: String) -> ItemData:
+    var path = "res://game/shared/resources/items/%s.tres" % id
+    if ResourceLoader.exists(path):
+        return load(path)
+    return null
+```
+
+**Commit:**
+```
+feat: add reusable item slot component
+```
+
+---
+
+#### 3.1.2 - Inventory Panel
+```
+□ Create game/features/ui/inventory_panel.tscn
+□ Create game/features/ui/inventory_panel.gd
+□ Implement D-pad grid navigation (wrap at edges)
+□ Connect to GameState.inventory for data
+□ Add open/close with X button (toggle)
+□ Add item selection feedback (highlight, sound)
+□ Display item details on selection
+□ Test with 0, 1, and 24+ items
+```
+
+**Key Code (inventory_panel.gd):**
+```gdscript
+extends Control
+
+signal item_selected(item_id: String)
+signal closed
+
+@onready var item_grid: GridContainer = $ItemGrid
+@onready var details_panel: Panel = $DetailsPanel
+@onready var gold_label: Label = $GoldDisplay/GoldAmount
+
+const COLUMNS: int = 4
+const MAX_SLOTS: int = 24
+
+var selected_index: int = 0
+var slot_nodes: Array[Control] = []
+
+func _ready() -> void:
+    _create_slots()
+    GameState.inventory_changed.connect(_refresh_inventory)
+    GameState.gold_changed.connect(_update_gold)
+    _refresh_inventory("", 0)
+    _update_gold(GameState.gold)
+
+func _create_slots() -> void:
+    var slot_scene = preload("res://game/features/ui/item_slot.tscn")
+    for i in range(MAX_SLOTS):
+        var slot = slot_scene.instantiate()
+        slot.name = "Slot_%d" % i
+        item_grid.add_child(slot)
+        slot_nodes.append(slot)
+
+func _unhandled_input(event: InputEvent) -> void:
+    if not visible:
+        return
+
+    if event.is_action_pressed("ui_cancel"):
+        _close()
+        return
+
+    var moved := false
+    if event.is_action_pressed("ui_right"):
+        selected_index = (selected_index + 1) % MAX_SLOTS
+        moved = true
+    elif event.is_action_pressed("ui_left"):
+        selected_index = (selected_index - 1 + MAX_SLOTS) % MAX_SLOTS
+        moved = true
+    elif event.is_action_pressed("ui_down"):
+        selected_index = (selected_index + COLUMNS) % MAX_SLOTS
+        moved = true
+    elif event.is_action_pressed("ui_up"):
+        selected_index = (selected_index - COLUMNS + MAX_SLOTS) % MAX_SLOTS
+        moved = true
+
+    if moved:
+        _update_selection()
+        AudioController.play_sfx("ui_move")
+
+    if event.is_action_pressed("ui_accept"):
+        _select_current()
+
+func _refresh_inventory(_item_id: String, _qty: int) -> void:
+    for slot in slot_nodes:
+        slot.clear()
+
+    var items = GameState.inventory.keys()
+    for i in range(min(items.size(), MAX_SLOTS)):
+        var id = items[i]
+        var quantity = GameState.inventory[id]
+        slot_nodes[i].set_item(id, quantity)
+
+    _update_selection()
+
+func _update_selection() -> void:
+    for i in range(slot_nodes.size()):
+        slot_nodes[i].set_selected(i == selected_index)
+    _update_details()
+
+func _update_details() -> void:
+    var slot = slot_nodes[selected_index]
+    if slot.has_item():
+        details_panel.visible = true
+        var item_data = load("res://game/shared/resources/items/%s.tres" % slot.item_id)
+        if item_data:
+            $DetailsPanel/ItemName.text = item_data.display_name
+            $DetailsPanel/ItemDescription.text = item_data.description
+            $DetailsPanel/ItemIcon.texture = item_data.icon
+    else:
+        details_panel.visible = false
+
+func _update_gold(amount: int) -> void:
+    gold_label.text = str(amount)
+
+func _select_current() -> void:
+    var slot = slot_nodes[selected_index]
+    if slot.has_item():
+        item_selected.emit(slot.item_id)
+
+func _close() -> void:
+    visible = false
+    closed.emit()
+
+func open() -> void:
+    visible = true
+    selected_index = 0
+    _refresh_inventory("", 0)
+```
+
+**Test:**
+1. Add items via console: `GameState.add_item("wheat", 5)`
+2. Press X to open inventory
+3. Navigate with D-pad, verify wrap-around
+4. Verify details update on selection
+5. Press B to close
+
+**Commit:**
+```
+feat: add inventory UI with grid navigation
+```
+
+---
+
+### 3.2 - Herb Identification Polish
+
+**Goal:** Add visual polish, hints, and clear feedback
+
+#### 3.2.1 - Tutorial and Status Display
+```
+□ Add TutorialOverlay node to herb_identification.tscn
+□ Add StatusBar with wrong/remaining counters
+□ Show tutorial on first play (flag-gated)
+□ Update counters on each selection
+```
+
+**Scene Additions (herb_identification.tscn):**
+```
+HerbIdentification (Control)
+├─ ... (existing nodes)
+├─ TutorialOverlay (Control) [shown on first play]
+│  ├─ Background (ColorRect) - semi-transparent
+│  ├─ HintText (Label) - "Look for the glowing plants"
+│  └─ ContinueHint (Label) - "Press A to continue"
+├─ StatusBar (HBoxContainer)
+│  ├─ WrongCount (Label) - "Wrong: 0/5"
+│  └─ RemainingCount (Label) - "Find: 3"
+└─ ParticleContainer (Node2D)
+   └─ CorrectParticles (GPUParticles2D)
+```
+
+**Key Code (add to herb_identification.gd):**
+```gdscript
+func _ready() -> void:
+    if not GameState.get_flag("herb_minigame_tutorial_done"):
+        _show_tutorial()
+    else:
+        _setup_round(0)
+
+func _show_tutorial() -> void:
+    $TutorialOverlay.visible = true
+
+func _on_tutorial_continue() -> void:
+    $TutorialOverlay.visible = false
+    GameState.set_flag("herb_minigame_tutorial_done", true)
+    _setup_round(0)
+
+func _update_status() -> void:
+    $StatusBar/WrongCount.text = "Wrong: %d/%d" % [wrong_count, max_wrong]
+    $StatusBar/RemainingCount.text = "Find: %d" % (correct_per_round[current_round] - correct_found)
+```
+
+**Commit:**
+```
+feat: add herb identification tutorial and status display
+```
+
+---
+
+#### 3.2.2 - Visual Feedback Effects
+```
+□ Add glow effect to correct plants (modulate pulse)
+□ Add shake animation for wrong selection
+□ Add particle burst for correct selection
+□ Add sound effects: correct_ding, wrong_buzz, complete_fanfare
+□ Add round transition animation
+```
+
+**Key Code (visual feedback):**
+```gdscript
+func _add_glow_effect(plant: Control) -> void:
+    var tween = create_tween().set_loops()
+    tween.tween_property(plant, "modulate", Color(1.1, 1.05, 0.9), 1.0)
+    tween.tween_property(plant, "modulate", Color(1.0, 1.0, 1.0), 1.0)
+
+func _on_correct_selection(plant: Control) -> void:
+    AudioController.play_sfx("correct_ding")
+    _spawn_particles(plant.global_position)
+    var tween = create_tween()
+    tween.tween_property(plant, "modulate", Color.GREEN, 0.2)
+    correct_found += 1
+    _update_status()
+
+func _on_wrong_selection(plant: Control) -> void:
+    AudioController.play_sfx("wrong_buzz")
+    var original_x = plant.position.x
+    var tween = create_tween()
+    tween.tween_property(plant, "position:x", original_x + 5, 0.05)
+    tween.tween_property(plant, "position:x", original_x - 10, 0.05)
+    tween.tween_property(plant, "position:x", original_x + 5, 0.05)
+    tween.tween_property(plant, "position:x", original_x, 0.05)
+    wrong_count += 1
+    _update_status()
+
+func _spawn_particles(pos: Vector2) -> void:
+    var particles = $ParticleContainer/CorrectParticles
+    particles.global_position = pos
+    particles.restart()
+```
+
+**Test:**
+1. Clear flag: `GameState.set_flag("herb_minigame_tutorial_done", false)`
+2. Start minigame, verify tutorial appears
+3. Select wrong plant, verify shake + sound
+4. Select correct plant, verify particles + sound
+5. Complete all rounds, verify celebration
+
+**Commit:**
+```
+feat: add herb identification visual polish
+```
+
+---
+
+### 3.3 - Moon Tear Catching Polish
+
+**Goal:** Smooth animations, visual effects, parallax background
+
+#### 3.3.1 - Scene Setup
+```
+□ Add ParallaxBackground with star layer and moon
+□ Create moon_tear.tscn (individual tear scene)
+□ Add TearContainer for spawned tears
+□ Add PlayerMarker sprite (hands/basket)
+□ Add CaughtCounter label
+```
+
+**Scene Structure (moon_tears.tscn):**
+```
+MoonTears (Control)
+├─ ParallaxBackground
+│  ├─ ParallaxLayer (motion_scale 0.1)
+│  │  └─ Stars (Sprite2D) - tiling star texture
+│  └─ ParallaxLayer (motion_scale 0.3)
+│     └─ Moon (Sprite2D) - large moon
+├─ TearContainer (Node2D)
+│  └─ [Tears spawn here dynamically]
+├─ PlayerMarker (Sprite2D)
+├─ CaughtCounter (Label) - "Tears: 0/3"
+└─ TearParticles (GPUParticles2D)
+```
+
+**Commit:**
+```
+feat: add moon tears scene structure
+```
+
+---
+
+#### 3.3.2 - Tear Mechanics
+```
+□ Implement smooth player movement with lerp
+□ Add tear spawning with fade-in
+□ Add tear falling with sparkle trail
+□ Implement forgiving catch hitbox (40px)
+□ Add catch success effect (flash + particles + sound)
+□ Add miss feedback (optional whoosh sound)
+```
+
+**Key Code (moon_tears.gd):**
+```gdscript
+extends Control
+
+signal minigame_complete(success: bool, items: Array)
+
+const TEAR_SCENE = preload("res://game/features/minigames/moon_tear.tscn")
+const SPAWN_INTERVAL: float = 2.0
+const FALL_SPEED: float = 100.0
+const CATCH_WINDOW: float = 40.0
+
+var tears_caught: int = 0
+var tears_needed: int = 3
+var player_x: float = 0.5
+var spawn_timer: float = 0.0
+var active_tears: Array[Node2D] = []
+
+@onready var player_marker: Sprite2D = $PlayerMarker
+@onready var tear_container: Node2D = $TearContainer
+
+func _ready() -> void:
+    _spawn_tear()
+
+func _process(delta: float) -> void:
+    _handle_movement()
+    _update_tears(delta)
+    _check_catches()
+
+    spawn_timer += delta
+    if spawn_timer >= SPAWN_INTERVAL:
+        spawn_timer = 0.0
+        _spawn_tear()
+
+func _handle_movement() -> void:
+    if Input.is_action_pressed("ui_left"):
+        player_x = max(0.1, player_x - 0.02)
+    if Input.is_action_pressed("ui_right"):
+        player_x = min(0.9, player_x + 0.02)
+
+    var target_x = size.x * player_x
+    player_marker.position.x = lerp(player_marker.position.x, target_x, 0.2)
+    player_marker.position.y = size.y - 50
+
+func _spawn_tear() -> void:
+    var tear = TEAR_SCENE.instantiate()
+    tear.position.x = randf_range(size.x * 0.1, size.x * 0.9)
+    tear.position.y = -20
+    tear.modulate.a = 0.0
+    tear_container.add_child(tear)
+    active_tears.append(tear)
+
+    var tween = create_tween()
+    tween.tween_property(tear, "modulate:a", 1.0, 0.3)
+
+func _update_tears(delta: float) -> void:
+    for tear in active_tears.duplicate():
+        tear.position.y += FALL_SPEED * delta
+        if tear.position.y > size.y + 50:
+            active_tears.erase(tear)
+            tear.queue_free()
+
+func _check_catches() -> void:
+    if not Input.is_action_just_pressed("ui_accept"):
+        return
+
+    for tear in active_tears.duplicate():
+        var dist_x = abs(tear.position.x - player_marker.position.x)
+        var dist_y = abs(tear.position.y - player_marker.position.y)
+        if dist_x < CATCH_WINDOW and dist_y < CATCH_WINDOW:
+            _catch_tear(tear)
+            return
+
+func _catch_tear(tear: Node2D) -> void:
+    tears_caught += 1
+    active_tears.erase(tear)
+    AudioController.play_sfx("catch_chime")
+    $TearParticles.global_position = tear.global_position
+    $TearParticles.restart()
+    tear.queue_free()
+    $CaughtCounter.text = "Tears: %d/%d" % [tears_caught, tears_needed]
+
+    if tears_caught >= tears_needed:
+        minigame_complete.emit(true, ["moon_tear", "moon_tear", "moon_tear"])
+```
+
+**Test:**
+1. Start minigame
+2. Move left/right with D-pad (smooth movement)
+3. Press A when tear is near player
+4. Verify catch effect (particles, sound)
+5. Catch 3 tears to complete
+
+**Commit:**
+```
+feat: add moon tear catching polish and effects
+```
+
+---
+
+### 3.4 - Sacred Earth Digging Polish
+
+**Goal:** Satisfying button mashing with juice
+
+#### 3.4.1 - Scene Setup
+```
+□ Add background texture (dirt/earth)
+□ Add DiggingArea sprite with depth frames
+□ Add TextureProgressBar
+□ Add TimerLabel and MashHint
+□ Add DirtParticles (GPUParticles2D)
+```
+
+**Scene Structure (sacred_earth.tscn):**
+```
+SacredEarth (Control)
+├─ Background (TextureRect) - dirt texture
+├─ DiggingArea (Sprite2D) - 5 frame spritesheet (deeper hole)
+├─ ProgressBar (TextureProgressBar)
+│  └─ ProgressGlow (ColorRect) - visible when > 80%
+├─ TimerLabel (Label) - "10.0"
+├─ MashHint (Label) - "Mash A to dig!"
+└─ DirtParticles (GPUParticles2D)
+```
+
+---
+
+#### 3.4.2 - Digging Mechanics
+```
+□ Implement button mash detection
+□ Add screen shake on each press
+□ Add dirt particle burst on press
+□ Add progress bar with decay
+□ Add progress glow when near completion
+□ Add urgency feedback when timer < 3s
+□ Add success/failure sound effects
+□ Tune values for satisfying gameplay
+```
+
+**Key Code (sacred_earth.gd):**
+```gdscript
+extends Control
+
+signal minigame_complete(success: bool, items: Array)
+
+var progress: float = 0.0
+var time_remaining: float = 10.0
+const PROGRESS_PER_PRESS: float = 0.05
+const DECAY_RATE: float = 0.15
+const SHAKE_AMOUNT: float = 3.0
+
+@onready var progress_bar: TextureProgressBar = $ProgressBar
+@onready var timer_label: Label = $TimerLabel
+@onready var dirt_particles: GPUParticles2D = $DirtParticles
+@onready var digging_area: Sprite2D = $DiggingArea
+
+var original_position: Vector2
+var urgency_playing: bool = false
+
+func _ready() -> void:
+    original_position = position
+
+func _process(delta: float) -> void:
+    time_remaining -= delta
+    progress = max(0, progress - DECAY_RATE * delta)
+
+    _update_ui()
+    _check_urgency()
+    position = position.lerp(original_position, 0.2)
+
+    if progress >= 1.0:
+        _win()
+    elif time_remaining <= 0:
+        _lose()
+
+func _unhandled_input(event: InputEvent) -> void:
+    if event.is_action_pressed("ui_accept"):
+        _dig()
+
+func _dig() -> void:
+    progress = min(1.0, progress + PROGRESS_PER_PRESS)
+    AudioController.play_sfx("dig_thud")
+    _shake()
+    dirt_particles.restart()
+    digging_area.frame = int(progress * 4)
+
+func _shake() -> void:
+    position = original_position + Vector2(
+        randf_range(-SHAKE_AMOUNT, SHAKE_AMOUNT),
+        randf_range(-SHAKE_AMOUNT, SHAKE_AMOUNT)
+    )
+
+func _update_ui() -> void:
+    progress_bar.value = progress * 100
+    timer_label.text = "%.1f" % time_remaining
+    $ProgressBar/ProgressGlow.visible = progress > 0.8
+    timer_label.modulate = Color.RED if time_remaining < 3.0 else Color.WHITE
+
+func _check_urgency() -> void:
+    if time_remaining < 3.0 and not urgency_playing:
+        urgency_playing = true
+        AudioController.play_sfx("urgency_tick")
+
+func _win() -> void:
+    AudioController.play_sfx("success_fanfare")
+    minigame_complete.emit(true, ["sacred_earth", "sacred_earth", "sacred_earth"])
+
+func _lose() -> void:
+    AudioController.play_sfx("failure_sad")
+    minigame_complete.emit(false, [])
+```
+
+**Test:**
+1. Start minigame
+2. Mash A button rapidly
+3. Verify screen shake and particles on each press
+4. Verify progress decays when not pressing
+5. Verify glow appears when progress > 80%
+6. Complete before timer runs out
+
+**Commit:**
+```
+feat: add sacred earth digging polish and juice
+```
+
+---
+
+### 3.5 - Settings Menu
+
+**Goal:** Basic settings with volume controls and persistence
+
+#### 3.5.1 - Scene Setup
+```
+□ Create game/features/ui/settings_menu.tscn
+□ Add volume sliders (Master, Music, SFX)
+□ Add D-pad navigation between options
+□ Add visual selection indicator
+```
+
+**Scene Structure:**
+```
+SettingsMenu (Control) [group: ui_panel]
+├─ Background (ColorRect)
+├─ TitleLabel (Label) - "Settings"
+├─ OptionsList (VBoxContainer)
+│  ├─ MasterVolume (HBoxContainer)
+│  │  ├─ Label - "Master"
+│  │  └─ HSlider (0-100, step 5)
+│  ├─ MusicVolume (HBoxContainer)
+│  │  ├─ Label - "Music"
+│  │  └─ HSlider
+│  └─ SFXVolume (HBoxContainer)
+│     ├─ Label - "SFX"
+│     └─ HSlider
+└─ CloseHint (Label) - "B: Back  A: Save"
+```
+
+---
+
+#### 3.5.2 - Settings Logic
+```
+□ Create game/features/ui/settings_menu.gd
+□ D-pad up/down to switch between sliders
+□ D-pad left/right to adjust slider values
+□ Connect to AudioController volume methods
+□ Save settings to user://settings.json on A press
+□ Load settings on game start
+□ Add to main menu
+```
+
+**Key Code (settings_menu.gd):**
+```gdscript
+extends Control
+
+const SETTINGS_PATH: String = "user://settings.json"
+
+@onready var master_slider: HSlider = $OptionsList/MasterVolume/HSlider
+@onready var music_slider: HSlider = $OptionsList/MusicVolume/HSlider
+@onready var sfx_slider: HSlider = $OptionsList/SFXVolume/HSlider
+
+var options: Array[HSlider] = []
+var selected_index: int = 0
+
+func _ready() -> void:
+    options = [master_slider, music_slider, sfx_slider]
+    _load_settings()
+    _update_selection()
+
+func _unhandled_input(event: InputEvent) -> void:
+    if not visible:
+        return
+
+    if event.is_action_pressed("ui_cancel"):
+        _cancel()
+        return
+
+    if event.is_action_pressed("ui_down"):
+        selected_index = (selected_index + 1) % options.size()
+        _update_selection()
+        AudioController.play_sfx("ui_move")
+    elif event.is_action_pressed("ui_up"):
+        selected_index = (selected_index - 1 + options.size()) % options.size()
+        _update_selection()
+        AudioController.play_sfx("ui_move")
+    elif event.is_action_pressed("ui_left"):
+        options[selected_index].value -= 5
+        _apply_volume()
+    elif event.is_action_pressed("ui_right"):
+        options[selected_index].value += 5
+        _apply_volume()
+    elif event.is_action_pressed("ui_accept"):
+        _save_settings()
+        AudioController.play_sfx("ui_confirm")
+        visible = false
+
+func _update_selection() -> void:
+    for i in range(options.size()):
+        var slider = options[i]
+        slider.modulate = Color.YELLOW if i == selected_index else Color.WHITE
+
+func _apply_volume() -> void:
+    AudioController.set_master_volume(master_slider.value / 100.0)
+    AudioController.set_music_volume(music_slider.value / 100.0)
+    AudioController.set_sfx_volume(sfx_slider.value / 100.0)
+
+func _save_settings() -> void:
+    var settings = {
+        "master_volume": master_slider.value,
+        "music_volume": music_slider.value,
+        "sfx_volume": sfx_slider.value
+    }
+    var file = FileAccess.open(SETTINGS_PATH, FileAccess.WRITE)
+    file.store_string(JSON.stringify(settings))
+
+func _load_settings() -> void:
+    if not FileAccess.file_exists(SETTINGS_PATH):
+        return
+    var file = FileAccess.open(SETTINGS_PATH, FileAccess.READ)
+    var settings = JSON.parse_string(file.get_as_text())
+    if settings:
+        master_slider.value = settings.get("master_volume", 100)
+        music_slider.value = settings.get("music_volume", 100)
+        sfx_slider.value = settings.get("sfx_volume", 100)
+        _apply_volume()
+
+func _cancel() -> void:
+    _load_settings()
+    visible = false
+
+func open() -> void:
+    visible = true
+    selected_index = 0
+    _update_selection()
+```
+
+**Test:**
+1. Open settings from main menu
+2. Navigate with D-pad up/down
+3. Adjust volume with left/right
+4. Verify audio volume changes
+5. Save and restart game
+6. Verify settings persisted
+
+**Commit:**
+```
+feat: add settings menu with volume controls
+```
+
+---
+
+### 3.6 - UI Polish & Transitions
+
+**Goal:** Consistent UI feel across all panels
+
+#### 3.6.1 - Standard Animations
+```
+□ Add panel slide-in animation (from bottom)
+□ Add panel fade-out animation
+□ Add button focus scale effect
+□ Add UI open/close sounds
+□ Standardize across all UI panels
+```
+
+**Key Code (ui_helpers.gd - shared helper):**
+```gdscript
+# Create game/features/ui/ui_helpers.gd
+extends Node
+
+static func open_panel(panel: Control) -> void:
+    panel.visible = true
+    panel.modulate.a = 0.0
+    var start_y = panel.position.y + 50
+    panel.position.y = start_y
+
+    var tween = panel.create_tween()
+    tween.set_parallel(true)
+    tween.tween_property(panel, "modulate:a", 1.0, 0.2)
+    tween.tween_property(panel, "position:y", start_y - 50, 0.2).set_ease(Tween.EASE_OUT)
+
+    AudioController.play_sfx("ui_open")
+
+static func close_panel(panel: Control) -> void:
+    var tween = panel.create_tween()
+    tween.set_parallel(true)
+    tween.tween_property(panel, "modulate:a", 0.0, 0.15)
+    tween.tween_property(panel, "position:y", panel.position.y + 30, 0.15)
+    tween.chain().tween_callback(func(): panel.visible = false)
+
+    AudioController.play_sfx("ui_close")
+
+static func setup_button_focus(button: Button) -> void:
+    button.focus_entered.connect(func():
+        var tween = button.create_tween()
+        tween.tween_property(button, "scale", Vector2(1.05, 1.05), 0.1)
+        AudioController.play_sfx("ui_move")
+    )
+    button.focus_exited.connect(func():
+        var tween = button.create_tween()
+        tween.tween_property(button, "scale", Vector2.ONE, 0.1)
+    )
+```
+
+---
+
+#### 3.6.2 - Theme Consistency
+```
+□ Create game/shared/ui_theme.tres
+□ Define consistent fonts, colors, margins
+□ Apply theme to all UI panels
+□ Ensure D-pad navigation works everywhere
+```
+
+**Commit:**
+```
+feat: add consistent UI transitions and polish
+```
+
+---
+
+### 3.7 - Integration Testing
+
+**Goal:** Verify all Phase 3 features work together
+
+```
+□ Verify inventory opens/closes during gameplay
+□ Verify inventory shows correct items after harvest
+□ Verify settings persist across game sessions
+□ Verify all minigames complete and grant rewards
+□ Verify minigame rewards appear in inventory
+□ Full playtest: Prologue → farming → minigames → crafting
+□ Performance check on all UI animations (60fps target)
+□ D-pad navigation works in all menus and minigames
+□ No input conflicts between gameplay and UI
+```
+
+**Commit:**
+```
+test: verify Phase 3 integration
+```
+
+**End of Phase 3 Roadmap**
+
+---
+
+## PHASE 4: CONTENT & BALANCE (HIGH-LEVEL)
+
+**Duration:** 1 week
+**Dependencies:** Phase 3 complete
+
+---
+
+### 4.1 - Dialogue Implementation
+```
+□ Implement all 300+ dialogue lines from Storyline.md
+□ Create DialogueData .tres files for every conversation
+□ Wire all NPCs to their dialogue IDs
+□ Verify flag gating works correctly
+□ Check dialogue branching and choices
+```
+
+---
+
+### 4.2 - Difficulty Balancing
+```
+□ Playtest all crafting patterns (timing windows)
+□ Adjust Petrification Potion to be hard but fair
+□ Tune farming growth rates (2-day cycles)
+□ Balance story pacing (65-90 min target)
+□ Verify minigame difficulty curve is appropriate
+```
+
+---
+
+### 4.3 - Audio Integration
+```
+□ Add all music tracks to scenes
+□ Trigger SFX on all interactions
+□ Balance volume levels across game
+□ Verify ambient loops are seamless
+□ Add audio for cutscenes
+```
+
+---
+
+### 4.4 - Full Playtesting
+```
+□ Complete playthrough: Prologue → Epilogue
+□ Verify both endings reachable
+□ Check for soft-locks
+□ Performance acceptable throughout
+□ Save/load at each quest milestone
+□ Document any bugs found
+```
+
+**End of Phase 4 Outline**
+
+---
+
+## PHASE 5: DEPLOYMENT (HIGH-LEVEL)
+
+**Duration:** 3-5 days
+**Dependencies:** Phase 4 complete + approved
+
+---
+
+### 5.1 - Android Build Configuration
+```
+□ Install Godot Android export template
+□ Create signing keystore
+□ Configure permissions (storage for saves)
+□ Target API 33+ (Android 14)
+□ Set package name and version
+```
+
+---
+
+### 5.2 - Retroid Pocket Optimization
+```
+□ Confirm 1080×1240 resolution works correctly
+□ D-pad controls mapped and responsive
+□ No touch-specific UI elements
+□ 60fps stable throughout gameplay
+□ Battery usage acceptable for handheld
+```
+
+---
+
+### 5.3 - Final QA
+```
+□ Test APK on actual Retroid device
+□ Full playthrough on device
+□ Both endings verified
+□ No memory leaks (monitor over time)
+□ Install/uninstall clean
+□ Save data persists correctly
+```
+
+---
+
+### 5.4 - Packaging
+```
+□ App icon designed (512×512)
+□ Screenshots captured (5+)
+□ Description text written
+□ Credits and attributions compiled
+□ README for itch.io or distribution
+□ Create release build APK
+```
+
+**End of Phase 5 Outline**
+
+---
+
+## CRITICAL PATH FOR JR ENGINEER
+
+**Recommended implementation order:**
+
+1. **3.1 Inventory UI** - Needed for player to see/use items (PRIORITY)
+2. **3.5 Settings Menu** - Basic accessibility requirement (PRIORITY)
+3. **3.2-3.4 Minigame Polish** - Can be done in parallel
+4. **3.6 UI Polish** - Apply consistently after above complete
+5. **3.7 Integration Testing** - Final verification
+
+**Key files to modify:**
+- `game/features/ui/` - New UI scenes and scripts
+- `game/features/minigames/` - Polish existing minigames
+- `game/autoload/audio_controller.gd` - Volume methods (if not exists)
+
+**Dependencies to check before starting:**
+- GameState.inventory signal working
+- AudioController autoload registered
+- Existing minigame scenes load without errors
+
+---
+
+**End of Phases 3-5 Roadmap**
