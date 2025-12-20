@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://npc_base_001"]
+
+[sub_resource type="RectangleShape2D" id="1_rect"]
+size = Vector2(16, 24)
+
+[sub_resource type="CircleShape2D" id="2_circle"]
+radius = 20.0
+
+[ext_resource type="Script" path="res://game/features/npcs/npc_base.gd" id="1_script"]
+
+[node name="NPCBase" type="CharacterBody2D" groups=["interactable"]]
+script = ExtResource("1_script")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("1_rect")
+
+[node name="InteractionZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZone"]
+shape = SubResource("2_circle")

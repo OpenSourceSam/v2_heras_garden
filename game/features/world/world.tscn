@@ -1,9 +1,10 @@
-[gd_scene load_steps=4 format=4]
+[gd_scene load_steps=5 format=4]
 
 [ext_resource type="TileSet" path="res://game/shared/resources/tiles/placeholder_grass_tileset.tres" id="1_1u0pp"]
 [ext_resource type="PackedScene" path="res://game/features/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://game/features/world/sundial.tscn" id="2_sundial"]
 [ext_resource type="Script" path="res://game/features/player/player.gd" id="3_i02xo"]
+[ext_resource type="Script" path="res://game/features/npcs/npc_spawner.gd" id="4_npc_spawner"]
 
 [node name="World" type="Node2D"]
 
@@ -26,6 +27,20 @@ tile_set = ExtResource("1_1u0pp")
 position = Vector2(64, 0)
 
 [node name="NPCs" type="Node2D" parent="."]
+
+[node name="NPCSpawner" type="Node" parent="NPCs"]
+script = ExtResource("4_npc_spawner")
+
+[node name="SpawnPoints" type="Node2D" parent="NPCs/NPCSpawner"]
+
+[node name="Hermes" type="Marker2D" parent="NPCs/NPCSpawner/SpawnPoints"]
+position = Vector2(160, -32)
+
+[node name="Aeetes" type="Marker2D" parent="NPCs/NPCSpawner/SpawnPoints"]
+position = Vector2(224, -32)
+
+[node name="Daedalus" type="Marker2D" parent="NPCs/NPCSpawner/SpawnPoints"]
+position = Vector2(288, -32)
 
 [node name="Player" type="CharacterBody2D" parent="." instance=ExtResource("1_player")]
 script = ExtResource("3_i02xo")
