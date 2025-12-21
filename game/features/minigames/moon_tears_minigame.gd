@@ -2,7 +2,7 @@ extends Control
 
 signal minigame_complete(success: bool, items: Array)
 
-const TEAR_SCENE = preload("res://game/features/minigames/moon_tear.tscn")
+const TEAR_SCENE = preload("res://game/features/minigames/moon_tear_single.tscn")
 const SPAWN_INTERVAL: float = 2.0
 const FALL_SPEED: float = 100.0
 const CATCH_WINDOW: float = 40.0
@@ -13,7 +13,7 @@ var player_x: float = 0.5
 var spawn_timer: float = 0.0
 var active_tears: Array[Node2D] = []
 
-@onready var player_marker: Sprite2D = $PlayerMarker
+@onready var player_marker: ColorRect = $PlayerMarker
 @onready var tear_container: Node2D = $TearContainer
 
 func _ready() -> void:

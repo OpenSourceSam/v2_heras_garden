@@ -1629,7 +1629,7 @@ feat: add herb identification minigame
 
 #### 2.5.2 - Moon Tear Catching
 ```
-□ Create game/features/minigames/moon_tears.tscn
+□ Create game/features/minigames/moon_tears_minigame.tscn
 □ Tears fall from top, player moves to catch
 □ Press A when tear reaches player
 □ Collect 3 to complete
@@ -2207,13 +2207,13 @@ feat: add herb identification visual polish
 #### 3.3.1 - Scene Setup
 ```
 □ Add ParallaxBackground with star layer and moon
-□ Create moon_tear.tscn (individual tear scene)
+□ Create moon_tear_single.tscn (individual tear scene)
 □ Add TearContainer for spawned tears
 □ Add PlayerMarker sprite (hands/basket)
 □ Add CaughtCounter label
 ```
 
-**Scene Structure (moon_tears.tscn):**
+**Scene Structure (moon_tears_minigame.tscn):**
 ```
 MoonTears (Control)
 ├─ ParallaxBackground
@@ -2245,13 +2245,13 @@ feat: add moon tears scene structure
 □ Add miss feedback (optional whoosh sound)
 ```
 
-**Key Code (moon_tears.gd):**
+**Key Code (moon_tears_minigame.gd):**
 ```gdscript
 extends Control
 
 signal minigame_complete(success: bool, items: Array)
 
-const TEAR_SCENE = preload("res://game/features/minigames/moon_tear.tscn")
+const TEAR_SCENE = preload("res://game/features/minigames/moon_tear_single.tscn")
 const SPAWN_INTERVAL: float = 2.0
 const FALL_SPEED: float = 100.0
 const CATCH_WINDOW: float = 40.0

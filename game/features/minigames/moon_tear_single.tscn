@@ -1,6 +1,6 @@
 [gd_scene load_steps=1 format=3 uid="uid://moon_tear_001"]
 
-[node name="MoonTear" type="Node2D"]
+[node name="MoonTearSingle" type="Node2D"]
 
 [node name="Tear" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(10, 10)
