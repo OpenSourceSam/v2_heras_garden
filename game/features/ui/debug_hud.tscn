@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://debug_hud_001"]
+[gd_scene load_steps=3 format=3 uid="uid://debug_hud_001"]
 
 [ext_resource type="Script" path="res://game/features/ui/debug_hud.gd" id="1_script"]
+[ext_resource type="Theme" path="res://game/shared/ui_theme.tres" id="2_theme"]
 
 [node name="DebugHUD" type="CanvasLayer"]
 script = ExtResource("1_script")
 layer = 100
 
 [node name="Panel" type="Panel" parent="."]
+theme = ExtResource("2_theme")
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 350.0

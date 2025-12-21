@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dialogue_box_001"]
+[gd_scene load_steps=3 format=3 uid="uid://dialogue_box_001"]
 
 [ext_resource type="Script" path="res://game/features/ui/dialogue_box.gd" id="1_script"]
+[ext_resource type="Theme" path="res://game/shared/ui_theme.tres" id="2_theme"]
 
 [node name="DialogueBox" type="Control" groups=["dialogue_ui"]]
 script = ExtResource("1_script")
+theme = ExtResource("2_theme")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
