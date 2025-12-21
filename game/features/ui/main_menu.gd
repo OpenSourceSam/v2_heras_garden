@@ -39,7 +39,7 @@ func _ready() -> void:
 	new_game_button.grab_focus()
 
 	# TODO: Check if save file exists, disable continue button if not
-	pass
+	continue_button.disabled = not SaveController.save_exists()
 
 # ============================================
 # BUTTON HANDLERS
@@ -56,7 +56,8 @@ func _on_continue_pressed() -> void:
 	# TODO: Load saved game
 	# - Call SaveController.load_game()
 	# - Load world scene
-	SceneManager.change_scene("res://game/features/world/world.tscn")
+	if SaveController.load_game():
+		SceneManager.change_scene("res://game/features/world/world.tscn")
 
 func _on_settings_pressed() -> void:
 	settings_menu.open()

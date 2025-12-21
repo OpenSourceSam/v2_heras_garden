@@ -15,11 +15,14 @@ const SHAKE_AMOUNT: float = 3.0
 
 var original_position: Vector2
 var urgency_playing: bool = false
+var is_complete: bool = false
 
 func _ready() -> void:
 	original_position = position
 
 func _process(delta: float) -> void:
+	if is_complete:
+		return
 	time_remaining -= delta
 	progress = max(0, progress - DECAY_RATE * delta)
 
@@ -61,12 +64,18 @@ func _check_urgency() -> void:
 		AudioController.play_sfx("urgency_tick")
 
 func _win() -> void:
+	if is_complete:
+		return
+	is_complete = true
 	AudioController.play_sfx("success_fanfare")
 	var rewards = ["sacred_earth", "sacred_earth", "sacred_earth"]
 	_award_items(rewards)
 	minigame_complete.emit(true, rewards)
 
 func _lose() -> void:
+	if is_complete:
+		return
+	is_complete = true
 	AudioController.play_sfx("failure_sad")
 	minigame_complete.emit(false, [])
 

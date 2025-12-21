@@ -21,6 +21,7 @@ You are the Junior Engineer (Codex). Follow these rules strictly.
 - Validate before commit
 - After completing a subsection, run tests automatically and share results
 - When practical, attempt MCP-assisted runtime checks before asking for manual testing
+- For testing phases, run a deeper MCP check when feasible (launch scene, simulate inputs, review debug output) and note any timeouts
 - Report completion; if tests pass and no blockers, continue to the next step
 - Update CLAUDE.md status/blockers when completing tasks that change project state
 
@@ -80,4 +81,3 @@ When triggered, add to ROADMAP.md after the phase section:
 
 ### Ready for Next Phase: Yes/No
 <!-- END_CHECKPOINT -->
-
