@@ -23,6 +23,18 @@ Before implementing ANY feature:
 
 ---
 
+
+## Structure Note (Current Repo)
+
+This roadmap was written before the feature-based `game/` layout. Use these path mappings when following steps:
+- `src/entities/*` -> `game/features/<feature>/<file>.gd`
+- `scenes/entities/*` -> `game/features/<feature>/<file>.tscn`
+- `scenes/ui/*` -> `game/features/ui/*`
+- `resources/*` -> `game/shared/resources/*`
+- `src/resources/*` stays as-is for resource class scripts (until migrated)
+
+---
+
 ## PROJECT OVERVIEW
 
 ### Game Summary

@@ -6,35 +6,32 @@ A cozy farming game for the Retroid Pocket Classic, built with Godot 4.5.1.
 
 ## About
 
-**Hera, queen of the gods,** escapes the politics of Olympus to find peace in a forgotten cloud-garden. With the help of an unexpected friendâ€”**Medusa**â€”she learns that true contentment comes from patience, cultivation, and simple joys.
+**Hera, queen of the gods,** escapes the politics of Olympus to find peace in a forgotten cloud-garden. With the help of an unexpected friend, **Medusa**, she learns that true contentment comes from patience, cultivation, and simple joys.
 
 **Playtime:** 1-2 hours
-**Target Platform:** Retroid Pocket Classic (Android 14, 1240Ã—1080 display)
+**Target Platform:** Retroid Pocket Classic (Android 14, 1240x1080 display)
 **Engine:** Godot 4.5.1
 
 ---
 
 ## Project Structure
 
+
 ```
 v2_heras_garden/
-â”œâ”€â”€ docs/design/CONSTITUTION.md          # âš ï¸  Immutable technical rules
-â”œâ”€â”€ docs/design/SCHEMA.md                # âš ï¸  Data structure definitions
-â”œâ”€â”€ PROJECT_STRUCTURE.md     # Folder organization
-â”œâ”€â”€ _docs/WORKFLOW_GUIDE.md  # Guide for developers
-â”œâ”€â”€ docs/execution/PROJECT_STATUS.md        # Current phase and progress
-â”‚
-â”œâ”€â”€ src/                     # All GDScript code
-â”‚   â”œâ”€â”€ autoloads/           # Singletons (GameState, AudioController, SaveController)
-â”‚   â”œâ”€â”€ resources/           # Resource class definitions
-â”‚   â”œâ”€â”€ entities/            # Game object scripts
-â”‚   â””â”€â”€ ui/                  # UI scripts
-â”‚
-â”œâ”€â”€ scenes/                  # .tscn scene files
-â”œâ”€â”€ resources/               # .tres data files
-â”œâ”€â”€ assets/                  # Sprites, audio, fonts
-â”œâ”€â”€ _docs/                   # Documentation
-â””â”€â”€ tests/                   # Automated tests
+|-- docs/                         # Canonical documentation
+|-- _docs/                        # Workflow and archives
+|-- reports/                      # Time-stamped reports
+|-- game/                         # Feature-based game structure
+|   |-- autoload/                 # GameState, SaveController, etc.
+|   |-- features/                 # player, farm_plot, ui, world, etc.
+|   `-- shared/resources/         # .tres data files
+|-- src/resources/                # Resource class scripts (legacy; still used)
+|-- assets/                       # Sprites, audio, fonts
+|-- tests/                        # Automated tests
+|-- tools/
+|-- PROJECT_STRUCTURE.md          # Source of truth for layout
+|-- docs/execution/PROJECT_STATUS.md  # Current phase and progress
 ```
 
 ---
@@ -66,13 +63,14 @@ v2_heras_garden/
 
 ## Development Phases
 
+
 | Phase | Goal | Status |
 |-------|------|--------|
-| **Phase 0** | Foundation (docs, autoloads, structure) | ðŸŸ¡ In Progress |
-| **Phase 1** | Core Loop (plant â†’ grow â†’ harvest) | âšª Not Started |
-| **Phase 2** | Persistence (save/load) | âšª Not Started |
-| **Phase 3** | Content (NPCs, dialogue, quests) | âšª Not Started |
-| **Phase 4** | Polish (UI, audio, balance) | âšª Not Started |
+| **Phase 0** | Foundation (docs, autoloads, structure) | Complete |
+| **Phase 1** | Core Loop (plant -> grow -> harvest) | In Progress (core systems implemented; validation pending) |
+| **Phase 2** | Persistence (save/load) | In Progress (scaffolding only) |
+| **Phase 3** | Content (NPCs, dialogue, quests) | In Progress (scaffolding only) |
+| **Phase 4** | Polish (UI, audio, balance) | Not Started |
 
 See `docs/execution/PROJECT_STATUS.md` for detailed progress.
 
@@ -143,6 +141,6 @@ _To be determined_
 
 ---
 
-**Status:** ðŸš§ Phase 0 in progress - Foundation being built
+**Status:** Phase 1 in progress - Core systems implemented; validation pending
 
 See `docs/execution/PROJECT_STATUS.md` for current task list.

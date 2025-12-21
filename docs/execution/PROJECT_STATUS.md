@@ -1,8 +1,8 @@
 ﻿# CIRCE'S GARDEN V2 - PROJECT STATUS
 
 Last Updated: 2025-12-20
-Current Phase: Phase 1 (in progress, scaffolding only)
-Status: Documentation consolidated; restructure Phase 3-4 completed (paths updated)
+Current Phase: Phase 1 (core systems in progress; validation pending)
+Status: Documentation consolidated; feature-based `game/` structure in place; `src/resources` still active for resource class scripts
 
 Reference: docs/overview/DOCS_MAP.md
 Senior PM Note: Review GitHub Issues for new error reports.
@@ -13,14 +13,26 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 
 ## Phase Completion
 
-| Phase | Status | Progress |
-|------|--------|----------|
-| Phase 0: Foundation | Complete | 100% |
-| Phase 1: Core Systems | In Progress (scaffolding only) | 15% |
-| Phase 2: Story Implementation | Complete (scaffolding + content placeholders) | 100% |
-| Phase 3: Minigames and Polish | Not Started | 0% |
-| Phase 4: Content and Balance | Not Started | 0% |
-| Phase 5: Deployment | Not Started | 0% |
+| Phase | Status | Notes |
+|------|--------|-------|
+| Phase 0: Foundation | Complete | Verified by tests |
+| Phase 1: Core Systems | In Progress | Core systems implemented; validation pending |
+| Phase 2: Story Implementation | In Progress | Scaffolding + placeholder content only |
+| Phase 3: Minigames and Polish | In Progress | Scaffolding only |
+| Phase 4: Content and Balance | Not Started | None |
+| Phase 5: Deployment | Not Started | None |
+
+---
+
+## Recent Changes (2025-12-20)
+
+### Rename and Workflow Setup (Complete)
+- Renamed project title to "Circe's Garden" across docs, UI, config, and tests
+- Added Sr PM oversight protocol to `CLAUDE.md` and Jr Eng workflow to `agent.md`
+- Created GitHub issue templates (handoff, guardrail, review)
+- Added `RUNTIME_STATUS.md` for local runtime snapshots (ignored via `.gitignore`)
+- Documented Windows Godot CLI path for headless tests
+- Ran headless tests: 5/5 pass; warning logged for invalid UID in `game/features/player/player.tscn` (placeholder_circe)
 
 ---
 
@@ -45,10 +57,10 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 - Fixed encoding corruption in `tests/run_tests.gd`
 - Added Test 5 for scene wiring validation
 
-### Restructure Phase 3-4 (Complete)
-- Moved game content into `game/` feature-based structure
-- Updated `project.godot` autoload and main scene paths
-- Updated tests and constants to new paths
+### Restructure Phase 3-4 (In Progress)
+- Feature-based `game/` structure in place (autoloads, features, shared resources)
+- `project.godot` autoload and main scene paths updated to `game/`
+- Legacy `src/resources` still used for resource class scripts and tests
 
 ### Guardrail: project.godot Autoload (Complete - by Jr Engineer)
 - Added a narrow guard that blocks changes to `autoload/MCPInputHandler` in `project.godot`
@@ -83,6 +95,7 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 ### Quest Tracking (In Progress - by Jr Engineer)
 - Added quest flag conventions to SCHEMA.md
 - Added QuestTrigger component script
+ - Added optional QuestTrigger debug markers; enabled in world for testing visibility
 
 ### Locations & Travel (In Progress - by Jr Engineer)
 - Added Scylla's Cove scene, return trigger, and placeholder Scylla NPC
@@ -209,8 +222,8 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 - None currently logged
 
 **MEDIUM Priority:**
+- Invalid UID warning for `uid://placeholder_circe` in `game/features/player/player.tscn` (see GitHub issue #4)
 - Root `.gdignore` appeared twice during restructure (causes Godot to ignore project). Delete if it reappears; keep editor closed during moves.
-- Unreviewed local modifications detected in `CLAUDE.md` and `agent.md`; Senior PM should review source and intent before merge.
 
 **LOW Priority:**
 - MCP runtime introspection times out
@@ -232,8 +245,8 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 
 ## Next Steps (Immediate)
 
-1. Implement scene transitions (basic)
-2. Review whether to keep or remove SceneManager test scenes after validation
+1. Resolve invalid UID warning in `game/features/player/player.tscn`
+2. Review `docs/execution/ROADMAP.md` path references for `game/` structure alignment
 
 ---
 
