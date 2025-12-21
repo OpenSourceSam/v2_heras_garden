@@ -41,11 +41,28 @@ Note: Local runtime snapshots (RUNTIME_STATUS.md) are ignored; use GitHub Issues
 | Phase | Status | Notes |
 |------|--------|-------|
 | Phase 0: Foundation | Complete | Verified by tests |
-| Phase 1: Core Systems | In Progress | Core systems implemented; validation pending |
-| Phase 2: Story Implementation | In Progress | Scaffolding + placeholder content only |
-| Phase 3: Minigames and Polish | In Progress | Scaffolding only |
-| Phase 4: Content and Balance | Not Started | None |
-| Phase 5: Deployment | Not Started | None |
+| Phase 1: Core Systems | Complete | Core systems implemented |
+| Phase 2: Story Implementation | Complete | Scaffolding + placeholder content |
+| Phase 3: Minigames and Polish | Complete | Scaffolding complete |
+| **Phase 4: Prototype** | **Ready to Start** | **Functional completeness with placeholders** |
+| **Phase 5: Final Polish** | **Not Started** | **Production quality and release** |
+
+**Note:** Phases 4-5 have been restructured:
+- **Phase 4 (Prototype):** Working game on Retroid with placeholder content (1.5-2 weeks)
+- **Phase 5 (Final Polish):** Production assets, full narrative, release build (1.5-2 weeks)
+- See [PHASE_4_PROTOTYPE.md](PHASE_4_PROTOTYPE.md) and [PHASE_5_POLISH.md](PHASE_5_POLISH.md) for details
+
+---
+
+## Recent Changes (2025-12-21)
+
+### Phase 4-5 Restructure (Complete)
+- Created [PHASE_4_PROTOTYPE.md](PHASE_4_PROTOTYPE.md) - Functional prototype with placeholders
+- Created [PHASE_5_POLISH.md](PHASE_5_POLISH.md) - Final polish and release
+- Identified and documented critical blockers (farm plot bug, docs mismatch)
+- Added Jr Engineer quality standards to prevent anti-patterns
+- Split content completion into prototype (Phase 4) and final quality (Phase 5)
+- Timeline: 3-4 weeks total (1.5-2 weeks per phase)
 
 ---
 
