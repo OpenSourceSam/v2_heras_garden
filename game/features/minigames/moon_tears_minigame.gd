@@ -85,4 +85,10 @@ func _catch_tear(tear: Node2D) -> void:
 	$CaughtCounter.text = "Tears: %d/%d" % [tears_caught, tears_needed]
 
 	if tears_caught >= tears_needed:
-		minigame_complete.emit(true, ["moon_tear", "moon_tear", "moon_tear"])
+		var rewards = ["moon_tear", "moon_tear", "moon_tear"]
+		_award_items(rewards)
+		minigame_complete.emit(true, rewards)
+
+func _award_items(items: Array) -> void:
+	for item_id in items:
+		GameState.add_item(item_id, 1)

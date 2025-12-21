@@ -76,8 +76,14 @@ func _update_ui() -> void:
 
 func _win() -> void:
 	AudioController.play_sfx("success_fanfare")
-	minigame_complete.emit(true, ["woven_cloth"])
+	var rewards = ["woven_cloth"]
+	_award_items(rewards)
+	minigame_complete.emit(true, rewards)
 
 func _fail() -> void:
 	AudioController.play_sfx("failure_sad")
 	minigame_complete.emit(false, [])
+
+func _award_items(items: Array) -> void:
+	for item_id in items:
+		GameState.add_item(item_id, 1)

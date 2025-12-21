@@ -85,6 +85,7 @@ func _advance_round() -> void:
 	if current_round >= plants_per_round.size():
 		# All rounds complete
 		var items = ["pharmaka_flower", "pharmaka_flower", "pharmaka_flower"]
+		_award_items(items)
 		minigame_complete.emit(true, items)
 	else:
 		_setup_round(current_round)
@@ -166,3 +167,7 @@ func _spawn_particles(pos: Vector2) -> void:
 	var particles = $ParticleContainer/CorrectParticles
 	particles.global_position = pos
 	particles.restart()
+
+func _award_items(items: Array) -> void:
+	for item_id in items:
+		GameState.add_item(item_id, 1)

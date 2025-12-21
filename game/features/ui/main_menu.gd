@@ -13,6 +13,7 @@ extends Control
 # @onready var settings_menu: Control = $SettingsMenu
 # @onready var quit_button: Button = $VBoxContainer/QuitButton
 @onready var settings_button: Button = $VBoxContainer/SettingsButton
+@onready var weaving_button: Button = $VBoxContainer/WeavingButton
 @onready var settings_menu: Control = $SettingsMenu
 
 # ============================================
@@ -24,6 +25,7 @@ func _ready() -> void:
 	# new_game_button.pressed.connect(_on_new_game_pressed)
 	# continue_button.pressed.connect(_on_continue_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)
+	weaving_button.pressed.connect(_on_weaving_pressed)
 	# quit_button.pressed.connect(_on_quit_pressed)
 
 	# TODO: Check if save file exists, disable continue button if not
@@ -48,6 +50,9 @@ func _on_continue_pressed() -> void:
 
 func _on_settings_pressed() -> void:
 	settings_menu.open()
+
+func _on_weaving_pressed() -> void:
+	SceneManager.change_scene("res://game/features/minigames/weaving_minigame.tscn")
 
 func _on_quit_pressed() -> void:
 	# TODO: Quit game

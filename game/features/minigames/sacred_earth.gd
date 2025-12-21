@@ -62,8 +62,14 @@ func _check_urgency() -> void:
 
 func _win() -> void:
 	AudioController.play_sfx("success_fanfare")
-	minigame_complete.emit(true, ["sacred_earth", "sacred_earth", "sacred_earth"])
+	var rewards = ["sacred_earth", "sacred_earth", "sacred_earth"]
+	_award_items(rewards)
+	minigame_complete.emit(true, rewards)
 
 func _lose() -> void:
 	AudioController.play_sfx("failure_sad")
 	minigame_complete.emit(false, [])
+
+func _award_items(items: Array) -> void:
+	for item_id in items:
+		GameState.add_item(item_id, 1)
