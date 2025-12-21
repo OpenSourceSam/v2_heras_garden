@@ -34,7 +34,6 @@ Phase 1 (Core Systems) in progress; validation pending. See docs/execution/ROADM
 - docs/execution/ROADMAP.md - Step-by-step implementation guide
 - docs/design/SCHEMA.md - Data structures and property names
 - docs/design/Storyline.md - Narrative and dialogue
-- docs/overview/DOCS_MAP.md - Documentation index
 
 ---
 

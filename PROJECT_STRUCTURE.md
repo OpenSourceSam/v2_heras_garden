@@ -37,13 +37,14 @@ v2_heras_garden/
 |-- .gitignore                   [current]
 |-- README.md                    [current]
 |-- CONTEXT.md                   [current]
-|-- RESTRUCTURE.md               [current]  Repo restructure instructions
 |-- PROJECT_STRUCTURE.md         [current]
 |-- TEST_SCRIPT.gd               [current]  Legacy validation script
 |-- TEST_SCRIPT.gd.uid           [current]  Godot UID metadata
-|-- reports/                     [current]
+|-- archive/                     [current]  Historical docs, reports, and examples
+|   |-- archive/                 [current]  Legacy archive content
+|   |-- docs_overview/           [current]  Archived doc index
+|   `-- project_reports/         [current]  Historical reports
 |-- docs/                        [current]  Canonical documentation
-|-- _docs/                       [current]  Long-form docs and archives
 |-- tools/                       [current]
 |-- scripts/                     [current]  Helper scripts
 |-- game/                        [current]  Feature-based game structure
@@ -58,8 +59,6 @@ v2_heras_garden/
 |-- .vscode/                     [optional]
 |-- .venv/                       [local-only]
 |-- .godot/                      [local-only]
-|-- Simple Testing for Godot/    [local-only]
-|-- godot_state_charts_examples/ [local-only]
 `-- Godot_v4.5.1-stable_win64.exe/ [local-only]
 ```
 

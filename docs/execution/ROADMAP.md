@@ -5,7 +5,7 @@
 **Status:** CANONICAL - Consolidated from DEVELOPMENT_ROADMAP.md, PHASE_2_ROADMAP.md, PHASES_3_TO_5_OUTLINE.md
 **Purpose:** Explicit, step-by-step implementation guide for AI agents
 
-Note: Phase-specific roadmaps have been archived to _docs/archive/. This is now the single source of truth.
+Note: Phase-specific roadmaps have been archived to archive/archive/. This is now the single source of truth.
 
 ---
 
@@ -30,7 +30,6 @@ Last Updated: 2025-12-20
 Current Phase: Phase 1 (core systems in progress; validation pending)
 Status: Documentation consolidated; feature-based game/ structure in place; src/resources still active for resource class scripts
 
-Reference: docs/overview/DOCS_MAP.md
 Senior PM Note: Review GitHub Issues for new error reports.
 Note: project.godot is writable; the narrow guard in git hooks still protects critical autoload lines from unwanted changes.
 Note: Local runtime snapshots (RUNTIME_STATUS.md) are ignored; use GitHub Issues + this file for reviewable status.
@@ -65,10 +64,10 @@ Note: Local runtime snapshots (RUNTIME_STATUS.md) are ignored; use GitHub Issues
 ## Recent Changes (2025-12-19)
 
 ### Documentation Consolidation (Complete)
-- Archived 7 deprecated/redundant docs to _docs/archive/
+- Archived 7 deprecated/redundant docs to archive/archive/
 - Renamed DEVELOPMENT_ROADMAP.md to docs/execution/ROADMAP.md (single source for all phases)
-- Created _docs/WORKFLOW_GUIDE.md (consolidated workflow reference)
-- Updated docs/overview/DOCS_MAP.md with new canonical structure
+- Created WORKFLOW_GUIDE.md (now archived)
+- Updated docs overview index (now archived)
 - Deleted junk files (nul, txt, tgz)
 
 ### Constants Drift Fix (Complete)
@@ -145,7 +144,7 @@ Note: Local runtime snapshots (RUNTIME_STATUS.md) are ignored; use GitHub Issues
 - Added Scylla transformation cutscene stub
 
 ### Integration Testing (Checklist Added)
-- Added docs/execution/PHASE_2_TEST_CHECKLIST.md
+- Added PHASE_2_TEST_CHECKLIST.md (now archived)
 
 ### Farm Plot Lifecycle Script (Complete - by Jr Engineer)
 - Implemented farm plot state machine and crop lifecycle per roadmap template
@@ -225,12 +224,11 @@ Primary Docs:
 - docs/execution/ROADMAP.md - Implementation guide with templates and status
 - docs/design/SCHEMA.md - Data structures and property names
 - docs/design/Storyline.md - Narrative
-- docs/overview/DOCS_MAP.md - Documentation index
 - PROJECT_STRUCTURE.md - Repo layout and file placement rules
 - README.md - Project overview and quick start
 
 Archived Docs:
-- _docs/archive contains historical workflow and status files
+- archive/archive contains historical workflow and status files
 
 ---
 

@@ -68,8 +68,7 @@ func _init() -> void:
 		"res://CONTEXT.md",
 		"res://docs/design/SCHEMA.md",
 		"res://docs/execution/ROADMAP.md",
-		"res://docs/design/Storyline.md",
-		"res://docs/overview/DOCS_MAP.md"
+		"res://docs/design/Storyline.md"
 	]
 	for doc_path in docs:
 		if FileAccess.file_exists(doc_path):
