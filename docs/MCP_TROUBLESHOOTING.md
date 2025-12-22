@@ -28,12 +28,24 @@ You accidentally sent raw strings or modified code that blocks the main thread d
    - Click "Start" button
    - Try connecting again
 
-3. **If Still Broken - Reset to Known Good State:**
+3. **If Still Broken - Use Quick Fix Script:**
+   ```bash
+   # Run the fix script from project root
+   cd c:\Users\Sam\Documents\GitHub\v2_heras_garden
+   fix_mcp.bat
+
+   # This will:
+   # - Close Godot
+   # - Kill any process using the MCP port
+   # - Clean up connections
+   # - Guide you to restart properly
+   ```
+
+4. **Nuclear Option - Reset to Known Good State:**
    ```bash
    cd c:\Users\Sam\Documents\GitHub\v2_heras_garden
    git stash  # Save your changes
-   git checkout docs/code-review-2025-12-18
-   git pull
+   git checkout main
    # Open Godot, wait for MCP to start
    # Test connection
    # If working: git stash pop (restore your changes)
@@ -155,7 +167,7 @@ addons/godot_mcp/
 
 ```
 1. Godot starts → loads MCP plugin
-2. MCP plugin creates WebSocket server on port 3000
+2. MCP plugin creates WebSocket server on port 9080 (default, can be changed in panel)
 3. Server waits for connections
 4. Claude Code connects → sends JSON-RPC request
 5. MCP server receives → parses JSON → executes command
@@ -166,7 +178,7 @@ addons/godot_mcp/
 **If any step fails → "Transport closed" error**
 
 Common failure points:
-- Step 2: Port 3000 already in use
+- Step 2: Port already in use (check the port number in MCP Server panel)
 - Step 4: Network/firewall blocking connection
 - Step 5: Server sends invalid JSON (most common junior eng mistake!)
 - Step 6: Server blocks/crashes during command execution
@@ -181,18 +193,18 @@ Common failure points:
 ```
 1. Open Godot
 2. Click "MCP Server" tab at bottom
-3. Look for "✓ Server running on port 3000"
+3. Look for "✓ Server running on port 9080" (default port)
 4. If not running → click "Start"
 5. If still fails → check Step 2
 ```
 
 **Step 2: Check Port Availability**
 ```bash
-# Windows
-netstat -ano | findstr :3000
+# Windows - check the port shown in the MCP Server panel (default is 9080)
+netstat -ano | findstr :9080
 
 # If you see output → port is in use
-# Kill the process using port 3000:
+# Kill the process using that port:
 # 1. Note the PID (last number in netstat output)
 # 2. taskkill /PID <number> /F
 ```
@@ -216,7 +228,16 @@ netstat -ano | findstr :3000
 # 4. If not in list → click "Allow another app" → browse to Godot.exe
 ```
 
-**Step 5: Nuclear Option - Restart Everything**
+**Step 5: Use Quick Fix Script**
+```bash
+# Run the automated fix script
+cd c:\Users\Sam\Documents\GitHub\v2_heras_garden
+fix_mcp.bat
+
+# Then reopen Godot and try again
+```
+
+**Step 6: Nuclear Option - Restart Everything**
 ```bash
 1. Close Godot
 2. Close all terminals/command prompts
@@ -248,7 +269,7 @@ netstat -ano | findstr :3000
 ```
 MCPServer (EditorPlugin)
 ├─ WebSocketServer
-│  ├─ start_server()     # Binds to port 3000
+│  ├─ start_server()     # Binds to port 9080 (default, configurable in panel)
 │  ├─ poll()             # Processes WebSocket events
 │  └─ _process_client()  # Handles incoming messages
 │
@@ -258,6 +279,7 @@ MCPServer (EditorPlugin)
 │
 └─ MCPPanel (UI)
    ├─ Start/Stop buttons
+   ├─ Port configuration (default: 9080)
    └─ Status display
 ```
 
@@ -283,14 +305,16 @@ Client → WebSocket → CommandHandler → Game Code → Response → WebSocket
 
 ### Issue: Server won't start - "Port already in use"
 
-**Cause:** Previous Godot instance didn't clean up
+**Cause:** Previous Godot instance didn't clean up, or another process is using the port
 
 **Fix:**
 ```bash
-# Kill all Godot processes
-taskkill /IM Godot_v4.3-stable_win64.exe /F
+# Option 1: Kill all Godot processes
+taskkill /IM Godot_v4.5.1-stable_win64.exe /F
 
-# Or restart Windows
+# Option 2: Change the port in MCP Server panel to a different number (e.g., 9081, 9082)
+
+# Option 3: Use the fix_mcp.bat script which handles this automatically
 ```
 
 ### Issue: Connection works but commands timeout
