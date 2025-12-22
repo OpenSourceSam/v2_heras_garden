@@ -61,12 +61,12 @@ func poll() -> void:
 	if tcp_server.is_connection_available():
 		var tcp = tcp_server.take_connection()
 		if tcp == null:
-			print("Failed to take TCP connection")
+			print("[MCP] ⚠ Failed to take TCP connection")
 			return
-		
+
 		tcp.set_no_delay(true)  # Important for WebSocket
-		
-		print("New TCP connection accepted")
+
+		print("[MCP] 🔌 New TCP connection accepted from ", tcp.get_connected_host())
 		var ws = WebSocketPeer.new()
 		
 		# Configure WebSocket peer
@@ -83,7 +83,7 @@ func poll() -> void:
 		# Generate client ID and store peer
 		var client_id = randi() % (1 << 30) + 1
 		peers[client_id] = ws
-		print("WebSocket connection setup for client: ", client_id)
+		print("[MCP] ✓ Client ", client_id, " registered successfully")
 	
 	# Process existing connections
 	var to_remove = []
@@ -128,6 +128,7 @@ func poll() -> void:
 
 func _handle_packet(client_id: int, packet: PackedByteArray) -> void:
 	var text = packet.get_string_from_utf8()
+	print("[MCP] 📥 Received from client ", client_id, ": ", text.left(100))
 	var json = JSON.new()
 	var parse_result = json.parse(text)
 	
@@ -161,10 +162,11 @@ func send_response(client_id: int, response: Dictionary) -> int:
 		return ERR_INVALID_PARAMETER
 		
 	if peer.get_ready_state() != WebSocketPeer.STATE_OPEN:
-		print("Error: Client %d connection not open" % client_id)
+		print("[MCP] ⚠ Client ", client_id, " connection not open, state: ", peer.get_ready_state())
 		return ERR_UNAVAILABLE
-	
+
 	var json_text = JSON.stringify(response)
+	print("[MCP] 📤 Sending to client ", client_id, ": ", json_text.left(100))
 	var result = peer.send_text(json_text)
 	
 	if result != OK:

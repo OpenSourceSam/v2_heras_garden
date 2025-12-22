@@ -8,7 +8,7 @@ This file provides static context for Circe's Garden v2. Read it once at the sta
 
 Circe's Garden is a narrative farming game built in Godot 4.5.1 for the Retroid Pocket Classic (Android 14, 1080x1240, d-pad only). The story is Greek mythology inspired and centers on jealousy, guilt, and redemption through farming pharmaka herbs and crafting potions.
 
-Current Phase: Phase 1 (core systems in progress; validation pending)
+Current Phase: Phase 4 (Prototype) - Ready to start
 
 ---
 
@@ -290,6 +290,29 @@ Tests cover:
 8. Autoload assumptions
 9. Empty TileMapLayers
 10. Duplicate systems
+
+---
+
+## Documentation Practices
+
+**Keep the project streamlined - DO NOT create new documents unless absolutely necessary.**
+
+- Add to existing frameworks and documents rather than creating new files
+- Use existing docs:
+  - CONTEXT.md for project-wide guidelines
+  - ROADMAP.md for phase execution notes
+  - SCHEMA.md for data structure definitions
+  - Storyline.md for narrative context
+  - PROJECT_STATUS.md for current state
+- When troubleshooting or adding notes, integrate into relevant existing docs
+- Avoid creating standalone README, GUIDE, or TROUBLESHOOTING files
+- If a new doc is genuinely needed, ask first
+
+**Examples:**
+- ✅ Add troubleshooting notes to existing ROADMAP or feature docs
+- ✅ Add architectural notes to CONTEXT.md
+- ❌ Create new TROUBLESHOOTING.md when notes can go in feature doc
+- ❌ Create new ARCHITECTURE.md when CONTEXT.md exists
 
 ---
 
