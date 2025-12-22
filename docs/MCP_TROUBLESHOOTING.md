@@ -1,406 +1,62 @@
 # MCP Server Troubleshooting Guide
 
-**Last Updated:** 2025-12-22
-**For:** Junior Engineers working on Hera's Garden project
+**For:** AI agents debugging MCP connection issues
 
 ---
 
-## Quick Fix: MCP Server Won't Connect
+## Quick Diagnosis
 
-### Symptom
-- Client shows "Transport closed" error
-- WebSocket connection fails immediately
-- MCP panel shows server running but clients can't connect
+When MCP won't connect, run these checks in order:
 
-### Most Common Cause
-You accidentally sent raw strings or modified code that blocks the main thread during WebSocket handshake.
-
-### Quick Fix Steps
-
-1. **Check Godot Console** for errors:
-   - Open Godot → Output tab → look for WebSocket errors
-   - Common error: `WebSocket error: Transport closed`
-
-2. **Restart MCP Server:**
-   - Click "MCP Server" tab at bottom of Godot
-   - Click "Stop" button
-   - Wait 2 seconds
-   - Click "Start" button
-   - Try connecting again
-
-3. **If Still Broken - Use Quick Fix Script:**
-   ```bash
-   # Run the fix script from project root
-   cd c:\Users\Sam\Documents\GitHub\v2_heras_garden
-   fix_mcp.bat
-
-   # This will:
-   # - Close Godot
-   # - Kill any process using the MCP port
-   # - Clean up connections
-   # - Guide you to restart properly
-   ```
-
-4. **Nuclear Option - Reset to Known Good State:**
-   ```bash
-   cd c:\Users\Sam\Documents\GitHub\v2_heras_garden
-   git stash  # Save your changes
-   git checkout main
-   # Open Godot, wait for MCP to start
-   # Test connection
-   # If working: git stash pop (restore your changes)
-   ```
-
----
-
-## Common Mistakes That Break MCP
-
-### ❌ MISTAKE 1: Sending Raw Strings Instead of JSON-RPC
-
-**DON'T DO THIS:**
-```gdscript
-# WRONG - sends raw string "starting"
-websocket_server.send_text("starting")
-```
-
-**DO THIS:**
-```gdscript
-# CORRECT - sends proper JSON-RPC notification
-var response = {
-    "jsonrpc": "2.0",
-    "method": "notification",
-    "params": {"message": "starting"}
-}
-websocket_server.send_text(JSON.stringify(response))
-```
-
-### ❌ MISTAKE 2: Blocking Main Thread During Handshake
-
-**DON'T DO THIS:**
-```gdscript
-# WRONG - blocks before handshake completes
-func _ready():
-    start_server()
-    load_heavy_scene()  # Blocks!
-```
-
-**DO THIS:**
-```gdscript
-# CORRECT - defers heavy work
-func _ready():
-    start_server()
-    call_deferred("_load_heavy_scene")
-
-func _load_heavy_scene():
-    # Now safe to block
-    load("res://heavy_scene.tscn").instantiate()
-```
-
-### ❌ MISTAKE 3: Not Calling poll() During Handshake
-
-**DON'T DO THIS:**
-```gdscript
-# WRONG - forgets to poll websocket
-func _ready():
-    websocket_server.start_server()
-    # ... no poll() call
-```
-
-**DO THIS:**
-```gdscript
-# CORRECT - polls in _process
-func _process(_delta):
-    if websocket_server:
-        websocket_server.poll()
-```
-
----
-
-## How to Check If You Broke MCP
-
-### Before Committing Code:
-
-1. **Test MCP Connection:**
-   - Save your changes in Godot
-   - Close Godot
-   - Reopen Godot
-   - Check MCP Server panel shows "Server running"
-   - Try connecting from Claude Code CLI
-   - If connection fails → you broke it
-
-2. **Check What Changed:**
-   ```bash
-   git diff addons/godot_mcp/
-   ```
-   - If you see changes to MCP addon files → you probably broke it
-   - If no changes → MCP should still work
-
-3. **Test Checklist:**
-   - [ ] Godot opens without errors
-   - [ ] MCP Server tab shows "✓ Server running"
-   - [ ] Can connect from Claude Code
-   - [ ] Can send/receive commands
-   - [ ] No "Transport closed" errors
-
----
-
-## MCP Files You Should NEVER Edit
-
-**DO NOT touch these files unless you're fixing an MCP bug:**
-
-```
-addons/godot_mcp/
-├── mcp_server.gd          ❌ DO NOT EDIT
-├── websocket_server.gd    ❌ DO NOT EDIT
-├── command_handler.gd     ❌ DO NOT EDIT
-├── mcp_*_commands.gd      ❌ DO NOT EDIT
-└── ui/mcp_panel.gd        ❌ DO NOT EDIT
-```
-
-**If you need to add MCP commands:**
-- Create a NEW file in `addons/godot_mcp/custom_commands.gd`
-- Don't modify existing command files
-
----
-
-## How MCP Server Works (Simple Explanation)
-
-```
-1. Godot starts → loads MCP plugin
-2. MCP plugin creates WebSocket server on port 9080 (default, can be changed in panel)
-3. Server waits for connections
-4. Claude Code connects → sends JSON-RPC request
-5. MCP server receives → parses JSON → executes command
-6. Server responds with JSON-RPC response
-7. Connection stays open for more commands
-```
-
-**If any step fails → "Transport closed" error**
-
-Common failure points:
-- Step 2: Port already in use (check the port number in MCP Server panel)
-- Step 4: Network/firewall blocking connection
-- Step 5: Server sends invalid JSON (most common junior eng mistake!)
-- Step 6: Server blocks/crashes during command execution
-
----
-
-## Detailed Troubleshooting Steps
-
-### Issue: "Transport closed" error
-
-**Step 1: Check Server Status**
-```
-1. Open Godot
-2. Click "MCP Server" tab at bottom
-3. Look for "✓ Server running on port 9080" (default port)
-4. If not running → click "Start"
-5. If still fails → check Step 2
-```
-
-**Step 2: Check Port Availability**
+### 1. Verify Server Running
 ```bash
-# Windows - check the port shown in the MCP Server panel (default is 9080)
 netstat -ano | findstr :9080
-
-# If you see output → port is in use
-# Kill the process using that port:
-# 1. Note the PID (last number in netstat output)
-# 2. taskkill /PID <number> /F
 ```
+- **No output** → Server not running. Tell user to start Godot and click "Start" in MCP Server panel
+- **Has output** → Server running, proceed to step 2
 
-**Step 3: Check Godot Console**
-```
-1. Open Godot → Output tab
-2. Look for errors mentioning "WebSocket" or "MCP"
-3. Common errors:
-   - "Invalid JSON" → you sent raw string (see Mistake #1)
-   - "Port in use" → kill existing process (see Step 2)
-   - "Connection refused" → firewall blocking (see Step 4)
-```
-
-**Step 4: Check Firewall**
+### 2. Verify Correct Process
 ```bash
-# Windows Firewall - allow Godot:
-# 1. Windows Security → Firewall & network protection
-# 2. Allow an app through firewall
-# 3. Find "Godot" → check Private and Public
-# 4. If not in list → click "Allow another app" → browse to Godot.exe
+tasklist | findstr <PID>
 ```
+- **Should be:** `Godot_v4.5.1-stable_win64`
+- **If different process:** Kill it with `taskkill /PID <PID> /F`, then restart Godot
 
-**Step 5: Use Quick Fix Script**
+### 3. Test WebSocket Connection
 ```bash
-# Run the automated fix script
+curl -v --no-buffer --header "Connection: Upgrade" --header "Upgrade: websocket" --header "Sec-WebSocket-Version: 13" --header "Sec-WebSocket-Key: test" http://127.0.0.1:9080 2>&1 | head -20
+```
+- **Look for:** `HTTP/1.1 101 Switching Protocols`
+- **If present:** Server works. Issue is client-side (VSCode extension needs reload)
+- **If missing:** Server broken. Tell user to restart Godot
+
+### 4. Client-Side Fix
+If server works but you can't connect:
+- Tell user to reload VSCode window (`Ctrl+Shift+P` → "Developer: Reload Window")
+- `.mcp.json` must be in project root with correct `godot-mcp-cli` config
+
+---
+
+## Common Issues Junior Engineers Create
+
+1. **Modified MCP addon files** → Reset with `git checkout origin/main -- addons/godot_mcp/`
+2. **Sent raw strings instead of JSON-RPC** → Server crashes on handshake
+3. **Blocking code in _ready()** → Server can't poll WebSocket
+4. **Changed port in panel** → Must match what `godot-mcp-cli` expects (default: 9080)
+
+---
+
+## Quick Fix Script
+
+For persistent issues:
+```bash
 cd c:\Users\Sam\Documents\GitHub\v2_heras_garden
 fix_mcp.bat
-
-# Then reopen Godot and try again
 ```
-
-**Step 6: Nuclear Option - Restart Everything**
-```bash
-1. Close Godot
-2. Close all terminals/command prompts
-3. Restart Windows (yes, really)
-4. Open Godot
-5. Try again
-```
+This kills Godot, clears port 9080, and guides restart.
 
 ---
 
-## When to Ask for Help
+## Default Port
 
-**Ask senior engineer if:**
-- You've tried all troubleshooting steps above
-- Server still won't start after restart
-- You get errors you don't understand
-- You accidentally edited MCP plugin files
-
-**Include in your request:**
-- What you were doing when it broke
-- Error messages from Godot console (copy/paste full error)
-- Output of `git diff` showing your changes
-- Steps you've already tried
-
----
-
-## MCP Server Architecture (For Reference)
-
-```
-MCPServer (EditorPlugin)
-├─ WebSocketServer
-│  ├─ start_server()     # Binds to port 9080 (default, configurable in panel)
-│  ├─ poll()             # Processes WebSocket events
-│  └─ _process_client()  # Handles incoming messages
-│
-├─ CommandHandler
-│  ├─ _handle_command()  # Parses JSON-RPC
-│  └─ _execute_*()       # Runs specific commands
-│
-└─ MCPPanel (UI)
-   ├─ Start/Stop buttons
-   ├─ Port configuration (default: 9080)
-   └─ Status display
-```
-
-**Message Flow:**
-```
-Client → WebSocket → CommandHandler → Game Code → Response → WebSocket → Client
-```
-
-**If response isn't valid JSON-RPC → connection closes immediately**
-
----
-
-## Known Issues & Workarounds
-
-### Issue: Server starts but clients immediately disconnect
-
-**Cause:** You're sending non-JSON data in response
-
-**Fix:**
-1. Find where you added print() or send_text() statements
-2. Replace with proper JSON-RPC format (see Mistake #1 example)
-3. Restart server
-
-### Issue: Server won't start - "Port already in use"
-
-**Cause:** Previous Godot instance didn't clean up, or another process is using the port
-
-**Fix:**
-```bash
-# Option 1: Kill all Godot processes
-taskkill /IM Godot_v4.5.1-stable_win64.exe /F
-
-# Option 2: Change the port in MCP Server panel to a different number (e.g., 9081, 9082)
-
-# Option 3: Use the fix_mcp.bat script which handles this automatically
-```
-
-### Issue: Connection works but commands timeout
-
-**Cause:** Your command is blocking the main thread
-
-**Fix:**
-- Use `call_deferred()` for heavy operations
-- Use `await` for async operations
-- Don't use infinite loops in command handlers
-
----
-
-## Quick Reference: MCP Command Response Format
-
-**Successful Response:**
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 123,
-  "result": {
-    "success": true,
-    "data": "your data here"
-  }
-}
-```
-
-**Error Response:**
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 123,
-  "error": {
-    "code": -32600,
-    "message": "Invalid Request"
-  }
-}
-```
-
-**Notification (no response expected):**
-```json
-{
-  "jsonrpc": "2.0",
-  "method": "status_update",
-  "params": {
-    "message": "Operation complete"
-  }
-}
-```
-
----
-
-## For Senior Engineers: Debugging MCP Issues
-
-If junior engineer has broken MCP and can't fix it:
-
-1. **Check their git diff:**
-   ```bash
-   git diff addons/godot_mcp/
-   ```
-
-2. **Common root causes:**
-   - Modified websocket_server.gd send/receive logic
-   - Added blocking code in _ready() or _process()
-   - Changed JSON-RPC response format
-   - Removed poll() call
-
-3. **Quick fix:**
-   ```bash
-   git checkout origin/main -- addons/godot_mcp/
-   # Restore known-good MCP code
-   ```
-
-4. **If they need MCP changes:**
-   - Create wrapper/extension, don't modify core
-   - Use signals to communicate with MCP
-   - Test thoroughly before committing
-
----
-
-## References
-
-- **Phase 4 Prototype Plan:** See section 4.0.0 for MCP protocol requirements
-- **MCP Source Code:** `addons/godot_mcp/mcp_server.gd`
-- **WebSocket Docs:** https://docs.godotengine.org/en/stable/classes/class_websocketpeer.html
-
----
-
-**Remember:** If you didn't touch MCP files and it stopped working, try restarting Godot first before debugging!
+**Always 9080** (not 3000). If user changed it, change it back.
