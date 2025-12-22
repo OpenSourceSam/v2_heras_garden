@@ -18,10 +18,19 @@ if %ERRORLEVEL% EQU 0 (
 
 echo.
 echo Step 2: Checking port 3000...
-netstat -ano | findstr :3000 >nul
-if %ERRORLEVEL% EQU 0 (
-    echo   - WARNING: Port 3000 is still in use
-    echo   - You may need to restart Windows if this persists
+for /f "tokens=5" %%a in ('netstat -ano ^| findstr :3000') do (
+    set PID=%%a
+)
+
+if defined PID (
+    echo   - WARNING: Port 3000 in use by PID %PID%
+    echo   - Killing process...
+    taskkill /PID %PID% /F >nul 2>&1
+    if %ERRORLEVEL% EQU 0 (
+        echo   - Process killed successfully
+    ) else (
+        echo   - Could not kill process (may need admin rights)
+    )
 ) else (
     echo   - Port 3000 is available
 )
