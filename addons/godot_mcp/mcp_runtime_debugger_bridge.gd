@@ -12,7 +12,7 @@ const VIEW_VISIBLE := 1 << 2
 const VIEW_VISIBLE_IN_TREE := 1 << 3
 const DEFAULT_TIMEOUT_MS := 800
 const DEFAULT_EVAL_TIMEOUT_MS := 800
-const SCENE_CAPTURE_NAMES := ["scene", "limboai"]
+const SCENE_CAPTURE_NAMES := ["scene", "limboai", "mcp_scene"]
 const EVAL_CAPTURE_NAME := "mcp_eval"
 const INPUT_CAPTURE_NAME := "mcp_input"
 
@@ -42,6 +42,8 @@ func _has_capture(capture: String) -> bool:
 		if capture == prefix or capture.begins_with(prefix + ":"):
 			return true
 	if capture == INPUT_CAPTURE_NAME or capture.begins_with(INPUT_CAPTURE_NAME + ":"):
+		return true
+	if capture == EVAL_CAPTURE_NAME or capture.begins_with(EVAL_CAPTURE_NAME + ":"):
 		return true
 	return false
 
@@ -174,9 +176,12 @@ func _request_scene_tree(session_id: int) -> void:
 		var payload := Array()
 		payload.push_back("")
 		payload.push_back(Array())
-		for prefix in SCENE_CAPTURE_NAMES:
-			payload[0] = "%s:scene_tree" % prefix
-			session.send_message("request_message", payload)
+	for prefix in SCENE_CAPTURE_NAMES:
+		if prefix == "mcp_scene":
+			session.send_message("%s:scene_tree" % prefix, [])
+			continue
+		payload[0] = "%s:scene_tree" % prefix
+		session.send_message("request_message", payload)
 		var state: Dictionary = _sessions.get(session_id, {})
 		state["last_request_time"] = Time.get_ticks_msec()
 		_sessions[session_id] = state

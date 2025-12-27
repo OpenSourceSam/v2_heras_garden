@@ -4,6 +4,11 @@ extends Node
 ## via the debugger message system.
 
 const CAPTURE_NAME := "mcp_input"
+const EVAL_CAPTURE_NAME := "mcp_eval"
+const SCENE_CAPTURE_NAME := "mcp_scene"
+const VIEW_HAS_VISIBLE_METHOD := 1 << 1
+const VIEW_VISIBLE := 1 << 2
+const VIEW_VISIBLE_IN_TREE := 1 << 3
 
 var _pending_drags: Dictionary = {}
 
@@ -17,7 +22,10 @@ func _ready() -> void:
 		return
 	
 	EngineDebugger.register_message_capture(CAPTURE_NAME, _on_capture)
+	EngineDebugger.register_message_capture(EVAL_CAPTURE_NAME, _on_eval_capture)
+	EngineDebugger.register_message_capture(SCENE_CAPTURE_NAME, _on_scene_capture)
 	print("[MCP Input Handler] Input simulation ready")
+	print("[MCP Eval Handler] Runtime eval ready")
 
 
 func _on_capture(message: String, data: Array) -> bool:
@@ -44,6 +52,144 @@ func _on_capture(message: String, data: Array) -> bool:
 			return _handle_get_input_actions(data)
 	
 	return false
+
+
+func _on_eval_capture(message: String, data: Array) -> bool:
+	var action := message.substr(EVAL_CAPTURE_NAME.length() + 1) if message.begins_with(EVAL_CAPTURE_NAME + ":") else message
+
+	match action:
+		"evaluate":
+			return _handle_eval(data)
+
+	return false
+
+
+func _on_scene_capture(message: String, data: Array) -> bool:
+	var action := message.substr(SCENE_CAPTURE_NAME.length() + 1) if message.begins_with(SCENE_CAPTURE_NAME + ":") else message
+	if action == "scene_tree":
+		return _handle_scene_tree_request()
+	return false
+
+
+func _handle_scene_tree_request() -> bool:
+	var tree := get_tree()
+	if tree == null:
+		return false
+	var root := tree.current_scene if tree.current_scene else tree.get_root()
+	if root == null:
+		return false
+
+	var payload: Array = []
+	_build_scene_tree_payload(root, payload)
+	EngineDebugger.send_message("%s:scene_tree" % SCENE_CAPTURE_NAME, payload)
+	return true
+
+
+func _build_scene_tree_payload(node: Node, payload: Array) -> void:
+	var children := node.get_children()
+	var view_flags := _compute_view_flags(node)
+	var scene_path := str(node.scene_file_path)
+
+	payload.append(children.size())
+	payload.append(node.name)
+	payload.append(node.get_class())
+	payload.append(node.get_instance_id())
+	payload.append(scene_path)
+	payload.append(view_flags)
+
+	for child in children:
+		if child is Node:
+			_build_scene_tree_payload(child, payload)
+
+
+func _compute_view_flags(node: Node) -> int:
+	var flags := 0
+	if node.has_method("is_visible"):
+		flags |= VIEW_HAS_VISIBLE_METHOD
+		if node.call("is_visible"):
+			flags |= VIEW_VISIBLE
+	if node.has_method("is_visible_in_tree"):
+		if node.call("is_visible_in_tree"):
+			flags |= VIEW_VISIBLE_IN_TREE
+	return flags
+
+
+func _handle_eval(data: Array) -> bool:
+	if data.size() < 2:
+		return false
+
+	var request_id := int(data[0])
+	var expression_text := str(data[1])
+	var options := data[2] as Dictionary if data.size() > 2 and typeof(data[2]) == TYPE_DICTIONARY else {}
+
+	var context_node := _resolve_eval_context(options)
+	var expression := Expression.new()
+	var parse_error := expression.parse(expression_text, [])
+
+	if parse_error != OK:
+		_send_eval_result(request_id, {
+			"success": false,
+			"error": expression.get_error_text(),
+			"error_line": expression.get_error_line()
+		})
+		return true
+
+	var result := expression.execute([], context_node, true)
+	if expression.has_execute_failed():
+		_send_eval_result(request_id, {
+			"success": false,
+			"error": expression.get_error_text()
+		})
+		return true
+
+	_send_eval_result(request_id, {
+		"success": true,
+		"result": _normalize_eval_result(result),
+		"output": []
+	})
+	return true
+
+
+func _resolve_eval_context(options: Dictionary) -> Node:
+	if options.has("node_path"):
+		var node_path := str(options.get("node_path", ""))
+		var resolved := _get_node_by_path(node_path)
+		if resolved:
+			return resolved
+
+	var tree := get_tree()
+	if tree == null:
+		return null
+	if tree.current_scene:
+		return tree.current_scene
+	return tree.get_root()
+
+
+func _get_node_by_path(node_path: String) -> Node:
+	if node_path.is_empty():
+		return null
+	var tree := get_tree()
+	if tree == null:
+		return null
+	var root := tree.get_root()
+	if node_path.begins_with("/"):
+		return root.get_node_or_null(node_path)
+	if tree.current_scene:
+		var found := tree.current_scene.get_node_or_null(node_path)
+		if found:
+			return found
+	return root.get_node_or_null(node_path)
+
+
+func _normalize_eval_result(value):
+	if typeof(value) == TYPE_OBJECT and value != null:
+		return str(value)
+	return value
+
+
+func _send_eval_result(request_id: int, result: Dictionary) -> void:
+	result["request_id"] = request_id
+	EngineDebugger.send_message("%s:result" % EVAL_CAPTURE_NAME, [result])
 
 
 func _handle_action_press(data: Array) -> bool:
@@ -118,7 +264,7 @@ func _execute_tap(request_id: int, action_name: String, duration_ms: int) -> voi
 	Input.action_press(action_name)
 	var tree := get_tree()
 	if tree:
-		await tree.create_timer(float(duration_ms) / 1000.0).timeout
+		await tree.create_timer(float(duration_ms) / 1000.0, true).timeout
 	Input.action_release(action_name)
 	
 	_send_result(request_id, {
@@ -161,7 +307,7 @@ func _execute_mouse_click(request_id: int, position: Vector2, button: int, doubl
 	# Release after a frame
 	var tree := get_tree()
 	if tree:
-		await tree.process_frame
+		await tree.create_timer(0.0, true).timeout
 	
 	event = InputEventMouseButton.new()
 	event.position = position
@@ -239,7 +385,7 @@ func _execute_drag(request_id: int, start: Vector2, end_pos: Vector2, duration_m
 	# Move to start position first
 	Input.warp_mouse(start)
 	if tree:
-		await tree.process_frame
+		await tree.create_timer(0.0, true).timeout
 	
 	# Press at start position
 	var press_event := InputEventMouseButton.new()
@@ -264,7 +410,7 @@ func _execute_drag(request_id: int, start: Vector2, end_pos: Vector2, duration_m
 		
 		prev_pos = pos
 		if tree:
-			await tree.create_timer(step_delay).timeout
+			await tree.create_timer(step_delay, true).timeout
 	
 	# Release at end position
 	var release_event := InputEventMouseButton.new()
@@ -323,7 +469,7 @@ func _execute_key_press(request_id: int, keycode: int, key_string: String, durat
 	
 	var tree := get_tree()
 	if tree:
-		await tree.create_timer(float(duration_ms) / 1000.0).timeout
+		await tree.create_timer(float(duration_ms) / 1000.0, true).timeout
 	
 	event = InputEventKey.new()
 	event.keycode = keycode
@@ -395,7 +541,7 @@ func _execute_input_sequence(request_id: int, sequence: Array) -> void:
 				if InputMap.has_action(action):
 					Input.action_press(action)
 					if tree:
-						await tree.create_timer(duration).timeout
+						await tree.create_timer(duration, true).timeout
 					Input.action_release(action)
 					step_result = { "type": "tap", "action": action, "success": true }
 				else:
@@ -405,7 +551,7 @@ func _execute_input_sequence(request_id: int, sequence: Array) -> void:
 			"wait":
 				var duration := float(step_dict.get("duration_ms", 100)) / 1000.0
 				if tree:
-					await tree.create_timer(duration).timeout
+					await tree.create_timer(duration, true).timeout
 				step_result = { "type": "wait", "duration_ms": step_dict.get("duration_ms", 100), "success": true }
 			
 			"click":
@@ -423,7 +569,7 @@ func _execute_input_sequence(request_id: int, sequence: Array) -> void:
 				Input.parse_input_event(click_event)
 				
 				if tree:
-					await tree.process_frame
+					await tree.create_timer(0.0, true).timeout
 				
 				click_event = InputEventMouseButton.new()
 				click_event.position = pos
