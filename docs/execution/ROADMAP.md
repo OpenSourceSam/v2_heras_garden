@@ -1,7 +1,7 @@
 # CIRCE'S GARDEN - DEVELOPMENT ROADMAP
 
 Version: 3.0
-Last Updated: 2025-12-26
+Last Updated: 2025-12-27
 Status: CANONICAL - Baseline reset
 Purpose: Accurate, test-based roadmap for the current repo state.
 
@@ -19,13 +19,15 @@ For all contributors:
 
 ## Current Phase Status
 
-Last Updated: 2025-12-26
-Current Phase: Phase 0 - Baseline Audit
-Status: Automated test suite (tests/run_tests.gd) passed 5/5. Smoke test
-(tests/smoke_test.tscn) ran and printed "[SmokeTest] OK" with warnings for
-invalid placeholder UIDs. Legacy Phase 0 validator (TEST_SCRIPT.gd) was removed
-because it was unreliable (autoload timing). Existing code may be present for
-many systems, but do not assume it is working until re-tested in Phase 1.
+Last Updated: 2025-12-27
+Current Phase: Phase 1 - Core Systems Verification
+Status: Phase 0 baseline completed. Automated tests pass (tests/run_tests.gd
+5/5 and GdUnit4 suite 32/32). Legacy Phase 0 validator (TEST_SCRIPT.gd) was
+removed because it was unreliable (autoload timing). The smoke test previously
+printed "[SmokeTest] OK" with placeholder UID warnings; the placeholder UID
+issue was fixed, but the smoke test has not been re-run since. Existing code
+may be present for many systems, but do not assume it is working until
+re-tested in Phase 1.
 
 ---
 
@@ -37,10 +39,11 @@ many systems, but do not assume it is working until re-tested in Phase 1.
   - TILE_SIZE constant
   - GameState initialization
   - Scene wiring (player, farm_plot, main_menu, dialogue_box, debug_hud)
+- GdUnit4 suite (res://tests/gdunit4): PASS 32/32
 - Legacy Phase 0 validator removed (TEST_SCRIPT.gd was unreliable due to
   autoload timing).
-- tests/smoke_test.tscn (F6 smoke test): PASS (warnings for invalid UIDs in
-  sundial.tscn and boat.tscn)
+- tests/smoke_test.tscn (F6 smoke test): PASS (previously warned on placeholder
+  UID in sundial.tscn and boat.tscn; warning fixed, smoke test not re-run)
 
 ---
 
@@ -48,11 +51,11 @@ many systems, but do not assume it is working until re-tested in Phase 1.
 
 - Invalid UID warning for uid://placeholder_circe in
   game/features/player/player.tscn (GitHub issue #4).
-- Invalid UID warnings for uid://placeholder_moly in
-  game/features/world/sundial.tscn and game/features/world/boat.tscn.
 - Duplicate root .gdignore can appear after restructure and cause Godot to
   ignore the project; remove duplicate with editor closed.
 - TEST_SCRIPT.gd removed due to early autoload checks (see git history).
+- Crop growth stages and several item icons use placeholder textures until
+  production art is ready.
 
 ---
 
@@ -84,6 +87,7 @@ Success Criteria:
 Automated Verification:
 - .\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless
   --script tests/run_tests.gd passes 5/5.
+- GdUnit4 suite passes (res://tests/gdunit4).
 - Legacy Phase 0 validator removal is documented, and no references remain.
 Manual Verification:
 - Smoke test prints "[SmokeTest] OK" with no errors.
@@ -123,8 +127,9 @@ Manual Verification:
 Objective: Ensure resources are complete and not null or stubbed.
 
 Tasks:
-- Verify all CropData growth_stages textures are non-null.
-- Verify item icons are present for all inventory items and minigame rewards.
+- Ensure all CropData growth_stages textures are non-null (placeholders ok).
+- Ensure item icons are present for all inventory items and minigame rewards
+  (placeholders ok).
 - Verify recipe resources exist for all required potions.
 - Verify dialogue resources are at least minimal playable (5+ lines) and flags
   are valid.
