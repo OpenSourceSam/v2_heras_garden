@@ -32,7 +32,7 @@ func start_crafting(grinding_pattern: Array[String], buttons: Array[String], tim
 
 	_update_display()
 
-func start_with_difficulty(diff: Difficulty, recipe: RecipeData) -> void:
+func start_with_difficulty(diff: Difficulty, _recipe: RecipeData) -> void:
 	var settings = DIFFICULTY_SETTINGS[diff]
 	allow_retry = settings.retry
 	timing_window = settings.timing
@@ -40,7 +40,7 @@ func start_with_difficulty(diff: Difficulty, recipe: RecipeData) -> void:
 	_generate_buttons(settings.buttons)
 	start_crafting(pattern, button_sequence, timing_window)
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if not visible:
 		return
 
@@ -116,7 +116,7 @@ func _update_display() -> void:
 	# Show next expected input
 	pass
 
-func _play_feedback(correct: bool) -> void:
+func _play_feedback(_correct: bool) -> void:
 	# Play sound, show visual effect
 	pass
 

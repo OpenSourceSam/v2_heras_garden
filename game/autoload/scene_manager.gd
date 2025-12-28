@@ -30,6 +30,10 @@ func change_scene(scene_path: String) -> void:
 	scene_changed.emit()
 
 func _fade_out() -> void:
+	if _fade_duration <= 0.0 or DisplayServer.get_name() == "headless":
+		_ensure_fade_layer()
+		_fade_rect.color.a = 1.0
+		return
 	_ensure_fade_layer()
 	_fade_rect.color.a = 0.0
 	var tween = create_tween()
@@ -37,6 +41,10 @@ func _fade_out() -> void:
 	await tween.finished
 
 func _fade_in() -> void:
+	if _fade_duration <= 0.0 or DisplayServer.get_name() == "headless":
+		_ensure_fade_layer()
+		_fade_rect.color.a = 0.0
+		return
 	_ensure_fade_layer()
 	var tween = create_tween()
 	tween.tween_property(_fade_rect, "color:a", 0.0, _fade_duration)

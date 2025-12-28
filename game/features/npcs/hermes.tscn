@@ -2,6 +2,6 @@
 
 [ext_resource type="PackedScene" path="res://game/features/npcs/npc_base.tscn" id="1_base"]
 
-[node name="Hermes" parent="." instance=ExtResource("1_base")]
+[node name="Hermes" instance=ExtResource("1_base")]
 npc_id = "hermes"
 dialogue_id = "circe_intro"

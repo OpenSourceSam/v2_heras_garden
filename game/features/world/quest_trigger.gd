@@ -8,6 +8,10 @@ class_name QuestTrigger
 
 var triggered: bool = false
 
+func _ready() -> void:
+	if not body_entered.is_connected(_on_body_entered):
+		body_entered.connect(_on_body_entered)
+
 func _on_body_entered(body: Node2D) -> void:
 	if triggered and one_shot:
 		return

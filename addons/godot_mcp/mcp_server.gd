@@ -9,7 +9,7 @@ var debugger_bridge = null  # Debugger control bridge
 var debug_output_publisher = null  # Live debug output broadcaster
 var _runtime_bridge_warning_logged := false
 var _debugger_bridge_warning_logged := false
-const SCENE_CAPTURE_NAMES := ["scene", "limboai", "mcp_scene", "mcp_eval", "mcp_input"]
+const SCENE_CAPTURE_NAMES := ["scene", "limboai", "mcp_eval", "mcp_input"]
 const STACK_CAPTURE_NAMES := ["stack", "call_stack", "callstack"]
 
 const INPUT_HANDLER_AUTOLOAD_NAME := "MCPInputHandler"

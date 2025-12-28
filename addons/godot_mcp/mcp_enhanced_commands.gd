@@ -112,6 +112,11 @@ func _handle_get_runtime_scene_structure(client_id: int, params: Dictionary, com
 		await scene_tree.process_frame
 
 	if snapshot.is_empty():
+		snapshot = await _fallback_runtime_scene_dump(runtime_bridge, options, timeout_ms)
+	if snapshot.is_empty():
+		await scene_tree.create_timer(0.6).timeout
+		snapshot = await _fallback_runtime_scene_dump(runtime_bridge, options, timeout_ms)
+	if snapshot.is_empty():
 		snapshot = {
 			"error": "Timed out waiting for runtime scene data.",
 			"hint": "Ensure the remote debugger supports scene tree capture; try opening the Remote Scene tab in Godot or enabling EngineDebugger.set_capture('scene', true) inside the running project."
@@ -186,6 +191,34 @@ func _handle_evaluate_runtime(client_id: int, params: Dictionary, command_id: St
 		response["error"] = "Runtime evaluation failed."
 
 	_send_success(client_id, response, command_id)
+
+func _fallback_runtime_scene_dump(runtime_bridge: MCPRuntimeDebuggerBridge, options: Dictionary, timeout_ms: int) -> Dictionary:
+	if runtime_bridge == null:
+		return {}
+	var max_depth: int = options.get("max_depth", -1)
+	var expression := "get_node(\"/root/MCPInputHandler\").dump_scene_tree(%d)" % max_depth
+	var request_info := runtime_bridge.evaluate_runtime_expression(expression, {})
+	if request_info.has("error"):
+		return {}
+
+	var session_id: int = request_info.get("session_id", -1)
+	var request_id: int = request_info.get("request_id", -1)
+	if session_id < 0 or request_id < 0:
+		return {}
+
+	var scene_tree := get_tree()
+	if scene_tree == null:
+		return {}
+
+	var deadline: int = Time.get_ticks_msec() + timeout_ms
+	while Time.get_ticks_msec() <= deadline:
+		if runtime_bridge.has_eval_result(session_id, request_id):
+			var response := runtime_bridge.take_eval_result(session_id, request_id)
+			if response.get("success", true) and response.get("result", null) is Dictionary:
+				return response["result"]
+			return {}
+		await scene_tree.process_frame
+	return {}
 
 func _build_scene_structure_result(options: Dictionary) -> Dictionary:
 	var editor_interface = _get_editor_interface()

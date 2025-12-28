@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=4]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(64, 32)
-
 [ext_resource type="TileSet" path="res://game/shared/resources/tiles/placeholder_grass_tileset.tres" id="1_tileset"]
 [ext_resource type="Script" path="res://game/features/locations/return_trigger.gd" id="2_return_trigger"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(64, 32)
 
 [node name="SacredGrove" type="Node2D"]
 
