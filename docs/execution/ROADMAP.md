@@ -624,32 +624,12 @@ Objective: Replace placeholders, finalize narrative, optimize performance, and s
 - All minigames completable with final difficulty settings
 - Quest progression cannot be broken by sequence breaking
 
-### F. Gift Delivery Preparation
+### F. Final Delivery
 
 **Personal Gift Build:**
-- Final signed APK ready for installation
-- Test installation on target Retroid device
-- Create backup copy of APK and keystore (for future updates)
-
-**Gift Presentation Materials (Optional):**
-- Simple controls guide (D-pad layout, button functions)
-- Printed "How to Play" card if gifting the device too
-- Personal note about the game's mythological theme
-
-**Installation Guide for Recipient:**
-- Write simple instructions for installing APK on Retroid:
-  1. Enable "Install from Unknown Sources" in Settings
-  2. Copy APK to device via USB or SD card
-  3. Tap APK file to install
-  4. Launch "Circe's Garden" from app drawer
-- Include your contact info for tech support
-
-**Optional Documentation:**
-- Simple README.txt with:
-  - What the game is about (mythology, farming, crafting)
-  - Basic controls (D-pad, A/B buttons)
-  - Easter eggs or secrets you want to hint at
-  - Credits (your work + tools used)
+- Final signed release APK ready for installation on Retroid
+- Test installation and full playthrough on target Retroid device
+- Backup APK and keystore to secure location (for future updates if needed)
 
 Success Criteria:
 Manual Verification:
