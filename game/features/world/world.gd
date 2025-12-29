@@ -35,6 +35,7 @@ func _on_seed_requested(plot: Node) -> void:
 func _on_seed_selected(seed_id: String) -> void:
 	if _active_plot and _active_plot.has_method("plant"):
 		_active_plot.plant(seed_id)
+		GameState.remove_item(seed_id, 1)
 	_active_plot = null
 
 func _on_seed_cancelled() -> void:

@@ -49,6 +49,7 @@ func _ready() -> void:
 # ============================================
 
 func _on_new_game_pressed() -> void:
+	GameState.new_game()
 	SceneManager.change_scene("res://game/features/world/world.tscn")
 
 func _on_continue_pressed() -> void:
