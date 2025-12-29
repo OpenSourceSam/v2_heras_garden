@@ -330,7 +330,33 @@ Create test log document: `docs/execution/PHASE3_PLAYTHROUGH_LOG.md`
 - Shop UI: D-pad navigation, A button purchase
 - Each minigame: D-pad controls responsive and clear
 
-### D. Soft-Lock Testing
+### D. Save/Load System Validation
+
+**Save System Testing:**
+- Save at different game states:
+  - Fresh game start (Day 1, no progress)
+  - Mid-progress (Day 5, some crops planted, some quests done)
+  - Late game (most quests complete, full inventory)
+- Verify save file creation in expected location
+- Check save file is not corrupted (valid JSON/binary format)
+
+**Load System Testing:**
+- Load each saved game and verify:
+  - Player position preserved
+  - Inventory contents match
+  - Quest flags intact
+  - Day/time state correct
+  - NPC dialogue states correct (completed dialogues don't repeat)
+- Test loading from main menu vs in-game
+- Test "Continue" button loads most recent save
+
+**Edge Cases:**
+- Save during dialogue → Load → Verify dialogue state
+- Save during minigame → Load → Should return to safe state (world/menu)
+- Multiple save slots (if implemented)
+- Save file migration (if save format changes between builds)
+
+### E. Soft-Lock Testing
 
 **Test these edge case scenarios:**
 1. **Resource Depletion:**
@@ -355,7 +381,13 @@ Create test log document: `docs/execution/PHASE3_PLAYTHROUGH_LOG.md`
    - Advance day during minigame
    - Verify no state corruption
 
-### E. Bug Logging
+6. **Tutorial/First-Time Experience:**
+   - Start completely new game with no prior knowledge
+   - Verify player can discover controls without external documentation
+   - Check that first quest/objective is clear
+   - Confirm no essential information is missable
+
+### F. Bug Logging
 
 Create: `docs/execution/PHASE3_BUGS.md`
 
@@ -395,36 +427,237 @@ Objective: Produce a testable APK and validate on hardware.
 
 **Note:** Begin Phase 4 only after Phase 3 bugs are fixed and playthrough is stable.
 
-Tasks:
-- Configure Android export preset in Godot (Project → Export, add Android template)
-- Install Android SDK (check `project.godot` for required SDK version)
-- Build debug APK and install on Retroid Pocket Classic via USB
-- Perform 15-30 minute hardware test following Phase 3 test plan
-- Log device-specific issues (performance, controls, display)
-- Fix CRITICAL bugs and rebuild as needed
+### A. Android Build Setup
+
+**Prerequisites:**
+- Install Android SDK (version specified in `project.godot`)
+- Install OpenJDK (required for Android builds)
+- Download Android export templates for Godot 4.5.1
+
+**Export Preset Configuration:**
+1. In Godot: Project → Export → Add → Android
+2. Set package name (e.g., com.yourname.circesgarden)
+3. Configure screen orientation: Landscape (for Retroid)
+4. Set minimum SDK version: 21 (Android 5.0) or higher
+5. Enable USB debugging permissions
+6. Configure app icon in export preset
+
+**Build Debug APK:**
+```
+In Godot: Project → Export → Android (Debug)
+Save as: circes_garden_debug.apk
+```
+
+### B. Device Installation and Testing
+
+**Install on Retroid Pocket Classic:**
+1. Enable USB debugging on device
+2. Connect via USB
+3. Use ADB: `adb install circes_garden_debug.apk`
+   - Or use Godot's "Export and Deploy" for direct install
+4. Verify app appears in app drawer
+
+**Hardware Test Plan:**
+- Follow Phase 3 Full Playthrough Test Plan on device
+- Monitor for device-specific issues:
+  - Frame rate drops
+  - Touch input (should be disabled)
+  - Physical button mapping
+  - Screen resolution/scaling
+  - Battery drain
+  - Audio crackling or sync issues
+  - Overheating during extended play
+
+**Performance Monitoring:**
+- Use ADB logcat to monitor errors: `adb logcat | grep Godot`
+- Check for memory warnings or crashes
+- Note any stuttering during scene transitions
+
+### C. Common Build Issues and Troubleshooting
+
+**"Export templates not found":**
+- Download export templates: Editor → Manage Export Templates
+- Ensure version matches Godot version (4.5.1)
+
+**"Android SDK not found":**
+- Set SDK path in Editor → Editor Settings → Export → Android
+- Verify Android SDK installation includes build-tools and platform-tools
+
+**APK won't install:**
+- Check package name doesn't conflict with existing app
+- Verify USB debugging enabled on device
+- Try: `adb uninstall com.yourname.circesgarden` then reinstall
+
+**Controls not working on device:**
+- Verify InputMap settings in project.godot
+- Test with joypad tester to confirm button mapping
+- Check Retroid's button configuration matches expected Joypad indices
+
+**App crashes on launch:**
+- Check ADB logcat for error messages
+- Verify all resources are exported (check export settings)
+- Test on PC first to isolate device-specific issues
+
+### D. Device-Specific Bug Logging
+
+Create: `docs/execution/PHASE4_DEVICE_BUGS.md`
+
+Use same template as Phase 3, but add:
+- **Device Info:** Retroid model, Android version, build number
+- **Build Info:** APK version, debug/release, build date
 
 Success Criteria:
 Manual Verification:
 - APK installs and runs on Retroid Pocket Classic
 - Controls responsive and stable for 30+ minutes
 - No device-specific crashes or performance issues
+- Frame rate acceptable (target 60 FPS, minimum 30 FPS)
+- No critical bugs introduced by Android build
 
 ---
 
 ## PHASE 5: FINAL POLISH AND RELEASE
 
-Objective: Replace placeholders, finalize narrative, and ship.
+Objective: Replace placeholders, finalize narrative, optimize performance, and ship.
 
-Tasks:
-- Production art and audio.
-- Final narrative pass.
-- Performance optimizations.
-- Release packaging.
+**Note:** Begin Phase 5 only after Phase 4 device testing confirms stable gameplay.
+
+### A. Production Asset Replacement
+
+**Art Assets** (reference: `docs/execution/PLACEHOLDER_ASSET_SPEC.txt`):
+- Replace all 26 placeholder assets with final production art
+- Maintain exact dimensions and file formats specified
+- Test each replacement in-game to verify visual quality
+- Priority order:
+  1. Player sprite (Circe) and world tiles
+  2. Crop and item icons (most visible to player)
+  3. NPC portraits
+  4. Scene-specific sprites (minigame backgrounds)
+  5. App icon (512x512 for store listing)
+
+**Audio Implementation:**
+- Add background music tracks for:
+  - Main menu
+  - World/garden area
+  - Each location (Scylla Cove, Sacred Grove)
+  - Minigames (optional, can share music)
+- Verify all SFX are in place:
+  - Existing: `wrong_buzz`, `catch_chime`, `urgency_tick`, `failure_sad`
+  - Check for missing: harvest sound, planting sound, day advance chime, potion craft success
+- Set appropriate volume levels (music lower than SFX)
+- Test audio doesn't cause frame drops on Retroid hardware
+
+### B. Narrative Finalization
+
+**Dialogue Polish:**
+- Review all dialogue for typos, tone consistency, and clarity
+- Ensure mythological references are accurate
+- Verify character voice consistency (Circe, Hermes, Aeetes, Daedalus, Scylla)
+- Add any missing tutorial hints in early dialogue
+
+**Epilogue Completion:**
+- Verify epilogue scene exists and triggers after quest completion
+- Confirm epilogue provides satisfying narrative closure
+- Test all flag conditions leading to epilogue
+
+**Credits/About Screen:**
+- Create credits scene listing:
+  - Development credits
+  - Art/audio credits
+  - Tools used (Godot, Claude Code, etc.)
+  - Special thanks
+- Add "About" or credits option to main menu
+
+### C. Performance Optimization
+
+**Profiling on Target Device:**
+- Run Godot profiler during 30-minute Retroid session
+- Identify any frame drops or stutters
+- Target: Maintain 60 FPS on Retroid Pocket Classic
+
+**Optimization Checklist:**
+- Texture compression: Ensure all textures use optimal format for mobile
+- Scene optimization: Remove unused nodes, check for memory leaks
+- Script optimization: Profile any long-running _process() or _physics_process() loops
+- Audio optimization: Use compressed audio formats (OGG recommended)
+- Resource preloading: Verify critical resources preload at scene start
+
+**Memory Testing:**
+- Monitor memory usage during full playthrough
+- Check for memory leaks (save/load cycles, scene transitions)
+- Target: Stay under 512MB RAM usage
+
+### D. Release Build Configuration
+
+**Godot Export Settings:**
+- Set release mode in export preset (not debug)
+- Enable texture compression (VRAM Compression)
+- Set correct orientation (landscape for Retroid)
+- Configure minimum Android version (check target device)
+- Set app permissions (minimal, storage only if save/load requires)
+
+**Version and Metadata:**
+- Set version number in `project.godot` (e.g., 1.0.0)
+- Set application name: "Circe's Garden" (or final title)
+- Configure app icon in export preset
+- Set package name (com.yourname.circesgarden format)
+
+**APK Signing for Release:**
+- Generate release keystore (keep secure backup!)
+- Sign APK with release key
+- Document keystore password in secure location
+- Test signed release APK on device
+
+### E. Final Testing Checklist
+
+**Pre-Release Validation:**
+- Full playthrough with final assets (60+ minutes)
+- Save/load testing across all game states
+- All CRITICAL and HIGH bugs from Phase 3 confirmed fixed
+- No console errors or warnings during playthrough
+- Test on clean install (uninstall previous versions first)
+
+**Edge Case Verification:**
+- New game → immediate quit → load (should handle gracefully)
+- Rapid scene transitions (spam A button during transitions)
+- Inventory full edge cases
+- All minigames completable with final difficulty settings
+- Quest progression cannot be broken by sequence breaking
+
+### F. Distribution Preparation
+
+**Store Listing Materials:**
+- Screenshots (5-8 gameplay screenshots)
+- App description (150-4000 characters)
+- Short description (80 characters)
+- Feature graphic (1024x500 for Google Play, if targeting)
+- Promotional text highlighting unique features
+
+**Release Channels:**
+- Itch.io (recommended for indie): Upload APK, set price/free
+- Google Play (optional): Requires developer account ($25 one-time)
+- GitHub Releases: Tag release, upload APK for backers/testers
+- Direct distribution: Host APK for sideloading
+
+**Documentation:**
+- Create README.md with:
+  - Game description
+  - Installation instructions
+  - Controls documentation (D-pad layout)
+  - Known issues (if any)
+  - Credits
+- Update LICENSE file if open source
+- Add CHANGELOG.md documenting version history
 
 Success Criteria:
 Manual Verification:
-- Full playthrough with final assets.
-- Release build stable.
+- Full playthrough with final assets completes without issues
+- Release build stable on Retroid hardware (60+ minute session)
+- All placeholder assets replaced
+- Audio implementation complete and balanced
+- Performance maintains 60 FPS target
+- APK signed and installable on fresh device
+- Store listing materials ready for distribution
 
 ---
 
