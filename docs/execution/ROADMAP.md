@@ -155,10 +155,10 @@ Manual Verification:
 - No missing resource loads during playthrough.
 - No null textures on crops or item icons.
 
-### Manual Test Results (2025-12-28)
+### Manual Test Results (2025-12-29)
 | System | Status | Notes |
 |--------|--------|-------|
-| Resource load + fields | PASS | Editor resource scan OK for crops/items/recipes/dialogues/NPCs. |
+| Resource load + fields | PASS | GdUnit4 integrity checks green; templates skipped in strict validation, IDs validated. |
 
 ---
 
