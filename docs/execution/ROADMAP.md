@@ -263,3 +263,64 @@ Goal: Validate Phase 1 systems via a single autonomous GdUnit4 batch.
 Next:
 - Re-run tests/run_tests.gd and tests/smoke_test.tscn to close Phase 0.
 - Manual pass for full loop feel (D-pad flow, pacing, and visuals).
+
+---
+
+## Agent Lanes (Branch-Based, Sequential or Parallel)
+
+Purpose: Keep work isolated so tasks can be done one at a time or in parallel
+without conflicts.
+
+Rules:
+- One lane = one branch. Naming: lane-<phase>-<short-name>.
+- Stay inside your lane scope. Do not edit files outside the lane.
+- Single-writer files (tester only): docs/execution/ROADMAP.md.
+- Single-writer files (core only): project.godot.
+
+Sequential mode:
+- Finish lane branch -> run tests -> merge -> start next lane.
+
+Parallel mode:
+- Run multiple lane branches at once; tester verifies and updates roadmap after
+  merges.
+
+### Phase 1 Close-Out (2 dev lanes + tester)
+
+Lane A (branch: lane-p1-farm-loop)
+- Farm plot lifecycle completion: till -> plant -> grow -> harvest.
+- Scope: game/features/farm_plot/, related tests in tests/gdunit4/.
+
+Lane B (branch: lane-p1-minigames-dialogue)
+- Moon tears success path + dialogue choices/flag gating verification.
+- Scope: game/features/minigames/, game/features/ui/dialogue_box.*,
+  tests/gdunit4/moon_tears_test.gd, tests/gdunit4/dialogue_box_test.gd.
+
+Tester lane (branch: lane-test-phase1)
+- Run tests/run_tests.gd + GdUnit4 suite after each merge.
+- Update Phase 1 status table in this roadmap.
+
+### Phase 2 Data Integrity (2 dev lanes + tester)
+
+Lane A (branch: lane-p2-crops-items)
+- Validate crops + items .tres resources and placeholder coverage.
+- Scope: game/shared/resources/crops/, game/shared/resources/items/.
+
+Lane B (branch: lane-p2-dialogues-npcs)
+- Validate dialogue + NPC .tres resources and required IDs/flags.
+- Scope: game/shared/resources/dialogues/, game/shared/resources/npcs/.
+
+Tester lane (branch: lane-test-phase2)
+- Run resource integrity tests and update Phase 2 status table.
+
+### Phase 4 Build Prep (2 dev lanes + tester)
+
+Lane A (branch: lane-p4-android-export)
+- Add Android export preset and document build steps.
+- Scope: export_presets.cfg, docs/execution/ROADMAP.md (tester updates only).
+
+Lane B (branch: lane-p4-device-test)
+- Retroid test checklist and input stability validation.
+- Scope: docs/execution/ROADMAP.md (tester updates only), reports/.
+
+Tester lane (branch: lane-test-phase4)
+- Validate APK install/run and update Phase 4 status table.
