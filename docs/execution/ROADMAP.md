@@ -119,17 +119,17 @@ Manual Verification:
 |--------|--------|-------|
 | Player movement | PASS (partial) | Movement confirmed via D-pad actions early; later movement input became unreliable in MCP, so positioning used runtime eval for a few checks. |
 | Input mapping (Retroid) | PASS | `interact` mapped to Joypad Button 0 (A); `ui_inventory` mapped to Joypad Button 4 (Select). |
-| Farm plot lifecycle | PASS (partial) | Tilling works via `interact` action after MCP input fix; plant/harvest still unverified. |
+| Farm plot lifecycle | PASS (unit) | Seed selector wiring verified; plant/harvest covered by GdUnit. |
 | Day/Night (Sundial) | PASS | Logs: `[GameState] Day advanced to 2` + `Time advanced!` |
 | Boat travel | PASS (unit) | `boat_travel_test` loads `scylla_cove`; fixed Scylla scene root and headless fade path. |
 | Quest triggers | PASS (unit) | QuestTrigger now connects `body_entered`; `quest_trigger_signal_test` green. |
 | NPC spawning | PASS (unit) | NPC scenes instantiate (removed root `parent="."`); `npc_scene_test` green. |
 | Scene transitions (scene_test_a/b) | PASS (partial) | Works after `NextButton.grab_focus()` + `ui_accept`; no auto-focus. |
-| Dialogue box | PASS (partial) | `start_dialogue` via eval; `ui_accept` advances lines. Choices not verified. |
+| Dialogue box | PASS (partial) | `start_dialogue` via eval; `ui_accept` advances lines. Choices now D-pad focusable via test. |
 | Inventory UI | PASS | `ui_inventory` action opens/closes panel in world; navigation verified in inventory scene. |
 | Crafting controller/minigame | PASS (code fix) | Switched to `_input`; test update pending (GdUnit CLR error on last run). |
 | Minigame: Herb identification | PASS | Tutorial flag set + `wrong_buzz` SFX on selection. |
-| Minigame: Moon tears | FAIL | No `catch_chime`; success not verified. |
+| Minigame: Moon tears | PASS (unit) | `moon_tears_test` success path green; `catch_chime` present. |
 | Minigame: Sacred earth | PASS | `urgency_tick` + `failure_sad` on timeout. |
 | Minigame: Weaving | PASS (partial) | `ui_confirm` + `wrong_buzz` SFX; success/fail not verified. |
 | Cutscene: Prologue opening | PASS | Flag set: `prologue_complete`. |
