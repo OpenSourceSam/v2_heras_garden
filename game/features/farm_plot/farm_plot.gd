@@ -20,6 +20,11 @@ enum State { EMPTY, TILLED, PLANTED, GROWING, HARVESTABLE }
 @onready var crop_sprite: Sprite2D = $CropSprite
 
 # ============================================
+# SIGNALS
+# ============================================
+signal seed_requested(plot: Node)
+
+# ============================================
 # STATE
 # ============================================
 var current_state: State = State.EMPTY
@@ -96,7 +101,7 @@ func interact() -> void:
 		State.TILLED:
 			# Player needs to select seed from inventory
 			# This will be handled by UI later
-			pass
+			seed_requested.emit(self)
 		State.PLANTED, State.GROWING:
 			water()
 		State.HARVESTABLE:

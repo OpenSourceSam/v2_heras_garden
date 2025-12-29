@@ -10,7 +10,6 @@ Purpose: Accurate, test-based roadmap for the current repo state.
 ## How to Use This Roadmap
 
 For all contributors:
-- Read CONTEXT.md first.
 - Use this file for priorities, status, and phase definitions.
 - Do one task at a time.
 - Add checkpoints only at 50% and 100% for each phase.
