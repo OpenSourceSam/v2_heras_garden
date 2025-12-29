@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest2_start"
+lines = [{"speaker": "Hermes", "text": "Good. Now we need sap from the tree."},
+{"speaker": "Hermes", "text": "Work fast before it hardens."},
+{"speaker": "Hermes", "text": "Bring the vial back to Circe."}]
+choices = []
+flags_required = ["quest_1_complete"]
+flags_to_set = ["quest_2_active"]
+next_dialogue_id = ""

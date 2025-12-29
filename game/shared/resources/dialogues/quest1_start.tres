@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest1_start"
+lines = [{"speaker": "Hermes", "text": "Circe needs a careful hand."},
+{"speaker": "Hermes", "text": "Start with the herbs in the garden."},
+{"speaker": "Hermes", "text": "Find the true glow and bring it back."}]
+choices = []
+flags_required = ["prologue_complete"]
+flags_to_set = ["quest_1_active"]
+next_dialogue_id = ""

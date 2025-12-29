@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest8_start"
+lines = [{"speaker": "Daedalus", "text": "We will need a binding ward."},
+{"speaker": "Daedalus", "text": "Sacred earth and woven cloth."},
+{"speaker": "Daedalus", "text": "The pattern must be exact."}]
+choices = []
+flags_required = ["quest_7_complete"]
+flags_to_set = ["quest_8_active"]
+next_dialogue_id = ""

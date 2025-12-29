@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest5_start"
+lines = [{"speaker": "Aeetes", "text": "Now we brew the calming draught."},
+{"speaker": "Aeetes", "text": "Gather moly and the pink flower."},
+{"speaker": "Aeetes", "text": "Follow the ritual with care."}]
+choices = []
+flags_required = ["quest_4_complete"]
+flags_to_set = ["quest_5_active"]
+next_dialogue_id = ""

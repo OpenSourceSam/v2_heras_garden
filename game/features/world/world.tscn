@@ -92,6 +92,7 @@ shape = SubResource("RectangleShape2D_quest")
 
 [node name="Quest3" type="Area2D" parent="QuestTriggers"]
 position = Vector2(-64, 64)
+monitoring = false
 script = ExtResource("6_quest_trigger")
 required_flag = "quest_2_complete"
 set_flag_on_enter = "quest_3_active"
@@ -102,6 +103,7 @@ shape = SubResource("RectangleShape2D_quest")
 
 [node name="Quest4" type="Area2D" parent="QuestTriggers"]
 position = Vector2(0, 64)
+monitoring = false
 script = ExtResource("6_quest_trigger")
 required_flag = "quest_3_complete"
 set_flag_on_enter = "quest_4_active"
@@ -112,6 +114,7 @@ shape = SubResource("RectangleShape2D_quest")
 
 [node name="Quest5" type="Area2D" parent="QuestTriggers"]
 position = Vector2(64, 64)
+monitoring = false
 script = ExtResource("6_quest_trigger")
 required_flag = "quest_4_complete"
 set_flag_on_enter = "quest_5_active"
@@ -122,6 +125,7 @@ shape = SubResource("RectangleShape2D_quest")
 
 [node name="Quest6" type="Area2D" parent="QuestTriggers"]
 position = Vector2(128, 64)
+monitoring = false
 script = ExtResource("6_quest_trigger")
 required_flag = "quest_5_complete"
 set_flag_on_enter = "quest_6_active"
@@ -132,6 +136,7 @@ shape = SubResource("RectangleShape2D_quest")
 
 [node name="Quest7" type="Area2D" parent="QuestTriggers"]
 position = Vector2(192, 64)
+monitoring = false
 script = ExtResource("6_quest_trigger")
 required_flag = "quest_6_complete"
 set_flag_on_enter = "quest_7_active"
@@ -142,6 +147,7 @@ shape = SubResource("RectangleShape2D_quest")
 
 [node name="Quest8" type="Area2D" parent="QuestTriggers"]
 position = Vector2(256, 64)
+monitoring = false
 script = ExtResource("6_quest_trigger")
 required_flag = "quest_7_complete"
 set_flag_on_enter = "quest_8_active"
@@ -152,6 +158,7 @@ shape = SubResource("RectangleShape2D_quest")
 
 [node name="Quest9" type="Area2D" parent="QuestTriggers"]
 position = Vector2(320, 64)
+monitoring = false
 script = ExtResource("6_quest_trigger")
 required_flag = "quest_8_complete"
 set_flag_on_enter = "quest_9_active"
@@ -162,6 +169,7 @@ shape = SubResource("RectangleShape2D_quest")
 
 [node name="Quest10" type="Area2D" parent="QuestTriggers"]
 position = Vector2(384, 64)
+monitoring = false
 script = ExtResource("6_quest_trigger")
 required_flag = "quest_9_complete"
 set_flag_on_enter = "quest_10_active"
@@ -172,6 +180,7 @@ shape = SubResource("RectangleShape2D_quest")
 
 [node name="Quest11" type="Area2D" parent="QuestTriggers"]
 position = Vector2(448, 64)
+monitoring = false
 script = ExtResource("6_quest_trigger")
 required_flag = "quest_10_complete"
 set_flag_on_enter = "quest_11_active"
@@ -182,6 +191,7 @@ shape = SubResource("RectangleShape2D_quest")
 
 [node name="Epilogue" type="Area2D" parent="QuestTriggers"]
 position = Vector2(512, 64)
+monitoring = false
 script = ExtResource("6_quest_trigger")
 required_flag = "quest_11_complete"
 set_flag_on_enter = "free_play_unlocked"

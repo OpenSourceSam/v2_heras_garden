@@ -4,4 +4,4 @@
 
 [node name="Daedalus" instance=ExtResource("1_base")]
 npc_id = "daedalus"
-dialogue_id = "circe_intro"
+dialogue_id = ""

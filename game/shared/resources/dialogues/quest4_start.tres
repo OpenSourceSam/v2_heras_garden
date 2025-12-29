@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest4_start"
+lines = [{"speaker": "Aeetes", "text": "The garden must be steady now."},
+{"speaker": "Aeetes", "text": "Till, plant, and keep the days moving."},
+{"speaker": "Aeetes", "text": "We cannot proceed without stores."}]
+choices = []
+flags_required = ["quest_3_complete"]
+flags_to_set = ["quest_4_active"]
+next_dialogue_id = ""

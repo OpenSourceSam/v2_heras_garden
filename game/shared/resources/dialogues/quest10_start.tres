@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest10_start"
+lines = [{"speaker": "Circe", "text": "We need moon tears for the next brew."}, {"speaker": "Circe", "text": "Catch three before they fade."}, {"speaker": "Circe", "text": "Bring them to the altar."}]
+choices = []
+flags_required = ["quest_9_complete"]
+flags_to_set = ["quest_10_active"]
+next_dialogue_id = ""
