@@ -1,0 +1,11 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/npc_world_placeholder.png" id="1_texture"]
+
+[resource]
+animations = [{
+"frames": [ExtResource("1_texture")],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}]

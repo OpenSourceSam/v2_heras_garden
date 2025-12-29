@@ -19,9 +19,9 @@ For all contributors:
 ## Current Phase Status
 
 Last Updated: 2025-12-29
-Current Phase: Phase 2 - Data and Content Integrity
-Status: Phase 0 and Phase 1 are COMPLETE (all automated and manual tests PASS).
-Phase 2 focuses on resource validation, placeholder art audit, and content completeness.
+Current Phase: Phase 3 - Balance and QA
+Status: Phase 0-2 are COMPLETE (all automated tests PASS; Phase 2 integrity and placeholder checks validated).
+Phase 3 focuses on balance, QA, and D-pad playthrough validation.
 
 ---
 
@@ -256,7 +256,7 @@ Objective: Tune difficulty and identify critical bugs before device testing.
 
 ### A. Full Playthrough Test Plan
 
-Create test log document: `docs/execution/PHASE3_PLAYTHROUGH_LOG.md`
+Record playthrough notes directly in this roadmap using the checkpoint template at the bottom of this file. Create separate docs only if notes become too large to keep this file readable.
 
 **Test Sequence** (record timestamp and notes for each step):
 1. Prologue cutscene → Main menu → Select "New Game" → World spawn
@@ -289,6 +289,32 @@ Create test log document: `docs/execution/PHASE3_PLAYTHROUGH_LOG.md`
 **Time Target:** 30-45 minutes total
 
 **Logging:** Record any errors, soft-locks, missing textures, unclear objectives
+
+<!-- PHASE_3_CHECKPOINT: 50% -->
+Checkpoint Date: 2025-12-29
+Verified By: Codex
+
+Systems Status
+| System | Status | Notes |
+|--------|--------|-------|
+| Automated tests | OK | `tests/run_tests.gd` PASS 5/5; GdUnit4 suite PASS |
+| Smoke test | OK | `--scene res://tests/smoke_test.tscn` prints `[SmokeTest] OK` |
+| Scene load smoke | OK | `tests/phase3_scene_load_runner.gd` PASS |
+
+Blockers (if any)
+- None
+
+Files Modified This Phase
+- game/shared/resources/npcs/placeholder_npc_frames.tres - add placeholder SpriteFrames
+- game/shared/resources/npcs/aeetes.tres - assign placeholder frames
+- game/shared/resources/npcs/circe.tres - assign placeholder frames
+- game/shared/resources/npcs/daedalus.tres - assign placeholder frames
+- game/shared/resources/npcs/hermes.tres - assign placeholder frames
+- game/shared/resources/npcs/scylla.tres - assign placeholder frames
+- tests/phase3_scene_load_runner.gd - add headless scene-load smoke runner
+
+Ready for Next Phase: No
+<!-- END_CHECKPOINT -->
 
 ### B. Difficulty Tuning Checklist
 
@@ -389,7 +415,7 @@ Create test log document: `docs/execution/PHASE3_PLAYTHROUGH_LOG.md`
 
 ### F. Bug Logging
 
-Create: `docs/execution/PHASE3_BUGS.md`
+Log bugs inline in this roadmap. Create a dedicated file only if the list becomes too large to keep this file readable.
 
 **Template per bug:**
 ```

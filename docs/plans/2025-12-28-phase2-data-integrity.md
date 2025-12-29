@@ -11,6 +11,11 @@ Validate all Phase 2 resource data with automated checks and keep templates usab
 ## Design Decision
 Extend `tests/gdunit4/resource_integrity_test.gd` (Option A) to skip TEMPLATE `.tres` files in strict checks while still validating that templates remain loadable and clearly labeled.
 
+## Manual/Visual Notes
+- Verify crop growth stages and item icons are assigned in the Godot inspector (no null textures).
+- Confirm placeholder assets from `docs/execution/PLACEHOLDER_ASSET_SPEC.txt` exist and are referenced in the resources/scenes.
+- Open minigame + crafting scenes to confirm texture assignments and watch the Output panel for missing-resource warnings.
+
 ## Implementation Phases
 
 ### Phase 2A: Lane A - Crops + Items (branch: lane-p2-crops-items)

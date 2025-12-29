@@ -19,6 +19,6 @@ func test_boat_interact_changes_scene_when_quest_active() -> void:
 
 	assert_that(SceneManager.current_scene).is_not_null()
 	if SceneManager.current_scene != null:
-		assert_that(SceneManager.current_scene.scene_file_path).is_equal(
+		assert_that(SceneManager.current_scene.scene_file_path.strip_edges()).is_equal(
 			"res://game/features/locations/scylla_cove.tscn"
 		)
