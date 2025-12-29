@@ -624,30 +624,32 @@ Objective: Replace placeholders, finalize narrative, optimize performance, and s
 - All minigames completable with final difficulty settings
 - Quest progression cannot be broken by sequence breaking
 
-### F. Distribution Preparation
+### F. Gift Delivery Preparation
 
-**Store Listing Materials:**
-- Screenshots (5-8 gameplay screenshots)
-- App description (150-4000 characters)
-- Short description (80 characters)
-- Feature graphic (1024x500 for Google Play, if targeting)
-- Promotional text highlighting unique features
+**Personal Gift Build:**
+- Final signed APK ready for installation
+- Test installation on target Retroid device
+- Create backup copy of APK and keystore (for future updates)
 
-**Release Channels:**
-- Itch.io (recommended for indie): Upload APK, set price/free
-- Google Play (optional): Requires developer account ($25 one-time)
-- GitHub Releases: Tag release, upload APK for backers/testers
-- Direct distribution: Host APK for sideloading
+**Gift Presentation Materials (Optional):**
+- Simple controls guide (D-pad layout, button functions)
+- Printed "How to Play" card if gifting the device too
+- Personal note about the game's mythological theme
 
-**Documentation:**
-- Create README.md with:
-  - Game description
-  - Installation instructions
-  - Controls documentation (D-pad layout)
-  - Known issues (if any)
-  - Credits
-- Update LICENSE file if open source
-- Add CHANGELOG.md documenting version history
+**Installation Guide for Recipient:**
+- Write simple instructions for installing APK on Retroid:
+  1. Enable "Install from Unknown Sources" in Settings
+  2. Copy APK to device via USB or SD card
+  3. Tap APK file to install
+  4. Launch "Circe's Garden" from app drawer
+- Include your contact info for tech support
+
+**Optional Documentation:**
+- Simple README.txt with:
+  - What the game is about (mythology, farming, crafting)
+  - Basic controls (D-pad, A/B buttons)
+  - Easter eggs or secrets you want to hint at
+  - Credits (your work + tools used)
 
 Success Criteria:
 Manual Verification:
