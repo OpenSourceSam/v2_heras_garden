@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" path="res://game/features/ui/inventory_panel.tscn" id="8_inventory_panel"]
 [ext_resource type="PackedScene" path="res://game/features/farm_plot/farm_plot.tscn" id="9_farm_plot"]
 [ext_resource type="PackedScene" path="res://game/features/ui/seed_selector.tscn" id="10_seed_selector"]
+[ext_resource type="PackedScene" path="res://game/features/ui/dialogue_box.tscn" id="11_dialogue_box"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_quest"]
 size = Vector2(48, 24)
@@ -197,3 +198,6 @@ script = ExtResource("3_i02xo")
 [node name="InventoryPanel" parent="UI" instance=ExtResource("8_inventory_panel")]
 
 [node name="SeedSelector" parent="UI" instance=ExtResource("10_seed_selector")]
+
+[node name="DialogueBox" parent="UI" instance=ExtResource("11_dialogue_box")]
+visible = false

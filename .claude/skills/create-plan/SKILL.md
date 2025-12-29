@@ -35,19 +35,12 @@ Parse the user's request to identify:
 
 **Critical**: Thoroughly investigate the codebase before planning.
 
-Spawn parallel sub-tasks using specialized agents:
+**NEVER use sub-agents or the Task tool for research. Use direct tools only:**
 
-```
-Research Tasks:
-- codebase-locator: Find all files related to the feature area
-- codebase-analyzer: Understand existing patterns and architecture
-- Explore: Investigate integration points and dependencies
-```
-
-For each research task, provide:
-- Specific directories to examine
-- Exact patterns or code to find
-- Required output: file:line references
+Research directly using:
+- Glob: Find files matching patterns
+- Grep: Search for code patterns
+- Read: Read files completely
 
 **Read all identified files completely** - no partial reads or summaries.
 
