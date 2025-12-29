@@ -13,6 +13,7 @@ const SPEED: float = 100.0
 # ============================================
 @onready var sprite: Sprite2D = $Sprite
 @onready var interaction_zone: Area2D = $InteractionZone
+@onready var interaction_prompt: Label = $InteractionPrompt
 
 # ============================================
 # SIGNALS
@@ -26,6 +27,8 @@ signal interacted_with(target: Node)
 func _ready() -> void:
 	assert(sprite != null, "Player Sprite node missing")
 	assert(interaction_zone != null, "Player InteractionZone missing")
+	assert(interaction_prompt != null, "Player InteractionPrompt missing")
+	interaction_prompt.visible = false
 
 # ============================================
 # MOVEMENT
@@ -44,6 +47,7 @@ func _physics_process(delta: float) -> void:
 	# Update sprite flip based on direction
 	if direction.x != 0:
 		sprite.flip_h = direction.x < 0
+	_update_interaction_prompt()
 
 # ============================================
 # INTERACTION
@@ -73,3 +77,26 @@ func _try_interact() -> void:
 			parent.interact()
 			interacted_with.emit(parent)
 			return
+
+func _update_interaction_prompt() -> void:
+	var has_target := false
+	var bodies = interaction_zone.get_overlapping_bodies()
+	var areas = interaction_zone.get_overlapping_areas()
+	for target in bodies:
+		if _is_interactable(target):
+			has_target = true
+			break
+	if not has_target:
+		for target in areas:
+			if _is_interactable(target):
+				has_target = true
+				break
+	interaction_prompt.visible = has_target
+
+func _is_interactable(target: Node) -> bool:
+	if target == self:
+		return false
+	if target.has_method("interact"):
+		return true
+	var parent = target.get_parent()
+	return parent != null and parent != self and parent.has_method("interact")

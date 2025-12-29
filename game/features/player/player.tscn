@@ -30,3 +30,7 @@ zoom = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZone"]
 shape = SubResource("CircleShape2D_1")
+
+[node name="InteractionPrompt" type="Label" parent="."]
+position = Vector2(-24, -56)
+text = "Press A"
