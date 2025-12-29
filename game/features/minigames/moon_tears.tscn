@@ -1,4 +1,8 @@
-[gd_scene format=3 uid="uid://ci41qib3fuuyu"]
+[gd_scene load_steps=4 format=3 uid="uid://ci41qib3fuuyu"]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/moon_tears_stars.png" id="1_stars"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/moon_tears_moon.png" id="2_moon"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/moon_tears_player_marker.png" id="3_marker"]
 
 [node name="MoonTears" type="Control"]
 layout_mode = 3
@@ -14,15 +18,18 @@ grow_vertical = 2
 motion_scale = Vector2(0.1, 0.1)
 
 [node name="Stars" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("1_stars")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.3, 0.3)
 
 [node name="Moon" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("2_moon")
 
 [node name="TearContainer" type="Node2D" parent="."]
 
 [node name="PlayerMarker" type="Sprite2D" parent="."]
+texture = ExtResource("3_marker")
 
 [node name="CaughtCounter" type="Label" parent="."]
 layout_mode = 0
