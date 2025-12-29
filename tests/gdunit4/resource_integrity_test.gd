@@ -119,3 +119,26 @@ func test_npc_data_fields() -> void:
 		assert_that(npc.id).is_not_empty()
 		assert_that(npc.display_name).is_not_empty()
 		assert_that(npc.default_dialogue_id).is_not_empty()
+
+func test_dialogue_min_lines() -> void:
+	var dialogues = _collect_tres_paths("res://game/shared/resources/dialogues")
+	assert_that(dialogues.size()).is_greater(0)
+	for path in dialogues:
+		var dialogue = load(path) as DialogueData
+		assert_that(dialogue).is_not_null()
+		assert_that(dialogue.lines.size()).is_greater_or_equal(5)
+
+func test_npc_dialogue_references_exist() -> void:
+	var dialogue_ids: Dictionary = {}
+	var dialogues = _collect_tres_paths("res://game/shared/resources/dialogues")
+	for path in dialogues:
+		var dialogue = load(path) as DialogueData
+		if dialogue:
+			dialogue_ids[dialogue.id] = true
+
+	var npcs = _collect_tres_paths("res://game/shared/resources/npcs")
+	assert_that(npcs.size()).is_greater(0)
+	for path in npcs:
+		var npc = load(path) as NPCData
+		assert_that(npc).is_not_null()
+		assert_that(dialogue_ids.has(npc.default_dialogue_id)).is_true()
