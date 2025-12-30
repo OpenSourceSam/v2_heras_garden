@@ -23,11 +23,14 @@ func _update_npcs() -> void:
 
 	# Aeetes: appears during quest 6
 	_set_npc_visible("aeetes",
+		GameState.get_flag("quest_4_active") or
+		GameState.get_flag("quest_5_active") or
 		GameState.get_flag("quest_6_active"))
 
 	# Daedalus: appears during quest 7
 	_set_npc_visible("daedalus",
-		GameState.get_flag("quest_7_active"))
+		GameState.get_flag("quest_7_active") or
+		GameState.get_flag("quest_8_active"))
 
 func _set_npc_visible(npc_id: String, visible: bool) -> void:
 	if visible and npc_id not in spawned_npcs:
