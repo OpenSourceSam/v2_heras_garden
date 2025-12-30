@@ -417,6 +417,7 @@ Record playthrough notes directly in this roadmap using the checkpoint template 
    - Complete dialogue tree with at least one NPC
    - Test flag gating (dialogue should unlock after quest flag is set)
    - 2025-12-29: `circe_intro` dialogue + choice path executed; `met_circe` flag set.
+   - 2025-12-29: MCP run: Hermes dialogue `quest1_start` triggered; `quest_1_active` set.
 7. Cutscene progression:
    - Scylla transformation cutscene
    - Verify flags: `transformed_scylla`, `quest_3_complete`
@@ -949,6 +950,8 @@ Ready for Next Phase: Yes/No
 - MCP issues are intentionally excluded from this roadmap per current directive.
 - Phase 2 integrity checks skip `TEMPLATE_*.tres` in strict validation; templates
   remain loadable scaffolds with `template_`-prefixed IDs.
+- Input note (2025-12-29): "Press A" prompt is expected on keyboard because
+  Retroid A maps to the `interact` action (commonly bound to `E` on PC).
 
 ---
 
