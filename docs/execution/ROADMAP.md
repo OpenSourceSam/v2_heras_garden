@@ -1323,7 +1323,52 @@ Ready for Next Phase: YES (Phase 7 - Android/Retroid Build)
 
 ## PHASE 6.75: CONTENT EXPANSION (PRE-EXPORT)
 
-**Objective:** Expand dialogue and content to achieve "Stardew Valley quality" before export testing.
+### Tier 1 AI Testing Framework
+
+**Status:** COMPLETE (2025-12-30)
+**Reference:** [docs/testing/TIER1_TESTING.md](../testing/TIER1_TESTING.md)
+
+**Components:**
+| File | Purpose | Status |
+|------|---------|--------|
+| `tools/testing/input_simulator.gd` | Press actions, D-pad, wait | Working |
+| `tools/testing/state_query.gd` | Query gold, inventory, quests | Working |
+| `tools/testing/error_catcher.gd` | Assertions, error capture | Working |
+| `tools/testing/test_runner.gd` | Base test runner class | Working |
+| `tests/ai/test_full_playthrough.gd` | End-to-end test | Working |
+
+**Test Results:**
+| Test | Status | Notes |
+|------|--------|-------|
+| Inventory | PASS | Gold, seeds, items verified |
+| Farm | PASS | Data structure exists |
+| Save/Load | PASS | File persistence works |
+| World Bootstrap | PARTIAL | Scene loads, player null in headless |
+| Screenshots | PARTIAL | Files created, texture null in headless |
+
+**AI Verification Capabilities:**
+- Gold/inventory state
+- Quest flags
+- Save/load integrity
+- Scene loading
+- Farm data structure
+
+**Limitations:**
+- Headless mode: Null viewport textures, player node unavailable
+- Workaround: Run headed mode for visual verification
+
+**Run Tests:**
+```bash
+# Headless (logic tests)
+godot --headless --script tests/ai/test_full_playthrough.gd
+
+# Headed (visual tests)
+godot --path . --script tests/ai/test_full_playthrough.gd --quit-after 15
+```
+
+### Content Expansion Objective
+
+Expand dialogue and content to achieve "Stardew Valley quality" before export testing.
 
 **Status:** READY FOR MINIMAX (2025-12-30)
 
