@@ -102,7 +102,7 @@ position = Vector2(-192, 64)
 script = ExtResource("6_quest_trigger")
 required_flag = "prologue_complete"
 set_flag_on_enter = "quest_1_active"
-trigger_dialogue = "act1_herb_identification"
+trigger_dialogue = ""
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest1"]
 shape = SubResource("RectangleShape2D_quest")
@@ -112,7 +112,7 @@ position = Vector2(-128, 64)
 script = ExtResource("6_quest_trigger")
 required_flag = "quest_1_complete"
 set_flag_on_enter = "quest_2_active"
-trigger_dialogue = "act1_extract_sap"
+trigger_dialogue = ""
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest2"]
 shape = SubResource("RectangleShape2D_quest")
