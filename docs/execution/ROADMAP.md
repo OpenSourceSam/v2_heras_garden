@@ -418,6 +418,8 @@ Record playthrough notes directly in this roadmap using the checkpoint template 
    - Test flag gating (dialogue should unlock after quest flag is set)
    - 2025-12-29: `circe_intro` dialogue + choice path executed; `met_circe` flag set.
    - 2025-12-29: MCP run: Hermes dialogue `quest1_start` triggered; `quest_1_active` set.
+   - 2025-12-29: MCP run: Aeetes dialogue `act2_farming_tutorial` opened; quest_4_active true.
+   - 2025-12-29: MCP run: Daedalus dialogue `act2_daedalus_arrives` opened; quest_7_active true.
 7. Cutscene progression:
    - Scylla transformation cutscene
    - Verify flags: `transformed_scylla`, `quest_3_complete`
