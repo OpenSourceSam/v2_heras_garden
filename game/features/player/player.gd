@@ -55,6 +55,9 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
+		var dialogue_box = get_tree().get_first_node_in_group("dialogue_ui")
+		if dialogue_box != null and dialogue_box.visible:
+			return
 		_try_interact()
 
 func _try_interact() -> void:

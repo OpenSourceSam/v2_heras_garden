@@ -117,7 +117,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not visible:
 		return
 
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("ui_accept") or event.is_action_pressed("interact"):
 		if is_text_scrolling:
 			_scroll_version += 1
 			text_label.text = _current_full_text
