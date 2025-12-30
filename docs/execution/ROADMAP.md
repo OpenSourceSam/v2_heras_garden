@@ -1320,6 +1320,126 @@ Ready for Next Phase: YES (Phase 7 - Android/Retroid Build)
 
 ---
 
+## PHASE 6.75: CONTENT EXPANSION (PRE-EXPORT)
+
+**Objective:** Expand dialogue and content to achieve "Stardew Valley quality" before export testing.
+
+**Status:** READY FOR MINIMAX (2025-12-30)
+
+**Philosophy:** MiniMax does bulk work → Codex verifies at checkpoints → Sequential, not parallel
+
+### Content Audit Findings (Codex - December 30, 2025)
+
+```
+=== CURRENT STATE ===
+- Total dialogue files: 30
+- Total dialogue lines: ~138 (across all files)
+- NPCs configured: 5 (Hermes, Aeetes, Daedalus, Scylla, Circe)
+- Quests: 11 (quest triggers in world.tscn)
+- Minigames: 4 (herb_identification, moon_tears, sacred_earth, weaving)
+- Items: 14 (crops, seeds, potions, rewards)
+
+=== DIALOGUE GAPS ===
+| NPC | Current Lines | Missing Types | Lines Needed |
+|-----|--------------|---------------|--------------|
+| Hermes | 3 (quest1_start) | First meet, idle, per-quest | ~40 lines |
+| Aeetes | 3 (quest5_start) | First meet, idle, per-quest | ~40 lines |
+| Daedalus | 3 (quest8_start) | First meet, idle, per-quest | ~40 lines |
+| Scylla | 3 (quest11_start) | First meet, idle, confrontation arc | ~30 lines |
+| Circe | ~40 (scattered) | Idle variety, post-quest updates | ~20 lines |
+
+=== QUEST DIALOGUE GAPS ===
+| Quest | Current | Missing | Work |
+|-------|---------|---------|------|
+| Q1-11 | 3 lines each | In-progress, completion, rewards | ~7 lines each |
+
+=== STRUCTURAL ISSUES ===
+1. Hermes.tres points to "circe_intro" as default dialogue (wrong NPC)
+2. Only 3 NPC spawn points but 5 NPCs exist
+3. Quest markers linear in a row (not world-integrated)
+4. No idle dialogue rotation system
+
+=== ESTIMATED WORK ===
+- Dialogue lines to write: ~170 new lines
+- Quest dialogue expansions: 11 quests × 7 lines = ~77 lines
+- NPC-specific dialogues: 5 NPCs × 40 lines = ~200 lines (including above)
+- Spawn points to add: 2 (Scylla, Circe)
+```
+
+### MiniMax Task List
+
+**Immediate Tasks (Before Dialogue Writing):**
+
+1. **Fix Hermes.tres** - Change `default_dialogue_id` from "circe_intro" to "hermes_intro"
+   - File: `game/shared/resources/npcs/hermes.tres`
+
+2. **Add missing NPC spawn points** to world.tscn:
+   - Add Scylla spawn point (Marker2D)
+   - Add Circe spawn point (Marker2D)
+   - File: `game/features/world/world.tscn`
+
+3. **Review partial Hermes dialogue** created by Codex:
+   - `hermes_intro.tres` - 5 lines, first meeting
+   - `hermes_idle.tres` - 10 lines, idle chat
+   - `quest1_start.tres` - expanded to 6 lines
+   - `quest1_inprogress.tres` - 2 lines
+   - `quest1_complete.tres` - 5 lines
+
+### NPC Dialogue Tasks (One at a time)
+
+**Hermes (Partially Done):**
+- [x] First meeting dialogue (hermes_intro.tres)
+- [x] Idle chat (hermes_idle.tres)
+- [x] Quest 1 start expanded
+- [x] Quest 1 in-progress
+- [x] Quest 1 complete
+- [ ] Wire up dialogue routing in npc_base.gd
+- [ ] Test all dialogues trigger correctly
+
+**Aeetes (TODO):**
+- [ ] aeetes_intro.tres - First meeting
+- [ ] aeetes_idle.tres - 10+ idle lines
+- [ ] Expand quest5_start.tres
+- [ ] quest5_inprogress.tres
+- [ ] quest5_complete.tres
+
+**Daedalus (TODO):**
+- [ ] daedalus_intro.tres - First meeting
+- [ ] daedalus_idle.tres - 10+ idle lines
+- [ ] Expand quest8_start.tres
+- [ ] quest8_inprogress.tres
+- [ ] quest8_complete.tres
+
+**Scylla (TODO):**
+- [ ] scylla_intro.tres - First meeting (antagonist intro)
+- [ ] scylla_idle.tres - 10+ idle lines (menacing)
+- [ ] Expand quest11_start.tres (confrontation)
+- [ ] quest11_inprogress.tres
+- [ ] quest11_complete.tres (transformation arc)
+
+**Circe (Polish Only):**
+- [ ] Review existing ~40 lines for consistency
+- [ ] Add more idle variety
+- [ ] Add post-quest dialogue updates
+
+### Testing After Each NPC
+
+Run these tests after completing each NPC's dialogue:
+```powershell
+"Godot_v4.5.1-stable_win64.exe/Godot_v4.5.1-stable_win64.exe" --headless --script tests/phase3_dialogue_flow_test.gd
+"Godot_v4.5.1-stable_win64.exe/Godot_v4.5.1-stable_win64.exe" --headless --script tests/run_tests.gd
+```
+
+### Success Criteria
+
+- [ ] All 5 NPCs have first meeting, idle chat, and quest dialogues
+- [ ] All 11 quests have start, in-progress, and complete dialogue variants
+- [ ] Total dialogue lines: 300+ (up from current 138)
+- [ ] All spawn points present (5 NPCs)
+- [ ] All automated tests pass
+
+---
+
 ## PHASE 7: ANDROID/RETROID BUILD AND TESTING
 
 Objective: Produce a testable APK and validate on hardware.
