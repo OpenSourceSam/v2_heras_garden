@@ -851,9 +851,9 @@ Next Steps for Phase 5:
 
 ---
 
-### 📸 IMAGE GENERATION PROMPT FOR GEMINI (VS Code)
+### 📸 IMAGE GENERATION PROMPT FOR MINIMAX (Pixel Art Agent)
 
-Copy and paste this to Gemini to generate pixel art assets:
+Copy and paste this to a new MiniMax conversation using the pixel-art-professional skill and art MCP server:
 
 ```
 Create pixel art sprites for a Greek mythology-inspired farming RPG game called "Circe's Garden". The game targets the Retroid Pocket Classic (vertical handheld, 640x480 resolution).
@@ -864,7 +864,7 @@ Create pixel art sprites for a Greek mythology-inspired farming RPG game called 
 - Format: PNG files, 32x32 pixels for items, 48x48 or 64x64 for NPCs
 - Background: Transparent for items/NPCs, solid colored backgrounds for minigame elements
 
-## NEEDED SPRITES (save to assets/sprites/placeholders/):
+## NEEDED SPRITES (save to game/shared/resources/sprites/ or assets/sprites/placeholders/):
 
 ### NPC CHARACTERS (64x64 pixels each, walking animation frames):
 1. **hermes.png** - Young male messenger god, winged sandals, caduceus staff, green/gold robes
@@ -902,10 +902,15 @@ Create pixel art sprites for a Greek mythology-inspired farming RPG game called 
 ## NAMING CONVENTION
 Use lowercase with underscores: npc_hermes.png, item_wheat.png
 
-Replace the existing placeholder files in the same folder.
+After generating, assign sprites to Godot resources:
+- NPC sprites: game/shared/resources/npcs/*.tres (SpriteFrames)
+- Item icons: game/shared/resources/items/*.tres (icon texture)
+- Minigame sprites: Assign to scenes in game/features/minigames/
+
+Replace existing placeholder ColorRect files in the same folder paths.
 ```
 
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
+🤖 Generated for MiniMax agent with pixel-art-professional skill
 <!-- END_CHECKPOINT -->
 
 ---
