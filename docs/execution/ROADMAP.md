@@ -815,6 +815,43 @@ Success Criteria:
 - [ ] No obviously placeholder gray boxes visible
 - [ ] UI is polished and consistent
 
+<!-- PHASE_5_CHECKPOINT: 10% -->
+Checkpoint Date: 2025-12-29
+Verified By: Claude MiniMax (autonomous inventory)
+
+Visual Assets Inventory:
+| Category | Count | Status |
+|----------|-------|--------|
+| Placeholder sprites | 29 | In assets/sprites/placeholders/ |
+| NPC scenes | 5 | Use npc_world_placeholder.png |
+| ColorRect tears | 2 | moon_tear.tscn, moon_tear_single.tscn |
+| Particle nodes | 5 | Exist but may need configuration |
+
+Missing Visual Assets (Need Art):
+1. **NPC Sprites** (5): hermes, aeetes, daedalus, scylla, circe
+2. **Item Sprites** (14): wheat, wheat_seed, moly, moly_seed, nightshade, nightshade_seed, all potions
+3. **Minigame Assets**: moon_tears moon/stars, sacred_earth digging area, weaving patterns
+4. **Environment**: world tiles, landmarks, boat, sundial
+5. **UI Icons**: inventory slots, crafting icons, dialogue portraits
+
+Placeholder Quality Assessment:
+- Placeholder folder exists with basic colored sprites ✓
+- All sprites follow naming convention (e.g., npc_hermes.png) ✓
+- ColorRect tears need sprite replacement ✗
+- Particle nodes exist but may need configuration ✗
+
+UI Styling: Checked - uses consistent Control nodes, TextureRect for icons
+
+Next Steps for Phase 5:
+1. Generate/import actual NPC art (5 characters)
+2. Generate/import item sprites (14 items)
+3. Replace ColorRect tears with moon_tear sprites
+4. Configure particle effects (dirt, harvest, crafting)
+5. Add environment tiles and background art
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+<!-- END_CHECKPOINT -->
+
 ---
 
 ## PHASE 6: ANDROID/RETROID BUILD AND TESTING
