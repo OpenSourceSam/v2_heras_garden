@@ -516,6 +516,41 @@ Files Modified This Phase
 Ready for Next Phase: Yes (device validation continues in Phase 4)
 <!-- END_CHECKPOINT -->
 
+### C. Jr Engineer Automated Test Suite (2025-12-29)
+
+As a Jr Engineer working through the roadmap, I created comprehensive headless tests to verify Phase 3 systems:
+
+| Test File | Tests | Result | Coverage |
+|-----------|-------|--------|----------|
+| `tests/phase3_dialogue_flow_test.gd` | 29 | PASS | NPC quest routing, dialogue flag gating for all 4 NPCs |
+| `tests/phase3_minigame_mechanics_test.gd` | 24 | PASS | Sacred Earth, Moon Tears, Weaving, Herb ID mechanics |
+| `tests/phase3_save_load_test.gd` | 43 | PASS | Basic save/load, inventory, quest flags, farm plots, corrupt handling |
+| `tests/phase3_softlock_test.gd` | 24 | PASS | Resource depletion, minigame failure, quest sequence, day advance edge cases |
+
+**Total: 120/120 tests pass**
+
+**Key Findings:**
+- NPC dialogue routing works correctly (Hermes → Aeetes → Daedalus → Scylla)
+- Minigame mechanics have balanced parameters (Sacred Earth: 20-25 presses, Moon Tears: 3 catches)
+- Save/Load handles corrupt files gracefully (returns false, doesn't crash)
+- No soft-lock conditions found - minigames can be re-attempted infinitely
+- Day advance preserves all state (inventory, quest flags, gold)
+
+**Files Added:**
+- `tests/phase3_dialogue_flow_test.gd` - Dialogue and quest flag flow verification
+- `tests/phase3_minigame_mechanics_test.gd` - Minigame mechanics verification
+- `tests/phase3_save_load_test.gd` - Save/Load edge case verification
+- `tests/phase3_softlock_test.gd` - Soft-lock scenario verification
+
+**Run all Phase 3 tests:**
+```powershell
+# Individual test files
+"Godot_v4.5.1-stable_win64.exe/Godot_v4.5.1-stable_win64.exe" --headless --script tests/phase3_dialogue_flow_test.gd
+"Godot_v4.5.1-stable_win64.exe/Godot_v4.5.1-stable_win64.exe" --headless --script tests/phase3_minigame_mechanics_test.gd
+"Godot_v4.5.1-stable_win64.exe/Godot_v4.5.1-stable_win64.exe" --headless --script tests/phase3_save_load_test.gd
+"Godot_v4.5.1-stable_win64.exe/Godot_v4.5.1-stable_win64.exe" --headless --script tests/phase3_softlock_test.gd
+```
+
 ### B. Difficulty Tuning Checklist
 
 **Crop Growth Balance:**
