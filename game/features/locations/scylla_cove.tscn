@@ -3,6 +3,7 @@
 [ext_resource type="TileSet" path="res://game/shared/resources/tiles/placeholder_grass_tileset.tres" id="1_tileset"]
 [ext_resource type="Script" path="res://game/features/locations/return_trigger.gd" id="2_return_trigger"]
 [ext_resource type="PackedScene" path="res://game/features/npcs/scylla.tscn" id="3_scylla"]
+[ext_resource type="PackedScene" path="res://game/features/ui/dialogue_box.tscn" id="4_dialogue_box"]
 
 [sub_resource type="RectangleShape2D" id="1_rect"]
 size = Vector2(64, 32)
@@ -27,3 +28,8 @@ shape = SubResource("1_rect")
 
 [node name="ScyllaNPC" parent="." instance=ExtResource("3_scylla")]
 position = Vector2(256, 64)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DialogueBox" parent="UI" instance=ExtResource("4_dialogue_box")]
+visible = false
