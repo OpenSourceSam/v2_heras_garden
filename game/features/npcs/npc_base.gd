@@ -11,6 +11,8 @@ class_name NPCBase
 @export var idle_time_max: float = 1.6
 
 @onready var sprite: Sprite2D = $Sprite
+@onready var interaction_zone: Area2D = $InteractionZone
+@onready var talk_indicator: Sprite2D = $TalkIndicator
 
 var _home_position: Vector2
 var _wander_target: Vector2
@@ -19,9 +21,17 @@ var _rng := RandomNumberGenerator.new()
 
 func _ready() -> void:
 	assert(sprite != null, "NPC Sprite node missing")
+	assert(interaction_zone != null, "NPC InteractionZone missing")
+	assert(talk_indicator != null, "NPC TalkIndicator missing")
+	talk_indicator.visible = false
 	_rng.randomize()
 	_home_position = global_position
 	_pick_new_wander_target()
+	if not interaction_zone.body_entered.is_connected(_on_interaction_zone_body_entered):
+		interaction_zone.body_entered.connect(_on_interaction_zone_body_entered)
+	if not interaction_zone.body_exited.is_connected(_on_interaction_zone_body_exited):
+		interaction_zone.body_exited.connect(_on_interaction_zone_body_exited)
+	call_deferred("_refresh_talk_indicator")
 
 func _physics_process(delta: float) -> void:
 	if not wander_enabled:
@@ -64,6 +74,21 @@ func _pick_new_wander_target() -> void:
 		_rng.randf_range(-wander_radius, wander_radius),
 		_rng.randf_range(-wander_radius, wander_radius)
 	)
+
+func _refresh_talk_indicator() -> void:
+	for body in interaction_zone.get_overlapping_bodies():
+		if body.is_in_group("player"):
+			talk_indicator.visible = true
+			return
+	talk_indicator.visible = false
+
+func _on_interaction_zone_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		talk_indicator.visible = true
+
+func _on_interaction_zone_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		talk_indicator.visible = false
 
 func _resolve_dialogue_id() -> String:
 	match npc_id:
