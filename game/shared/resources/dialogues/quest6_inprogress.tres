@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest6_inprogress"
+lines = [{
+"speaker": "Aeetes",
+"text": "The Reversal Elixir requires sacred earth from the grove.",
+"emotion": "mysterious"
+}, {
+"speaker": "Aeetes",
+"text": "Dig carefully. The earth there is... alive.",
+"emotion": "serious"
+}]
+choices = []
+flags_required = []
+flags_to_set = []
+next_dialogue_id = ""

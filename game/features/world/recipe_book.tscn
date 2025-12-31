@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://recipe_001"]
+
+[ext_resource type="Script" path="res://game/features/world/recipe_book.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dffnkfq0hmqnx" path="res://assets/sprites/placeholder_moly.svg" id="2_texture"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(24, 32)
+
+[node name="RecipeBook" type="StaticBody2D"]
+script = ExtResource("1_script")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_texture")
+scale = Vector2(0.4, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1")

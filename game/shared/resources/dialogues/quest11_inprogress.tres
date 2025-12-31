@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest11_inprogress"
+lines = [{
+"speaker": "Scylla",
+"text": "The Petrification Potion... it can reverse what was done to me.",
+"emotion": "hopeful"
+}, {
+"speaker": "Scylla",
+"text": "But I am afraid. What if I am still the monster inside?",
+"emotion": "vulnerable"
+}, {
+"speaker": "Scylla",
+"text": "Trust you. That is all I have left.",
+"emotion": "trusting"
+}]
+choices = []
+flags_required = []
+flags_to_set = []
+next_dialogue_id = ""

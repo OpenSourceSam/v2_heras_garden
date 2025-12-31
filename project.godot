@@ -8,6 +8,31 @@
 
 config_version=5
 
+[android]
+
+#Android-specificsettings(precursorsforfutureAPKbuild)#Thesewillbeappliedwhenexport_presets.cfgisloadedinGodot#Packagenameformat:com.yourname.circesgardenpackage/name="com.yourname.circesgarden"
+package/label="Circe's Garden"
+package/signed=true
+package/app_category=2
+package/short_version="1.0.0"
+package/version_code=1
+package/min_sdk=24
+package/target_sdk=34
+package/exclude_from_recents=false
+package/show_in_app_library=true
+package/stl="c++_shared"
+package/permissions=PackedStringArray("android.permission.INTERNET")
+package/features=PackedStringArray("android.hardware.touchscreen")
+orientation/portrait=false
+orientation/landscape=true
+orientation/reverse_landscape=false
+orientation/sensor_landscape=false
+orientation/sensor_portrait=false
+orientation/reverse_portrait=false
+window/immersive_mode=true
+window/layout_direction=0
+keep_screen_on=true
+
 [application]
 
 config/name="Circe's Garden"
@@ -23,6 +48,9 @@ SaveController="*res://game/autoload/save_controller.gd"
 SceneManager="*res://game/autoload/scene_manager.gd"
 CutsceneManager="*res://game/autoload/cutscene_manager.gd"
 Constants="*res://game/autoload/constants.gd"
+MCPInputHandler="*res://addons/godot_mcp/mcp_input_handler.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+QuestSystem="*res://addons/quest_system/quest_manager.gd"
 
 [display]
 
@@ -34,7 +62,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg", "res://addons/gdUnit4/plugin.cfg", "res://addons/godot_mcp/plugin.cfg")
+enabled=PackedStringArray("res://addons/BurstParticles2D/plugin.cfg", "res://addons/GDQuest_GDScript_formatter/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/gdUnit4/plugin.cfg", "res://addons/godot_mcp/plugin.cfg", "res://addons/quest_system/plugin.cfg")
 
 [input]
 
@@ -94,44 +122,12 @@ ui_inventory={
 ]
 }
 
+[legacy]
+
+input/emulate_mouse_from_touch=false
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
-
-[android]
-
-# Android-specific settings (precursors for future APK build)
-# These will be applied when export_presets.cfg is loaded in Godot
-# Package name format: com.yourname.circesgarden
-package/name="com.yourname.circesgarden"
-package/label="Circe's Garden"
-package/signed=true
-package/app_category=2
-package/short_version="1.0.0"
-package/version_code=1
-package/min_sdk=24
-package/target_sdk=34
-package/exclude_from_recents=false
-package/show_in_app_library=true
-package/stl="c++_shared"
-package/permissions=PackedStringArray("android.permission.INTERNET")
-package/features=PackedStringArray("android.hardware.touchscreen")
-orientation/portrait=false
-orientation/landscape=true
-orientation/reverse_landscape=false
-orientation/sensor_landscape=false
-orientation/sensor_portrait=false
-orientation/reverse_portrait=false
-window/immersive_mode=true
-window/layout_direction=0
-keep_screen_on=true
-
-[input_devices]
-
-pointing/emulate_touch_from_mouse=false
-
-[legacy]
-
-input/emulate_mouse_from_touch=false

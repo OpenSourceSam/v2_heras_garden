@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "daedalus_idle"
+lines = [{
+"speaker": "Daedalus",
+"text": "I am working on a new invention. A loom that weaves patterns by itself.",
+"emotion": "curious"
+}, {
+"speaker": "Daedalus",
+"text": "The Labyrinth taught me that complexity can be beautiful.",
+"emotion": "thoughtful"
+}, {
+"speaker": "Daedalus",
+"text": "If you need guidance with crafting, I am your man.",
+"emotion": "friendly"
+}, {
+"speaker": "Daedalus",
+"text": "Icarus... he was always so eager to fly. Too eager.",
+"emotion": "nostalgic"
+}, {
+"speaker": "Daedalus",
+"text": "These islands have strange magic. Circe's magic.",
+"emotion": "mysterious"
+}, {
+"speaker": "Daedalus",
+"text": "But magic and invention are not so different. Both require understanding the rules, then bending them.",
+"emotion": "wise"
+}]
+choices = []
+flags_required = []
+flags_to_set = []
+next_dialogue_id = ""

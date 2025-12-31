@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest7_inprogress"
+lines = [{
+"speaker": "Daedalus",
+"text": "The Binding Ward requires careful weaving. Accuracy is key.",
+"emotion": "focused"
+}, {
+"speaker": "Daedalus",
+"text": "I have built many looms in my time. This one is... special.",
+"emotion": "proud"
+}]
+choices = []
+flags_required = []
+flags_to_set = []
+next_dialogue_id = ""

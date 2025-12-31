@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest8_complete"
+lines = [{
+"speaker": "Daedalus",
+"text": "You have helped Scylla? Remarkable.",
+"emotion": "surprised"
+}, {
+"speaker": "Daedalus",
+"text": "Perhaps there is hope for her yet. And for this island.",
+"emotion": "hopeful"
+}, {
+"speaker": "Daedalus",
+"text": "I have given you all I can, young one. The rest is up to you.",
+"emotion": "wise"
+}]
+choices = []
+flags_required = []
+flags_to_set = ["quest8_complete_dialogue_seen"]
+next_dialogue_id = ""

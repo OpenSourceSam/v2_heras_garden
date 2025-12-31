@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4]
+[gd_scene load_steps=18 format=4]
 
 [ext_resource type="TileSet" path="res://game/shared/resources/tiles/placeholder_grass_tileset.tres" id="1_1u0pp"]
 [ext_resource type="PackedScene" path="res://game/features/player/player.tscn" id="1_player"]
@@ -14,9 +14,12 @@
 [ext_resource type="PackedScene" path="res://game/features/ui/dialogue_box.tscn" id="11_dialogue_box"]
 [ext_resource type="Texture2D" path="res://assets/sprites/placeholders/npc_world_placeholder.png" id="12_landmark"]
 [ext_resource type="Texture2D" path="res://assets/sprites/placeholders/quest_marker.png" id="13_quest_marker"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/quest_marker_glow_plant.png" id="17_quest_marker_plant"]
 [ext_resource type="Texture2D" path="res://assets/sprites/placeholders/tree.png" id="14_tree"]
 [ext_resource type="Texture2D" path="res://assets/sprites/placeholders/rock.png" id="15_rock"]
 [ext_resource type="Texture2D" path="res://assets/sprites/placeholders/signpost.png" id="16_signpost"]
+[ext_resource type="PackedScene" path="res://game/features/world/mortar_pestle.tscn" id="17_mortar"]
+[ext_resource type="PackedScene" path="res://game/features/world/recipe_book.tscn" id="18_recipe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_quest"]
 size = Vector2(48, 24)
@@ -63,6 +66,12 @@ position = Vector2(64, 0)
 [node name="Boat" parent="Interactables" instance=ExtResource("5_boat")]
 position = Vector2(128, 0)
 
+[node name="MortarPestle" parent="Interactables" instance=ExtResource("17_mortar")]
+position = Vector2(0, 0)
+
+[node name="RecipeBook" parent="Interactables" instance=ExtResource("18_recipe")]
+position = Vector2(-64, 0)
+
 [node name="NPCs" type="Node2D" parent="."]
 
 [node name="NPCSpawner" type="Node" parent="NPCs"]
@@ -78,6 +87,12 @@ position = Vector2(224, -32)
 
 [node name="Daedalus" type="Marker2D" parent="NPCs/NPCSpawner/SpawnPoints"]
 position = Vector2(288, -32)
+
+[node name="Scylla" type="Marker2D" parent="NPCs/NPCSpawner/SpawnPoints"]
+position = Vector2(352, -32)
+
+[node name="Circe" type="Marker2D" parent="NPCs/NPCSpawner/SpawnPoints"]
+position = Vector2(416, -32)
 
 [node name="Landmarks" type="Node2D" parent="."]
 
@@ -119,8 +134,8 @@ shape = SubResource("RectangleShape2D_quest")
 
 [node name="Quest1Marker" type="Sprite2D" parent="QuestMarkers"]
 position = Vector2(-192, 64)
-texture = ExtResource("13_quest_marker")
-modulate = Color(1, 0.9, 0.4, 1)
+texture = ExtResource("17_quest_marker_plant")
+modulate = Color(1, 1, 1, 1)
 z_index = 5
 
 [node name="Quest2Marker" type="Sprite2D" parent="QuestMarkers"]

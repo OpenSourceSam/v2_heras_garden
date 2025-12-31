@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest10_complete"
+lines = [{
+"speaker": "Scylla",
+"text": "You have the moon tears. All the pieces are coming together.",
+"emotion": "thoughtful"
+}, {
+"speaker": "Scylla",
+"text": "There is one final task. Come to me when you are ready.",
+"emotion": "serious"
+}, {
+"speaker": "Scylla",
+"text": "I... I want to try something. Something dangerous.",
+"emotion": "nervous"
+}]
+choices = []
+flags_required = []
+flags_to_set = ["quest10_complete_dialogue_seen"]
+next_dialogue_id = ""

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest6_complete"
+lines = [{
+"speaker": "Aeetes",
+"text": "You have mastered the Reversal Elixir. I am... impressed.",
+"emotion": "pleased"
+}, {
+"speaker": "Aeetes",
+"text": "These arts were once the pride of Colchis. Now they live on through you.",
+"emotion": "proud"
+}, {
+"speaker": "Aeetes",
+"text": "There is an old friend of mine here. Daedalus - you should seek him out.",
+"emotion": "thoughtful"
+}, {
+"speaker": "Aeetes",
+"text": "He knows things about this island that even Circe does not.",
+"emotion": "mysterious"
+}]
+choices = []
+flags_required = []
+flags_to_set = ["quest6_complete_dialogue_seen"]
+next_dialogue_id = ""

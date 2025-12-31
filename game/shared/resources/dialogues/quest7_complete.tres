@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest7_complete"
+lines = [{
+"speaker": "Daedalus",
+"text": "Excellent work! The Binding Ward is complete.",
+"emotion": "pleased"
+}, {
+"speaker": "Daedalus",
+"text": "You have the hands of a true craftsman.",
+"emotion": "approving"
+}, {
+"speaker": "Daedalus",
+"text": "There is another who can help you now. Seek out Scylla.",
+"emotion": "serious"
+}, {
+"speaker": "Daedalus",
+"text": "She dwells at the cove to the east. A troubled soul, but powerful.",
+"emotion": "thoughtful"
+}]
+choices = []
+flags_required = []
+flags_to_set = ["quest7_complete_dialogue_seen"]
+next_dialogue_id = ""

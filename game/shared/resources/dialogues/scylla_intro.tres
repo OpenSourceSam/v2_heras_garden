@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "scylla_intro"
+lines = [{
+"speaker": "Scylla",
+"text": "Another mortal, come to disturb my waters.",
+"emotion": "hostile"
+}, {
+"speaker": "Scylla",
+"text": "Do you know what I am? Do you know what I have done?",
+"emotion": "bitter"
+}, {
+"speaker": "Scylla",
+"text": "I was transformed into this... monster. By Circe's magic, or my own despair.",
+"emotion": "angry"
+}, {
+"speaker": "Scylla",
+"text": "The sailors fear me. The gods mock me. Even here, I am an outcast.",
+"emotion": "sad"
+}, {
+"speaker": "Scylla",
+"text": "But I am still powerful. Do not test me.",
+"emotion": "menacing"
+}]
+choices = []
+flags_required = []
+flags_to_set = ["met_scylla"]
+next_dialogue_id = ""

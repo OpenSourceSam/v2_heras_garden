@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "aeetes_intro"
+lines = [{
+"speaker": "Aeetes",
+"text": "Hmph. Another wanderer brought to these shores by fate.",
+"emotion": "dismissive"
+}, {
+"speaker": "Aeetes",
+"text": "I am Aeetes, King of Colchis once. Now... merely a refugee seeking Circe's protection.",
+"emotion": "sad"
+}, {
+"speaker": "Aeetes",
+"text": "Do not mistake my circumstances for weakness. I still command the secrets of the earth.",
+"emotion": "stern"
+}, {
+"speaker": "Aeetes",
+"text": "The pharmaka that grow here - moly, nightshade - are under my guidance now.",
+"emotion": "proud"
+}, {
+"speaker": "Aeetes",
+"text": "Perhaps you can be useful. We shall see.",
+"emotion": "neutral"
+}]
+choices = []
+flags_required = []
+flags_to_set = ["met_aeetes"]
+next_dialogue_id = ""

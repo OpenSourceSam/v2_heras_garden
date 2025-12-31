@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "scylla_idle"
+lines = [{
+"speaker": "Scylla",
+"text": "The tide is strange today. Something stirs.",
+"emotion": "restless"
+}, {
+"speaker": "Scylla",
+"text": "Do not pity me. I chose this path.",
+"emotion": "defensive"
+}, {
+"speaker": "Scylla",
+"text": "There was a time when I was... someone else. Someone kind.",
+"emotion": "sad"
+}, {
+"speaker": "Scylla",
+"text": "Circe says transformation can be undone. I am not sure I believe her.",
+"emotion": "hopeful"
+}, {
+"speaker": "Scylla",
+"text": "These waters have protected me. I will not leave them.",
+"emotion": "protective"
+}, {
+"speaker": "Scylla",
+"text": "Why do you keep returning? Surely there are warmer waters.",
+"emotion": "curious"
+}]
+choices = []
+flags_required = []
+flags_to_set = []
+next_dialogue_id = ""

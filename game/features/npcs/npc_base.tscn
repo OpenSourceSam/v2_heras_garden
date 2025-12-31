@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://npc_base_001"]
+[gd_scene load_steps=5 format=3 uid="uid://npc_base_001"]
 
 [ext_resource type="Script" path="res://game/features/npcs/npc_base.gd" id="1_script"]
 [ext_resource type="SpriteFrames" path="res://game/shared/resources/npcs/hermes_frames.tres" id="2_hermes_frames"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/npc_talk_indicator.png" id="3_talk_indicator"]
 
 [sub_resource type="RectangleShape2D" id="1_rect"]
 size = Vector2(16, 24)
@@ -16,13 +17,14 @@ script = ExtResource("1_script")
 sprite_frames = ExtResource("2_hermes_frames")
 animation = "idle"
 autoplay = "idle"
+scale = Vector2(0.5, 0.5)
 
 [node name="TalkIndicator" type="Sprite2D" parent="."]
 position = Vector2(0, -28)
 visible = false
-texture = ExtResource("2_hermes_frames").get_frame("idle", 0)
-modulate = Color(1, 0.9, 0.2, 1)
-scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_talk_indicator")
+modulate = Color(1, 1, 1, 1)
+scale = Vector2(0.8, 0.8)
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("1_rect")

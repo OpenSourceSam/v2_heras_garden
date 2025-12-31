@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "daedalus_intro"
+lines = [{
+"speaker": "Daedalus",
+"text": "Ah, a visitor. It has been some time since I had company.",
+"emotion": "warm"
+}, {
+"speaker": "Daedalus",
+"text": "I am Daedalus. Architect, inventor, and... prisoner of these islands for a time.",
+"emotion": "sad"
+}, {
+"speaker": "Daedalus",
+"text": "I built the Labyrinth for King Minos. A masterpiece of engineering, if I may say.",
+"emotion": "proud"
+}, {
+"speaker": "Daedalus",
+"text": "But genius has its burdens. My wings... they carried me to freedom. Carried my son to his death.",
+"emotion": "grief"
+}, {
+"speaker": "Daedalus",
+"text": "Circe offered me sanctuary. In exchange, I help with her... experiments.",
+"emotion": "neutral"
+}, {
+"speaker": "Daedalus",
+"text": "Perhaps you could use an old craftsman's help?",
+"emotion": "hopeful"
+}]
+choices = []
+flags_required = []
+flags_to_set = ["met_daedalus"]
+next_dialogue_id = ""

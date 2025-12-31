@@ -57,8 +57,7 @@ func _load_npc_sprite() -> void:
 	if frames:
 		sprite.sprite_frames = frames
 		sprite.play("idle")
-		# Update talk indicator with first frame of idle animation
-		talk_indicator.texture = frames.get_frame_texture("idle", 0)
+	# Talk indicator uses a dedicated icon texture set in the scene
 
 func _physics_process(_delta: float) -> void:
 	if not wander_enabled:
@@ -92,6 +91,12 @@ func interact() -> void:
 func set_facing(direction: Vector2) -> void:
 	if direction.x != 0:
 		sprite.flip_h = direction.x < 0
+
+func _dialogue_exists(dialogue_id: String) -> bool:
+	if dialogue_id == "":
+		return false
+	var dialogue_path := "res://game/shared/resources/dialogues/%s.tres" % dialogue_id
+	return ResourceLoader.exists(dialogue_path)
 
 func _pick_new_wander_target() -> void:
 	if wander_radius <= 0.0:
@@ -131,57 +136,95 @@ func _resolve_dialogue_id() -> String:
 			return dialogue_id
 
 func _resolve_hermes_dialogue() -> String:
+	if not GameState.get_flag("met_hermes"):
+		return "hermes_intro"
 	if GameState.get_flag("prologue_complete") and not GameState.get_flag("quest_1_active"):
 		return "quest1_start"
 	if GameState.get_flag("quest_1_active") and not GameState.get_flag("quest_1_complete"):
-		return "act1_herb_identification"
+		return "quest1_inprogress"
+	if GameState.get_flag("quest_1_complete") and not GameState.get_flag("quest_1_complete_dialogue_seen"):
+		return "quest1_complete"
 	if GameState.get_flag("quest_1_complete") and not GameState.get_flag("quest_2_active"):
 		return "quest2_start"
-	if GameState.get_flag("quest_2_active") and not GameState.get_flag("quest_2_complete"):
-		return "act1_extract_sap"
 	if GameState.get_flag("quest_2_complete") and not GameState.get_flag("quest_3_active"):
 		return "quest3_start"
-	if GameState.get_flag("quest_3_active") and not GameState.get_flag("quest_3_complete"):
-		return "act1_confront_scylla"
-	return dialogue_id
+	return "hermes_idle"
 
 func _resolve_aeetes_dialogue() -> String:
+	if _dialogue_exists("aeetes_intro") and not GameState.get_flag("met_aeetes"):
+		return "aeetes_intro"
 	if GameState.get_flag("quest_3_complete") and not GameState.get_flag("quest_4_active"):
 		return "quest4_start"
 	if GameState.get_flag("quest_4_active") and not GameState.get_flag("quest_4_complete"):
+		if _dialogue_exists("quest4_inprogress"):
+			return "quest4_inprogress"
 		return "act2_farming_tutorial"
 	if GameState.get_flag("quest_4_complete") and not GameState.get_flag("quest_5_active"):
+		if _dialogue_exists("quest4_complete") and not GameState.get_flag("quest_4_complete_dialogue_seen"):
+			return "quest4_complete"
 		return "quest5_start"
 	if GameState.get_flag("quest_5_active") and not GameState.get_flag("quest_5_complete"):
+		if _dialogue_exists("quest5_inprogress"):
+			return "quest5_inprogress"
 		return "act2_calming_draught"
 	if GameState.get_flag("quest_5_complete") and not GameState.get_flag("quest_6_active"):
+		if _dialogue_exists("quest5_complete") and not GameState.get_flag("quest_5_complete_dialogue_seen"):
+			return "quest5_complete"
 		return "quest6_start"
 	if GameState.get_flag("quest_6_active") and not GameState.get_flag("quest_6_complete"):
+		if _dialogue_exists("quest6_inprogress"):
+			return "quest6_inprogress"
 		return "act2_reversal_elixir"
+	if _dialogue_exists("aeetes_idle"):
+		return "aeetes_idle"
 	return dialogue_id
 
 func _resolve_daedalus_dialogue() -> String:
+	if _dialogue_exists("daedalus_intro") and not GameState.get_flag("met_daedalus"):
+		return "daedalus_intro"
 	if GameState.get_flag("quest_6_complete") and not GameState.get_flag("quest_7_active"):
 		return "quest7_start"
 	if GameState.get_flag("quest_7_active") and not GameState.get_flag("quest_7_complete"):
+		if _dialogue_exists("quest7_inprogress"):
+			return "quest7_inprogress"
 		return "act2_daedalus_arrives"
 	if GameState.get_flag("quest_7_complete") and not GameState.get_flag("quest_8_active"):
+		if _dialogue_exists("quest7_complete") and not GameState.get_flag("quest_7_complete_dialogue_seen"):
+			return "quest7_complete"
 		return "quest8_start"
 	if GameState.get_flag("quest_8_active") and not GameState.get_flag("quest_8_complete"):
+		if _dialogue_exists("quest8_inprogress"):
+			return "quest8_inprogress"
 		return "act2_binding_ward"
+	if _dialogue_exists("daedalus_idle"):
+		return "daedalus_idle"
 	return dialogue_id
 
 func _resolve_scylla_dialogue() -> String:
+	if _dialogue_exists("scylla_intro") and not GameState.get_flag("met_scylla"):
+		return "scylla_intro"
 	if GameState.get_flag("quest_8_complete") and not GameState.get_flag("quest_9_active"):
 		return "quest9_start"
 	if GameState.get_flag("quest_9_active") and not GameState.get_flag("quest_9_complete"):
+		if _dialogue_exists("quest9_inprogress"):
+			return "quest9_inprogress"
 		return "act3_sacred_earth"
 	if GameState.get_flag("quest_9_complete") and not GameState.get_flag("quest_10_active"):
+		if _dialogue_exists("quest9_complete") and not GameState.get_flag("quest_9_complete_dialogue_seen"):
+			return "quest9_complete"
 		return "quest10_start"
 	if GameState.get_flag("quest_10_active") and not GameState.get_flag("quest_10_complete"):
+		if _dialogue_exists("quest10_inprogress"):
+			return "quest10_inprogress"
 		return "act3_moon_tears"
 	if GameState.get_flag("quest_10_complete") and not GameState.get_flag("quest_11_active"):
+		if _dialogue_exists("quest10_complete") and not GameState.get_flag("quest_10_complete_dialogue_seen"):
+			return "quest10_complete"
 		return "quest11_start"
 	if GameState.get_flag("quest_11_active") and not GameState.get_flag("quest_11_complete"):
+		if _dialogue_exists("quest11_inprogress"):
+			return "quest11_inprogress"
 		return "act3_final_confrontation"
+	if _dialogue_exists("scylla_idle"):
+		return "scylla_idle"
 	return dialogue_id

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest9_complete"
+lines = [{
+"speaker": "Scylla",
+"text": "You have the sacred earth. It glows with old magic.",
+"emotion": "surprised"
+}, {
+"speaker": "Scylla",
+"text": "Perhaps... perhaps there is hope for me too.",
+"emotion": "vulnerable"
+}, {
+"speaker": "Scylla",
+"text": "There are moon tears in my waters. I will allow you to take them.",
+"emotion": "reluctant_kindness"
+}]
+choices = []
+flags_required = []
+flags_to_set = ["quest9_complete_dialogue_seen"]
+next_dialogue_id = ""

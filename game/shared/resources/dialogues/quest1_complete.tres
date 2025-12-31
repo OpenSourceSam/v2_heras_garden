@@ -28,5 +28,5 @@ lines = [{
 }]
 choices = []
 flags_required = ["quest_1_active"]
-flags_to_set = ["quest_1_complete"]
+flags_to_set = ["quest_1_complete", "quest_1_complete_dialogue_seen"]
 next_dialogue_id = ""

@@ -8,6 +8,6 @@ script = ExtResource("1_npc_data")
 id = "hermes"
 display_name = "Hermes"
 sprite_frames = ExtResource("2_frames")
-default_dialogue_id = "circe_intro"
+default_dialogue_id = "hermes_intro"
 gift_preferences = {}
 schedule = []

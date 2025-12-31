@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest10_inprogress"
+lines = [{
+"speaker": "Scylla",
+"text": "The moon tears appear when the moon is high. Watch the sky.",
+"emotion": "thoughtful"
+}, {
+"speaker": "Scylla",
+"text": "I will not help you catch them. But I will not stop you.",
+"emotion": "neutral"
+}]
+choices = []
+flags_required = []
+flags_to_set = []
+next_dialogue_id = ""

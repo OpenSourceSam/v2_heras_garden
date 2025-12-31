@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest8_inprogress"
+lines = [{
+"speaker": "Daedalus",
+"text": "Scylla is not easily approached. She has... trust issues.",
+"emotion": "cautious"
+}, {
+"speaker": "Daedalus",
+"text": "Her waters run deep. Be patient with her.",
+"emotion": "wise"
+}]
+choices = []
+flags_required = []
+flags_to_set = []
+next_dialogue_id = ""

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest4_complete"
+lines = [{
+"speaker": "Aeetes",
+"text": "Ah, excellent work. The moly harvest is... acceptable.",
+"emotion": "pleased"
+}, {
+"speaker": "Aeetes",
+"text": "You have a knack for this. Perhaps there is hope for you yet.",
+"emotion": "approving"
+}, {
+"speaker": "Aeetes",
+"text": "Now, let us discuss something more challenging.",
+"emotion": "neutral"
+}, {
+"speaker": "Aeetes",
+"text": "There are potions that can calm the troubled mind. Would you like to learn?",
+"emotion": "curious"
+}]
+choices = []
+flags_required = []
+flags_to_set = ["quest4_complete_dialogue_seen"]
+next_dialogue_id = ""

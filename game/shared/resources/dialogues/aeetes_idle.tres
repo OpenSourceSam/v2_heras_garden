@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "aeetes_idle"
+lines = [{
+"speaker": "Aeetes",
+"text": "The soil here is... adequate. Not as rich as Colchis, but sufficient.",
+"emotion": "neutral"
+}, {
+"speaker": "Aeetes",
+"text": "I was a king, you know. Ruled a kingdom of my own making.",
+"emotion": "nostalgic"
+}, {
+"speaker": "Aeetes",
+"text": "These herbs we cultivate - they have power. Use them wisely.",
+"emotion": "serious"
+}, {
+"speaker": "Aeetes",
+"text": "My daughter Medea... she learned much from me. Perhaps too much.",
+"emotion": "sad"
+}, {
+"speaker": "Aeetes",
+"text": "Circe and I share a common history. That is why I am here.",
+"emotion": "thoughtful"
+}, {
+"speaker": "Aeetes",
+"text": "The garden flourishes under our joint guidance. Do not disturb the balance.",
+"emotion": "stern"
+}]
+choices = []
+flags_required = []
+flags_to_set = []
+next_dialogue_id = ""

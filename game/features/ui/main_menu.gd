@@ -6,11 +6,11 @@ extends Control
 # ============================================
 # NODE REFERENCES
 # ============================================
-@onready var new_game_button: Button = $VBoxContainer/NewGameButton
-@onready var continue_button: Button = $VBoxContainer/ContinueButton
-@onready var settings_button: Button = $VBoxContainer/SettingsButton
-@onready var weaving_button: Button = $VBoxContainer/WeavingButton
-@onready var quit_button: Button = $VBoxContainer/QuitButton
+@onready var new_game_button: Button = $NewGameButton
+@onready var continue_button: Button = $ContinueButton
+@onready var settings_button: Button = $SettingsButton
+@onready var weaving_button: Button = $WeavingButton
+@onready var quit_button: Button = $QuitButton
 @onready var settings_menu: Control = $SettingsMenu
 
 # ============================================
@@ -32,13 +32,15 @@ func _ready() -> void:
 	weaving_button.pressed.connect(_on_weaving_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
 
-	for button in [
+	var focus_buttons: Array[Button] = [
 		new_game_button,
 		continue_button,
 		settings_button,
-		weaving_button,
 		quit_button
-	]:
+	]
+	if weaving_button.visible:
+		focus_buttons.append(weaving_button)
+	for button in focus_buttons:
 		UIHelpers.setup_button_focus(button)
 	new_game_button.grab_focus()
 
