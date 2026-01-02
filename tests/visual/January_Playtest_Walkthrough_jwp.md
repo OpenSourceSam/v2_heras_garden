@@ -82,6 +82,122 @@ This document establishes a **human-like playtesting workflow** that will catch 
 
 ---
 
+## Testing Methodology Cardinal Rules
+
+**Context:** Game logic tests pass (118/118) but human playability has UX issues. We need human-like validation.
+
+### Strongly Recommended Approach
+
+**For UX/Playability Validation:**
+- **Preferred:** Headed visual testing with programmatic debugging
+- **Tools:** Godot Tools VS Code debugger, remote debug protocol, enhanced test scripts
+- **Capabilities:** Visual rendering, variable inspection, breakpoint debugging, screenshot capture
+- **Purpose:** Catch UI visibility issues, timing problems, visual feedback gaps
+
+**Why This Approach:**
+- Agents can see what renders on screen
+- Can inspect game state at any moment
+- Can validate UI elements are actually visible
+- Can capture screenshots programmatically
+- Simulates human visual experience
+
+### When Headless Testing is Appropriate
+
+**For Logic Validation Only:**
+- Quest flag progression (quest_1_complete → quest_3_active)
+- Inventory state changes
+- Save/load data integrity
+- Crafting recipe logic
+- Day advancement mechanics
+- Fast regression testing
+
+**Why Headless Works Here:**
+- No visual output needed
+- State validation only
+- Fast execution
+- CI/CD friendly
+
+### Critical Distinction
+
+**Avoid falling back to headless CLI log parsing when the goal is UX validation.**
+
+Headless log parsing can tell you IF something broke, but not WHY the human experience is broken. When testing human playability:
+
+❌ **Don't:** Run headless test → parse logs → guess at UX issues
+✅ **Do:** Run headed test → inspect visual state → document UX issues
+
+**The Gap:**
+- Headless logging: "Dialogue box timeout error"
+- Headed inspection: "Dialogue box has visible=false when it should be true on line 42"
+
+### Programmatic Debugging for Autonomous Testing
+
+**Agents can use debugging capabilities autonomously:**
+
+1. **Launch with remote debug:**
+   ```powershell
+   Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/visual/beta_mechanical_test.gd
+   ```
+
+2. **Enhanced test scripts:**
+   - Modify test scripts to capture full state at each step
+   - Print game variables, UI visibility flags, node properties
+   - Take programmatic screenshots (headed mode supports this)
+   - Report findings in structured format
+
+3. **State inspection without human interaction:**
+   - Test script can check `dialogue_box.visible`
+   - Test script can verify `minigame_node != null`
+   - Test script can capture and analyze screenshots
+   - All without human clicking F5
+
+**The Key Insight:**
+Human-like testing can be done autonomously. The limitation is NOT that agents need humans to press F5. The limitation is that headless mode CAN'T capture visual state. Use headed mode programmatically.
+
+### Summary
+
+- **Goal:** Human-like playability validation
+- **Preferred Tool:** Headed testing with programmatic state inspection
+- **When to use headless:** Logic validation only (not UX validation)
+- **Why it matters:** Can't fix what you can't see
+
+This approach enables agents to autonomously validate the human experience without falling back to inferior headless log parsing.
+
+---
+
+## Automated Test Results (2025-12-29)
+
+**Baseline unit checks (headless)**
+- Command:
+  ```powershell
+  .\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/run_tests.gd
+  ```
+- Result: Exit 0; no stdout.
+
+**Smoke scene wiring (headless)**
+- Command:
+  ```powershell
+  .\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --path . --scene res://tests/smoke_test.tscn --quit-after 30
+  ```
+- Result: Exit 0; Godot version banner only.
+
+**Phase 3 scene-load smoke (headless)**
+- Command:
+  ```powershell
+  .\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --path . --script tests/phase3_scene_load_runner.gd
+  ```
+- Result: Exit 0; Godot version banner only.
+
+**Headed beta mechanical test (scripted, non-interactive)**
+- Command:
+  ```powershell
+  .\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --path . --script tests/visual/beta_mechanical_test.gd --quit-after 30
+  ```
+- Result: Exit 0; Godot version banner only.
+- Note: This run did not include manual UX validation.
+
+---
+
 ## Quest 1: Herb Identification (Hermes)
 
 ### 1.1 Pre-conditions
@@ -222,7 +338,7 @@ assert(GameState.quest_1_active == true or GameState.quest_1_complete == false)
    game/features/minigames/herb_identification.gd:1  # In _ready
 
    # Quest completion? Set breakpoint here:
-   game/shared/quest_system.gd:50  # In complete_quest method
+   game/features/ui/dialogue_box.gd  # In _end_dialogue (flags_to_set)
    ```
 
 3. **Run quest with debugger (F5)**
@@ -267,14 +383,14 @@ Example:
 
 **Required Before This Quest:**
 - quest_1_complete: true (completed above)
-- quest_2_complete: false (Quest 2 is deprecated - skip it)
+- quest_2_complete: true (required by quest3_start dialogue gating)
 - Player in world
 
 **Verify Before Testing:**
 ```gdscript
 assert(GameState.quest_1_complete == true)
 assert(GameState.quest_3_active == false)
-# Quest 2 should be skipped in NPC routing
+# Quest 2 is deprecated in design, but quest3_start currently requires quest_2_complete.
 ```
 
 ### 2.2 Test Steps (Human-Like Interaction)
@@ -536,7 +652,7 @@ assert(GameState.quest_4_active == false)
 **For farming mechanics:**
 ```gdscript
 # Set breakpoint in farm plot code:
-game/features/farming/farm_plot.gd
+game/features/farm_plot/farm_plot.gd
 
 # Check in debugger:
 # - Is plot state correct?
@@ -728,3 +844,6 @@ What code needs to change?
 
 **Status:** 🚧 DRAFT - Ready for first playtest iteration
 **Next Update:** After completing all 3 quests and refining process
+
+[Codex - 2025-12-29]
+[Claude Haiku 4.5 - 2026-01-02] - Added Testing Methodology Cardinal Rules section

@@ -68,6 +68,62 @@ Use `/token-aware-planning` or the Skill tool to invoke it before beginning work
 4. Building new functionality? → Invoke `test-driven-development`
 5. Making a commit? → Invoke `git-best-practices`
 
+### Testing Methodology Requirements
+
+**CRITICAL:** This section establishes cardinal rules for how agents approach testing. These rules are essential for validating human playability of the game.
+
+**Context:** Headless logic tests pass (118/118) but humans cannot play due to UX issues. We use a two-layer testing strategy combining logic validation with human-like playability validation.
+
+#### Strongly Recommended Testing Approach
+
+**For UX/Playability Validation:**
+- **Preferred:** Use Godot Tools with headed visual testing and programmatic debugging
+- **Tools:** VS Code debugger (F5), remote debug protocol (`--remote-debug tcp://127.0.0.1:6007`), enhanced test scripts
+- **Approach:** Agents autonomously inspect game state, verify UI visibility, capture visual state
+- **Goal:** Validate that humans can see, understand, and interact with game UI
+
+**For Logic Validation:**
+- **Appropriate:** Headless tests via CLI (`Godot*.exe --headless --script tests/*.gd`)
+- **Goal:** Verify mechanics work (quest flags, inventory, save/load, crafting logic, day advancement)
+- **When to use:** Fast regression testing, CI/CD validation
+
+#### Critical Distinction: When to Use Each Approach
+
+**Avoid falling back to headless CLI log parsing when the goal is UX validation.**
+
+- **Headless log parsing** can tell you IF something broke, but not WHY the human experience is broken
+- **Headed visual testing** lets agents see what renders and inspect game state at any moment
+
+**When testing human playability:**
+- ❌ **Don't:** Run headless test → parse logs → guess at UI issues
+- ✅ **Do:** Run headed test with programmatic debugging → inspect visual state → document findings
+
+#### Programmatic Debugging for Autonomous Testing
+
+Agents can validate UX autonomously using headed mode with debugging:
+
+1. **Launch game in headed mode with remote debug:**
+   ```powershell
+   Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/visual/beta_mechanical_test.gd
+   ```
+
+2. **Enhanced test scripts inspect state programmatically:**
+   - Check UI visibility flags: `dialogue_box.visible`
+   - Verify nodes exist: `minigame_node != null`
+   - Capture and analyze screenshots
+   - Print game variables, node properties, state flags
+   - All without human interaction
+
+3. **Key insight:**
+   The limitation is NOT that agents need humans to click F5. The limitation is that headless mode CAN'T capture visual state. Use headed mode programmatically.
+
+#### Detailed Guidelines
+
+For comprehensive guidance on testing methodology, refer to:
+- **Human playability testing:** `tests/visual/January_Playtest_Walkthrough_jwp.md` - Testing Methodology Cardinal Rules section
+- **Godot Tools reference:** `docs/testing/GODOT_TOOLS_GUIDE.md` - Cardinal Rules: Headed Testing for UX Validation section
+- **Implementation patterns:** See `tests/visual/beta_mechanical_test.gd` for examples of programmatic state inspection
+
 ### Testing Best Practices for Godot
 
 **When writing tests for this Godot project:**
@@ -128,3 +184,7 @@ The user authorizes full execution of Phase 4 without additional input:
 
 **Authorization Start: 2025-12-29**
 **Authorized by: User (verbal approval)
+
+---
+
+[Claude Haiku 4.5 - 2026-01-02] - Added Testing Methodology Requirements section with cardinal rules for headed testing vs headless validation

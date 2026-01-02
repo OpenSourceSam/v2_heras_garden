@@ -208,7 +208,8 @@ Open `.vscode/launch.json` (or create if missing):
       "name": "Debug Beta Mechanical Test",
       "type": "godot",
       "request": "launch",
-      "scene": "res://tests/visual/beta_mechanical_test.gd"
+      "scene": "main",
+      "additional_options": "--script tests/visual/beta_mechanical_test.gd"
     },
     {
       "name": "Attach to Running Game",
@@ -377,6 +378,72 @@ Press `Ctrl+Shift+P` and type "Godot Tools":
    - Run complete test suite (headless + headed)
    - Manual playthrough on target device
    - Final polish and validation
+
+---
+
+## Cardinal Rules: Headed Testing for UX Validation
+
+**Context:** Logic tests pass but human playability requires visual validation. The following rules ensure agents use the appropriate testing approach.
+
+### Strongly Recommended for Human Playability Testing
+
+**Prefer headed visual testing over headless log parsing when validating UX:**
+
+- **Headed testing with Godot Tools** captures visual state, enables breakpoint debugging, allows variable inspection
+- **Headless CLI log parsing** can tell you IF something broke, but not WHY the human experience is broken
+- **The gap:** Headless logging reports "Dialogue timeout error"; headed inspection reveals "dialogue_box.visible=false when it should be true"
+
+### When Headless Testing is Appropriate
+
+Headless testing works well for **logic validation only:**
+- Quest flag progression
+- Inventory state changes
+- Save/load data integrity
+- Crafting recipe logic
+- Day advancement mechanics
+- Fast regression testing
+
+### Critical Distinction
+
+**Avoid falling back to headless CLI log parsing when the goal is UX validation.**
+
+When testing human playability:
+- ❌ **Don't:** Run headless test → parse logs → guess at UX issues
+- ✅ **Do:** Run headed test → inspect visual state → document issues
+
+### Programmatic Debugging for Autonomous Testing
+
+**Agents can validate UX autonomously using headed mode:**
+
+1. **Launch with remote debug:**
+   ```powershell
+   Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/visual/beta_mechanical_test.gd
+   ```
+
+2. **Enhanced test scripts can capture state programmatically:**
+   - Check `dialogue_box.visible` in test script
+   - Verify `minigame_node != null`
+   - Capture screenshots programmatically
+   - Print game variables, UI flags, node properties
+   - Report findings in structured format
+
+3. **All without human interaction:**
+   - No need for human to click F5
+   - No need for human to set breakpoints
+   - Test script automates state inspection
+   - Test script documents findings
+
+**The Key Insight:**
+Human-like testing can be done autonomously. The limitation is NOT that agents need humans to press F5. The limitation is that headless mode CAN'T capture visual state. Use headed mode programmatically.
+
+### Summary
+
+| Goal | Use | Rationale |
+|------|-----|-----------|
+| **Logic validation** | Headless CLI | Fast, no visual output needed |
+| **UX validation** | Headed visual testing | Can see/inspect state, catch human experience issues |
+| **Regression testing** | Headless CLI | Quick feedback on code changes |
+| **Human playability** | Headed programmatic debugging | Full state visibility, autonomous inspection |
 
 ---
 
@@ -562,3 +629,6 @@ Edit `.vscode/settings.json`:
 > Press F5 to debug. Set breakpoints. Inspect state. Fix bugs. Repeat.
 
 This is the primary workflow for game development and testing going forward.
+
+[Codex - 2025-12-29]
+[Claude Haiku 4.5 - 2026-01-02] - Added Cardinal Rules: Headed Testing for UX Validation section
