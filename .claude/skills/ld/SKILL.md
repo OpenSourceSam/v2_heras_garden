@@ -106,12 +106,13 @@ You MUST complete this process when loop detected.
 
 ### Escalate
 
-**Escalation path:** Tier 1 → Tier 2 → Tier 3 → User
+**Escalation path:** Ask User directly
 
 **Method:**
-- Invoke `/skill blocked-and-escalating` for structured escalation
-- OR create GitHub issue using `.github/ISSUE_TEMPLATE/handoff.md`
-- OR ask user directly if critical
+- Explain what you tried (all 3+ attempts)
+- Show the error/blocker clearly
+- Ask user for guidance or permission to try different approach
+- OR create GitHub issue if user unavailable
 
 **After escalation:**
 - Update `.claude/learnings/INDEX.md` with loop entry
@@ -211,35 +212,14 @@ Attempt 3: Add null check
 
 **This skill works with:**
 
-**systematic-debugging:**
+**systematic-debugging (`/sd`):**
 - If following systematic-debugging Phase 1 properly, you rarely hit loops
 - If loop detected → systematic-debugging was likely skipped
 - Loop report should note whether systematic-debugging was followed
 
-**verification-before-completion:**
-- Loop detection prevents claiming "fixed" when actually looping
-- Both require evidence before action
-
-**skill-gap-finder:**
-- After creating loop report, check for similar loops
-- 2+ similar loops = skill gap, invoke skill-gap-finder
-
-**blocked-and-escalating:**
-- Loop detection identifies blockage
-- blocked-and-escalating handles the escalation process
-
-## Skill Invocation Depth Limit
-
-**Maximum depth:** 2
-
-**Prevents circular cascades:**
-- loop-detection → skill-gap-finder → skill-creator (depth = 2, OK)
-- loop-detection → skill-gap-finder → skill-creator → another-skill (depth = 3, STOP)
-
-**If at depth 2:**
-- Log to `.claude/learnings/patterns/YYYY-MM-DD-proposed-skill.md` for later
-- Escalate to user
-- Do NOT invoke more skills
+**When stuck after loop detection:**
+- Ask user directly for guidance
+- Don't invoke chains of skills - just stop and escalate to user
 
 ## Common Rationalizations
 
