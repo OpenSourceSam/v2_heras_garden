@@ -12,6 +12,7 @@ extends Control
 @onready var weaving_button: Button = $WeavingButton
 @onready var quit_button: Button = $QuitButton
 @onready var settings_menu: Control = $SettingsMenu
+var _starting_new_game: bool = false
 
 # ============================================
 # LIFECYCLE
@@ -51,9 +52,14 @@ func _ready() -> void:
 # ============================================
 
 func _on_new_game_pressed() -> void:
+	if _starting_new_game:
+		return
+	_starting_new_game = true
+	_set_menu_interactive(false)
+	visible = false
 	# Initialize game state, then play prologue cutscene
 	GameState.new_game()
-	CutsceneManager.play_cutscene("res://game/features/cutscenes/prologue_opening.tscn")
+	await CutsceneManager.play_cutscene("res://game/features/cutscenes/prologue_opening.tscn")
 
 func _on_continue_pressed() -> void:
 	if SaveController.load_game():
@@ -67,3 +73,12 @@ func _on_weaving_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+func _set_menu_interactive(enabled: bool) -> void:
+	new_game_button.disabled = not enabled
+	continue_button.disabled = not enabled
+	settings_button.disabled = not enabled
+	weaving_button.disabled = not enabled
+	quit_button.disabled = not enabled
+
+# [Codex - 2026-01-08]

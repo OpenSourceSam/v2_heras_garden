@@ -5,11 +5,11 @@
 [resource]
 script = ExtResource("1_recipe_data")
 id = "moly_grind"
-display_name = "Ground Moly"
-description = "Crushed moly petals into a fine powder."
-ingredients = [{"item_id": "moly", "quantity": 2}]
-grinding_pattern = ["ui_up", "ui_right", "ui_down", "ui_left"]
-button_sequence = ["ui_accept", "ui_accept"]
-timing_window = 1.5
-result_item_id = "moly"
+display_name = "Transformation Sap"
+description = "Extract the essence from pharmaka flowers. Their sap transforms living things."
+ingredients = [{"item_id": "pharmaka_flower", "quantity": 3}]
+grinding_pattern = ["ui_up", "ui_right", "ui_down", "ui_left", "ui_up", "ui_right", "ui_down", "ui_left", "ui_up", "ui_right", "ui_down", "ui_left"]
+button_sequence = ["ui_accept"]
+timing_window = 2.0
+result_item_id = "transformation_sap"
 result_quantity = 1

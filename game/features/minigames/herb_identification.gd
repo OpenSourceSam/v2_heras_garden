@@ -57,6 +57,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		_move_selection(5)  # Move down row
 	elif event.is_action_pressed("ui_up"):
 		_move_selection(-5)
+	elif event.is_action_pressed("ui_cancel"):
+		# Allow ESC to close minigame (but not during tutorial)
+		queue_free()
 
 func _show_tutorial() -> void:
 	$TutorialOverlay.visible = true
@@ -91,6 +94,9 @@ func _advance_round() -> void:
 		var items = ["pharmaka_flower", "pharmaka_flower", "pharmaka_flower"]
 		_award_items(items)
 		minigame_complete.emit(true, items)
+		# Auto-close minigame after a short delay to show completion
+		await get_tree().create_timer(1.5).timeout
+		queue_free()
 	else:
 		_setup_round(current_round)
 

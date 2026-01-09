@@ -15,7 +15,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 We formalized a **critical distinction** between testing approaches that was previously causing confusion:
 
-### Level 1: Headless Logic Checks (Engineering Only)
+### Level 1: Headless Logic Check (HLC)
 
 - **Purpose:** Verify mechanics, state transitions, code correctness
 - **Speed:** Fast (~minutes)
@@ -24,7 +24,7 @@ We formalized a **critical distinction** between testing approaches that was pre
 - **Use Case:** Fast regression testing, CI/CD validation
 - **Reality Check:** Game can pass all headless tests while being entirely unplayable
 
-### Level 2: Headed Agent Playthrough (DEFAULT for Playtesters) ⭐
+### Level 2: Headed Playability Validation (HPV) (Preferred for Playtesters) ⭐
 
 - **Purpose:** Validate human playability and UI visibility
 - **Speed:** Slower (~hours)
@@ -45,7 +45,7 @@ We formalized a **critical distinction** between testing approaches that was pre
 - **Tools:** Real-time debugging, breakpoint inspection
 - **Use Case:** Final validation, feel assessment
 
-**Critical Rule:** Level 2 is the DEFAULT for playtesters. Engineers may use Level 1 for logic, but must use Level 2 for playability validation.
+**Critical Rule:** HPV is the preferred path for playtesters. Engineers can use HLC for logic, and HPV is the recommended check for playability validation.
 
 ---
 
@@ -84,7 +84,7 @@ All 12 skills were **renamed to short initials** for efficiency:
 - `docs/` - Documentation hub
 - `docs/agent-instructions/` - **START HERE** for agent instructions
 - `.claude/skills/` - 12 active skills (renamed)
-- `tests/` - Test suites (headless and visual)
+- `tests/` - Test suites (HLC and HPV)
 
 ### Documentation Cleanup Performed
 
@@ -100,28 +100,28 @@ Created **comprehensive cleanup plan** addressing:
 
 ---
 
-## 4. Cardinal Rules: Headless vs Headed Testing
+## 4. Cardinal Rules: HLC vs HPV
 
 **CRITICAL DISTINCTION ESTABLISHED:**
 
-### Headless Testing Limitations
+### HLC Limitations
 
-Headless tests can tell you **IF** something broke, but **NOT WHY** the human experience is broken.
+HLC can tell you **IF** something broke, but **NOT WHY** the human experience is broken.
 
 **Example:**
-- Headless logs: "Dialogue timeout error"
-- Headed inspection: "dialogue_box.visible=false when it should be true"
+- HLC logs: "Dialogue timeout error"
+- HPV inspection: "dialogue_box.visible=false when it should be true"
 
 ### When to Use Each
 
-**Use Headless For:**
+**Use HLC For:**
 - Quest flag progression
 - Inventory state changes
 - Save/load data integrity
 - Crafting recipe logic
 - Fast regression testing
 
-**Use Headed For:**
+**Use HPV For:**
 - Minigame UI visibility and clarity
 - Dialogue text readability
 - Crafting pattern display
@@ -129,9 +129,9 @@ Headless tests can tell you **IF** something broke, but **NOT WHY** the human ex
 - Animation timing and responsiveness
 - Overall human experience
 
-### Programmatic Headed Testing
+### Programmatic HPV
 
-**Key Insight:** Agents can validate UX autonomously using headed mode with programmatic debugging:
+**Key Insight:** Agents can validate UX autonomously using HPV (headed mode) with programmatic debugging:
 
 ```powershell
 Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomous_headed_playthrough.gd
@@ -144,7 +144,7 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomou
 - Print game variables, UI flags, node properties
 - Report findings in structured format
 
-**The Limitation:** Headless mode CAN'T capture visual state. Use headed mode programmatically.
+**The Limitation:** HLC does not capture visual state. Use HPV programmatically.
 
 ---
 
@@ -155,12 +155,12 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomou
 - **`docs/testing/GODOT_TOOLS_GUIDE.md`** - Complete Godot Tools extension guide
   - Cardinal Rules section (lines 383-446)
   - Debugger configuration and usage
-  - Headless vs headed testing workflow
+  - HLC vs HPV testing workflow
 
-- **`tests/autonomous_headed_playthrough.gd`** - NEW test for state validation
+- **`tests/autonomous_headed_playthrough.gd`** - HPV baseline for state validation
   - Validates main menu, world scene, quest progression
   - Programmatically checks UI elements
-  - Serves as Level 2 baseline test
+  - Serves as HPV baseline test
 
 ### Agent Instructions
 
@@ -176,18 +176,18 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomou
 
 ## 6. Key Achievements
 
-1. **Established Testing Hierarchy:** Level 2 headed testing is now the DEFAULT for playtesters
+1. **Established Testing Hierarchy:** HPV is the preferred path for playtesters
 2. **Skills Optimization:** 12 skills renamed to short initials, 3 deleted
 3. **Documentation Standardized:** Document index protocol, cleanup of 49+ stale references
 4. **Created Autonomous Test:** `tests/autonomous_headed_playthrough.gd` for programmatic validation
-5. **Godot Tools Integration:** Full debugger workflow established for headed testing
+5. **Godot Tools Integration:** Full debugger workflow established for HPV
 
 ---
 
 ## 7. Impact on Development
 
 **Before This Chat:**
-- Confusion between headless and headed testing
+- Confusion between HLC and HPV testing
 - Skills with long names inefficient to invoke
 - 49+ references to deleted test files
 - No clear testing hierarchy
@@ -196,17 +196,17 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomou
 - ✅ Clear 4-level testing taxonomy
 - ✅ Skills renamed: `/gd`, `/gbp`, `/tap`, etc.
 - ✅ Documentation cleaned and indexed
-- ✅ Autonomous headed playthrough test created
+- ✅ Autonomous HPV playthrough test created
 - ✅ Cardinal rules established for testing methodology
 
-**Bottom Line:** Future agents now have clear guidance on when to use headed vs headless testing, efficient skill system, and centralized documentation. The testing paradox (headless tests passing while game is unplayable) is now explicitly addressed with the Level 2 headed testing requirement for playability validation.
+**Bottom Line:** Future agents now have clear guidance on when to use HPV vs HLC, efficient skill system, and centralized documentation. The testing paradox (headless tests passing while game is unplayable) is now explicitly addressed with the HPV playability validation requirement.
 
 ---
 
 ## Quick Commands Reference
 
 ```powershell
-# Run headless logic tests
+# Run HLC (headless logic checks)
 .\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/run_tests.gd
 
 # Run dialogue tests
@@ -215,7 +215,7 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomou
 # Run minigame tests
 .\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/phase3_minigame_mechanics_test.gd
 
-# Run headed visual validation (Level 2)
+# Run HPV (headed playability validation)
 .\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --path . --script tests/autonomous_headed_playthrough.gd
 ```
 
@@ -262,3 +262,5 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomou
 - If you're about to try something that failed before, say so first
 - Report what files/resources you found, not what you expected to find
 - When uncertain, ask - don't guess repeatedly
+
+[Codex - 2026-01-08]

@@ -41,8 +41,11 @@ lines = [{
 }, {
 "speaker": "Circe",
 "text": "Perfect."
+}, {
+"speaker": "System",
+"text": "[Quest Added: Find the Pharmaka]"
 }]
 choices = []
 flags_required = []
-flags_to_set = []
+flags_to_set = ["quest_1_active"]
 next_dialogue_id = ""

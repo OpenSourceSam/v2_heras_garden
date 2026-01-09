@@ -5,9 +5,67 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "quest2_start"
-lines = [{"speaker": "Hermes", "text": "Good. Now we need sap from the tree."},
-{"speaker": "Hermes", "text": "Work fast before it hardens."},
-{"speaker": "Hermes", "text": "Bring the vial back to Circe."}]
+lines = [{
+"speaker": "Circe",
+"text": "Three. Enough to begin."
+}, {
+"speaker": "Circe",
+"text": "Scylla won't be so beautiful when I'm done."
+}, {
+"speaker": "Hermes",
+"text": "Well, well. Little Circe, picking flowers."
+}, {
+"speaker": "Hermes",
+"text": "How pastoral."
+}, {
+"speaker": "Circe",
+"text": "Hermes! What are you doing here?"
+}, {
+"speaker": "Hermes",
+"text": "I go everywhere, darling. Messenger god, remember?"
+}, {
+"speaker": "Hermes",
+"text": "Besides, I heard you were exiled— wait, not exiled yet."
+}, {
+"speaker": "Hermes",
+"text": "You're here voluntarily. Interesting."
+}, {
+"speaker": "Circe",
+"text": "I needed space."
+}, {
+"speaker": "Hermes",
+"text": "And what are those behind your back?"
+}, {
+"speaker": "Hermes",
+"text": "Pharmaka, if I'm not mistaken."
+}, {
+"speaker": "Circe",
+"text": "That's none of your business."
+}, {
+"speaker": "Hermes",
+"text": "Circe. Whatever you're planning... think carefully."
+}, {
+"speaker": "Hermes",
+"text": "Pharmaka doesn't forgive mistakes."
+}, {
+"speaker": "Hermes",
+"text": "Trust me, I've seen what it can do."
+}, {
+"speaker": "Hermes",
+"text": "I'll leave you to it. But when this goes wrong—"
+}, {
+"speaker": "Hermes",
+"text": "I'll be back with news. I always am."
+}, {
+"speaker": "Circe",
+"text": "He doesn't understand. No one does."
+}, {
+"speaker": "Circe",
+"text": "Back to the house. Time to work."
+}, {
+"speaker": "System",
+"text": "[Quest Update: Extract the Sap]"
+}]
 choices = []
 flags_required = ["quest_1_complete"]
 flags_to_set = ["quest_2_active"]

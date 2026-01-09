@@ -18,9 +18,15 @@ For all contributors:
 
 ## Current Phase Status
 
-Last Updated: 2025-12-30
-Current Phase: Phase 6.75 - Content Expansion
-Status: Phases 0-6.5 COMPLETE. Now expanding dialogue/content before export.
+Last Updated: 2026-01-03
+Current Phase: Phase 0.5 - Missing Content Implementation
+Status: Phases 0-1.5 COMPLETE. Missing prologue content, Quest 2, and significant game flow.
+
+**CRITICAL GAP IDENTIFIED (2026-01-03):**
+- Missing: Full prologue cutscene (Helios's palace, Aeëtes note)
+- Missing: Quest 2 "Extract the Sap" (mortar & pestle crafting)
+- Actual: Game only completes part of Quest 1 functionally
+- Reference: tests/visual/playthrough_guide.md defines correct flow
 
 **Phase 6.5 Resolved:**
 - NPC sprite size inconsistency (all 5 NPCs now have standardized 48x32 proportions)
@@ -149,6 +155,52 @@ Automated Verification:
 - Legacy Phase 0 validator removal is documented, and no references remain.
 Manual Verification:
 - Smoke test prints "[SmokeTest] OK" with no errors.
+
+---
+
+## ⚠️ TESTING REQUIREMENTS (CRITICAL)
+
+### Headless vs Headed Testing
+
+**Headless Tests** (e.g., `tests/run_tests.gd`):
+- ✅ Verify logic, mechanics, and code structure
+- ✅ Fast automated validation
+- ❌ CANNOT verify human playability
+- ❌ CANNOT verify UI visibility
+- ❌ CANNOT verify visual feedback
+
+**Headed Tests** (e.g., `tests/visual_walkthrough_test.gd`):
+- ✅ Verify actual game rendering
+- ✅ Validate human playability
+- ✅ Confirm UI visibility and feedback
+- ⚠️ Slower but REQUIRED for game validation
+
+### When to Use Each
+
+**Use Headless Tests For:**
+- Logic validation during development
+- CI/CD automated checks
+- Quick regression testing
+- Verifying mechanics work
+
+**Use Headed Tests For:**
+- Playability validation (MANDATORY)
+- UI/UX verification
+- Visual polish checking
+- Human experience validation
+
+### Running Tests
+
+```bash
+# Headless (logic only)
+godot --headless --script tests/run_tests.gd
+
+# Headed (playability validation)
+godot --path . --script tests/visual_walkthrough_test.gd
+godot --path . --script tests/autonomous_playthrough_quest3.gd
+```
+
+**CRITICAL:** Never consider a feature "complete" without headed testing validation.
 
 ---
 

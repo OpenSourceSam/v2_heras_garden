@@ -77,7 +77,8 @@ func _load_registries() -> void:
 		"res://game/shared/resources/items/woven_cloth.tres",
 		"res://game/shared/resources/items/pharmaka_flower.tres",
 		"res://game/shared/resources/items/golden_glow.tres",
-		"res://game/shared/resources/items/golden_glow_seed.tres"
+		"res://game/shared/resources/items/golden_glow_seed.tres",
+		"res://game/shared/resources/items/transformation_sap.tres"
 	]
 
 	for path in item_paths:

@@ -38,6 +38,7 @@ keep_screen_on=true
 config/name="Circe's Garden"
 run/main_scene="res://game/features/ui/main_menu.tscn"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/bg_color=Color(0.14117648, 0.14117648, 0.14117648, 1)
 config/icon="res://icon.svg"
 
 [autoload]
@@ -48,14 +49,13 @@ SaveController="*res://game/autoload/save_controller.gd"
 SceneManager="*res://game/autoload/scene_manager.gd"
 CutsceneManager="*res://game/autoload/cutscene_manager.gd"
 Constants="*res://game/autoload/constants.gd"
-MCPInputHandler="*res://addons/godot_mcp/mcp_input_handler.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 QuestSystem="*res://addons/quest_system/quest_manager.gd"
 
 [display]
 
-window/size/viewport_width=1080
-window/size/viewport_height=1240
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/mode=2
 window/size/resizable=false
 window/stretch/mode="viewport"
@@ -126,8 +126,16 @@ ui_inventory={
 
 input/emulate_mouse_from_touch=false
 
+[plugins]
+
+ai_assistant_hub/llm_api="ollama_api"
+ai_assistant_hub/preferences/thinking_target=0
+ai_assistant_hub/preferences/skip_greeting=false
+ai_assistant_hub/preferences/always_scroll_to_bottom=false
+
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true

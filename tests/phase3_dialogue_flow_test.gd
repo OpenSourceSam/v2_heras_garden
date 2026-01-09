@@ -2,6 +2,16 @@
 ## Headless test for Phase 3 dialogue and quest flow.
 ## Tests that NPC dialogue routes correctly and quest flags progress.
 
+## ⚠️ IMPORTANT: Headless Test Limitations
+## This test verifies dialogue flag logic but does NOT test:
+## - Visual dialogue rendering
+## - Text readability
+## - Choice UI visibility
+## - Player experience flow
+##
+## Run headed tests for playability validation:
+## godot --path . --script tests/visual_walkthrough_test.gd
+
 extends SceneTree
 
 var all_passed := true

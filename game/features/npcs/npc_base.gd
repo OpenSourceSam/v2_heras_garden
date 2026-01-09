@@ -144,8 +144,12 @@ func _resolve_hermes_dialogue() -> String:
 		return "quest1_inprogress"
 	if GameState.get_flag("quest_1_complete") and not GameState.get_flag("quest_1_complete_dialogue_seen"):
 		return "quest1_complete"
-	# Quest 2 removed - skip directly to quest 3 start
-	if GameState.get_flag("quest_1_complete") and not GameState.get_flag("quest_3_active"):
+	# Quest 2: Extract the Sap - Hermes warning, then player returns to house
+	if GameState.get_flag("quest_1_complete") and not GameState.get_flag("quest_2_active"):
+		return "quest2_start"
+	if GameState.get_flag("quest_2_active") and not GameState.get_flag("quest_2_complete"):
+		return "act1_extract_sap"
+	if GameState.get_flag("quest_2_complete") and not GameState.get_flag("quest_3_active"):
 		return "quest3_start"
 	return "hermes_idle"
 

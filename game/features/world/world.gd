@@ -37,7 +37,17 @@ func _ready() -> void:
 	_connect_crafting_station()
 	if not GameState.flag_changed.is_connected(_on_flag_changed):
 		GameState.flag_changed.connect(_on_flag_changed)
+
+	# Connect to dialogue system for quest 1 minigame
+	var dialogue_box = get_tree().get_first_node_in_group("dialogue_ui")
+	if dialogue_box and dialogue_box.has_signal("dialogue_ended"):
+		if not dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
+			dialogue_box.dialogue_ended.connect(_on_dialogue_ended)
+
 	_update_quest_markers()
+
+	# Show Aiaia arrival dialogue on first world entry after prologue
+	_check_aiaia_arrival()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_inventory"):
@@ -123,3 +133,51 @@ func _resolve_crafting_recipe() -> String:
 	if GameState.get_flag("quest_2_active") and not GameState.get_flag("quest_2_complete"):
 		return "moly_grind"
 	return ""
+
+func _on_dialogue_ended(dialogue_id: String) -> void:
+	# Start herb identification minigame after quest 1 dialogue
+	if dialogue_id == "act1_herb_identification":
+		_start_herb_identification_minigame()
+
+func _start_herb_identification_minigame() -> void:
+	var minigame_scene = load("res://game/features/minigames/herb_identification.tscn")
+	if not minigame_scene:
+		push_error("Failed to load herb identification minigame")
+		return
+
+	var minigame = minigame_scene.instantiate()
+	ui_layer.add_child(minigame)
+
+	# Connect to minigame completion signal
+	if minigame.has_signal("minigame_complete"):
+		if not minigame.minigame_complete.is_connected(_on_herb_minigame_complete):
+			minigame.minigame_complete.connect(_on_herb_minigame_complete)
+
+func _on_herb_minigame_complete(success: bool, items: Array) -> void:
+	if success:
+		GameState.set_flag("quest_1_complete", true)
+		print("Quest 1 completed! Items awarded: %s" % items)
+	else:
+		print("Herb identification minigame failed")
+
+func _check_aiaia_arrival() -> void:
+	# Show arrival dialogue after prologue if not already shown
+	if GameState.get_flag("prologue_complete") and not GameState.get_flag("aiaia_arrival_shown"):
+		GameState.set_flag("aiaia_arrival_shown", true)
+		# Use call_deferred to let scene fully initialize
+		call_deferred("_show_aiaia_arrival_dialogue")
+
+func _show_aiaia_arrival_dialogue() -> void:
+	# Wait for a frame to ensure dialogue system is ready
+	await get_tree().process_frame
+
+	var dialogue_manager = get_tree().get_first_node_in_group("dialogue_manager")
+	if dialogue_manager and dialogue_manager.has_method("start_dialogue"):
+		dialogue_manager.start_dialogue("aiaia_arrival")
+	else:
+		# Fallback: try to find dialogue box directly
+		var dialogue_box = get_tree().get_first_node_in_group("dialogue_ui")
+		if dialogue_box and dialogue_box.has_method("show_dialogue"):
+			var dialogue_res = load("res://game/shared/resources/dialogues/aiaia_arrival.tres")
+			if dialogue_res:
+				dialogue_box.show_dialogue(dialogue_res)

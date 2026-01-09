@@ -1,0 +1,140 @@
+description = "Clarify task requirements and context before proceeding"
+prompt = """# Clarify Command - Structured Clarification Protocol
+
+## Purpose
+Ensure complete understanding before proceeding. Ask right questions, gather all context, document properly as you work.
+
+## When to Use
+- Starting a new task
+- Unclear requirements
+- Blocked on decision
+- Need to understand existing work
+- Before making major changes
+
+## Clarification Framework
+
+### 1. Understand the Task
+Ask yourself:
+- What exactly needs to be done?
+- What files will be affected?
+- What are the success criteria?
+- Are there constraints (time, tech, scope)?
+
+### 2. Review Existing Context
+**Read Key Files:**
+- `docs/execution/ROADMAP.md` - Current phase and priorities
+- `docs/agent-instructions/README.md` - Agent instructions index
+- Any relevant implementation guides
+- Related code/files you'll modify
+
+**Use Grep to find:**
+- References to the feature/system you're working on
+- Similar implementations to follow as pattern
+- Documentation that needs updating
+
+### 3. Identify Documentation Touchpoints
+Before starting, identify ALL places that will need updates:
+
+**If modifying code:**
+- Update relevant `.gd` files
+- Update tests if logic changed
+- Update `docs/testing/` guides if testing process changed
+
+**If modifying docs:**
+- Update `docs/agent-instructions/README.md` index
+- Update workflow docs if process changed
+- Update cross-references in other docs
+
+**If creating new feature:**
+- Document in appropriate phase guide
+- Add to ROADMAP.md progress
+- Update agent instructions if new workflow
+- Add to README/index
+
+### 4. Ask Clarifying Questions (if needed)
+
+**Good questions to ask:**
+- "Should I focus on [X] or [Y] first?"
+- "Are there existing patterns I should follow?"
+- "What level of documentation is needed?"
+- "Should I update [specific doc] as well?"
+
+**Avoid asking:**
+- Questions answerable by reading docs
+- Questions about personal preference
+- Questions that don't affect implementation
+
+### 5. Document as You Go
+
+**Update documentation IN PLACE:**
+
+Example: Working on `tests/run_tests.gd`
+1. Make code changes
+2. Immediately update `docs/testing/GODOT_TOOLS_GUIDE.md`
+3. Update `docs/agent-instructions/README.md` if testing approach changed
+4. Update any workflow docs that reference testing
+5. NO handoff doc needed - work is already documented
+
+**Update Index Files:**
+- `docs/agent-instructions/README.md` - Add new guides to Quick Navigation
+- Any directory README files
+- ROADMAP.md - Update progress
+
+### 6. Verify Understanding
+Before proceeding, confirm:
+- [ ] I know what files I'll modify
+- [ ] I know what docs need updating
+- [ ] I understand the existing patterns
+- [ ] I have clear success criteria
+- [ ] I know where to document changes
+
+## Examples
+
+### Example 1: Starting Bug Fix
+```
+/clarify fixing quest flag not setting
+
+Context Review:
+- Read ROADMAP.md: Currently in Phase 0.5
+- Checked docs/plans/ for quest-related work
+- Found quest system in game/shared/resources/quests/
+- Identified docs that reference quest flow
+
+Documentation Plan:
+- Update docs/testing/ if test process changes
+- Update ROADMAP.md with bug fix
+- Update relevant implementation guide
+
+Ready to proceed with bug fix.
+```
+
+### Example 2: Creating New Feature
+```
+/clarify implementing new dialogue system
+
+Context Review:
+- Read existing dialogue files in game/shared/resources/dialogues/
+- Reviewed docs/agent-instructions/tools/workflows.md
+- Checked similar features in codebase
+
+Documentation Plan:
+- Create guide in docs/plans/
+- Update ROADMAP.md progress
+- Update docs/agent-instructions/README.md index
+- Update workflow docs if new process
+
+Questions: Should I follow the existing dialogue pattern or create new approach?
+```
+
+## Key Principles
+
+1. **Read before asking** - Check docs first
+2. **Document as you go** - Update relevant docs immediately
+3. **Think holistically** - Consider ALL documentation touchpoints
+4. **Be specific** - Name exact files you'll modify
+5. **No handoff doc** - Work is documented in final location
+
+Remember: Good clarification prevents rework and ensures complete documentation.
+
+Current task: {{args}}
+"""

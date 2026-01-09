@@ -6,14 +6,3 @@
 [node name="PrologueOpening" instance=ExtResource("1_base")]
 layout_mode = 3
 script = ExtResource("2_script")
-
-[node name="Background" parent="." index="0"]
-layout_mode = 0
-anchors_preset = 0
-
-[node name="Overlay" parent="." index="1"]
-layout_mode = 0
-anchors_preset = 0
-
-[node name="NarrationLabel" parent="." index="2"]
-layout_mode = 0

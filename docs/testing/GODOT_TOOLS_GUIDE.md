@@ -288,9 +288,9 @@ Press `Ctrl+Shift+P` and type "Godot Tools":
 
 ---
 
-## Testing Workflow: Headless vs Headed
+## Testing Workflow: HLC vs HPV
 
-### When to Use HEADLESS
+### When to Use HLC (Headless Logic Check)
 
 **Purpose:** Logic validation, state correctness
 **Speed:** ⚡ Fast (seconds to minutes)
@@ -317,12 +317,12 @@ Press `Ctrl+Shift+P` and type "Godot Tools":
 - Fast feedback loop during development
 
 **Limitations:**
-- Cannot capture viewport textures
+- Typically does not capture viewport textures
 - No visual UI verification
 - No human experience simulation
-- Cannot detect UI rendering issues
+- Typically does not detect UI rendering issues
 
-### When to Use HEADED
+### When to Use HPV (Headed Playability Validation)
 
 **Purpose:** Visual UX validation, human playability
 **Speed:** 🐢 Slower (minutes to hours)
@@ -358,43 +358,43 @@ Press `Ctrl+Shift+P` and type "Godot Tools":
 
 1. **During Development (Daily)**
    - Write code in VS Code with Godot Tools LSP
-   - Run headless tests for quick validation
-   - Fix logic bugs
+   - Run HLC for quick logic validation
+   - Use HPV when validating playability changes
 
 2. **Before Commit**
-   - Run relevant headless test suite
-   - Ensure tests pass
+   - Run relevant HLC suite
+   - Include HPV if playability changes are in scope
    - Commit when logic is verified
 
 3. **Weekly/Milestone**
-   - Run headed beta mechanical test
+   - Run HPV playability validation (example: `tests/autonomous_headed_playthrough.gd`)
    - Review screenshots and output
    - Use VS Code debugger to inspect UX issues
    - Fix visual/timing bugs
-   - Re-run headed test to verify
+   - Re-run HPV to verify
 
 4. **Pre-Release**
-   - Run complete test suite (headless + headed)
+   - Run complete test suite (HLC + HPV)
    - Manual playthrough on target device
    - Final polish and validation
 
 ---
 
-## Cardinal Rules: Headed Testing for UX Validation
+## Cardinal Rules: HPV for UX Validation
 
 **Context:** Logic tests pass but human playability requires visual validation. The following rules ensure agents use the appropriate testing approach.
 
 ### Strongly Recommended for Human Playability Testing
 
-**Prefer headed visual testing over headless log parsing when validating UX:**
+**Prefer HPV over HLC log parsing when validating UX:**
 
-- **Headed testing with Godot Tools** captures visual state, enables breakpoint debugging, allows variable inspection
-- **Headless CLI log parsing** can tell you IF something broke, but not WHY the human experience is broken
-- **The gap:** Headless logging reports "Dialogue timeout error"; headed inspection reveals "dialogue_box.visible=false when it should be true"
+- **HPV with Godot Tools** captures visual state, enables breakpoint debugging, allows variable inspection
+- **HLC log parsing** can tell you IF something broke, but not WHY the human experience is broken
+- **The gap:** HLC logging reports "Dialogue timeout error"; HPV inspection reveals "dialogue_box.visible=false when it should be true"
 
-### When Headless Testing is Appropriate
+### When HLC is Appropriate
 
-Headless testing works well for **logic validation only:**
+HLC works well for **logic validation only:**
 - Quest flag progression
 - Inventory state changes
 - Save/load data integrity
@@ -404,15 +404,15 @@ Headless testing works well for **logic validation only:**
 
 ### Critical Distinction
 
-**Avoid falling back to headless CLI log parsing when the goal is UX validation.**
+**Avoid falling back to HLC log parsing when the goal is UX validation.**
 
 When testing human playability:
-- ❌ **Don't:** Run headless test → parse logs → guess at UX issues
-- ✅ **Do:** Run headed test → inspect visual state → document issues
+- ❌ **Don't:** Run HLC → parse logs → guess at UX issues
+- ✅ **Do:** Run HPV → inspect visual state → document issues
 
 ### Programmatic Debugging for Autonomous Testing
 
-**Agents can validate UX autonomously using headed mode:**
+**Agents can validate UX autonomously using HPV (headed mode):**
 
 1. **Launch with remote debug:**
    ```powershell
@@ -433,16 +433,16 @@ When testing human playability:
    - Test script documents findings
 
 **The Key Insight:**
-Human-like testing can be done autonomously. The limitation is NOT that agents need humans to press F5. The limitation is that headless mode CAN'T capture visual state. Use headed mode programmatically.
+Human-like testing can be done autonomously. The limitation is NOT that agents need humans to press F5. The limitation is that HLC does not capture visual state. Use HPV programmatically.
 
 ### Summary
 
 | Goal | Use | Rationale |
 |------|-----|-----------|
-| **Logic validation** | Headless CLI | Fast, no visual output needed |
-| **UX validation** | Headed visual testing | Can see/inspect state, catch human experience issues |
-| **Regression testing** | Headless CLI | Quick feedback on code changes |
-| **Human playability** | Headed programmatic debugging | Full state visibility, autonomous inspection |
+| **Logic validation** | HLC (headless CLI) | Fast, no visual output needed |
+| **UX validation** | HPV (headed visual) | Can see/inspect state, catch human experience issues |
+| **Regression testing** | HLC (headless CLI) | Quick feedback on code changes |
+| **Human playability** | HPV (headed programmatic) | Full state visibility, autonomous inspection |
 
 ---
 
@@ -564,11 +564,11 @@ Edit `.vscode/settings.json`:
 ### Testing Commands
 
 ```powershell
-# Headless (Logic)
+# HLC (headless logic checks)
 .\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/run_tests.gd
 
-# Headed (Visual) - with debugger
-.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --path . --remote-debug tcp://127.0.0.1:6007
+# HPV (headed playability validation) - with debugger
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomous_headed_playthrough.gd
 
 # Via Debugger (F5 in VS Code)
 # Select "Debug Test Script" or "Attach to Running Game" from Run menu
@@ -610,8 +610,8 @@ Edit `.vscode/settings.json`:
 | Debug rendering | Godot Editor | Visual layout inspection |
 | Quick scene check | Godot Tools | Scene preview in VS Code |
 | Complex scene design | Godot Editor | Full editor features |
-| Test logic | Godot Tools | Run headless tests |
-| Test visuals | Godot Tools | Run headed with debugger |
+| Test logic | Godot Tools | Run HLC |
+| Test visuals | Godot Tools | Run HPV with debugger |
 
 ---
 
@@ -621,12 +621,13 @@ Edit `.vscode/settings.json`:
 - ✅ Faster GDScript development (autocomplete, go-to-definition)
 - ✅ Integrated debugging (breakpoints, stepping, variable inspection)
 - ✅ Unified workflow (no window switching)
-- ✅ Visual and logic testing (headed and headless)
+- ✅ Visual and logic testing (HPV and HLC)
 - ✅ Scene preview without opening editor
 
 **Key takeaway:**
 > Press F5 to debug. Set breakpoints. Inspect state. Fix bugs. Repeat.
 
 This is the primary workflow for game development and testing going forward.
-[Claude Haiku 4.5 - 2026-01-02] - Added Cardinal Rules: Headed Testing for UX Validation section
+[Claude Haiku 4.5 - 2026-01-02] - Added Cardinal Rules: HPV for UX Validation section
 [Codex - 2025-12-29]
+[Codex - 2026-01-08]

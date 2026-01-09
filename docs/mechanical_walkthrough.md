@@ -394,6 +394,8 @@ Circe: "Pharmaka... the magic Aeëtes told me about."
 
 ### CHAPTER 3: QUEST 1 - HERB IDENTIFICATION
 
+**Visual validation (beta):** A beta mechanical visual test exists at `tests/visual/beta_mechanical_test.gd`. It captures PNG+ASCII checkpoints for Quest 1 and can help spot regressions in dialogue, world entry, and minigame states. Outputs land in `.godot/screenshots/beta_mechanical/`.
+
 #### Step 3.1: Trigger Quest 1
 
 **Trigger Mechanism:** Player exits house, Hermes spawns

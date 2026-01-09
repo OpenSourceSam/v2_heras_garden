@@ -1,0 +1,45 @@
+╔══════════════════════════════════════════════════════════════╗
+║          MiniMax Plugin Setup - Complete! ✅                ║
+╚══════════════════════════════════════════════════════════════╝
+
+DEBUG RESULTS:
+✓ MiniMax provider file exists: addons/ai_autonomous_agent/llm_providers/minimax.tres
+✓ MiniMax API file exists: addons/ai_autonomous_agent/llm_apis/minimax_api.gd
+✓ Provider loads successfully
+✓ API key is configured and saved
+✓ All 7 providers detected (including MiniMax!)
+
+═══════════════════════════════════════════════════════════════
+
+SOLUTION: You need to RESTART GODOT
+
+Steps to activate MiniMax:
+1. Close Godot Editor completely
+2. Reopen the project
+3. Go to: Editor → Bottom Panel → AI Agent
+4. Click on "LLM Provider" dropdown
+5. Select "MiniMax" from the list
+6. Enter your API key (already pre-filled!)
+7. Click "Refresh Models"
+8. Start chatting with MiniMax! 🎉
+
+═══════════════════════════════════════════════════════════════
+
+WHY THIS HAPPENED:
+Godot cached the plugin providers when it first loaded. The new
+MiniMax provider was added after the plugin was already running,
+so Godot needs to reload to detect it.
+
+═══════════════════════════════════════════════════════════════
+
+CONFIGURATION SAVED:
+- API Key: sk-cp-xgttGx8GfmjMzMR64zQOU0BXYjrikYD0nSTMfWBbIT0Ykq17fUeT3f7Dmmt2UOQaskwOjaOPxMYk6jev0G4Av2-znT8-a3aRWGfHVpgMvgzc8dVYc4W8U6c
+- URL: https://api.minimax.io
+- Location: %APPDATA%/Godot/app_userdata/v2_heras_garden/ai_assistant_hub/llm_settings.cfg
+
+═══════════════════════════════════════════════════════════════
+
+NEED HELP?
+Run: debug_plugin.gd
+This will verify all files are in place.
+

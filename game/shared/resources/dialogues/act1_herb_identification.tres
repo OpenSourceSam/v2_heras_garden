@@ -12,5 +12,5 @@ lines = [{"speaker": "Circe", "text": "The ground still glows. Find the pharmaka
 {"speaker": "Circe", "text": "Bring me the true herb when you are done."}]
 choices = []
 flags_required = []
-flags_to_set = ["quest_1_complete"]
+flags_to_set = []
 next_dialogue_id = ""

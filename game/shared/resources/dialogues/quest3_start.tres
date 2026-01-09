@@ -9,6 +9,6 @@ lines = [{"speaker": "Hermes", "text": "Scylla waits beyond the rocks."},
 {"speaker": "Hermes", "text": "Circe must face her soon."},
 {"speaker": "Hermes", "text": "Prepare what she needs."}]
 choices = []
-flags_required = ["quest_2_complete"]
+flags_required = []
 flags_to_set = ["quest_3_active"]
 next_dialogue_id = ""

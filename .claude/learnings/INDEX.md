@@ -1,6 +1,6 @@
 # Learnings Index
 
-Last updated: [Sonnet 4.5 - 2025-12-29]
+Last updated: [Codex - 2026-01-08]
 
 ## Purpose
 
@@ -51,7 +51,7 @@ This index provides fast lookup of all learnings (bugs, loops, patterns) to enab
 
 ## Loops (0 entries)
 
-*No loop patterns documented yet*
+- 2026-01-08-prologue-menu-overlap-loop: Prologue cutscene text overlaps main menu and regresses
 
 ---
 
@@ -92,7 +92,7 @@ When a learning is captured in a skill, mark it as:
 - YYYY-MM-DD-short-description: One-line summary of what happened
 ```
 
-Signoff: [Codex - 2025-12-29]
+Signoff: [Codex - 2026-01-08]
 
 **Categorization:**
 Group by:

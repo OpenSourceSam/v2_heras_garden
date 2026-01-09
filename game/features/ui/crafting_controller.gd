@@ -60,8 +60,24 @@ func _on_crafting_complete(success: bool) -> void:
 		# Add result
 		GameState.add_item(current_recipe.result_item_id, current_recipe.result_quantity)
 		print("Crafted: %s" % current_recipe.display_name)
+
+		# Mark quest complete based on recipe
+		_update_quest_flags(current_recipe.id)
 	else:
 		print("Crafting failed!")
+
+func _update_quest_flags(recipe_id: String) -> void:
+	match recipe_id:
+		"moly_grind":
+			GameState.set_flag("quest_2_complete", true)
+		"calming_draught":
+			GameState.set_flag("quest_5_complete", true)
+		"reversal_elixir":
+			GameState.set_flag("quest_6_complete", true)
+		"binding_ward":
+			GameState.set_flag("quest_7_complete", true)
+		"petrification_potion":
+			GameState.set_flag("quest_11_complete", true)
 
 func _load_recipes() -> void:
 	_recipes.clear()

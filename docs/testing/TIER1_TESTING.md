@@ -1,10 +1,10 @@
-# Tier 1 AI Testing Framework
+# Tier 1 AI Testing Framework (HLC + HPV)
 
-Enable AI agents (Codex, MiniMax) to perform 95% human-equivalent testing via headless GDScript scripts.
+Enable AI agents (Codex, MiniMax) to run Headless Logic Checks (HLC) and support Headed Playability Validation (HPV) using the same test utilities.
 
 ## Overview
 
-The Tier 1 testing framework provides headless testing capabilities for game logic verification. It allows AI agents to:
+The Tier 1 testing framework provides HLC-focused tooling for game logic verification, and it can also run in HPV (headed) mode for playability checks. It allows AI agents to:
 - Simulate game input (D-pad, confirm, cancel)
 - Query game state (gold, inventory, quests, flags)
 - Assert conditions and capture errors
@@ -138,9 +138,9 @@ tests/ai/
 
 ## Usage
 
-### Headless Mode (Logic Tests)
+### HLC (Headless Logic Check)
 
-Use headless mode for fast, repeatable logic tests:
+Use HLC for fast, repeatable logic tests:
 
 ```bash
 # Run full AI test suite
@@ -150,21 +150,21 @@ godot --headless --script tests/ai/test_full_playthrough.gd
 godot --headless --script tests/ai/test_basic.gd
 ```
 
-**What works in headless:**
+**What works in HLC:**
 - State queries (gold, inventory, quests)
 - Save/load functionality
 - Scene loading
 - Autoload access
 - Assertions and error catching
 
-**What doesn't work in headless:**
+**What doesn't work in HLC:**
 - Player node lookup (returns null)
 - Viewport textures (screenshots are empty)
 - Visual rendering verification
 
-### Headed Mode (Visual Tests)
+### HPV (Headed Playability Validation)
 
-Use headed mode when you need to verify visuals:
+Use HPV when you need to verify visuals and playability:
 
 ```bash
 # Run test with window (15 second timeout)
@@ -174,8 +174,8 @@ godot --path . --script tests/ai/test_full_playthrough.gd --quit-after 15
 godot --path .
 ```
 
-**What works in headed mode:**
-- All headless capabilities
+**What works in HPV:**
+- All HLC capabilities
 - Screenshots with actual visuals
 - Player node verification
 - Visual rendering checks
@@ -188,7 +188,7 @@ godot --path .
 | Farm | PASS | Checks farm data structure exists |
 | Save/Load | PASS | Game saves to file, loads correctly |
 | World Bootstrap | PARTIAL | Scene loads, player node null |
-| Screenshots | PARTIAL | Files created, texture null in headless |
+| Screenshots | PARTIAL | Files created, texture null in HLC |
 
 **Total: 3/5 core tests fully passing**
 
@@ -206,16 +206,16 @@ godot --path .
 
 ### Limitations
 
-- Cannot verify visual rendering in headless mode
-- Player node lookup fails in headless (use scene file check instead)
-- Screenshots require headed mode for actual visuals
+- Typically does not verify visual rendering in HLC
+- Player node lookup fails in HLC (use scene file check instead)
+- Screenshots require HPV (headed) for actual visuals
 - NPC sprite verification requires manual visual check
 
-## Headless Limitations and Workarounds
+## HLC Limitations and Workarounds
 
 ### Player Node Null
 
-**Problem:** `StateQuery.get_player()` returns null in headless mode.
+**Problem:** `StateQuery.get_player()` returns null in HLC.
 
 **Workaround:** Verify scene file loads correctly instead:
 ```gdscript
@@ -225,22 +225,22 @@ var passed = scene != null  # Scene loads, even if player is null
 
 ### Screenshots Empty
 
-**Problem:** `papershot.take_screenshot()` creates files but viewport texture is null in headless.
+**Problem:** `papershot.take_screenshot()` creates files but viewport texture is null in HLC.
 
 **Workaround:**
 ```gdscript
-# Accept null texture in headless
+# Accept null texture in HLC
 if texture == null:
-    print("Screenshot skipped - headless mode")
+    print("Screenshot skipped - HLC")
 else:
     # Process screenshot
 ```
 
 ### NPC Verification
 
-**Problem:** Cannot visually verify NPC sprites in headless.
+**Problem:** Typically does not visually verify NPC sprites in HLC.
 
-**Workaround:** Run headed mode test:
+**Workaround:** Run HPV:
 ```bash
 godot --path . --script tests/ai/test_full_playthrough.gd --quit-after 15
 ```
@@ -344,22 +344,22 @@ func _print_report():
 
 ## Recommendations for AI Agents
 
-1. **Run headless tests first** - Fast feedback on game logic
-2. **Use headed mode for visual verification** - When sprites or layout need checking
+1. **Run HPV for playability validation** - Preferred for playtesting
+2. **Use HLC for fast logic checks** - Helpful for quick regression signals
 3. **Chain tests together** - Run multiple test scripts sequentially
-4. **Check test output carefully** - Some failures are expected in headless
+4. **Check test output carefully** - Some failures are expected in HLC
 
 ### Suggested Test Sequence
 
 ```bash
-# 1. Fast logic check
+# 1. HPV (playability validation)
+godot --path . --script tests/autonomous_headed_playthrough.gd --quit-after 15
+
+# 2. HLC (fast logic check)
 godot --headless --script tests/ai/test_basic.gd
 
-# 2. Full playthrough test
+# 3. HLC (full logic playthrough)
 godot --headless --script tests/ai/test_full_playthrough.gd
-
-# 3. Visual check (manual review)
-godot --path . --script tests/ai/test_full_playthrough.gd --quit-after 15
 ```
 
 ## See Also
@@ -367,3 +367,5 @@ godot --path . --script tests/ai/test_full_playthrough.gd --quit-after 15
 - [ROADMAP.md](../execution/ROADMAP.md) - Development roadmap with testing phases
 - [AGENT.md](../AGENT.md) - Agent guidance and testing patterns
 - [tests/ai/](tests/ai/) - Example test scripts
+
+[Codex - 2026-01-08]

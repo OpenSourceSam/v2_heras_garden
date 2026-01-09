@@ -2,6 +2,15 @@
 ## Headless test for Phase 3 minigame mechanics.
 ## Tests core mechanics without requiring input timing.
 
+## ⚠️ IMPORTANT: Headless Test Limitations
+## This test verifies minigame logic but does NOT test:
+## - Visual minigame rendering
+## - Player can see/tap targets
+## - Timing feels fair
+## - UI feedback is clear
+##
+## Run headed tests for playability validation
+
 extends SceneTree
 
 var all_passed := true

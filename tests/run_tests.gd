@@ -2,6 +2,18 @@
 ## Automated test runner for Circe's Garden v2
 ## Run with: godot --headless --script tests/run_tests.gd
 
+## ⚠️ IMPORTANT: Testing Limitations
+## This file contains HEADLESS tests only.
+## Headless tests verify logic and mechanics but CANNOT validate:
+## - UI visibility and rendering
+## - Human playability
+## - Visual feedback and polish
+## - Game feel and pacing
+##
+## For playability validation, you MUST run HEADED tests:
+## godot --path . --script tests/visual_walkthrough_test.gd
+## godot --path . --script tests/autonomous_playthrough_quest3.gd
+
 var passed: int = 0
 var failed: int = 0
 

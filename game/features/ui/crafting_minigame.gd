@@ -114,11 +114,79 @@ func _on_crafting_failed() -> void:
 func _update_display() -> void:
 	# Update UI to show current progress
 	# Show next expected input
-	pass
 
-func _play_feedback(_correct: bool) -> void:
+	var pattern_display = get_node_or_null("PatternDisplay")
+	if pattern_display:
+		var display_text = ""
+		if is_grinding_phase and current_pattern_index < pattern.size():
+			display_text = "Grinding: "
+			for i in range(pattern.size()):
+				if i < current_pattern_index:
+					display_text += "[✓] "
+				elif i == current_pattern_index:
+					display_text += "[%s]" % _action_to_symbol(pattern[i])
+				else:
+					display_text += "[ ] "
+		elif not is_grinding_phase and current_button_index < button_sequence.size():
+			display_text = "Buttons: "
+			for i in range(button_sequence.size()):
+				if i < current_button_index:
+					display_text += "[✓] "
+				elif i == current_button_index:
+					display_text += "[%s]" % _action_to_symbol(button_sequence[i])
+				else:
+					display_text += "[ ] "
+		else:
+			display_text = "Complete!"
+
+		if pattern_display.has_method("set_text"):
+			pattern_display.set_text(display_text)
+
+	# Update progress bar
+	var progress_bar = get_node_or_null("ProgressBar")
+	if progress_bar:
+		var total_steps = pattern.size() + button_sequence.size()
+		var current_step = current_pattern_index + current_button_index
+		var progress = (float(current_step) / float(max(total_steps, 1))) * 100.0
+		progress_bar.value = progress
+
+func _action_to_symbol(action: String) -> String:
+	var symbols = {
+		"ui_up": "↑",
+		"ui_down": "↓",
+		"ui_left": "←",
+		"ui_right": "→",
+		"ui_accept": "A",
+		"ui_cancel": "B",
+		"ui_select": "X"
+	}
+	return symbols.get(action, "?")
+
+func _play_feedback(correct: bool) -> void:
 	# Play sound, show visual effect
-	pass
+
+	# Play audio feedback
+	var audio = get_node_or_null("AudioController")
+	if audio and audio.has_method("play_sfx"):
+		if correct:
+			audio.play_sfx("correct_ding")
+		else:
+			audio.play_sfx("wrong_buzz")
+
+	# Visual feedback - flash the entire minigame
+	var tween = get_tree().create_tween()
+	if correct:
+		# Flash green for correct
+		tween.tween_property(self, "modulate", Color(0.8, 1.0, 0.8), 0.1)
+		tween.tween_property(self, "modulate", Color(1, 1, 1), 0.2)
+	else:
+		# Shake for wrong
+		var original_pos = position
+		tween.tween_property(self, "position:x", original_pos.x + 10, 0.05)
+		tween.tween_property(self, "position:x", original_pos.x - 10, 0.05)
+		tween.tween_property(self, "position:x", original_pos.x, 0.05)
+		tween.tween_property(self, "modulate", Color(1.0, 0.8, 0.8), 0.1)
+		tween.tween_property(self, "modulate", Color(1, 1, 1), 0.2)
 
 func _generate_pattern(count: int) -> void:
 	pattern.clear()
