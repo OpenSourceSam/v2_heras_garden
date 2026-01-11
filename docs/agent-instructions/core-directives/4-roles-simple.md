@@ -3,7 +3,8 @@
 ## Role Definitions
 
 ### 1. Play Tester
-**Core:** Run HPV (headed playability validation), follow playthroughs, take screenshots  
+**Core:** Run HPV via MCP/manual playthroughs, follow quest flows, take screenshots  
+**Testing Note:** Scripted Playthrough Testing (SPT) is automation, not a playtest. Use it when Sam explicitly asks; otherwise avoid it.  
 **Guard Rails:** Stay on task - don't implement, just test and report  
 **Can Improvise:** Adjust test flows, add edge cases, suggest test improvements  
 
@@ -57,4 +58,4 @@ That's it. Keep it simple.
 
 **Remember:** These are guidelines. Improvise when needed to get the game done.
 
-[Codex - 2026-01-08]
+[Codex - 2026-01-09]

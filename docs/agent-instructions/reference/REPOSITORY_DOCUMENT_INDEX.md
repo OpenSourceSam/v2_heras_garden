@@ -112,15 +112,11 @@ tests/
 ├── phase3_softlock_test.gd             # Soft-lock scenario tests
 ├── phase4_balance_test.gd              # Game balance tests
 ├── run_tests.gd                        # Run all tests
-├── autonomous_headed_playthrough.gd     # HPV baseline playthrough
-├── visual_walkthrough_test.gd           # HPV walkthrough check
-├── ui_verification_test.gd              # HPV UI checks
-├── visual_screenshot_test.gd            # HPV screenshots
 ├── visual/                              # HPV references/logs
 │   └── playthrough_guide.md
 ├── ai/                                 # AI-powered tests
-│   ├── test_full_playthrough.gd
-│   └── ...
+│   ├── test_basic.gd
+│   ├── test_map_size_shape.gd
 └── gdunit4/                            # GdUnit4 tests
     └── quest_trigger_signal_test.gd
 ```
@@ -312,8 +308,10 @@ This comprehensive catalog includes:
 
 ---
 
-**Last Updated:** 2026-01-08
+**Last Updated:** 2026-01-09
 **Source:** `docs/REPOSITORY_STRUCTURE_CATALOG.md` (simplified)
 **Purpose:** Quick reference for key file locations
 
-[Codex - 2026-01-08]
+[Codex - 2026-01-09]
+
+

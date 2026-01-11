@@ -141,37 +141,24 @@ Bash("Godot*.exe --headless --script tests/phase3_minigame_mechanics_test.gd")
 Bash("Godot*.exe --headless --script tests/phase3_softlock_test.gd")
 Bash("Godot*.exe --headless --script tests/phase4_balance_test.gd")
 Bash("Godot*.exe --headless --script tests/phase3_save_load_test.gd")
-Bash("Godot*.exe --headless --script tests/mcp_playthrough_test.gd")
 
-# HPV (headed playability validation)
-Bash("Godot*.exe --path . --script tests/autonomous_headed_playthrough.gd")
-Bash("Godot*.exe --path . --script tests/visual_walkthrough_test.gd")
-Bash("Godot*.exe --path . --script tests/ui_verification_test.gd")
-Bash("Godot*.exe --path . --script tests/visual_screenshot_test.gd")
+# HPV (headed playability validation) is done via MCP/manual playthrough.
+# Scripted Playthrough Testing (SPT) is not used unless Sam explicitly asks.
 
 # Game execution
 Bash("Godot*.exe --headless --path . --scene "res://game/features/world/world.tscn" --quit-after 5")
-
-# Debugging
-Bash("Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomous_headed_playthrough.gd")
 ```
 
 ### Godot Scene Loading
 ```bash
-Bash("Godot*.exe --headless --script "tests/playthrough_to_mortar_test.gd")
-Bash("Godot*.exe --headless --path "C:\Users\Sam\Documents\GitHub\v2_heras_garden" --script "tests/autonomous_playthrough_quest3.gd"")
-Bash("Godot*.exe --path "C:\Users\Sam\Documents\GitHub\v2_heras_garden" --script "tests/visual_screenshot_test.gd"")
 Bash("Godot*.exe --headless --path "C:\Users\Sam\Documents\GitHub\v2_heras_garden" --script "tests/cutscene_tree_debug.gd"")
-Bash("Godot*.exe --path "C:\Users\Sam\Documents\GitHub\v2_heras_garden" --script "tests/ui_verification_test.gd"")
 Bash("Godot*.exe --path "C:\Users\Sam\Documents\GitHub\v2_heras_garden" --quit-after 15")
 ```
 
 ### Godot AI Testing
 ```bash
-Bash("Godot*.exe --headless --script tests/ai/test_full_playthrough.gd")
 Bash("Godot*.exe --headless --script tests/ai/test_basic.gd")
 Bash("Godot*.exe --headless --script tests/ai/test_map_size_shape.gd")
-Bash("c:\Users\Sam\Documents\GitHub\v2_heras_garden\Godot*.exe --headless --script tests/ai/test_full_playthrough.gd")
 ```
 
 ### GdUnit4 Testing
@@ -256,8 +243,8 @@ Bash("Godot*.exe/Godot*.exe --headless --script tests/run_tests.gd")
 
 ---
 
-**Last Updated:** 2026-01-08
+**Last Updated:** 2026-01-09
 **Source:** `.claude/settings.local.json`
 **Purpose:** Complete permissions reference for agents
 
-[Codex - 2026-01-08]
+[Codex - 2026-01-09]

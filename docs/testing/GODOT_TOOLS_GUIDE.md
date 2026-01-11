@@ -334,10 +334,12 @@ Press `Ctrl+Shift+P` and type "Godot Tools":
 ```
 
 **Use for:**
-- Minigame UI visibility and clarity
 - Dialogue text readability
-- Crafting pattern display
-- UI element positioning and contrast
+- Quest UI prompts/markers and interaction cues
+- Menu and world UI positioning/contrast
+- General world navigation and interaction flow
+
+**Note:** Minigame validation is handled separately; HPV playthroughs skip minigames unless Sam explicitly requests them.
 - Animation timing and responsiveness
 - Button press feedback
 - Overall human experience
@@ -353,6 +355,7 @@ Press `Ctrl+Shift+P` and type "Godot Tools":
 - Slower (real rendering overhead)
 - Requires visual inspection
 - More complex to automate
+ - Scripted Playthrough Testing (SPT) is automation, not a playtest, and is avoided unless Sam explicitly asks
 
 ### Recommended Workflow
 
@@ -367,7 +370,7 @@ Press `Ctrl+Shift+P` and type "Godot Tools":
    - Commit when logic is verified
 
 3. **Weekly/Milestone**
-   - Run HPV playability validation (example: `tests/autonomous_headed_playthrough.gd`)
+   - Run HPV playability validation via MCP/manual playthrough
    - Review screenshots and output
    - Use VS Code debugger to inspect UX issues
    - Fix visual/timing bugs
@@ -434,6 +437,11 @@ When testing human playability:
 
 **The Key Insight:**
 Human-like testing can be done autonomously. The limitation is NOT that agents need humans to press F5. The limitation is that HLC does not capture visual state. Use HPV programmatically.
+
+### HPV Field Notes (recent playthroughs)
+- Found in Quest 4-11: dialogue resources were setting `questX_complete_dialogue_seen` (missing underscore) while code expects `quest_X_complete_dialogue_seen`. Eight instances were fixed in this HPV run.
+- MCP can time out on large flag-restoration batches. If that happens, use smaller batches or single-flag writes and verify after each batch.
+- Quest gating can become cyclic (e.g., NPC spawn requires a quest to be active, but the quest start dialogue requires that NPC). Log the gating issue and use the approved shortcut to continue HPV.
 
 ### Summary
 
@@ -568,7 +576,7 @@ Edit `.vscode/settings.json`:
 .\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/run_tests.gd
 
 # HPV (headed playability validation) - with debugger
-.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomous_headed_playthrough.gd
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --path . --remote-debug tcp://127.0.0.1:6007
 
 # Via Debugger (F5 in VS Code)
 # Select "Debug Test Script" or "Attach to Running Game" from Run menu
@@ -631,3 +639,5 @@ This is the primary workflow for game development and testing going forward.
 [Claude Haiku 4.5 - 2026-01-02] - Added Cardinal Rules: HPV for UX Validation section
 [Codex - 2025-12-29]
 [Codex - 2026-01-08]
+[Codex - 2026-01-09]
+[Codex - 2026-01-11]

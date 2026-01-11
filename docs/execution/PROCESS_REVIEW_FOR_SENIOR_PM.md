@@ -9,7 +9,7 @@ Scope: How Phase 3 validation was executed in this session, where time/effort co
 This Phase 3 pass used a “headless-first, manual-when-needed” approach:
 
 - Fast headless checks for baseline health and scene wiring.
-- Automation-assisted “manual playthrough” using Godot MCP runtime inspection + scripted interactions.
+- Automation-assisted manual playthrough using Godot MCP runtime inspection and live inputs; scripted interactions are reserved for explicit requests.
 - Small gameplay fixes discovered via playthrough.
 - Re-running the same headless checks after changes to reduce regression risk.
 
@@ -108,7 +108,7 @@ This is based on this session’s outcomes (not a general guarantee).
 - Strength: tends to catch missing resources/scenes/instantiation errors across many scenes quickly.
 - Limitation: does not validate mechanics or economy correctness.
 
-### Automation-assisted manual playthrough
+- Automation-assisted manual playthrough using Godot MCP runtime inspection and live inputs; scripted interactions are reserved for explicit requests.
 
 - Strength: tends to catch real integration issues (flow, UX, state wiring) that are hard to cover with shallow headless checks.
 - Limitation: time-sensitive interactions can be flaky under automation; it can produce false negatives (“input failed” when the feature is otherwise OK).
@@ -154,4 +154,6 @@ The current roadmap emphasizes system validation (Phase 3) and device build read
 ---
 
 Edit Signoff: [GPT-5.2 - 2025-12-29]
+
+[Codex - 2026-01-09]
 

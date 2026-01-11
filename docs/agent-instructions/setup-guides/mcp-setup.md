@@ -182,6 +182,8 @@ This tests: project execution, input simulation, debug capture, and project cont
 - Check that the plugin is enabled in Project Settings > Plugins
 - Verify `GODOT_PROJECT_PATH` matches your actual project path
 - Try setting `DEBUG=true` in mcp.json to see detailed logs
+- If the MCP handshake still fails while Godot is already running, close all Godot editor instances and relaunch a single editor for this project, then retry MCP.
+- If Godot or the debugger is not running, ask Sam to start them (do not attempt to fix or launch in that state).
 
 ### "Missing tool" Errors
 - Restart VS Code to reload MCP configuration

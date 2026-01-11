@@ -54,10 +54,9 @@ func _run_all_tests():
 
 **Purpose:** Validate human playability and UX
 
-**Command:**
-```powershell
-Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/visual/beta_mechanical_test.gd
-```
+**Command (typical):**
+- Run the project in headed mode (editor run or MCP `run_project`).
+- Use MCP/manual input to follow the quest flow.
 
 **Best for:**
 - UI visibility validation
@@ -77,10 +76,13 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/visual/be
 ## 🛠️ Programmatic Debugging
 
 ### Setup
-```powershell
-# Launch game in headed mode with remote debug (HPV)
-Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomous_headed_playthrough.gd
-```
+- Launch the game in headed mode (editor or MCP).
+- Use MCP runtime inspection for scene tree and UI state when helpful.
+- Before HPV begins, confirm Godot editor and the debugger are running; if not, ask Sam to start them.
+- If MCP will not connect while Godot is already running, close all Godot editor instances and relaunch a single editor for this project.
+- HPV scope excludes minigames; if a minigame appears, skip it and mark completion via approved shortcuts, then log the skip.
+- If MCP timeouts occur during quest flag restoration, use smaller batches or single-flag writes and verify after each batch.
+- If quest flow is blocked by a spawn gate, log the gating issue and use the approved shortcut to keep HPV moving.
 
 ### Enhanced Test Scripts Can:
 - Check UI visibility flags: `dialogue_box.visible`
@@ -182,17 +184,7 @@ Godot*.exe --headless --script tests/phase3_dialogue_flow_test.gd
 
 ### Visual Tests (HPV)
 
-**File Pattern:** `tests/visual/*.gd`
-
-**Examples:**
-- `tests/visual/beta_mechanical_test.gd` - Visual state inspection
-- `tests/visual_screenshot_test.gd` - Screenshot capture
-- `tests/ui_verification_test.gd` - UI element verification
-
-**Command:**
-```powershell
-Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/visual/beta_mechanical_test.gd
-```
+Use MCP/manual playthrough with notes or screenshots. Scripted Playthrough Testing (SPT) is automation and is avoided unless Sam explicitly asks.
 
 ---
 
@@ -201,9 +193,7 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/visual/be
 ### Standard Test Workflow
 
 1. **Run HPV for playability validation**
-   ```powershell
-   Godot*.exe --path . --script tests/autonomous_headed_playthrough.gd
-   ```
+   - Use MCP/manual playthrough in headed mode.
 
 2. **Run HLC for fast logic checks when useful**
    ```bash
@@ -212,24 +202,11 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/visual/be
 
 3. **Inspect Results**
    - HLC: Check console output for pass/fail
-   - HPV: Check programmatic state inspection output
+   - HPV: Check playthrough notes or screenshots
 
 ### Autonomous Testing Workflow
 
-1. **Launch with Remote Debug**
-   ```powershell
-   Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/visual/beta_mechanical_test.gd
-   ```
-
-2. **Programmatic Inspection**
-   - Test scripts inspect state autonomously
-   - No human interaction required
-   - All visual state captured programmatically
-
-3. **Report Findings**
-   - Document what renders
-   - Report UI visibility
-   - Note any issues found
+Use MCP to inspect runtime state while doing a headed playthrough. This keeps validation tied to real player inputs.
 
 ---
 
@@ -259,8 +236,7 @@ Godot*.exe --headless --script tests/phase4_balance_test.gd
 ```
 
 ### Run Visual Tests
-```powershell
-# Beta mechanical test
+Use MCP/manual playthrough in headed mode for visual validation.
 Godot*.exe --path . --script tests/visual/beta_mechanical_test.gd
 
 # With remote debug
@@ -347,9 +323,8 @@ Issues found - human may not be able to proceed
 ## 🔗 Related Resources
 
 **Comprehensive Guidance:**
-- **Human playability testing:** `tests/visual/January_Playtest_Walkthrough_jwp.md` - Testing Methodology Cardinal Rules section
-- **Godot Tools reference:** `docs/testing/GODOT_TOOLS_GUIDE.md` - Cardinal Rules: HPV for UX Validation section
-- **Implementation patterns:** See `tests/autonomous_headed_playthrough.gd` for examples of programmatic state inspection
+- **Human playability testing:** `tests/visual/playthrough_guide.md` - Playthrough reference
+- **Godot Tools reference:** `docs/testing/GODOT_TOOLS_GUIDE.md` - HPV guidance section
 
 **Project Rules:**
 - **Core rules:** [`../core-directives/project-rules.md`](../core-directives/project-rules.md#testing-methodology-requirements)
@@ -357,7 +332,8 @@ Issues found - human may not be able to proceed
 
 ---
 
-**Last Updated:** 2026-01-08
+**Last Updated:** 2026-01-09
 **Purpose:** Testing framework and best practices for Godot projects
 
-[Codex - 2026-01-08]
+[Codex - 2026-01-09]
+[Codex - 2026-01-11]

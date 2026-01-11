@@ -10,9 +10,8 @@
 ## - Visual feedback and polish
 ## - Game feel and pacing
 ##
-## For playability validation, you MUST run HEADED tests:
-## godot --path . --script tests/visual_walkthrough_test.gd
-## godot --path . --script tests/autonomous_playthrough_quest3.gd
+## For playability validation, use MCP/manual playthrough.
+## Scripted playthrough testing is not used unless Sam explicitly requests it.
 
 var passed: int = 0
 var failed: int = 0

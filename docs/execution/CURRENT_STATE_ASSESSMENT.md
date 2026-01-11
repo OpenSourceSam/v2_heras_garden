@@ -102,8 +102,10 @@
 
 ## Testing Evidence
 
-**Files Tested:**
-- tests/autonomous_playthrough_quest3.gd: "Skip Quest 2 (it's been removed)"
-- tests/manual_playthrough_test.gd: Confirms quest flow issues
+**Artifacts Reviewed:**
+- tests/visual/playthrough_guide.md
+- Headed MCP/manual playthrough notes from the assessment window
 
 **Conclusion:** Game is much less complete than claimed in ROADMAP.md
+
+[Codex - 2026-01-09]

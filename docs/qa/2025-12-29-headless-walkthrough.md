@@ -1,18 +1,22 @@
 # Headless Walkthrough Report (2025-12-29)
 
-## Scope
-- Run the automated full playthrough script in headless mode.
-- Capture failures and limitations compared to the mechanical walkthrough.
+## Status
+- Archived reference. The scripted playthrough used here has been removed.
+- Scripted Playthrough Testing (SPT) is avoided unless Sam explicitly asks.
 
-## Command
+## Scope (Historical)
+- Ran the automated full playthrough script in headless mode.
+- Captured failures and limitations compared to the mechanical walkthrough.
+
+## Command (Historical)
 ```powershell
-.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/ai/test_full_playthrough.gd
+# Script removed; do not run in the current workflow.
 ```
 
 ## Results (Log Highlights)
 - Minigames:
   - Error: `Invalid call. Nonexistent function 'new' in base 'PackedScene'.`
-  - Location: `tests/ai/test_full_playthrough.gd:272`
+  - Location: historical scripted playthrough (script removed)
   - Likely related to missing or unimplemented weaving minigame scene.
 - MCP:
   - `[MCP Input Handler] Debugger not active, input simulation unavailable`
@@ -32,4 +36,4 @@
   were not validated.
 - Minigame coverage was limited due to the PackedScene error above.
 
-Signoff: [Codex - 2025-12-29]
+Signoff: [Codex - 2026-01-09]

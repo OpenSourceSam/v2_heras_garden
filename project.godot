@@ -51,6 +51,7 @@ CutsceneManager="*res://game/autoload/cutscene_manager.gd"
 Constants="*res://game/autoload/constants.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 QuestSystem="*res://addons/quest_system/quest_manager.gd"
+MCPInputHandler="*res://addons/godot_mcp/mcp_input_handler.gd"
 
 [display]
 

@@ -1341,8 +1341,8 @@ GameState.set_flag("free_play_unlocked", true)
 # Test minigames
 .\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/phase3_minigame_mechanics_test.gd
 
-# Full playthrough
-.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/ai/test_full_playthrough.gd
+# Headed playthrough (manual/MCP)
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --path .
 ```
 
 ### 3.2 Debug Methods
@@ -1425,3 +1425,5 @@ End game: Day 3+
 *Generated: 2025-12-31*
 *Based on: Godot 4.5.1 source code analysis*
 *Source Files: game_state.gd, player.gd, npc_base.gd, dialogue_box.gd, crafting_minigame.gd, herb_identification.gd, moon_tears_minigame.gd, sacred_earth.gd, farm_plot.gd, boat.gd, sundial.gd, scene_manager.gd, world.gd*
+
+[Codex - 2026-01-09]

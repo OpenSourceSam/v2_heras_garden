@@ -38,6 +38,7 @@ We formalized a **critical distinction** between testing approaches that was pre
 - **Purpose:** Specialized agent with screenshot capabilities
 - **Tools:** Enhanced test scripts with visual capture
 - **Use Case:** Edge cases requiring visual documentation
+- **Status:** Reserved for explicit requests; otherwise use HPV via MCP/manual playthrough
 
 ### Level 4: Human-Operated Playtesting
 
@@ -95,7 +96,7 @@ Created **comprehensive cleanup plan** addressing:
 - Duplicate skills directories
 
 **Files Updated:**
-- `tests/autonomous_headed_playthrough.gd` (NEW - state-based validation test)
+- Scripted playthrough tests removed; use MCP/manual HPV by default
 - Documentation across 15+ files updated to remove stale references
 
 ---
@@ -131,10 +132,10 @@ HLC can tell you **IF** something broke, but **NOT WHY** the human experience is
 
 ### Programmatic HPV
 
-**Key Insight:** Agents can validate UX autonomously using HPV (headed mode) with programmatic debugging:
+**Key Insight:** Agents can validate UX using HPV (headed mode) with MCP runtime inspection during a real playthrough:
 
 ```powershell
-Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomous_headed_playthrough.gd
+Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007
 ```
 
 **Capabilities:**
@@ -144,7 +145,7 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomou
 - Print game variables, UI flags, node properties
 - Report findings in structured format
 
-**The Limitation:** HLC does not capture visual state. Use HPV programmatically.
+**The Limitation:** HLC does not capture visual state. Use HPV with MCP/manual input.
 
 ---
 
@@ -157,10 +158,7 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomou
   - Debugger configuration and usage
   - HLC vs HPV testing workflow
 
-- **`tests/autonomous_headed_playthrough.gd`** - HPV baseline for state validation
-  - Validates main menu, world scene, quest progression
-  - Programmatically checks UI elements
-  - Serves as HPV baseline test
+- **`tests/visual/playthrough_guide.md`** - HPV flow reference for manual/MCP playthroughs
 
 ### Agent Instructions
 
@@ -179,7 +177,7 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomou
 1. **Established Testing Hierarchy:** HPV is the preferred path for playtesters
 2. **Skills Optimization:** 12 skills renamed to short initials, 3 deleted
 3. **Documentation Standardized:** Document index protocol, cleanup of 49+ stale references
-4. **Created Autonomous Test:** `tests/autonomous_headed_playthrough.gd` for programmatic validation
+4. **Scripted Playthrough Tests Removed:** HPV now defaults to MCP/manual playthrough
 5. **Godot Tools Integration:** Full debugger workflow established for HPV
 
 ---
@@ -196,7 +194,7 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomou
 - ✅ Clear 4-level testing taxonomy
 - ✅ Skills renamed: `/gd`, `/gbp`, `/tap`, etc.
 - ✅ Documentation cleaned and indexed
-- ✅ Autonomous HPV playthrough test created
+- Scripted playthrough tests removed; HPV uses MCP/manual playthrough
 - ✅ Cardinal rules established for testing methodology
 
 **Bottom Line:** Future agents now have clear guidance on when to use HPV vs HLC, efficient skill system, and centralized documentation. The testing paradox (headless tests passing while game is unplayable) is now explicitly addressed with the HPV playability validation requirement.
@@ -216,7 +214,7 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomou
 .\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/phase3_minigame_mechanics_test.gd
 
 # Run HPV (headed playability validation)
-.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --path . --script tests/autonomous_headed_playthrough.gd
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --path .
 ```
 
 ## Skills Quick Reference
@@ -263,4 +261,4 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomou
 - Report what files/resources you found, not what you expected to find
 - When uncertain, ask - don't guess repeatedly
 
-[Codex - 2026-01-08]
+[Codex - 2026-01-09]

@@ -49,9 +49,10 @@ This index provides fast lookup of all learnings (bugs, loops, patterns) to enab
 
 ---
 
-## Loops (0 entries)
+## Loops (2 entries)
 
 - 2026-01-08-prologue-menu-overlap-loop: Prologue cutscene text overlaps main menu and regresses
+- 2026-01-09-quest1-dialogue-tap-loop: Quest 1 dialogue taps repeated without state inspection during HPV
 
 ---
 
@@ -92,7 +93,7 @@ When a learning is captured in a skill, mark it as:
 - YYYY-MM-DD-short-description: One-line summary of what happened
 ```
 
-Signoff: [Codex - 2026-01-08]
+Signoff: [Codex - 2026-01-09]
 
 **Categorization:**
 Group by:

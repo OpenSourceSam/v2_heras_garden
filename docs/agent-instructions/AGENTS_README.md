@@ -21,6 +21,7 @@ This hub consolidates scattered agent instructions into a single, discoverable l
 ### 🔧 **Tools & Workflows**
 - **Permissions**: [`tools/permissions.md`](./tools/permissions.md)
 - **Standard Workflows**: [`tools/workflows.md`](./tools/workflows.md)
+- **Slash Commands**: `.claude/commands/` (`/ground`, `/token-plan`, `/clarify`, `/finish`, `/explain`)
 
 ### 📚 **Reference**
 - **Repository Structure**: [`reference/repository-structure.md`](./reference/repository-structure.md)
@@ -140,6 +141,7 @@ docs/agent-instructions/
 - ALWAYS use skills before manual implementation
 - Use direct tools: Glob, Grep, Read, Edit, Write, Bash
 - Check available skills before writing code
+- Scripted Playthrough Testing (SPT) is automation, not a playtest. Use it when Sam explicitly asks; otherwise avoid it. Use MCP/manual for playability checks.
 
 ---
 
@@ -161,3 +163,5 @@ docs/agent-instructions/
 ---
 
 **Need help?** Check the relevant category above or refer to `CLAUDE.md` for core project directives.
+
+[Codex - 2026-01-09]

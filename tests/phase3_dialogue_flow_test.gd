@@ -9,8 +9,7 @@
 ## - Choice UI visibility
 ## - Player experience flow
 ##
-## Run headed tests for playability validation:
-## godot --path . --script tests/visual_walkthrough_test.gd
+## For playability validation, use MCP/manual playthrough.
 
 extends SceneTree
 

@@ -197,10 +197,11 @@ Option 2: If absolutely necessary, create in temp/plans/ and delete after comple
 ### Strongly Recommended Testing Approach
 
 **For UX/Playability Validation (HPV):**
-- **Preferred:** Use Godot Tools with HPV (headed playability validation) and programmatic debugging
-- **Tools:** VS Code debugger (F5), remote debug protocol (`--remote-debug tcp://127.0.0.1:6007`), enhanced test scripts
-- **Approach:** Agents autonomously inspect game state, verify UI visibility, capture visual state
-- **Goal:** Validate that humans can see, understand, and interact with game UI
+- **Preferred:** Use MCP or manual playthrough for headed validation
+- **Tools:** MCP input + runtime inspection, Godot Tools debugger (F5) when useful
+- **Approach:** Use human-like inputs, verify UI visibility, capture observations
+  - **Scope:** Minigames are out of scope for HPV; skip them and mark completion via approved shortcuts unless Sam explicitly requests minigame testing.
+- **Note:** Scripted Playthrough Testing (SPT) is automation, not a playtest. Use it when Sam explicitly asks; otherwise avoid it.
 
 **For Logic Validation:**
 **For Logic Validation (HLC):**
@@ -221,22 +222,11 @@ Option 2: If absolutely necessary, create in temp/plans/ and delete after comple
 
 ### Programmatic Debugging for Autonomous Testing
 
-Agents can validate UX autonomously using HPV (headed mode) with debugging:
+Agents can validate UX with headed playthrough plus runtime inspection:
 
-1. **Launch game in headed mode with remote debug (HPV):**
-   ```powershell
-   Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/autonomous_headed_playthrough.gd
-   ```
-
-2. **Enhanced test scripts inspect state programmatically:**
-   - Check UI visibility flags: `dialogue_box.visible`
-   - Verify nodes exist: `minigame_node != null`
-   - Capture and analyze screenshots
-   - Print game variables, node properties, state flags
-   - All without human interaction
-
-3. **Key insight:**
-   The limitation is NOT that agents need humans to click F5. The limitation is that HLC does not capture visual state. Use HPV programmatically.
+1. **Launch the game in headed mode** (editor run or MCP run_project).
+2. **Use MCP to inspect state and simulate input** (scene tree, UI visibility, flags).
+3. **Capture observations** (notes or screenshots) to confirm playability.
 
 ### Testing Best Practices for Godot
 
@@ -308,7 +298,6 @@ The user authorizes full execution of Phase 4 without additional input:
 **For comprehensive testing guidance, refer to:**
 - **Human playability testing:** `tests/visual/playthrough_guide.md` - Testing methodology reference
 - **Godot Tools reference:** `docs/testing/GODOT_TOOLS_GUIDE.md` - Cardinal Rules: HPV for UX validation section
-- **Implementation patterns:** See `tests/autonomous_headed_playthrough.gd` for examples of programmatic state inspection
 
 **For complete project directives, see:** `CLAUDE.md`
 
@@ -318,8 +307,8 @@ The user authorizes full execution of Phase 4 without additional input:
 
 ---
 
-**Last Updated:** 2026-01-08
+**Last Updated:** 2026-01-09
 **Source:** CLAUDE.md (lines 1-329)
 **Purpose:** Core project rules and constraints for all agents
 
-[Codex - 2026-01-08]
+[Codex - 2026-01-09]

@@ -4,11 +4,13 @@ Enable AI agents (Codex, MiniMax) to run Headless Logic Checks (HLC) and support
 
 ## Overview
 
-The Tier 1 testing framework provides HLC-focused tooling for game logic verification, and it can also run in HPV (headed) mode for playability checks. It allows AI agents to:
+The Tier 1 testing framework provides HLC-focused tooling for game logic verification, and it can also support HPV (headed) playability checks. It allows AI agents to:
 - Simulate game input (D-pad, confirm, cancel)
 - Query game state (gold, inventory, quests, flags)
 - Assert conditions and capture errors
 - Run automated test scripts
+
+**Scripted Playthrough Testing (SPT):** SPT is automation, not a playtest. Use it when Sam explicitly asks; otherwise avoid it.
 
 ## Components
 
@@ -131,9 +133,8 @@ tools/testing/
 └── test_runner.gd          # Base test runner class
 
 tests/ai/
-├── test_full_playthrough.gd    # End-to-end test
 ├── test_basic.gd               # Basic smoke test
-└── test_mcp_connectivity.gd    # MCP connection test
+├── test_map_size_shape.gd
 ```
 
 ## Usage
@@ -143,11 +144,12 @@ tests/ai/
 Use HLC for fast, repeatable logic tests:
 
 ```bash
-# Run full AI test suite
-godot --headless --script tests/ai/test_full_playthrough.gd
+# Run core HLC suite
+godot --headless --script tests/run_tests.gd
 
-# Run basic smoke test
+# Run AI smoke tests
 godot --headless --script tests/ai/test_basic.gd
+godot --headless --script tests/ai/test_map_size_shape.gd
 ```
 
 **What works in HLC:**
@@ -167,30 +169,17 @@ godot --headless --script tests/ai/test_basic.gd
 Use HPV when you need to verify visuals and playability:
 
 ```bash
-# Run test with window (15 second timeout)
-godot --path . --script tests/ai/test_full_playthrough.gd --quit-after 15
-
-# Open editor for manual testing
+# Launch headed playthrough (manual/MCP validation)
 godot --path .
 ```
+
+Use MCP runtime inspection while playing to validate UI and quest flow.
 
 **What works in HPV:**
 - All HLC capabilities
 - Screenshots with actual visuals
 - Player node verification
 - Visual rendering checks
-
-## Test Results
-
-| Test | Status | Notes |
-|------|--------|-------|
-| Inventory | PASS | Verifies gold=100, seeds, items |
-| Farm | PASS | Checks farm data structure exists |
-| Save/Load | PASS | Game saves to file, loads correctly |
-| World Bootstrap | PARTIAL | Scene loads, player node null |
-| Screenshots | PARTIAL | Files created, texture null in HLC |
-
-**Total: 3/5 core tests fully passing**
 
 ## What AI Agents Can Verify
 
@@ -240,9 +229,9 @@ else:
 
 **Problem:** Typically does not visually verify NPC sprites in HLC.
 
-**Workaround:** Run HPV:
+**Workaround:** Run HPV via a headed playthrough:
 ```bash
-godot --path . --script tests/ai/test_full_playthrough.gd --quit-after 15
+godot --path .
 ```
 
 ## Example Test Script
@@ -344,7 +333,7 @@ func _print_report():
 
 ## Recommendations for AI Agents
 
-1. **Run HPV for playability validation** - Preferred for playtesting
+1. **Run HPV via MCP/manual playthrough** - Preferred for playtesting
 2. **Use HLC for fast logic checks** - Helpful for quick regression signals
 3. **Chain tests together** - Run multiple test scripts sequentially
 4. **Check test output carefully** - Some failures are expected in HLC
@@ -353,13 +342,14 @@ func _print_report():
 
 ```bash
 # 1. HPV (playability validation)
-godot --path . --script tests/autonomous_headed_playthrough.gd --quit-after 15
+godot --path .
 
 # 2. HLC (fast logic check)
-godot --headless --script tests/ai/test_basic.gd
+godot --headless --script tests/run_tests.gd
 
-# 3. HLC (full logic playthrough)
-godot --headless --script tests/ai/test_full_playthrough.gd
+# 3. HLC (AI smoke tests)
+godot --headless --script tests/ai/test_basic.gd
+godot --headless --script tests/ai/test_map_size_shape.gd
 ```
 
 ## See Also
@@ -368,4 +358,4 @@ godot --headless --script tests/ai/test_full_playthrough.gd
 - [AGENT.md](../AGENT.md) - Agent guidance and testing patterns
 - [tests/ai/](tests/ai/) - Example test scripts
 
-[Codex - 2026-01-08]
+[Codex - 2026-01-09]

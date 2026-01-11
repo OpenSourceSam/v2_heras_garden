@@ -156,7 +156,7 @@ func _start_herb_identification_minigame() -> void:
 func _on_herb_minigame_complete(success: bool, items: Array) -> void:
 	if success:
 		GameState.set_flag("quest_1_complete", true)
-		print("Quest 1 completed! Items awarded: %s" % items)
+		print("Quest 1 completed! Items awarded: %s" % [items])
 	else:
 		print("Herb identification minigame failed")
 

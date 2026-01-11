@@ -400,7 +400,6 @@
 **Structure:**
 - `ai/` - AI-based tests
   - `test_basic.gd`
-  - `test_full_playthrough.gd`
   - `test_map_size_shape.gd`
 - `gdunit4/` - GdUnit4 framework tests
 - `visual/` - Visual regression tests
@@ -413,8 +412,6 @@
   - `cutscene_execution_test.gd` + `.gd.uid`
   - `cutscene_tree_debug.gd` + `.gd.uid`
   - `dialogue_choice_target_test.gd` + `.gd.uid`
-  - `full_playthrough_headless.gd` + `.gd.uid`
-  - `mcp_playthrough_test.gd` + `.gd.uid`
   - `phase3_dialogue_flow_test.gd` + `.gd.uid`
   - `phase3_minigame_mechanics_test.gd` + `.gd.uid`
   - `phase3_save_load_test.gd` + `.gd.uid`
@@ -425,9 +422,6 @@
   - `smoke_test.tscn`
   - `smoke_test_scene.gd` + `.gd.uid`
   - `test_scene.tscn`
-  - `ui_verification_test.gd` + `.gd.uid`
-  - `visual_screenshot_test.gd` + `.gd.uid`
-  - `visual_walkthrough_test.gd` + `.gd.uid`
   - Various `run_*.gd` test files
   - `lsp_connectivity_test.gd` + `.gd.uid` (empty file)
 
@@ -587,6 +581,8 @@ Well-organized but could benefit from cleanup of redundancies and better organiz
 ---
 
 **Document Version:** 1.1
-**Last Updated:** 2026-01-01
+**Last Updated:** 2026-01-09
 **Total Files Analyzed:** ~6000+ (including .venv)
 **Total Directories:** ~150+
+
+[Codex - 2026-01-09]

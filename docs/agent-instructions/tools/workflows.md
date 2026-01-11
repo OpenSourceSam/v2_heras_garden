@@ -137,8 +137,9 @@ Result: Clutters repo with single-use documents
 ### Standard Test Execution
 
 ```bash
-# 1. Run HPV for playability validation
-Godot*.exe --path . --script tests/autonomous_headed_playthrough.gd
+# 1. Run HPV for playability validation (MCP/manual)
+# Use MCP to run the project and simulate input, or play manually.
+# If HPV shows a completion dialogue does not set a `*_dialogue_seen` flag, check the dialogue resource setter for underscore mismatches.
 
 # 2. Run HLC for fast logic checks when useful
 Godot*.exe --headless --script tests/run_tests.gd
@@ -156,9 +157,12 @@ Skill(skill: "verification-before-completion")
 - Balance testing: `tests/phase4_balance_test.gd`
 
 **Visual Tests (HPV):**
-- UI verification: `tests/ui_verification_test.gd`
-- Screenshot capture: `tests/visual_screenshot_test.gd`
-- Visual state inspection: `tests/autonomous_headed_playthrough.gd`
+- MCP/manual playthrough with notes or screenshots
+- Runtime inspection via MCP when helpful
+
+**Scripted Playthrough Testing (SPT):**
+- SPT is automation, not a playtest.
+- Use it when Sam explicitly asks; otherwise avoid it.
 
 ### Test-Driven Development
 
@@ -473,7 +477,8 @@ feat(quest): add quest 4 dialogue system
 
 ---
 
-**Last Updated:** 2026-01-08
+**Last Updated:** 2026-01-09
 **Purpose:** Standard workflows and procedures for agents
 
-[Codex - 2026-01-08]
+[Codex - 2026-01-09]
+[Codex - 2026-01-11]
