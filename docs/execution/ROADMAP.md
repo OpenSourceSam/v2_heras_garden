@@ -28,6 +28,11 @@ Status: Phases 0-1.5 COMPLETE. Missing prologue content, Quest 2, and significan
 - Actual: Game only completes part of Quest 1 functionally
 - Reference: tests/visual/playthrough_guide.md defines correct flow
 
+**HPV SNAPSHOT (2026-01-11):**
+- MCP/manual HPV exercised quest wiring through Quest 11 using shortcuts; minigames were skipped per policy.
+- Quest 4-11 completion dialogue flags were aligned to `quest_X_complete_dialogue_seen`.
+- World layout and NPC staging still look placeholder, and pre-quest beats from the playthrough guide remain missing.
+
 **Phase 6.5 Resolved:**
 - NPC sprite size inconsistency (all 5 NPCs now have standardized 48x32 proportions)
 - Grass tile seams (seamless edge wrapping verified)
@@ -55,6 +60,7 @@ Status: Phases 0-1.5 COMPLETE. Missing prologue content, Quest 2, and significan
     location return triggers, and cutscene transitions.
 - Legacy Phase 0 validator removed (TEST_SCRIPT.gd was unreliable due to
   autoload timing).
+- HPV MCP/manual snapshot (2026-01-11): quest wiring validated with shortcuts; minigames skipped; gating issues logged.
 
 ---
 

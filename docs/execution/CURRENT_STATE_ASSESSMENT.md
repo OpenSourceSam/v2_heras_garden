@@ -9,6 +9,21 @@
 **ROADMAP Claim:** Phase 6.75 - Content Expansion (Phases 0-6.5 complete)
 **Reality:** Much earlier phase, significant content missing
 
+## HPV Update (2026-01-11)
+
+**Scope:** MCP/manual HPV with minigames skipped and logged as separate validation.
+
+**Observed:**
+- Quest flow and flag wiring were exercised through Quest 11 using shortcuts and dialogue triggers.
+- Quest 4-11 completion dialogues had a consistent flag naming mismatch (`questX_complete_dialogue_seen` vs `quest_X_complete_dialogue_seen`) and were corrected.
+- MCP flag restoration worked more reliably with smaller batches or single-flag updates.
+- A gating issue exists around Daedalus (Quest 7): spawn conditions and quest start dialogue are cyclic without a shortcut.
+
+**Limitations:**
+- This HPV pass focused on quest flow wiring, not full human playability.
+- Minigames were validated separately and are not part of this HPV pass.
+- World layout and NPC staging remain placeholder (NPCs clustered, story beats not spatially staged).
+
 ## What's Actually Implemented
 
 ### Working Systems (Verified)
@@ -47,7 +62,7 @@
 - ❌ Hermes doesn't appear after collection
 - ❌ No warning dialogue or choices
 
-#### 3. Quest 2 (REMOVED/NOT IMPLEMENTED)
+#### 3. Quest 2 (PARTIAL, HPV SHORTCUTS USED)
 **Expected:**
 - Hermes warns about pharmaka
 - Player returns to house
@@ -55,9 +70,9 @@
 - Extract transformation sap
 
 **Current State:**
-- ❌ Quest 2 completely missing
-- npc_base.gd line 147: "# Quest 2 removed - skip directly to quest 3 start"
-- quest2_start.tres exists but unused
+- Likely: Mortar & pestle interaction exists
+- Likely: Quest 2 can be advanced with HPV shortcuts
+- Unverified: Full in-world staging and dialogue flow still need verification
 
 #### 4. Quest 3 (BASIC IMPLEMENTATION)
 **Expected:**
@@ -72,10 +87,10 @@
 ## Gap Analysis
 
 **Claimed:** 11 quests implemented
-**Reality:** ~2.5 quests functional
+**Reality:** Quest wiring extends further, but full in-world flow and staging are incomplete
 
 **Claimed:** Full game loop
-**Reality:** Partial Quest 1 only
+**Reality:** Early quest flow works in parts; pre-quest content and spatial staging are missing
 
 **Claimed:** Phase 6.75
 **Reality:** Phase 0.5 or earlier
@@ -83,22 +98,22 @@
 ## Required Work
 
 ### Phase 0.5: Restore Missing Content
-1. Implement prologue cutscene
-2. Add Aeëtes note interaction
-3. Fix Quest 1 flow (Hermes appearance, dialogue)
-4. Restore Quest 2 (crafting minigame)
-5. Complete Quest 3+ implementation
+1. Implement the prologue cutscene and arrival beats described in the playthrough guide
+2. Add Aeetes note interaction and integrate it into Quest 1 flow
+3. Validate Quest 1 Hermes appearance and dialogue choices in-world
+4. Validate Quest 2 flow end-to-end in world (beyond HPV shortcuts)
+5. Continue Quest 3+ staging and placement in the world (NPC locations, triggers, spatial beats)
 
 ### Phase 1+: Content Expansion
 - Only after core game flow is restored
 
 ## Recommendations
 
-1. **Update ROADMAP.md** to reflect actual state
-2. **Stop claiming Phase 6.75 completion** - misleading
-3. **Focus on restoring missing content** before adding new features
+1. **Update ROADMAP.md** to reflect the HPV snapshot and current gaps
+2. **Reconcile phase status** to reflect partial playability and missing content
+3. **Focus on restoring missing content** before expanding dialogue volume
 4. **Use playthrough_guide.md** as implementation reference
-5. **Validate every change with headed testing**
+5. **Validate changes with headed testing** and keep minigame validation separate
 
 ## Testing Evidence
 
@@ -109,3 +124,5 @@
 **Conclusion:** Game is much less complete than claimed in ROADMAP.md
 
 [Codex - 2026-01-09]
+
+[Codex - 2026-01-11]
