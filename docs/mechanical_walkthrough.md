@@ -2,13 +2,22 @@
 
 ## Document Overview
 
-This document provides a **complete forced-path walkthrough** of Circe's Garden, documenting **every single player interaction** required to progress through the complete narrative. It is derived from analysis of the actual game source code to ensure 100% accuracy.
+This document provides a forced-path walkthrough of Circe's Garden, documenting the core player interactions required to progress through the current narrative. It is derived from analysis of the current game source code and is intended to stay aligned with the implementation as content evolves.
 
 **Purpose:**
-- Game Design Verification - Ensures all narrative triggers are reachable
-- QA Testing Script - Every step can be tested and verified
-- Player Guide - Complete walkthrough for completionists
-- Implementation Reference - Developers verify each mechanic
+- Game Design Verification - Helps verify narrative triggers are reachable
+- QA Testing Script - Steps can be tested and verified in order
+- Player Guide - Walkthrough for completion-focused players
+- Implementation Reference - Developers can cross-check mechanics
+
+## Document Role and Audience
+
+This walkthrough is intended as a playtesting companion for content that already exists in the game.
+
+Recommended use:
+- Playtesters can follow these steps to validate the current flow and report gaps.
+- Developers can cross-check mechanics here and track planned work in `docs/execution/ROADMAP.md`.
+- `docs/design/Storyline.md` is the primary narrative reference when story beats or choices benefit from clarification.
 
 ---
 
@@ -58,12 +67,14 @@ func harvest_crop(position: Vector2i) -> void
 The game uses a **flag-based quest system** where each quest sets a flag upon completion:
 
 ```
-quest_1_active → quest_1_complete → quest_2_active → quest_2_complete → ...
+quest_0_active → quest_0_complete → quest_1_active → quest_1_complete → quest_2_active → quest_2_complete → ...
 ```
 
 **All Quest Flags:**
 | Flag | Triggers | Sets On Complete |
 |------|----------|------------------|
+| `quest_0_active` | new_game() called | `quest_0_complete` |
+| `quest_0_complete` | aeetes_note dialogue ends | N/A |
 | `prologue_complete` | new_game() called | N/A |
 | `quest_1_active` | Hermes dialogue | `quest_1_complete` |
 | `quest_2_active` | Quest 1 complete | `quest_2_complete` |
@@ -235,6 +246,11 @@ DECAY_RATE = 0.15          # Progress lost per second
 
 ## Part 2: Complete Walkthrough
 
+### QUEST 0: Prologue and Arrival
+
+Quest 0 tracks the prologue cutscene and Aiaia arrival note. It typically sets
+`quest_0_active` on `new_game()` and `quest_0_complete` after the Aeetes note dialogue.
+
 ### CHAPTER 1: TITLE SCREEN TO NEW GAME
 
 #### Step 1.1: Title Screen Display
@@ -255,6 +271,7 @@ A Button: Press once
 
 **System Response:**
 - `GameState.new_game()` is called (from `game_state.gd:35-45`)
+- `quest_0_active` flag is set to `true`
 - `prologue_complete` flag is set to `true`
 - Fade to black
 - Display quote text
@@ -267,6 +284,7 @@ func new_game() -> void:
     quest_flags.clear()
     farm_plots.clear()
     add_item("wheat_seed", 3)  // Starting items
+    set_flag("quest_0_active", true)
     set_flag("prologue_complete", true)
 ```
 
@@ -316,7 +334,7 @@ camera = "follow_circe"
 GameState.current_day = 1
 ```
 
-**Visible Elements (must be rendered):**
+**Visible Elements (should be rendered):**
 - Beach terrain with sand texture
 - Ocean to one side
 - Lush green island ahead
@@ -362,6 +380,8 @@ A Button: Press once
 - Mortar & pestle on table
 - Basic furnishings
 
+> **Implementation note:** A house interior scene is not present in the current repo yet; treat this step as a target scene to build.
+
 **System Prompt:** `"Examine the table"` (optional guidance)
 
 #### Step 2.3: Read Aeëtes' Note
@@ -388,13 +408,13 @@ Circe: "Pharmaka... the magic Aeëtes told me about."
 // Player learns about pharmaka from note
 ```
 
-**Quest Trigger:** This scene may trigger `quest_1_active` via Hermes spawn
+**Quest Tracking:** `quest_0_complete` is set after `aeetes_note` finishes. Quest 1 activation follows Hermes dialogue.
 
 ---
 
 ### CHAPTER 3: QUEST 1 - HERB IDENTIFICATION
 
-**Visual validation (beta):** A beta mechanical visual test exists at `tests/visual/beta_mechanical_test.gd`. It captures PNG+ASCII checkpoints for Quest 1 and can help spot regressions in dialogue, world entry, and minigame states. Outputs land in `.godot/screenshots/beta_mechanical/`.
+**HPV reference:** Use `tests/visual/playthrough_guide.md` for manual/MCP playability checks. There is not currently a Quest 1 visual test in this repo.
 
 #### Step 3.1: Trigger Quest 1
 
@@ -453,6 +473,8 @@ D-Pad: Press ↑ (north) × 30-40 steps from house
 Circe: "Here. The ground still glows from their blood."
        "Titan blood. Divine blood. The source of all magic."
 ```
+
+**Trigger Gate:** Quest 1 field trigger checks `quest_1_active` before starting this dialogue.
 
 #### Step 3.3: Herb Identification Minigame
 
@@ -559,17 +581,17 @@ GameState.set_flag("quest_1_complete", true)
 ---
 
 ### CHAPTER 4: QUEST 2 - EXTRACT THE SAP
-> **Note:** This quest references "Transformation Sap" which is not in the current item registry. The mortar & pestle crafting mechanic may be unimplemented or renamed in the current build.
+> **Note:** "Transformation Sap" exists as an item resource; confirm the mortar & pestle interaction triggers the crafting controller and recipe mapping in the current build.
 
 #### Step 4.1: Start Quest 2
 
-**Trigger:** Quest 1 complete triggers `quest_2_active`
+**Trigger:** Quest 1 complete triggers the Hermes warning; `quest_2_active` is set after the choice branch concludes.
 
 **Hermes or Aeëtes Dialogue** (from `quest2_start.tres`):
 ```gdscript
 id = "quest2_start"
 flags_required = ["quest_1_complete"]
-flags_to_set = ["quest_2_active"]
+flags_to_set = []
 ```
 
 **Player Action:**
@@ -1044,7 +1066,7 @@ flags_to_set = ["quest_7_active"]
 
 **Gift:** `GameState.add_item("loom", 1)`
 
-> **Note:** Weaving minigame referenced but `weaving_minigame.gd` not found in current codebase. This feature may be unimplemented.
+> **Note:** A weaving minigame exists at `game/features/minigames/weaving_minigame.tscn`; verify quest gating and rewards align with Quest 7.
 
 **Quest Completion:**
 ```gdscript
@@ -1378,20 +1400,23 @@ print(GameState.farm_plots)
 ### Flag Check Sequence
 
 ```
-prologue_complete
-  └─→ quest_1_active → quest_1_complete
-           └─→ quest_2_active → quest_2_complete
-                    └─→ quest_3_active → quest_3_complete
-                             └─→ quest_4_active → quest_4_complete
-                                      └─→ quest_5_active → quest_5_complete
-                                               └─→ quest_6_active → quest_6_complete
-                                                        └─→ quest_7_active → quest_7_complete
-                                                                 └─→ quest_8_active → quest_8_complete
-                                                                          └─→ quest_9_active → quest_9_complete
-                                                                                   └─→ quest_10_active → quest_10_complete
-                                                                                            └─→ quest_11_active → quest_11_complete
-                                                                                                     └─→ scylla_petrified
-                                                                                                     └─→ game_complete
+quest_0_active
+  -> prologue_complete
+  -> quest_0_complete
+  -> quest_1_active -> quest_1_complete
+  -> quest_2_active -> quest_2_complete
+  -> quest_3_active -> quest_3_complete
+  -> quest_4_active -> quest_4_complete
+  -> quest_5_active -> quest_5_complete
+  -> quest_6_active -> quest_6_complete
+  -> quest_7_active -> quest_7_complete
+  -> quest_8_active -> quest_8_complete
+  -> quest_9_active -> quest_9_complete
+  -> quest_10_active -> quest_10_complete
+  -> quest_11_active -> quest_11_complete
+  -> scylla_petrified
+  -> game_complete
+
 ```
 
 ### Inventory Final State
@@ -1427,3 +1452,5 @@ End game: Day 3+
 *Source Files: game_state.gd, player.gd, npc_base.gd, dialogue_box.gd, crafting_minigame.gd, herb_identification.gd, moon_tears_minigame.gd, sacred_earth.gd, farm_plot.gd, boat.gd, sundial.gd, scene_manager.gd, world.gd*
 
 [Codex - 2026-01-09]
+[Codex - 2026-01-11]
+[Codex - 2026-01-12]

@@ -331,7 +331,7 @@
 - `testing/` - Testing documentation
 - **Files:**
   - `mechanical_walkthrough.md` (38.7KB) - Comprehensive gameplay guide
-  - `playthrough_guide.md` (23.7KB) - Player guide
+  - `playthrough_guide.md` (archived at `archive/archive/playthrough_guide.md`) - Player guide snapshot
   - `MCP_SETUP.md` (7.7KB) - MCP setup instructions
   - `QUEST_2_EXTENSION_HANDOFF.md` (14.8KB) - Quest 2 handoff
   - `QUEST_2_QUICK_REFERENCE.md` (3.4KB) - Quest 2 reference
@@ -586,3 +586,4 @@ Well-organized but could benefit from cleanup of redundancies and better organiz
 **Total Directories:** ~150+
 
 [Codex - 2026-01-09]
+[Codex - 2026-01-11]

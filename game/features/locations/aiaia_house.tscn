@@ -1,0 +1,51 @@
+﻿[gd_scene load_steps=7 format=4]
+
+[ext_resource type="Script" path="res://game/features/locations/aeetes_note.gd" id="1_note_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/signpost.png" id="2_note_texture"]
+[ext_resource type="Script" path="res://game/features/locations/return_trigger.gd" id="3_return_trigger"]
+[ext_resource type="PackedScene" path="res://game/features/player/player.tscn" id="4_player"]
+[ext_resource type="PackedScene" path="res://game/features/ui/dialogue_box.tscn" id="5_dialogue_box"]
+
+[sub_resource type="RectangleShape2D" id="1_note_shape"]
+size = Vector2(48, 24)
+
+[sub_resource type="RectangleShape2D" id="2_exit_shape"]
+size = Vector2(96, 32)
+
+[node name="AiaiaHouse" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+color = Color(0.25, 0.2, 0.15, 1)
+
+[node name="PlayerSpawn" type="Marker2D" parent="."]
+position = Vector2(0, 64)
+
+[node name="AeetesNote" type="StaticBody2D" parent="."]
+position = Vector2(0, 0)
+script = ExtResource("1_note_script")
+
+[node name="Sprite" type="Sprite2D" parent="AeetesNote"]
+texture = ExtResource("2_note_texture")
+scale = Vector2(0.4, 0.4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AeetesNote"]
+shape = SubResource("1_note_shape")
+
+[node name="ReturnTrigger" type="Area2D" parent="."]
+position = Vector2(0, 128)
+script = ExtResource("3_return_trigger")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnTrigger"]
+shape = SubResource("2_exit_shape")
+
+[node name="Player" parent="." instance=ExtResource("4_player")]
+position = Vector2(0, 64)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DialogueBox" parent="UI" instance=ExtResource("5_dialogue_box")]
+visible = false

@@ -5,12 +5,25 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "act1_confront_scylla"
-lines = [{"speaker": "Circe", "text": "Scylla waits beyond the rocks."},
-{"speaker": "Circe", "text": "I will face her, but I must be ready."},
-{"speaker": "Scylla", "text": "You dare return, witch?"},
-{"speaker": "Circe", "text": "I seek a cure, not a war."},
-{"speaker": "Circe", "text": "First I must harvest what the island offers."}]
-choices = []
-flags_required = []
-flags_to_set = ["quest_3_complete", "transformed_scylla"]
+lines = [{"speaker": "Circe", "text": "Scylla bathes below, proud and careless."},
+{"speaker": "Circe", "text": "One vial. One choice."},
+{"speaker": "Scylla", "text": "Circe? Why are you here?"},
+{"speaker": "Scylla", "text": "Did Glaucos send you?"},
+{"speaker": "Circe", "text": "He did not."},
+{"speaker": "Scylla", "text": "Then what do you want?"}]
+choices = [{
+"text": "I brought you a gift.",
+"next_id": "act1_confront_scylla_gift",
+"flag_required": ""
+}, {
+"text": "You took him from me.",
+"next_id": "act1_confront_scylla_honest",
+"flag_required": ""
+}, {
+"text": "I am here to fix a mistake.",
+"next_id": "act1_confront_scylla_cryptic",
+"flag_required": ""
+}]
+flags_required = ["quest_3_active"]
+flags_to_set = ["met_scylla"]
 next_dialogue_id = ""

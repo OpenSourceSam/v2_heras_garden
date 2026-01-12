@@ -25,7 +25,7 @@ lines = [{
 "text": "I go everywhere, darling. Messenger god, remember?"
 }, {
 "speaker": "Hermes",
-"text": "Besides, I heard you were exiled— wait, not exiled yet."
+"text": "Besides, I heard you were exiled - wait, not exiled yet."
 }, {
 "speaker": "Hermes",
 "text": "You're here voluntarily. Interesting."
@@ -52,21 +52,21 @@ lines = [{
 "text": "Trust me, I've seen what it can do."
 }, {
 "speaker": "Hermes",
-"text": "I'll leave you to it. But when this goes wrong—"
-}, {
-"speaker": "Hermes",
-"text": "I'll be back with news. I always am."
-}, {
-"speaker": "Circe",
-"text": "He doesn't understand. No one does."
-}, {
-"speaker": "Circe",
-"text": "Back to the house. Time to work."
-}, {
-"speaker": "System",
-"text": "[Quest Update: Extract the Sap]"
+"text": "So tell me. What are you really doing here?"
 }]
-choices = []
+choices = [{
+"text": "I know what I am doing.",
+"next_id": "quest2_choice_dismissive",
+"flag_required": ""
+}, {
+"text": "I am just experimenting.",
+"next_id": "quest2_choice_lying",
+"flag_required": ""
+}, {
+"text": "She deserves it.",
+"next_id": "quest2_choice_honest",
+"flag_required": ""
+}]
 flags_required = ["quest_1_complete"]
-flags_to_set = ["quest_2_active"]
+flags_to_set = []
 next_dialogue_id = ""

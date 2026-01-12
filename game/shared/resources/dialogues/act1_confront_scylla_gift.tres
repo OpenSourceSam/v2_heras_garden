@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "act1_confront_scylla_gift"
+lines = [{
+"speaker": "Scylla",
+"text": "A gift? For me?"
+}, {
+"speaker": "Circe",
+"text": "Close your eyes. It works better that way."
+}, {
+"speaker": "Scylla",
+"text": "All right. I trust you."
+}, {
+"speaker": "System",
+"text": "The vial glows in Circe's hand."
+}, {
+"speaker": "Scylla",
+"text": "Circe, what is that?"
+}, {
+"speaker": "Circe",
+"text": "Only the truth."
+}, {
+"speaker": "System",
+"text": "The sap spills into the water."
+}, {
+"speaker": "Scylla",
+"text": "What are you doing?!"
+}, {
+"speaker": "Scylla",
+"text": "It burns!"
+}]
+choices = []
+flags_required = []
+flags_to_set = []
+next_dialogue_id = ""

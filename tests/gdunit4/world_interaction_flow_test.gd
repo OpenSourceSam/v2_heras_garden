@@ -85,6 +85,7 @@ func test_world_boat_to_sacred_grove() -> void:
 func test_world_quest_trigger_starts_dialogue() -> void:
 	GameState.quest_flags.clear()
 	GameState.set_flag("prologue_complete", true)
+	GameState.set_flag("quest_1_active", true)
 
 	var dialogue_data = load("res://game/shared/resources/dialogues/act1_herb_identification.tres") as DialogueData
 	for flag in dialogue_data.flags_required:

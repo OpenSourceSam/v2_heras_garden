@@ -42,6 +42,7 @@ func new_game() -> void:
 	quest_flags.clear()
 	farm_plots.clear()
 	add_item("wheat_seed", 3)
+	set_flag("quest_0_active", true)
 	set_flag("prologue_complete", true)
 
 func _load_registries() -> void:

@@ -1,8 +1,8 @@
-# CIRCE'S GARDEN - DEVELOPMENT ROADMAP
+﻿# CIRCE'S GARDEN - DEVELOPMENT ROADMAP
 
 Version: 3.0
-Last Updated: 2025-12-29
-Status: CANONICAL - Baseline reset
+Last Updated: 2026-01-12
+Status: Baseline reset (canonical reference)
 Purpose: Accurate, test-based roadmap for the current repo state.
 
 ---
@@ -14,19 +14,119 @@ For all contributors:
 - Do one task at a time.
 - Add checkpoints only at 50% and 100% for each phase.
 
+## Playability Focus (Option C)
+
+This roadmap currently emphasizes getting the narrative playable end to end.
+Phase 8-9 sections remain listed for continuity, with detailed export/release
+steps deferred until the playable flow is stable.
+If later agents want release planning earlier, they can extend those sections
+using `docs/execution/ANDROID_BUILD_READY.md` and
+`docs/execution/ANDROID_BUILD_GAMEWORK.md` as starting references.
+
+## Document Roles
+
+- `docs/execution/ROADMAP.md`: preferred planning and status reference; backlog items are tracked here.
+- `docs/design/Storyline.md`: primary narrative reference for beats and choices.
+- `docs/mechanical_walkthrough.md`: playtesting walkthrough for implemented content; gaps can be noted back in the Roadmap.
+
 ---
 
 ## Current Phase Status
 
-Last Updated: 2026-01-03
-Current Phase: Phase 0.5 - Missing Content Implementation
-Status: Phases 0-1.5 COMPLETE. Missing prologue content, Quest 2, and significant game flow.
+Last Updated: 2026-01-12
+Current Phase: Phase 7 - Playable Story Completion
+Status: Core systems appear in place; narrative, quest wiring, and cutscene content still benefit from alignment for full playability.
 
-**CRITICAL GAP IDENTIFIED (2026-01-03):**
-- Missing: Full prologue cutscene (Helios's palace, Aeëtes note)
-- Missing: Quest 2 "Extract the Sap" (mortar & pestle crafting)
-- Actual: Game only completes part of Quest 1 functionally
-- Reference: tests/visual/playthrough_guide.md defines correct flow
+**Storyline Delta (2026-01-12):**
+- Quest 0: House interior and Aeetes note are in place; quest_0_complete is set by the note dialogue. Update `docs/mechanical_walkthrough.md` to match this timing.
+- Quest 1-2: Hermes warning choices exist; align the Quest 2 crafting prompt with `game/shared/resources/recipes/moly_grind.tres`.
+- Quest 3: Expand confrontation choices; tie into transformation + exile cutscenes; set quest_3_complete after cutscenes.
+- Act 2: Expand Hermes/Aeetes/Daedalus beats; align recipes and patterns to `docs/design/Storyline.md`; wire weaving rewards and binding ward routing.
+- Act 3/Epilogue: Add `divine_blood` item and cutscene; align petrification recipe/patterns; implement final confrontation choices + petrification cutscene; implement ending choices and flags.
+- Systems: Add world routing for binding ward and petrification; update item registry for `divine_blood`; keep DialogueData.next_dialogue_id unused for now.
+- Docs: Update `docs/mechanical_walkthrough.md` for quest_0_complete timing and story choices; review `tests/visual/playthrough_guide.md` for overlap and archive or align if needed.
+- Reference: `docs/design/Storyline.md`, `docs/mechanical_walkthrough.md`, `tests/visual/playthrough_guide.md`
+
+**Phase 7 Playable Completion Plan (Option C):**
+
+Overview: Focus on a playable, story-complete flow aligned to `docs/design/Storyline.md` while keeping mechanics consistent with `docs/mechanical_walkthrough.md`.
+
+Scope: Work here targets narrative, quest wiring, cutscenes, and minimal staging that supports reaching an ending. Export/release details stay deferred until the playable flow is stable.
+
+Assumptions:
+- `docs/design/Storyline.md` stays the primary narrative reference for beats and choices.
+- `docs/mechanical_walkthrough.md` stays aligned to current implementation after the Quest 0 changes.
+- `DialogueData.next_dialogue_id` remains unused unless a branch benefits from it.
+- Placeholder art is acceptable for playability checks.
+
+Index:
+1. Documentation alignment
+2. Quest 0: Arrival + house
+3. Quest 1-3: Act 1 progression
+4. Quest 4-8: Act 2 progression
+5. Quest 9-11: Act 3 progression
+6. Epilogue + endings
+7. Systems and routing
+8. Minimal staging for playability
+9. Verification (HLC + HPV)
+
+### 1. Documentation alignment
+- [ ] Update `docs/mechanical_walkthrough.md` to reflect quest_0_complete set by the note dialogue.
+- [ ] Review `tests/visual/playthrough_guide.md` for overlap with Storyline and archive or align if it diverges.
+- [ ] Keep `docs/execution/ROADMAP.md` as the primary plan; move new planning notes here.
+
+### 2. Quest 0: Arrival + house
+- [x] House interior scene and door trigger: `game/features/locations/aiaia_house.tscn`, `game/features/world/house_door.tscn`.
+- [x] Aeetes note interactable and dialogue: `game/features/locations/aeetes_note.gd`, `game/shared/resources/dialogues/aeetes_note.tres`.
+- [ ] Confirm `game/shared/resources/dialogues/aiaia_arrival.tres` does not set quest_0_complete.
+- [ ] Verify house exit returns to world and spawn placement feels reasonable.
+
+### 3. Quest 1-3: Act 1 progression
+- [ ] Align Hermes Quest 1/2 dialogue beats to Storyline choices: `game/shared/resources/dialogues/quest1_start.tres`, `game/shared/resources/dialogues/quest2_start.tres`.
+- [ ] Align Quest 2 crafting prompt to `game/shared/resources/recipes/moly_grind.tres` and `game/features/ui/crafting_controller.gd`.
+- [ ] Expand `game/shared/resources/dialogues/act1_confront_scylla.tres` with Storyline choice branches and convergence.
+- [ ] Add exile cutscene after `game/features/cutscenes/scylla_transformation.tscn` and set quest_3_complete at cutscene end.
+
+### 4. Quest 4-8: Act 2 progression
+- [ ] Align Aeetes/Daedalus dialogues to Storyline beats: `game/shared/resources/dialogues/act2_farming_tutorial.tres`, `game/shared/resources/dialogues/act2_calming_draught.tres`, `game/shared/resources/dialogues/act2_reversal_elixir.tres`, `game/shared/resources/dialogues/act2_binding_ward.tres`, `game/shared/resources/dialogues/daedalus_intro.tres`.
+- [ ] Update Storyline ingredient counts and patterns in `game/shared/resources/recipes/calming_draught.tres`, `game/shared/resources/recipes/reversal_elixir.tres`, `game/shared/resources/recipes/binding_ward.tres`.
+- [ ] Wire weaving minigame success to quest_7_complete and award woven cloth (`game/features/minigames/weaving_minigame.gd`, `game/autoload/game_state.gd`).
+- [ ] Route binding ward crafting in `game/features/world/world.gd` and set quest_8_complete on success.
+- [ ] Confirm quest 4-8 completion dialogue flags (`quest_X_complete_dialogue_seen`) are set once per quest.
+
+### 5. Quest 9-11: Act 3 progression
+- [ ] Add `divine_blood` item resource and register it in `game/autoload/game_state.gd`.
+- [ ] Implement divine blood cutscene and award logic (new cutscene or dialogue resource in `game/features/cutscenes/` or `game/shared/resources/dialogues/`).
+- [ ] Update `game/shared/resources/recipes/petrification_potion.tres` to Storyline ingredient counts and patterns.
+- [ ] Adjust `game/shared/resources/dialogues/act3_ultimate_crafting.tres` to set quest_10_complete and leave quest_11_complete for the final confrontation.
+- [ ] Implement final confrontation choices and petrification cutscene; set quest_11_complete and scylla_petrified after cutscene end.
+
+### 6. Epilogue + endings
+- [ ] Add two ending choices to `game/shared/resources/dialogues/epilogue_ending_choice.tres` and set ending flags.
+- [ ] Confirm free_play_unlocked is set after the ending choice and can be observed in `game/features/world/world.gd`.
+
+### 7. Systems and routing
+- [ ] Add crafting entry points for binding ward and petrification in `game/features/world/world.gd`.
+- [ ] Reconcile quest flag flow in `game/autoload/game_state.gd` with dialogue gating in `game/features/npcs/npc_base.gd`.
+- [ ] Keep DialogueData.next_dialogue_id unused unless a branch benefits from it.
+
+### 8. Minimal staging for playability
+- [ ] Spread NPC spawn points and quest markers so early interactions do not overlap.
+- [ ] Place key interactables (house door, note, mortar, sundial, boat) with readable spacing.
+- [ ] Confirm player spawn points in `game/features/world/world.tscn`, `game/features/locations/scylla_cove.tscn`, and `game/features/locations/sacred_grove.tscn`.
+
+### 9. Verification (Playability)
+Automated Verification:
+- [ ] `tests/run_tests.gd` passes.
+Manual Verification:
+- [ ] Headed playthrough reaches both endings without debug shortcuts.
+- [ ] Minigames are completable at the intended difficulty.
+
+Success Criteria:
+Automated Verification:
+- [ ] `tests/run_tests.gd` passes.
+Manual Verification:
+- [ ] Headed playthrough reaches an ending and unlocks free play.
 
 **HPV SNAPSHOT (2026-01-11):**
 - MCP/manual HPV exercised quest wiring through Quest 11 using shortcuts; minigames were skipped per policy.
@@ -39,13 +139,13 @@ Status: Phases 0-1.5 COMPLETE. Missing prologue content, Quest 2, and significan
 - Visual verification run (2025-12-30): NPC lineup captured, grass tile 3x3 check, headed
   playthrough run; prior scripted playthrough reported World Bootstrap player missing, re-validate in MCP/manual flow.
 
-**Phase 7 Precursors Complete:**
+**Phase 8 Precursors Complete (Android/Retroid Build):**
 - `export_presets.cfg` - Export templates configured
 - `project.godot` - Android settings added
 - `docs/execution/ANDROID_BUILD_READY.md` - Prerequisites documented
 - `docs/execution/ANDROID_BUILD_GAMEWORK.md` - Remaining work tracked
 
-**Next Phase Entry:** Complete remaining game work per ANDROID_BUILD_GAMEWORK.md, then proceed with Android build.
+**Next Phase Entry:** Complete remaining content expansion per the Playable Completion Plan above, then revisit Phase 8 detail and Android build planning.
 
 ---
 
@@ -74,8 +174,8 @@ Status: Phases 0-1.5 COMPLETE. Missing prologue content, Quest 2, and significan
 - Crop growth stages and several item icons use placeholder textures until
   production art is ready.
 - **Phase 6.5 Visual Issues (2025-12-30): RESOLVED**
-  - ~~NPC sprite size inconsistency~~ → Fixed: All NPCs standardized to 48x32 proportions
-  - ~~Grass tile seams~~ → Fixed: Seamless edge wrapping verified
+  - ~~NPC sprite size inconsistency~~ â†’ Fixed: All NPCs standardized to 48x32 proportions
+  - ~~Grass tile seams~~ â†’ Fixed: Seamless edge wrapping verified
 
 ---
 
@@ -84,18 +184,18 @@ Status: Phases 0-1.5 COMPLETE. Missing prologue content, Quest 2, and significan
 **Before using any plugin, verify these steps:**
 
 ### 1. Enable Plugins in Project Settings
-1. Open Godot → Project → Project Settings → Plugins tab
+1. Open Godot â†’ Project â†’ Project Settings â†’ Plugins tab
 2. Enable each plugin (checkbox):
-   - ✓ Dialogue Manager
-   - ✓ QuestSystem
-   - ✓ BurstParticles2D
+   - âœ“ Dialogue Manager
+   - âœ“ QuestSystem
+   - âœ“ BurstParticles2D
    - (LimboAI is GDExtension - auto-enabled, no checkbox needed)
 3. **Restart editor** after first enable
 
 ### 2. LimboAI Smoke Test (Critical for Phase 3)
 ```
 1. Create new scene with CharacterBody2D
-2. Add child node → Search "BTPlayer" → If found, LimboAI works
+2. Add child node â†’ Search "BTPlayer" â†’ If found, LimboAI works
 3. If BTPlayer not found: Restart editor, check addons/limboai/bin/ has .dll files
 ```
 
@@ -133,9 +233,11 @@ Phase 4: Balance and QA (complete)
 Phase 5: Visual Polish (complete)
 Phase 6: Game Playability - Wiring & Integration (complete)
 Phase 6.5: Visual Consistency Fixes (complete)
-Phase 6.75: Content Expansion (CURRENT)
-Phase 7: Android/Retroid Build and Testing
-Phase 8: Final Polish and Release
+Phase 7: Playable Story Completion (CURRENT)
+Phase 8: Android/Retroid Build and Testing
+Phase 9: Final Polish and Release
+
+Note: Phase 8-9 details are intentionally light until the playable flow is stable; expand those sections later as needed.
 
 ---
 
@@ -164,22 +266,22 @@ Manual Verification:
 
 ---
 
-## ⚠️ TESTING REQUIREMENTS (CRITICAL)
+## âš ï¸ TESTING REQUIREMENTS (CRITICAL)
 
 ### Headless vs Headed Testing
 
 **Headless Tests** (e.g., `tests/run_tests.gd`):
-- ✅ Verify logic, mechanics, and code structure
-- ✅ Fast automated validation
-- ❌ CANNOT verify human playability
-- ❌ CANNOT verify UI visibility
-- ❌ CANNOT verify visual feedback
+- âœ… Verify logic, mechanics, and code structure
+- âœ… Fast automated validation
+- âŒ CANNOT verify human playability
+- âŒ CANNOT verify UI visibility
+- âŒ CANNOT verify visual feedback
 
 **Headed Tests** (MCP/manual playthrough):
-- ✅ Verify actual game rendering
-- ✅ Validate human playability
-- ✅ Confirm UI visibility and feedback
-- ⚠️ Slower but REQUIRED for game validation
+- âœ… Verify actual game rendering
+- âœ… Validate human playability
+- âœ… Confirm UI visibility and feedback
+- âš ï¸ Slower but REQUIRED for game validation
 
 ### When to Use Each
 
@@ -278,7 +380,7 @@ Objective: Ensure resources are complete and not null or stubbed.
 
 **CropData Resources** (`game/shared/resources/crops/`):
 - Open each .tres file in Godot Inspector
-- Verify `growth_stages` array has textures for all stages (seed → mature)
+- Verify `growth_stages` array has textures for all stages (seed â†’ mature)
 - Check these crops: moly.tres, nightshade.tres, wheat.tres
 - Placeholder textures are OK, but null/missing textures are NOT acceptable
 
@@ -354,7 +456,7 @@ And run GdUnit4 suite: `res://tests/gdunit4`
 - Always test in Godot editor first before running headless tests
 - Use `print()` statements to debug flag states and resource loads
 - Check Output panel (bottom) for missing resource warnings (red text)
-- Resource validation: Right-click resource → "Show in FileSystem" to verify path
+- Resource validation: Right-click resource â†’ "Show in FileSystem" to verify path
 - Scene testing: Press F6 to run current scene and test individual minigames
 - Save and reload scenes after texture assignments to ensure UIDs update properly
 - D-pad testing: Use joypad tester scene or InputMap debugging to verify controls
@@ -419,7 +521,7 @@ Tasks:
 Tasks:
 - [ ] Review quest_trigger.gd - ensure triggers can be NPC-based
 - [ ] Connect NPC dialogues to quest progression flags
-- [ ] Test: Talk to Hermes → sets quest flag → unlocks next quest
+- [ ] Test: Talk to Hermes â†’ sets quest flag â†’ unlocks next quest
 - [ ] Ensure dialogue choices affect quest state
 
 ### D. Start-to-Finish Playthrough
@@ -427,7 +529,7 @@ Tasks:
 **Goal:** Play the entire game from New Game to ending.
 
 Test sequence:
-1. Main Menu → New Game → World spawns correctly
+1. Main Menu â†’ New Game â†’ World spawns correctly
 2. Prologue/intro dialogue plays
 3. Talk to NPCs to receive quests
 4. Complete farm/craft/minigame objectives
@@ -467,7 +569,7 @@ Objective: Tune difficulty and identify critical bugs before device testing.
 Record playthrough notes directly in this roadmap using the checkpoint template at the bottom of this file. Create separate docs only if notes become too large to keep this file readable.
 
 **Test Sequence** (record timestamp and notes for each step):
-1. Prologue cutscene → Main menu → Select "New Game" → World spawn
+1. Prologue cutscene â†’ Main menu â†’ Select "New Game" â†’ World spawn
    - 2025-12-29: Verified New Game booted into world via `ui_accept` (MCP).
 2. Farm plot lifecycle:
    - Till a plot
@@ -608,7 +710,7 @@ As a Jr Engineer working through the roadmap, I created comprehensive headless t
 **Total: 120/120 tests pass**
 
 **Key Findings:**
-- NPC dialogue routing works correctly (Hermes → Aeetes → Daedalus → Scylla)
+- NPC dialogue routing works correctly (Hermes â†’ Aeetes â†’ Daedalus â†’ Scylla)
 - Minigame mechanics have balanced parameters (Sacred Earth: 20-25 presses, Moon Tears: 3 catches)
 - Save/Load handles corrupt files gracefully (returns false, doesn't crash)
 - No soft-lock conditions found - minigames can be re-attempted infinitely
@@ -643,7 +745,7 @@ As Jr Engineer executing Phase 4 autonomously, created comprehensive balance tes
 - Wheat: 2 days to mature, sell price 10g (5g profit/day)
 - Nightshade: 3 days to mature, sell price 30g (10g profit/day)
 - Moly: 3 days to mature, sell price 50g (16.7g profit/day)
-- Higher-value crops have better profit/day ratio ✓
+- Higher-value crops have better profit/day ratio âœ“
 
 **Crafting Recipes:**
 - All 4 potion recipes exist with ingredients
@@ -655,14 +757,14 @@ As Jr Engineer executing Phase 4 autonomously, created comprehensive balance tes
 - All minigame scenes exist and are playable
 
 **Gold Economy:**
-- Starter gold: 100g ✓
-- Wheat profit: positive (buy seed, sell crop) ✓
-- Moly profit: 40g per harvest ✓
-- Player can afford multiple seed packets ✓
+- Starter gold: 100g âœ“
+- Wheat profit: positive (buy seed, sell crop) âœ“
+- Moly profit: 40g per harvest âœ“
+- Player can afford multiple seed packets âœ“
 
 **D-Pad Controls:**
-- All 7 core actions defined: interact, ui_accept, ui_inventory, ui_left/right/up/down ✓
-- Input mapping supports D-pad only gameplay ✓
+- All 7 core actions defined: interact, ui_accept, ui_inventory, ui_left/right/up/down âœ“
+- Input mapping supports D-pad only gameplay âœ“
 
 **No bugs found in Phase 4 scope.**
 
@@ -737,8 +839,8 @@ Light tuning snapshot (2025-12-29):
 - Test "Continue" button loads most recent save
 
 **Edge Cases:**
-- Save during dialogue → Load → Verify dialogue state
-- Save during minigame → Load → Should return to safe state (world/menu)
+- Save during dialogue â†’ Load â†’ Verify dialogue state
+- Save during minigame â†’ Load â†’ Should return to safe state (world/menu)
 - Multiple save slots (if implemented)
 - Save file migration (if save format changes between builds)
 
@@ -913,10 +1015,10 @@ Missing Visual Assets (Need Art):
 5. **UI Icons**: inventory slots, crafting icons, dialogue portraits
 
 Placeholder Quality Assessment:
-- Placeholder folder exists with basic colored sprites ✓
-- All sprites follow naming convention (e.g., npc_hermes.png) ✓
-- ColorRect tears need sprite replacement ✗
-- Particle nodes exist but may need configuration ✗
+- Placeholder folder exists with basic colored sprites âœ“
+- All sprites follow naming convention (e.g., npc_hermes.png) âœ“
+- ColorRect tears need sprite replacement âœ—
+- Particle nodes exist but may need configuration âœ—
 
 UI Styling: Checked - uses consistent Control nodes, TextureRect for icons
 
@@ -929,7 +1031,7 @@ Next Steps for Phase 5:
 
 ---
 
-### 📸 IMAGE GENERATION PROMPT FOR MINIMAX (Pixel Art Agent)
+### ðŸ“¸ IMAGE GENERATION PROMPT FOR MINIMAX (Pixel Art Agent)
 
 Copy and paste this to a new MiniMax conversation using the pixel-art-professional skill and art MCP server:
 
@@ -988,7 +1090,7 @@ After generating, assign sprites to Godot resources:
 Replace existing placeholder ColorRect files in the same folder paths.
 ```
 
-🤖 Generated for MiniMax agent with pixel-art-professional skill
+ðŸ¤– Generated for MiniMax agent with pixel-art-professional skill
 <!-- END_CHECKPOINT -->
 
 <!-- PHASE_5_CHECKPOINT: 100% -->
@@ -1024,7 +1126,7 @@ Automated Verification:
 
 Phase 5 Complete (2025-12-30):
 - [x] Grass tile (32x32 tileable with dithering)
-- [x] Crop growth stages (12 sprites - wheat/moly/nightshade × 4 stages each)
+- [x] Crop growth stages (12 sprites - wheat/moly/nightshade Ã— 4 stages each)
 - [x] App icon (512x512 - Circe silhouette with moon)
 - [x] All crop .tres files updated with stage-specific sprites
 - [x] All sprites imported and verified (tests pass 5/5)
@@ -1109,9 +1211,9 @@ mcp__godot__get_debug_output
 **Task:** Assign stage-specific sprites to 3 crops (4 stages each).
 
 **Crops:**
-- wheat.tres: wheat_stage_1.png → stage_4.png
-- moly.tres: moly_stage_1.png → stage_4.png
-- nightshade.tres: nightshade_stage_1.png → stage_4.png
+- wheat.tres: wheat_stage_1.png â†’ stage_4.png
+- moly.tres: moly_stage_1.png â†’ stage_4.png
+- nightshade.tres: nightshade_stage_1.png â†’ stage_4.png
 
 ### 6D: Build Out World Map Tiles
 
@@ -1160,15 +1262,15 @@ func _on_body_entered(body):
 **Task:** Fix broken dialogue chains and validate full flow.
 
 **Fix Missing References:**
-- circe_intro → circe_accept_farming.tres
-- circe_intro → circe_explain_pharmaka.tres
+- circe_intro â†’ circe_accept_farming.tres
+- circe_intro â†’ circe_explain_pharmaka.tres
 
 **Validate Full Chain:**
 ```
-prologue_opening → aiaia_arrival → circe_intro → [branch] → quest1_start
-quest1_start → act1_herb_identification → quest2_start → ...
+prologue_opening â†’ aiaia_arrival â†’ circe_intro â†’ [branch] â†’ quest1_start
+quest1_start â†’ act1_herb_identification â†’ quest2_start â†’ ...
 ... continues through all 11 quests
-quest11_start → act3_final_confrontation → epilogue_ending_choice
+quest11_start â†’ act3_final_confrontation â†’ epilogue_ending_choice
 ```
 
 **Verification:**
@@ -1210,12 +1312,12 @@ quest11_start → act3_final_confrontation → epilogue_ending_choice
 ```
 
 **Manual Playthrough Checklist:**
-- [ ] New Game → Prologue dialogue plays
+- [ ] New Game â†’ Prologue dialogue plays
 - [ ] Player gains control in Aiaia
 - [ ] Golden marker shows first quest location
-- [ ] Talk to Hermes → quest activates
+- [ ] Talk to Hermes â†’ quest activates
 - [ ] Complete herb identification minigame
-- [ ] Farm plot works (till → plant → grow → harvest)
+- [ ] Farm plot works (till â†’ plant â†’ grow â†’ harvest)
 - [ ] Crafting ritual works
 - [ ] Boat travel to Scylla Cove
 - [ ] All 11 quests completeable
@@ -1378,11 +1480,11 @@ Checkpoint Date: 2025-12-30
 Verified By: Claude MiniMax (automated tests)
 Notes: Grass tile fixed with seamless edges, all 123 tests pass
 
-Ready for Next Phase: YES (Phase 7 - Android/Retroid Build)
+Ready for Next Phase: YES (Phase 8 - Android/Retroid Build)
 
 ---
 
-## PHASE 6.75: CONTENT EXPANSION (PRE-EXPORT)
+## PHASE 7: PLAYABLE STORY COMPLETION (PRE-EXPORT)
 
 ### Tier 1 AI Testing Framework
 
@@ -1430,7 +1532,7 @@ Expand dialogue and content to achieve "Stardew Valley quality" before export te
 
 **Status:** READY FOR MINIMAX (2025-12-30)
 
-**Philosophy:** MiniMax does bulk work → Codex verifies at checkpoints → Sequential, not parallel
+**Philosophy:** MiniMax does bulk work â†’ Codex verifies at checkpoints â†’ Sequential, not parallel
 
 ### Content Audit Findings (Codex - December 30, 2025)
 
@@ -1465,8 +1567,8 @@ Expand dialogue and content to achieve "Stardew Valley quality" before export te
 
 === ESTIMATED WORK ===
 - Dialogue lines to write: ~170 new lines
-- Quest dialogue expansions: 11 quests × 7 lines = ~77 lines
-- NPC-specific dialogues: 5 NPCs × 40 lines = ~200 lines (including above)
+- Quest dialogue expansions: 11 quests Ã— 7 lines = ~77 lines
+- NPC-specific dialogues: 5 NPCs Ã— 40 lines = ~200 lines (including above)
 - Spawn points to add: 2 (Scylla, Circe)
 ```
 
@@ -1547,10 +1649,10 @@ Run these tests after completing each NPC's dialogue:
 ### Idle Dialogue Routing Logic
 
 NPCs should select dialogue based on game state:
-1. First meeting → `{npc}_intro.tres` (sets `met_{npc}` flag)
-2. Active quest → `quest{N}_inprogress.tres`
-3. Quest complete → `quest{N}_complete.tres` (one-time)
-4. No active quest → Random from `{npc}_idle.tres`
+1. First meeting â†’ `{npc}_intro.tres` (sets `met_{npc}` flag)
+2. Active quest â†’ `quest{N}_inprogress.tres`
+3. Quest complete â†’ `quest{N}_complete.tres` (one-time)
+4. No active quest â†’ Random from `{npc}_idle.tres`
 
 ### Codex Checkpoint Criteria
 
@@ -1578,11 +1680,11 @@ After MiniMax completes each NPC's dialogue:
 
 ---
 
-## PHASE 7: ANDROID/RETROID BUILD AND TESTING
+## PHASE 8: ANDROID/RETROID BUILD AND TESTING
 
 Objective: Produce a testable APK and validate on hardware.
 
-**Note:** Begin Phase 7 only after Phase 6 is complete (all sprites wired, game playable).
+**Note:** Phase 8 is typically sequenced after Phase 7 is complete (playable story completion).
 
 ### A. Android Build Setup
 
@@ -1592,7 +1694,7 @@ Objective: Produce a testable APK and validate on hardware.
 - Download Android export templates for Godot 4.5.1
 
 **Export Preset Configuration:**
-1. In Godot: Project → Export → Add → Android
+1. In Godot: Project â†’ Export â†’ Add â†’ Android
 2. Set package name (e.g., com.yourname.circesgarden)
 3. Configure screen orientation: Landscape (for Retroid)
 4. Set minimum SDK version: 21 (Android 5.0) or higher
@@ -1601,7 +1703,7 @@ Objective: Produce a testable APK and validate on hardware.
 
 **Build Debug APK:**
 ```
-In Godot: Project → Export → Android (Debug)
+In Godot: Project â†’ Export â†’ Android (Debug)
 Save as: circes_garden_debug.apk
 ```
 
@@ -1633,11 +1735,11 @@ Save as: circes_garden_debug.apk
 ### C. Common Build Issues and Troubleshooting
 
 **"Export templates not found":**
-- Download export templates: Editor → Manage Export Templates
+- Download export templates: Editor â†’ Manage Export Templates
 - Ensure version matches Godot version (4.5.1)
 
 **"Android SDK not found":**
-- Set SDK path in Editor → Editor Settings → Export → Android
+- Set SDK path in Editor â†’ Editor Settings â†’ Export â†’ Android
 - Verify Android SDK installation includes build-tools and platform-tools
 
 **APK won't install:**
@@ -1673,7 +1775,9 @@ Manual Verification:
 
 ---
 
-## PHASE 8: TESTING, BUG FIXING, AND POLISH
+## PHASE 9: FINAL POLISH AND RELEASE
+
+### Testing, Bug Fixing, and Polish (Status Log)
 
 **Date Completed:** 2025-12-30
 **Status:** IN PROGRESS
@@ -1703,7 +1807,7 @@ Manual Verification:
 Added to `farm_plot.gd`:
 
 **Till Action:**
-- Soil sprite appears with scale-in animation (0.5 → 1.0)
+- Soil sprite appears with scale-in animation (0.5 â†’ 1.0)
 
 **Plant Action:**
 - Crop sprite appears smoothly
@@ -1732,16 +1836,16 @@ Added to `farm_plot.gd`:
 ### F. Next Steps
 
 1. Update `docs/execution/ANDROID_BUILD_GAMEWORK.md` with resolved issues
-2. Continue with Phase 7 Android build setup when ready
-3. Replace remaining placeholder assets (Phase 8)
+2. Continue with Phase 8 Android build setup when ready
+3. Replace remaining placeholder assets (Phase 9)
 
 ---
 
-## PHASE 8: FINAL POLISH AND RELEASE
+### Release Checklist
 
 Objective: Replace placeholders, finalize narrative, optimize performance, and ship.
 
-**Note:** Begin Phase 8 only after Phase 7 device testing confirms stable gameplay.
+**Note:** This section typically follows Phase 8 device testing once gameplay feels stable.
 
 ### A. Production Asset Replacement
 
@@ -1839,7 +1943,7 @@ Objective: Replace placeholders, finalize narrative, optimize performance, and s
 - Test on clean install (uninstall previous versions first)
 
 **Edge Case Verification:**
-- New game → immediate quit → load (should handle gracefully)
+- New game â†’ immediate quit â†’ load (should handle gracefully)
 - Rapid scene transitions (spam A button during transitions)
 - Inventory full edge cases
 - All minigames completable with final difficulty settings
@@ -1927,6 +2031,8 @@ Senior Engineer Review: [VERIFIED] - Minor issues addressed, confidence HIGH
 
 ## Game Implementation Plan (Based on Mechanical Walkthrough)
 
+Note: This section is retained as a mechanical reference. The current playability backlog is in the Phase 7 Playable Completion Plan near the top of this roadmap.
+
 Owner: Implementation Agent
 Start Date: 2025-12-31
 Reference: `docs/mechanical_walkthrough.md`
@@ -1941,64 +2047,33 @@ This plan aligns with:
 - **Phase 1 (Core Systems)** - All systems verified working
 - **Phase 2 (Data Integrity)** - Recipes and dialogues validated
 - **Phase 3 (Playable Loop)** - Complete walkthrough available
-- **Phase 6.75 (Content Expansion)** - Adds missing implementations per walkthrough
+- **Phase 7 (Playable Story Completion)** - Adds missing implementations per walkthrough
 
 ### Implementation Order (Per Walkthrough Chapters)
 
 #### Chapter 1-2: Title Screen & Prologue
 - [ ] Verify NEW GAME button pre-focus (main_menu.gd:45)
 - [ ] Test prologue cutscene transition to world
-- [ ] Verify house interior and Aeëtes' note interaction
+- [ ] Verify house interior and AeÃ«tes' note interaction
 - [ ] Quest 1 triggers via Hermes spawn (npc_spawner.gd:20-23)
 
 #### Chapter 3: Quest 1 - Herb Identification
 - [ ] Navigate to pharmaka field
 - [ ] Complete 3 rounds of herb ID minigame
 - [ ] Verify correct plant visual distinction (gold vs gray)
-- [ ] Award 3× pharmaka_flower on completion
+- [ ] Award 3Ã— pharmaka_flower on completion
 - [ ] Return to Hermes for quest completion
 
-#### Chapter 4: Quest 2 Resolution - DEPRECATED/REMOVED
+#### Chapter 4: Quest 2 - Extract the Sap
 
-**Investigation Result (2025-12-31):**
+**Goal:** Craft transformation sap via the mortar and pestle tutorial.
 
-After codebase analysis:
-- `transformation_sap` was planned but NEVER implemented
-- Exists only in archive documentation, not in production code
-- `quest2_start.tres` exists but is a stub (3 lines)
-- NO `quest2_inprogress.tres` or `quest2_complete.tres`
-- NO `transformation_sap` item or recipe exists
-- Quest 3 works WITHOUT transformation_sap - Scylla transforms via different mechanism
-
-**Decision: REMOVE Quest 2 from game flow**
-
-**Required Changes:**
-1. [ ] Update `npc_base.gd` Hermes routing:
-   ```gdscript
-   # REMOVE quest_2_active check
-   # OLD:
-   if GameState.get_flag("quest_1_complete") and not GameState.get_flag("quest_2_active"):
-       return "quest2_start"
-   # NEW: Skip directly to quest 3
-   if GameState.get_flag("quest_1_complete") and not GameState.get_flag("quest_3_active"):
-       return "quest3_start"
-   ```
-
-2. [ ] Update critical path in this document:
-   ```
-   prologue_complete
-     └─→ quest_1_active (Hermes spawns)
-          └─→ quest_3_active ← REMOVED quest_2 (Quest 1 → 3 direct)
-               └─→ quest_4_active (Aeëtes spawns)
-   ```
-
-3. [ ] Keep `quest2_start.tres` as archive but mark deprecated
-4. [ ] Document in mechanical_walkthrough.md: Quest 2 was removed
-
-**Why This Works:**
-- Quest 1: Collect pharmaka flowers
-- Quest 3: Confront Scylla (uses pharmaka directly, not transformation_sap)
-- Narrative still makes sense: "Good, you have the flowers. Now go confront Scylla."
+Tasks:
+- [ ] Hermes warning dialogue with a 3-choice prompt (`quest2_start.tres` + choice follow-ups)
+- [ ] Quest 2 activation from Hermes dialogue (`quest_2_active`)
+- [ ] Mortar and pestle interaction starts crafting (`world.gd`, `crafting_controller.gd`)
+- [ ] Recipe uses pharmaka_flower x3 and outputs transformation_sap (`moly_grind.tres`)
+- [ ] Craft completion sets `quest_2_complete` and unlocks Quest 3
 
 #### Chapter 5: Quest 3 - Confront Scylla
 - [ ] Hermes triggers quest 3 (quest3_start.tres)
@@ -2036,9 +2111,9 @@ func interact() -> void:
 - [ ] No duplicate players or camera issues after return
 
 #### Chapter 6: Quest 4 - Build a Garden
-- [ ] Aeëtes dialogue triggers quest 4 (quest4_start.tres)
-- [ ] Inventory: receive 3× moly_seed, nightshade_seed, golden_glow_seed
-- [ ] Till 9 farm plots (9× A button)
+- [ ] AeÃ«tes dialogue triggers quest 4 (quest4_start.tres)
+- [ ] Inventory: receive 3Ã— moly_seed, nightshade_seed, golden_glow_seed
+- [ ] Till 9 farm plots (9Ã— A button)
 - [ ] Plant seeds (opens seed selector)
 - [ ] Water all 9 plots
 - [ ] Advance time twice at sundial
@@ -2046,46 +2121,45 @@ func interact() -> void:
 - [ ] Flags: quest_4_complete set
 
 #### Chapter 7: Quest 5 - Calming Draught
-- [ ] Aeëtes dialogue triggers quest 5 (quest5_start.tres)
+- [ ] AeÃ«tes dialogue triggers quest 5 (quest5_start.tres)
 - [ ] Recipe (from calming_draught.tres):
-  - 1× Moly
-  - 1× Pharmaka Flower
-- [ ] Crafting minigame: pattern ↑→↓←, buttons A,A
+  - 1Ã— Moly
+  - 1Ã— Pharmaka Flower
+- [ ] Crafting minigame: pattern â†‘â†’â†“â†, buttons A,A
 - [ ] Travel to Scylla's Cove, attempt to give potion
 - [ ] Dialogue indicates failure
 - [ ] Flags: quest_5_complete set
 
 #### Chapter 8: Quest 6 - Reversal Elixir
-- [ ] Aeëtes dialogue triggers quest 6 (quest6_start.tres)
+- [ ] AeÃ«tes dialogue triggers quest 6 (quest6_start.tres)
 - [ ] Sacred Earth minigame (button mash, 10s)
 - [ ] Recipe (from reversal_elixir.tres):
-  - 1× Moly
-  - 1× Nightshade
-  - 1× Moon Tear
-- [ ] Crafting minigame: pattern ↑←→↓↑→, buttons A,B,A,B
+  - 1Ã— Moly
+  - 1Ã— Nightshade
+  - 1Ã— Moon Tear
+- [ ] Crafting minigame: pattern â†‘â†â†’â†“â†‘â†’, buttons A,B,A,B
 - [ ] Flags: quest_6_complete set
 
 #### Chapter 9: Quest 7 - Daedalus Arrives
 - [ ] Daedalus spawns (quest_6_complete) via npc_spawner.gd
 - [ ] Dialogue triggers quest 7 (daedalus_intro.tres)
 - [ ] Receive loom item
-- [ ] Weaving minigame - **STATUS: UNIMPLEMENTED**
-  > **Note**: weaving_minigame.gd was NOT found in current codebase
-  > **Action Required**: Either implement weaving_minigame.gd or modify Quest 7 to skip weaving
-  > If implemented, verify patterns from mechanical_walkthrough.md:
-  > - Pattern 1: ← → ↑ ↓
-  > - Pattern 2: ↑ ↑ → ↓
-  > - Pattern 3: ← ← ↓ →
-  > - MAX_MISTAKES: 3
+- [ ] Weaving minigame - present; wire quest_7_complete and reward woven_cloth.
+  > **Note**: weaving_minigame.gd exists; update quest gating and rewards.
+  > Target patterns from mechanical_walkthrough.md:
+  > - Pattern 1: ƒ+? ƒ+' ƒ+` ƒ+"
+  > - Pattern 2: ƒ+` ƒ+` ƒ+' ƒ+"
+  > - Pattern 3: ƒ+? ƒ+? ƒ+" ƒ+'
+  > - Max mistakes: 3
   > - Reward: woven_cloth
 - [ ] Flags: quest_7_complete set
 
 #### Chapter 10: Quest 8 - Binding Ward
 - [ ] Daedalus dialogue triggers quest 8 (quest8_start.tres)
 - [ ] Recipe (from binding_ward.tres):
-  - 1× Nightshade
-  - 1× Woven Cloth
-- [ ] Crafting minigame: pattern ←↑→↓←, buttons A,B,A
+  - 1Ã— Nightshade
+  - 1Ã— Woven Cloth
+- [ ] Crafting minigame: pattern â†â†‘â†’â†“â†, buttons A,B,A
 - [ ] Flags: quest_8_complete set
 
 #### Chapter 11: Quest 9-10 - Moon Tears
@@ -2098,10 +2172,10 @@ func interact() -> void:
 #### Chapter 12: Quest 10 - Ultimate Crafting
 - [ ] Dialogue triggers quest 10 (quest10_start.tres)
 - [ ] Recipe (from petrification_potion.tres):
-  - 1× Sacred Earth
-  - 1× Moon Tear
-  - 1× Nightshade
-- [ ] Crafting minigame: pattern ←↓→↑←↓→, buttons A,B,A,B,A
+  - 1Ã— Sacred Earth
+  - 1Ã— Moon Tear
+  - 1Ã— Nightshade
+- [ ] Crafting minigame: pattern â†â†“â†’â†‘â†â†“â†’, buttons A,B,A,B,A
 - [ ] Flags: quest_10_complete, quest_11_active set
 
 #### Chapter 13: Quest 11 - Final Confrontation
@@ -2125,7 +2199,7 @@ This section addresses verification of quest marker visibility toggling and ques
 **Quest Marker Toggle Logic:**
 ```gdscript
 // When quest becomes active, corresponding marker should become visible
-// Example: quest_1_active → Hermes quest marker visible
+// Example: quest_1_active â†’ Hermes quest marker visible
 
 func _on_quest_activated(quest_id: String) -> void:
     var marker = get_node_or_null("QuestMarkers/" + quest_id)
@@ -2137,7 +2211,7 @@ func _on_quest_activated(quest_id: String) -> void:
 - [ ] Quest markers exist in world.tscn scene (node group: "quest_markers")
 - [ ] Marker visibility toggles with quest_1_active flag
 - [ ] Marker at Hermes spawn location appears when quest_1_active = true
-- [ ] Marker at Aeëtes spawn location appears when quest_3_complete = true
+- [ ] Marker at AeÃ«tes spawn location appears when quest_3_complete = true
 - [ ] Marker at Daedalus spawn location appears when quest_6_complete = true
 - [ ] Marker at Scylla spawn location appears when quest_8_complete = true
 
@@ -2204,7 +2278,7 @@ func test_quest_trigger_wiring():
 **Full Quest Marker Flow Test:**
 ```gdscript
 func test_quest_marker_integration():
-    # Test full flow: trigger → flag set → marker visible
+    # Test full flow: trigger â†’ flag set â†’ marker visible
     var trigger = get_node_or_null("QuestTriggers/quest_1_trigger")
     var marker = get_node_or_null("QuestMarkers/quest_1_marker")
 
@@ -2295,39 +2369,60 @@ func _on_boat_travel_requested(destination: String) -> void:
 
 | Recipe | Storyline Version | Actual (.tres) Version |
 |--------|-------------------|------------------------|
-| Calming Draught | 2× Moly, 1× Lotus | 1× Moly, 1× Pharmaka Flower |
-| Reversal Elixir | 2× Moly, 2× Nightshade, Saffron | 1× Moly, 1× Nightshade, 1× Moon Tear |
-| Binding Ward | 5× Moly, 3× Sacred Earth | 1× Nightshade, 1× Woven Cloth |
-| Petrification Potion | 5× Moly, 3× Sacred, 3× Moon, Divine Blood | 1× Sacred Earth, 1× Moon Tear, 1× Nightshade |
+| Calming Draught | 2Ã— Moly, 1Ã— Lotus | 1Ã— Moly, 1Ã— Pharmaka Flower |
+| Reversal Elixir | 2Ã— Moly, 2Ã— Nightshade, Saffron | 1Ã— Moly, 1Ã— Nightshade, 1Ã— Moon Tear |
+| Binding Ward | 5Ã— Moly, 3Ã— Sacred Earth | 1Ã— Nightshade, 1Ã— Woven Cloth |
+| Petrification Potion | 5Ã— Moly, 3Ã— Sacred, 3Ã— Moon, Divine Blood | 1Ã— Sacred Earth, 1Ã— Moon Tear, 1Ã— Nightshade |
 
-**Resolution**: Code (.tres files) takes precedence. Storyline may need updating.
+**Resolution**: Storyline is the primary narrative reference; update .tres recipes to match.
 
-### Critical Path Dependencies (UPDATED - Quest 2 Removed)
+### Critical Path Dependencies (Updated - Quest 2 retained)
 
 ```
 prologue_complete
-  └─→ quest_1_active (Hermes spawns)
-       └─→ quest_3_active ← REMOVED quest_2 (Quest 1 → 3 direct)
-            └─→ quest_4_active (Aeëtes spawns)
-                 └─→ quest_5_active (after farming)
-                      └─→ quest_6_active (after calming draught)
-                           └─→ quest_7_active (Daedalus spawns)
-                                └─→ quest_8_active (after reversal elixir)
-                                     └─→ quest_9_active (Scylla spawns)
-                                          └─→ quest_10_active (after moon tears)
-                                               └─→ quest_11_active (after petrification)
-                                                    └─→ game_complete
+  -> quest_1_active (Hermes)
+  -> quest_1_complete
+  -> quest_2_active (Hermes warning)
+  -> quest_2_complete (moly_grind)
+  -> quest_3_active (Hermes)
+  -> quest_3_complete (Scylla transformation)
+  -> quest_4_active (Aeetes)
+  -> quest_5_active (after farming)
+  -> quest_6_active (after calming draught)
+  -> quest_7_active (Daedalus)
+  -> quest_8_active (after reversal elixir)
+  -> quest_9_active (Scylla)
+  -> quest_10_active (after moon tears)
+  -> quest_11_active (after petrification)
+  -> game_complete
 ```
 
-**Flag Sequence (10 quests instead of 11):**
+**Flag Sequence (Quest 2 retained):**
 | Stage | Flag | Trigger |
 |-------|------|---------|
 | Start | `prologue_complete` | new_game() |
 | Quest 1 | `quest_1_active` | Hermes dialogue |
 | Quest 1 Complete | `quest_1_complete` | Herb ID minigame |
-| Quest 3 | `quest_3_active` | Hermes (skips quest 2) |
+| Quest 2 | `quest_2_active` | Hermes warning dialogue |
+| Quest 2 Complete | `quest_2_complete` | Crafting (moly_grind) |
+| Quest 3 | `quest_3_active` | Hermes dialogue |
 | Quest 3 Complete | `quest_3_complete` | Scylla transformation |
-| ... | ... | ... |
+| Quest 4 | `quest_4_active` | Aeetes dialogue |
+| Quest 4 Complete | `quest_4_complete` | Farming flow |
+| Quest 5 | `quest_5_active` | Aeetes dialogue |
+| Quest 5 Complete | `quest_5_complete` | Calming draught craft |
+| Quest 6 | `quest_6_active` | Aeetes dialogue |
+| Quest 6 Complete | `quest_6_complete` | Reversal elixir craft |
+| Quest 7 | `quest_7_active` | Daedalus dialogue |
+| Quest 7 Complete | `quest_7_complete` | Weaving flow |
+| Quest 8 | `quest_8_active` | Daedalus dialogue |
+| Quest 8 Complete | `quest_8_complete` | Binding ward craft |
+| Quest 9 | `quest_9_active` | Scylla dialogue |
+| Quest 9 Complete | `quest_9_complete` | Sacred earth flow |
+| Quest 10 | `quest_10_active` | Scylla dialogue |
+| Quest 10 Complete | `quest_10_complete` | Moon tears flow |
+| Quest 11 | `quest_11_active` | Scylla dialogue |
+| Quest 11 Complete | `quest_11_complete` | Final confrontation |
 
 ### Success Criteria
 
@@ -2343,4 +2438,13 @@ Manual Verification:
 - Visual feedback exists for all interactions (highlight, glow, animations)
 
 [Codex - 2026-01-11]
+
+
+
+
+
+
+
+
+[Codex - 2026-01-12]
 

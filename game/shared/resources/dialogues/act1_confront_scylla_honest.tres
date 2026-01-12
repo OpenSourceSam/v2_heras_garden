@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "act1_confront_scylla_honest"
+lines = [{
+"speaker": "Circe",
+"text": "You took him from me."
+}, {
+"speaker": "Scylla",
+"text": "He chose me. I did not steal him."
+}, {
+"speaker": "Circe",
+"text": "I made him a god for you."
+}, {
+"speaker": "Scylla",
+"text": "And he still chose me."
+}, {
+"speaker": "Circe",
+"text": "Then you will pay."
+}, {
+"speaker": "System",
+"text": "The vial glows in Circe's hand."
+}, {
+"speaker": "Scylla",
+"text": "Circe, what is that?"
+}, {
+"speaker": "Circe",
+"text": "A lesson."
+}, {
+"speaker": "System",
+"text": "The sap spills into the water."
+}, {
+"speaker": "Scylla",
+"text": "What have you done?!"
+}, {
+"speaker": "Scylla",
+"text": "It burns!"
+}]
+choices = []
+flags_required = []
+flags_to_set = []
+next_dialogue_id = ""

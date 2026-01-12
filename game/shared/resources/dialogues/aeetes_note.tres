@@ -1,0 +1,45 @@
+﻿[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "aeetes_note"
+lines = [{
+"speaker": "Note",
+"text": "Sister,"
+}, {
+"speaker": "Note",
+"text": "If you are reading this, you have discovered Father's forgotten island. Good."
+}, {
+"speaker": "Note",
+"text": "The pharmaka flowers bloom where Titan blood was spilled during the great war."
+}, {
+"speaker": "Note",
+"text": "Look for the glow - subtle, golden, like captured sunlight."
+}, {
+"speaker": "Note",
+"text": "Grind them in the mortar. Their sap transforms living things."
+}, {
+"speaker": "Note",
+"text": "Be careful. Pharmaka does not forgive mistakes."
+}, {
+"speaker": "Note",
+"text": "- Your brother, Aeetes"
+}, {
+"speaker": "Circe",
+"text": "Pharmaka... the magic Aeetes told me about."
+}, {
+"speaker": "Circe",
+"text": "Transforms living things."
+}, {
+"speaker": "Circe",
+"text": "Perfect."
+}, {
+"speaker": "System",
+"text": "[Quest Added: Find the Pharmaka]"
+}]
+choices = []
+flags_required = []
+flags_to_set = ["quest_0_complete"]
+next_dialogue_id = ""

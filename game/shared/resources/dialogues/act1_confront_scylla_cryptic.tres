@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "act1_confront_scylla_cryptic"
+lines = [{
+"speaker": "Circe",
+"text": "I am here to fix a mistake."
+}, {
+"speaker": "Scylla",
+"text": "A mistake? What mistake?"
+}, {
+"speaker": "Circe",
+"text": "You."
+}, {
+"speaker": "Scylla",
+"text": "You are joking."
+}, {
+"speaker": "Circe",
+"text": "No."
+}, {
+"speaker": "System",
+"text": "The vial glows in Circe's hand."
+}, {
+"speaker": "Scylla",
+"text": "Circe, what is that?"
+}, {
+"speaker": "Circe",
+"text": "A correction."
+}, {
+"speaker": "System",
+"text": "The sap spills into the water."
+}, {
+"speaker": "Scylla",
+"text": "Stop! What are you doing?!"
+}, {
+"speaker": "Scylla",
+"text": "It burns!"
+}]
+choices = []
+flags_required = []
+flags_to_set = []
+next_dialogue_id = ""

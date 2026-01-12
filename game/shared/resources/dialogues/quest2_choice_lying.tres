@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest2_choice_lying"
+lines = [{
+"speaker": "Hermes",
+"text": "Mm-hmm. Experimenting."
+}, {
+"speaker": "Hermes",
+"text": "Pharmaka shows who you are."
+}, {
+"speaker": "Hermes",
+"text": "I'll leave you to it. But when this goes wrong..."
+}, {
+"speaker": "Hermes",
+"text": "I'll be back with news. I always am."
+}, {
+"speaker": "Circe",
+"text": "He doesn't understand. No one does."
+}, {
+"speaker": "Circe",
+"text": "Back to the house. Time to work."
+}, {
+"speaker": "System",
+"text": "[Quest Update: Extract the Sap]"
+}]
+choices = []
+flags_required = []
+flags_to_set = ["quest_2_active"]
+next_dialogue_id = ""

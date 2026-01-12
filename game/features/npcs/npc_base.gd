@@ -204,6 +204,8 @@ func _resolve_daedalus_dialogue() -> String:
 	return dialogue_id
 
 func _resolve_scylla_dialogue() -> String:
+	if GameState.get_flag("quest_3_active") and not GameState.get_flag("quest_3_complete"):
+		return "act1_confront_scylla"
 	if _dialogue_exists("scylla_intro") and not GameState.get_flag("met_scylla"):
 		return "scylla_intro"
 	if GameState.get_flag("quest_8_complete") and not GameState.get_flag("quest_9_active"):
