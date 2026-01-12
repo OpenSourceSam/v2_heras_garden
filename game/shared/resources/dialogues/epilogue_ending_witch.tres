@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "epilogue_ending_witch"
+lines = [{
+"speaker": "Circe",
+"text": "I will keep learning. The island will be a refuge."
+}, {
+"speaker": "Circe",
+"text": "Those who come to me will find a home."
+}]
+choices = []
+flags_required = []
+flags_to_set = ["ending_witch", "free_play_unlocked"]
+next_dialogue_id = ""

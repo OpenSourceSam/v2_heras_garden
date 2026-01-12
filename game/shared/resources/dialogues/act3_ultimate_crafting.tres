@@ -12,5 +12,5 @@ lines = [{"speaker": "Circe", "text": "This is the final brew."},
 {"speaker": "Circe", "text": "When it is done, we face her."}]
 choices = []
 flags_required = []
-flags_to_set = ["quest_10_complete"]
+flags_to_set = []
 next_dialogue_id = ""

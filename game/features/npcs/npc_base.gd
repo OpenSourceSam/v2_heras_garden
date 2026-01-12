@@ -219,9 +219,13 @@ func _resolve_scylla_dialogue() -> String:
 			return "quest9_complete"
 		return "quest10_start"
 	if GameState.get_flag("quest_10_active") and not GameState.get_flag("quest_10_complete"):
+		if not GameState.get_flag("moon_tears_collected"):
+			return "act3_moon_tears"
+		if not GameState.get_flag("divine_blood_collected"):
+			return "act3_ultimate_crafting"
 		if _dialogue_exists("quest10_inprogress"):
 			return "quest10_inprogress"
-		return "act3_moon_tears"
+		return "act3_ultimate_crafting"
 	if GameState.get_flag("quest_10_complete") and not GameState.get_flag("quest_11_active"):
 		if _dialogue_exists("quest10_complete") and not GameState.get_flag("quest_10_complete_dialogue_seen"):
 			return "quest10_complete"

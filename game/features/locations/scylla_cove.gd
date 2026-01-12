@@ -5,6 +5,11 @@ const CONFRONTATION_DIALOGUES := [
 	"act1_confront_scylla_honest",
 	"act1_confront_scylla_cryptic"
 ]
+const FINAL_CONFRONTATION_DIALOGUES := [
+	"act3_final_confrontation_understand",
+	"act3_final_confrontation_mercy",
+	"act3_final_confrontation_request"
+]
 
 var _cutscene_started := false
 
@@ -17,9 +22,12 @@ func _ready() -> void:
 func _on_dialogue_ended(dialogue_id: String) -> void:
 	if _cutscene_started:
 		return
-	if not GameState.get_flag("quest_3_active") or GameState.get_flag("quest_3_complete"):
+	if GameState.get_flag("quest_3_active") and not GameState.get_flag("quest_3_complete"):
+		if CONFRONTATION_DIALOGUES.has(dialogue_id):
+			_cutscene_started = true
+			CutsceneManager.play_cutscene("res://game/features/cutscenes/scylla_transformation.tscn")
 		return
-	if not CONFRONTATION_DIALOGUES.has(dialogue_id):
-		return
-	_cutscene_started = true
-	CutsceneManager.play_cutscene("res://game/features/cutscenes/scylla_transformation.tscn")
+	if GameState.get_flag("quest_11_active") and not GameState.get_flag("quest_11_complete"):
+		if FINAL_CONFRONTATION_DIALOGUES.has(dialogue_id):
+			_cutscene_started = true
+			CutsceneManager.play_cutscene("res://game/features/cutscenes/scylla_petrification.tscn")

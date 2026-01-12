@@ -126,6 +126,10 @@ func _update_quest_markers() -> void:
 	loom_marker.visible = GameState.get_flag("quest_7_active") and not GameState.get_flag("quest_8_complete")
 
 func _resolve_crafting_recipe() -> String:
+	if GameState.get_flag("quest_10_active") and not GameState.get_flag("quest_10_complete"):
+		return "petrification_potion"
+	if GameState.get_flag("quest_8_active") and not GameState.get_flag("quest_8_complete"):
+		return "binding_ward"
 	if GameState.get_flag("quest_6_active") and not GameState.get_flag("quest_6_complete"):
 		return "reversal_elixir"
 	if GameState.get_flag("quest_5_active") and not GameState.get_flag("quest_5_complete"):
@@ -138,6 +142,8 @@ func _on_dialogue_ended(dialogue_id: String) -> void:
 	# Start herb identification minigame after quest 1 dialogue
 	if dialogue_id == "act1_herb_identification":
 		_start_herb_identification_minigame()
+	if dialogue_id == "act3_ultimate_crafting":
+		_play_divine_blood_cutscene()
 
 func _start_herb_identification_minigame() -> void:
 	var minigame_scene = load("res://game/features/minigames/herb_identification.tscn")
@@ -159,6 +165,9 @@ func _on_herb_minigame_complete(success: bool, items: Array) -> void:
 		print("Quest 1 completed! Items awarded: %s" % [items])
 	else:
 		print("Herb identification minigame failed")
+
+func _play_divine_blood_cutscene() -> void:
+	CutsceneManager.play_cutscene("res://game/features/cutscenes/divine_blood_cutscene.tscn")
 
 func _check_aiaia_arrival() -> void:
 	# Show arrival dialogue after prologue if not already shown

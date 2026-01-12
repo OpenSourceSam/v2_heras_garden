@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "act3_final_confrontation_request"
+lines = [{
+"speaker": "Scylla",
+"text": "I want the pain to stop."
+}, {
+"speaker": "Circe",
+"text": "Then let me end it."
+}]
+choices = []
+flags_required = []
+flags_to_set = []
+next_dialogue_id = ""

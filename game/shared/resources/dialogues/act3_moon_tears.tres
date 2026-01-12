@@ -12,5 +12,5 @@ lines = [{"speaker": "Circe", "text": "We need tears from the moon."},
 {"speaker": "Circe", "text": "Bring them to the altar."}]
 choices = []
 flags_required = []
-flags_to_set = ["quest_10_complete"]
+flags_to_set = []
 next_dialogue_id = ""

@@ -10,7 +10,15 @@ lines = [{"speaker": "Circe", "text": "The island is quiet again."},
 {"speaker": "Circe", "text": "The garden still grows."},
 {"speaker": "Circe", "text": "A new path begins."},
 {"speaker": "Circe", "text": "I will decide how to live with this."}]
-choices = []
-flags_required = []
-flags_to_set = ["free_play_unlocked"]
+choices = [{
+"text": "I'll continue learning witchcraft. Help those who come to me.",
+"next_id": "epilogue_ending_witch",
+"flag_required": ""
+}, {
+"text": "I will seek redemption. Use my magic only for good.",
+"next_id": "epilogue_ending_healer",
+"flag_required": ""
+}]
+flags_required = ["quest_11_complete"]
+flags_to_set = []
 next_dialogue_id = ""

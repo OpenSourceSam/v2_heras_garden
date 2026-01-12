@@ -85,12 +85,17 @@ func _win() -> void:
 		AudioController.play_sfx("success_fanfare")
 	var rewards = ["woven_cloth"]
 	_award_items(rewards)
+	GameState.set_flag("quest_7_complete", true)
 	minigame_complete.emit(true, rewards)
+	await get_tree().create_timer(1.0).timeout
+	SceneManager.change_scene(Constants.SCENE_WORLD)
 
 func _fail() -> void:
 	if AudioController.has_sfx("failure_sad"):
 		AudioController.play_sfx("failure_sad")
 	minigame_complete.emit(false, [])
+	await get_tree().create_timer(1.0).timeout
+	SceneManager.change_scene(Constants.SCENE_WORLD)
 
 func _award_items(items: Array) -> void:
 	for item_id in items:

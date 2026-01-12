@@ -12,5 +12,5 @@ lines = [{"speaker": "Circe", "text": "The earth here is sacred and stubborn."},
 {"speaker": "Circe", "text": "Your hands must be steady."}]
 choices = []
 flags_required = []
-flags_to_set = ["quest_9_complete"]
+flags_to_set = []
 next_dialogue_id = ""

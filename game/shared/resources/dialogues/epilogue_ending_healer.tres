@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "epilogue_ending_healer"
+lines = [{
+"speaker": "Circe",
+"text": "I will seek redemption. My magic will heal, not harm."
+}, {
+"speaker": "Circe",
+"text": "The island will be a place of restoration."
+}]
+choices = []
+flags_required = []
+flags_to_set = ["ending_healer", "free_play_unlocked"]
+next_dialogue_id = ""

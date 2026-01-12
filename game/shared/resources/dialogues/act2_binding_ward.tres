@@ -12,5 +12,5 @@ lines = [{"speaker": "Circe", "text": "Calm is not enough. We must bind the rage
 {"speaker": "Circe", "text": "This ward should hold her for a moment."}]
 choices = []
 flags_required = []
-flags_to_set = ["quest_8_complete"]
+flags_to_set = []
 next_dialogue_id = ""

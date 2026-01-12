@@ -75,9 +75,9 @@ func _update_quest_flags(recipe_id: String) -> void:
 		"reversal_elixir":
 			GameState.set_flag("quest_6_complete", true)
 		"binding_ward":
-			GameState.set_flag("quest_7_complete", true)
+			GameState.set_flag("quest_8_complete", true)
 		"petrification_potion":
-			GameState.set_flag("quest_11_complete", true)
+			GameState.set_flag("quest_10_complete", true)
 
 func _load_recipes() -> void:
 	_recipes.clear()

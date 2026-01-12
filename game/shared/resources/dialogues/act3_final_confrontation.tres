@@ -10,7 +10,19 @@ lines = [{"speaker": "Scylla", "text": "You return with another lie?"},
 {"speaker": "Circe", "text": "Let this end your torment."},
 {"speaker": "Scylla", "text": "Then do it."},
 {"speaker": "Circe", "text": "May this be mercy."}]
-choices = []
-flags_required = []
-flags_to_set = ["quest_11_complete", "scylla_petrified"]
+choices = [{
+"text": "I'll understand if you hate me.",
+"next_id": "act3_final_confrontation_understand",
+"flag_required": ""
+}, {
+"text": "This is the only mercy I can offer.",
+"next_id": "act3_final_confrontation_mercy",
+"flag_required": ""
+}, {
+"text": "Tell me what you want.",
+"next_id": "act3_final_confrontation_request",
+"flag_required": ""
+}]
+flags_required = ["quest_11_active"]
+flags_to_set = []
 next_dialogue_id = ""

@@ -75,6 +75,7 @@ func _load_registries() -> void:
 		"res://game/shared/resources/items/petrification_potion.tres",
 		"res://game/shared/resources/items/moon_tear.tres",
 		"res://game/shared/resources/items/sacred_earth.tres",
+		"res://game/shared/resources/items/divine_blood.tres",
 		"res://game/shared/resources/items/woven_cloth.tres",
 		"res://game/shared/resources/items/pharmaka_flower.tres",
 		"res://game/shared/resources/items/golden_glow.tres",
