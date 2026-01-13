@@ -14,6 +14,11 @@ For all contributors:
 - Do one task at a time.
 - Add checkpoints only at 50% and 100% for each phase.
 
+Local Git Hook Note (2026-01-12):
+- This repo includes `.githooks/post-commit` to auto-commit Godot `.uid` files after a normal commit.
+- To enable it in your clone, run: `git config core.hooksPath .githooks`.
+- If the hook is not enabled, you may see leftover `.uid` files that need manual staging.
+
 ## Playability Focus (Option C)
 
 This roadmap currently emphasizes getting the narrative playable end to end.
@@ -2447,6 +2452,7 @@ Manual Verification:
 
 
 
+[Codex - 2026-01-12]
 [Codex - 2026-01-12]
 [Codex - 2026-01-12]
 
