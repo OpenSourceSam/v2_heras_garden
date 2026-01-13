@@ -7,15 +7,15 @@ script = ExtResource("1_dialogue_data")
 id = "quest10_complete"
 lines = [{
 "speaker": "Scylla",
-"text": "You have the moon tears. All the pieces are coming together.",
+"text": "The potion is ready. There is no turning back.",
 "emotion": "thoughtful"
 }, {
 "speaker": "Scylla",
-"text": "There is one final task. Come to me when you are ready.",
+"text": "Come to me when you are ready.",
 "emotion": "serious"
 }, {
 "speaker": "Scylla",
-"text": "I... I want to try something. Something dangerous.",
+"text": "I... I want this to end.",
 "emotion": "nervous"
 }]
 choices = []

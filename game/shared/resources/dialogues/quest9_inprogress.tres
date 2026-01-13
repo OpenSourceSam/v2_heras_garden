@@ -7,12 +7,12 @@ script = ExtResource("1_dialogue_data")
 id = "quest9_inprogress"
 lines = [{
 "speaker": "Scylla",
-"text": "You seek the sacred earth? It lies deeper than you think.",
-"emotion": "mysterious"
+"text": "The moon tears appear when the moon is high. Watch the sky.",
+"emotion": "thoughtful"
 }, {
 "speaker": "Scylla",
-"text": "Be quick. The tide is coming in.",
-"emotion": "urgent"
+"text": "I will not help you catch them, but I will not stop you.",
+"emotion": "neutral"
 }]
 choices = []
 flags_required = []

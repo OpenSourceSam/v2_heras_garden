@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "quest10_start"
-lines = [{"speaker": "Circe", "text": "We need moon tears for the next brew."}, {"speaker": "Circe", "text": "Catch three before they fade."}, {"speaker": "Circe", "text": "Bring them to the altar."}]
+lines = [{"speaker": "Circe", "text": "The ingredients are ready."}, {"speaker": "Circe", "text": "It is time for the final craft."}, {"speaker": "Circe", "text": "I must not falter."}]
 choices = []
 flags_required = ["quest_9_complete"]
 flags_to_set = ["quest_10_active"]

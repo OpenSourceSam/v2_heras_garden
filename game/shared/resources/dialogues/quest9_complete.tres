@@ -7,15 +7,15 @@ script = ExtResource("1_dialogue_data")
 id = "quest9_complete"
 lines = [{
 "speaker": "Scylla",
-"text": "You have the sacred earth. It glows with old magic.",
-"emotion": "surprised"
+"text": "You have the moon tears. The air still clings to them.",
+"emotion": "thoughtful"
 }, {
 "speaker": "Scylla",
-"text": "Perhaps... perhaps there is hope for me too.",
+"text": "I see you trying, Circe. Truly trying.",
 "emotion": "vulnerable"
 }, {
 "speaker": "Scylla",
-"text": "There are moon tears in my waters. I will allow you to take them.",
+"text": "Prepare the final brew. I will wait.",
 "emotion": "reluctant_kindness"
 }]
 choices = []

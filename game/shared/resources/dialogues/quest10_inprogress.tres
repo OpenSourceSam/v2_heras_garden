@@ -7,11 +7,11 @@ script = ExtResource("1_dialogue_data")
 id = "quest10_inprogress"
 lines = [{
 "speaker": "Scylla",
-"text": "The moon tears appear when the moon is high. Watch the sky.",
-"emotion": "thoughtful"
+"text": "The pattern is long. Breathe and keep the rhythm.",
+"emotion": "serious"
 }, {
 "speaker": "Scylla",
-"text": "I will not help you catch them. But I will not stop you.",
+"text": "Do what you came to do, Circe.",
 "emotion": "neutral"
 }]
 choices = []

@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "quest9_start"
-lines = [{"speaker": "Scylla", "text": "You think earth can bind me?"}, {"speaker": "Circe", "text": "We will try."}, {"speaker": "Scylla", "text": "Then bring it."}]
+lines = [{"speaker": "Circe", "text": "The next ingredient is moon tears."}, {"speaker": "Scylla", "text": "They fall when the moon is high."}, {"speaker": "Circe", "text": "Then I will gather them."}]
 choices = []
 flags_required = ["quest_8_complete"]
 flags_to_set = ["quest_9_active"]
