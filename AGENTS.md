@@ -31,6 +31,14 @@ Agents self-identify tier based on model name and follow corresponding permissio
 
 ---
 
+## Local Git Hook (Optional)
+
+- This repo includes `.githooks/post-commit` to auto-commit Godot `.uid` files after a normal commit.
+- In a fresh clone, you can enable it with: `git config core.hooksPath .githooks`.
+- If the hook is not enabled, `.uid` files may show up after commits and can be staged manually.
+
+---
+
 ## Process Guardian Skills
 
 **Before starting work:**
@@ -103,3 +111,4 @@ Tier 1 (Codex) → Tier 2 (Sonnet 4.5) → Tier 3 (Opus 4.5) → User
 - Query GameState flags to confirm quest updates.
 
 Edit Signoff: [Codex - 2025-12-29]
+Edit Signoff: [Codex - 2026-01-12]

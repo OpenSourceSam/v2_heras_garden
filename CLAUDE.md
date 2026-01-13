@@ -261,4 +261,10 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007
 - Report what files/resources you found, not what you expected to find
 - When uncertain, ask - don't guess repeatedly
 
+### Local Git Hook (Optional)
+- This repo includes `.githooks/post-commit` to auto-commit Godot `.uid` files after a normal commit.
+- In a fresh clone, you can enable it with: `git config core.hooksPath .githooks`.
+- If the hook is not enabled, `.uid` files may remain unstaged and need manual staging.
+
 [Codex - 2026-01-09]
+[Codex - 2026-01-12]
