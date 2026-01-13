@@ -1206,8 +1206,9 @@ GameState.add_item("moon_tear", 3)
 **Quest Completion:**
 ```gdscript
 GameState.set_flag("quest_9_complete", true)
-GameState.set_flag("quest_10_active", true)
 ```
+
+**Next Step:** Start Quest 10 via `quest10_start` (Scylla dialogue or the Quest 10 trigger).
 
 ---
 
@@ -1452,5 +1453,6 @@ End game: Day 3+
 
 [Codex - 2026-01-09]
 [Codex - 2026-01-11]
+[Codex - 2026-01-12]
 [Codex - 2026-01-12]
 [Codex - 2026-01-12]

@@ -10,13 +10,10 @@ func _ready() -> void:
 	_start_active_minigame()
 
 func _start_active_minigame() -> void:
-	if GameState.get_flag("quest_9_active") and not GameState.get_flag("quest_9_complete"):
+	if GameState.get_flag("quest_8_active") and not GameState.get_flag("quest_8_complete"):
 		_launch_minigame("res://game/features/minigames/sacred_earth.tscn", _on_sacred_earth_complete)
 		return
-	if GameState.get_flag("quest_10_active") and not GameState.get_flag("quest_10_complete"):
-		if GameState.get_flag("moon_tears_collected"):
-			SceneManager.change_scene(Constants.SCENE_WORLD)
-			return
+	if GameState.get_flag("quest_9_active") and not GameState.get_flag("quest_9_complete"):
 		_launch_minigame("res://game/features/minigames/moon_tears_minigame.tscn", _on_moon_tears_complete)
 		return
 
@@ -35,11 +32,12 @@ func _launch_minigame(scene_path: String, callback: Callable) -> void:
 
 func _on_sacred_earth_complete(success: bool, _items: Array) -> void:
 	if success:
-		GameState.set_flag("quest_9_complete", true)
+		pass
 	_finish_minigame()
 
 func _on_moon_tears_complete(success: bool, _items: Array) -> void:
 	if success:
+		GameState.set_flag("quest_9_complete", true)
 		GameState.set_flag("moon_tears_collected", true)
 	_finish_minigame()
 

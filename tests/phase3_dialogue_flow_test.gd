@@ -126,11 +126,11 @@ func _resolve_scylla_dialogue(game_state) -> String:
 	if game_state.get_flag("quest_8_complete") and not game_state.get_flag("quest_9_active"):
 		return "quest9_start"
 	if game_state.get_flag("quest_9_active") and not game_state.get_flag("quest_9_complete"):
-		return "act3_sacred_earth"
+		return "act3_moon_tears"
 	if game_state.get_flag("quest_9_complete") and not game_state.get_flag("quest_10_active"):
 		return "quest10_start"
 	if game_state.get_flag("quest_10_active") and not game_state.get_flag("quest_10_complete"):
-		return "act3_moon_tears"
+		return "act3_ultimate_crafting"
 	if game_state.get_flag("quest_10_complete") and not game_state.get_flag("quest_11_active"):
 		return "quest11_start"
 	if game_state.get_flag("quest_11_active") and not game_state.get_flag("quest_11_complete"):
@@ -277,15 +277,15 @@ func test_scylla_quest_flow(game_state) -> void:
 	# During quest 9
 	game_state.set_flag("quest_9_active", true)
 	dialog_id = get_npc_dialogue("scylla", game_state)
-	record_test("Scylla during quest 9", dialog_id == "act3_sacred_earth",
-		"Expected act3_sacred_earth, got: %s" % dialog_id)
+	record_test("Scylla during quest 9", dialog_id == "act3_moon_tears",
+		"Expected act3_moon_tears, got: %s" % dialog_id)
 
 	# Complete quest 9, start quest 10
 	game_state.set_flag("quest_9_complete", true)
 	game_state.set_flag("quest_10_active", true)
 	dialog_id = get_npc_dialogue("scylla", game_state)
-	record_test("Scylla during quest 10", dialog_id == "act3_moon_tears",
-		"Expected act3_moon_tears, got: %s" % dialog_id)
+	record_test("Scylla during quest 10", dialog_id == "act3_ultimate_crafting",
+		"Expected act3_ultimate_crafting, got: %s" % dialog_id)
 
 	# Complete quest 10, start quest 11
 	game_state.set_flag("quest_10_complete", true)

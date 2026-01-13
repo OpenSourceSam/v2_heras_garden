@@ -280,7 +280,7 @@ monitoring = false
 script = ExtResource("6_quest_trigger")
 required_flag = "quest_8_complete"
 set_flag_on_enter = "quest_9_active"
-trigger_dialogue = "act3_sacred_earth"
+trigger_dialogue = "act3_moon_tears"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest9"]
 shape = SubResource("RectangleShape2D_quest")
@@ -291,7 +291,7 @@ monitoring = false
 script = ExtResource("6_quest_trigger")
 required_flag = "quest_9_complete"
 set_flag_on_enter = "quest_10_active"
-trigger_dialogue = "act3_moon_tears"
+trigger_dialogue = "act3_ultimate_crafting"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest10"]
 shape = SubResource("RectangleShape2D_quest")

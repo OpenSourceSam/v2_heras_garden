@@ -24,8 +24,8 @@ func interact() -> void:
 			destination = "scylla_cove"  # Final confrontation
 
 		# Sacred Grove destinations
-		elif GameState.get_flag("quest_9_active") or GameState.get_flag("quest_10_active"):
-			destination = "sacred_grove"  # Moon Tears / Petrification prep
+		elif GameState.get_flag("quest_8_active") or GameState.get_flag("quest_9_active"):
+			destination = "sacred_grove"  # Sacred Earth / Moon Tears
 
 		# Return to world (after quest_3_complete, before quest_8)
 		elif GameState.get_flag("quest_3_complete") and not GameState.get_flag("quest_8_active"):
