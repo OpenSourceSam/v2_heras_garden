@@ -12,6 +12,8 @@ game/ → gameplay code | docs/ → documentation | tests/ → test suites | add
 
 ## MCP Tools
 Use `mcp__godot__*` for playtesting. If unavailable: docs/agent-instructions/setup-guides/mcp-setup.md
+If MCP or the debugger is not running, ask Sam to start it rather than
+spending long on troubleshooting.
 
 ## Testing
 Headless: `.\Godot*\Godot*.exe --headless --script tests/run_tests.gd`
@@ -22,8 +24,13 @@ Headed (HPV): Launch Godot, use MCP for input/inspection
 - GDScript: snake_case (vars/functions), PascalCase (nodes), UPPER_SNAKE (constants)
 
 ## Repo Rules
-- Small focused commits
+- When asked to commit, prefer scoped commits; avoid history rewrites unless asked
+- When pausing or ending a work block, it is usually better to commit changes
+  rather than leave them pending; ask if unsure
 - Ask before touching: .godot/, .venv/, archive/, .cursor/, .claude/roles/
 - .uid files: use git hook (git config core.hooksPath .githooks) or stage manually
+- Ask before creating new .md files; editing existing .md files is OK
+- Prefer brief clarifying questions up front, then a longer autonomous pass
+- Default to working within the current structure; flag major structural changes
 
-[Sonnet 4.5 - 2026-01-16]
+[Codex - 2026-01-16]

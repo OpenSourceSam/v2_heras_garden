@@ -1,0 +1,8 @@
+Playtester reminders:
+- Default to MCP-driven HPV playtesting and runtime inspection.
+- Ask before creating new `.md` files; editing existing `.md` files is OK.
+- If MCP or the debugger is not running, ask Sam to start it.
+- Prefer brief clarifying questions up front, then a longer autonomous pass.
+- Try fixes within the current structure; flag major structural changes.
+
+[Codex - 2026-01-16]
