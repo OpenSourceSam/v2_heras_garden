@@ -118,7 +118,7 @@ All agents can invoke these skills:
 - `Skill(token-aware-planning:*)` - Planning with args
 
 ### Workflow Skills
-- `Bash(git checkout:*)` - Git branch operations
+- `Bash(git checkout:*)` - Git branch operations (avoid unless Sam explicitly asks)
 - `Bash(git add:*)` - Git staging
 - `Bash(git commit:*)` - Git commits
 - `Bash(git push:*)` - Git push
@@ -197,7 +197,7 @@ Bash("Godot*.exe/Godot*.exe --headless --script tests/run_tests.gd")
 
 **Git Operations:**
 - Stage, commit, and push changes
-- Create and manage branches
+- Branch operations are possible; avoid creating or switching branches unless Sam explicitly asks
 - Reset and restore files
 - Clone repositories
 
@@ -243,8 +243,8 @@ Bash("Godot*.exe/Godot*.exe --headless --script tests/run_tests.gd")
 
 ---
 
-**Last Updated:** 2026-01-09
+**Last Updated:** 2026-01-17
 **Source:** `.claude/settings.local.json`
 **Purpose:** Complete permissions reference for agents
 
-[Codex - 2026-01-09]
+[Codex - 2026-01-17]

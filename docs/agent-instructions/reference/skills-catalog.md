@@ -251,7 +251,6 @@ Skill(skill: "token-aware-planning")
 - Git workflow best practices
 - Change categorization
 - Clear commit descriptions
-- Branch management
 
 #### When to Use
 - Creating commits
@@ -600,6 +599,8 @@ Skill(skill: "systematic-debugging")
 
 ---
 
-**Last Updated:** 2026-01-03
+**Last Updated:** 2026-01-17
 **Total Skills:** 18 project skills
 **Purpose:** Comprehensive skill catalog with examples
+
+[Codex - 2026-01-17]

@@ -257,7 +257,8 @@ The user authorizes full execution of Phase 4 without additional input:
 - Update DEVELOPMENT_ROADMAP.md with Phase 4 findings and checkpoint
 - Create verification scripts for difficulty tuning, D-pad controls, save/load
 - Test soft-lock scenarios and document any issues
-- Commit and push all Phase 4 changes to current branch
+- Commit and push all Phase 4 changes; avoid creating or switching branches unless
+  Sam explicitly asks
 
 ### Scope of Authorization:
 - Phase 4 tasks: A (Full Playthrough Test), B (Difficulty Tuning), C (D-Pad Validation)
@@ -291,12 +292,11 @@ The user authorizes full execution of Phase 4 without additional input:
 
 ---
 
-**Last Updated:** 2026-01-09
+**Last Updated:** 2026-01-17
 **Source:** CLAUDE.md (lines 1-329)
 **Purpose:** Core project rules and constraints for all agents
 
-[Codex - 2026-01-09]
+[Codex - 2026-01-17]
 
 
-Edit Signoff: [Codex - 2026-01-12]
-
+Edit Signoff: [Codex - 2026-01-17]
