@@ -1,114 +1,52 @@
-# Agent Runtime Rules
+# Agent Runtime Rules (Shared)
 
-Last updated: [Sonnet 4.5 - 2025-12-29]
+Last updated: [Codex - 2026-01-16]
 
-## Agent Role Hierarchy
+Purpose: concise onboarding for AI agents; details live in `docs/agent-instructions/`.
 
-Agents self-identify tier based on model name and follow corresponding permissions.
+Environment: Cursor (AI editor), not VS Code. MCP config: `.cursor/mcp.json`.
 
-**Tier identification:**
-- Tier 1: Codex, GPT-4 Turbo (Junior Engineer)
-- Tier 2: Claude Sonnet 4.5 (Senior Engineer)
-- Tier 3: Claude Opus 4.5 (Principal Architect)
+## Start Here
+- `docs/agent-instructions/README.md`
+- `docs/agent-instructions/reference/REPOSITORY_DOCUMENT_INDEX.md`
+- `docs/execution/DEVELOPMENT_ROADMAP.md`
+- `docs/playtesting/HPV_GUIDE.md`
+- `docs/playtesting/PLAYTESTING_ROADMAP.md`
 
-**See `.claude/roles/ROLES.md` for complete role definitions, permissions, and escalation paths.**
+## Repo Layout (High Level)
+- `game/` gameplay scenes, scripts, resources
+- `docs/` project documentation
+- `tests/` automated tests
+- `addons/` third-party Godot plugins
 
-**All agents must sign edits:** `[ModelName - YYYY-MM-DD]` at end of editing session
+## MCP + Godot
+- Use `mcp__godot__*` tools for playtesting and inspection.
+- If MCP is unavailable, follow `docs/agent-instructions/setup-guides/mcp-setup.md`.
+- If input simulation times out, it may help to check whether the debugger is paused and resume.
 
----
+## Testing Commands (Headless)
+- Baseline: `.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/run_tests.gd`
+- Smoke: `.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --path . --scene res://tests/smoke_test.tscn --quit-after 30`
+- Phase 3: `.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --path . --script tests/phase3_scene_load_runner.gd`
 
-## Godot Testing (Hard Rules)
+## Playtesting (Headed HPV)
+- Run the project in Godot, then use MCP input and runtime inspection to validate UX.
 
-### Fast, low-impact checks (preferred during iteration)
-- Baseline unit checks: `.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/run_tests.gd`
-- Smoke scene wiring: `.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --path . --scene res://tests/smoke_test.tscn --quit-after 30`
-- Phase 3 scene-load smoke: `.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --path . --script tests/phase3_scene_load_runner.gd`
+## Code Conventions (Lightweight)
+- Prefer existing patterns in nearby files.
+- GDScript: `snake_case` for vars/functions, `PascalCase` for nodes/scenes, `UPPER_SNAKE` for constants.
 
-### GdUnit4 suite
-- Prefer a single suite run over per-file loops. Per-file loops spawn many Godot processes and will thrash CPU/GPU.
-- Avoid `-d/--debug` when running GdUnit from the CLI; debug-mode + ANSI output + repeated launches can severely strain compute resources.
-- Use `--quit-after` when launching a scene for smoke checks to avoid accidental "runs forever" loops.
+## Repo Etiquette
+- Prefer small, focused commits when asked; avoid history rewrites unless requested.
+- Branch names: short and descriptive; if unsure, ask.
+- Commit messages: use `git-best-practices` skill when asked.
+- Local hook: `.githooks/post-commit` can auto-commit Godot `.uid` files. Enable via `git config core.hooksPath .githooks`.
+- If the hook is off, stage `.uid` files with your change set.
 
----
+## Avoid Touching Unless Asked
+- `.godot/`, `.venv/`, `archive/`, `.cursor/`, `.claude/roles/`, `docs/REPOSITORY_STRUCTURE_CATALOG.md`
 
-## Local Git Hook (Optional)
+## Edit Signoff
+- Add `[ModelName - YYYY-MM-DD]` at the end of an editing session.
 
-- This repo includes `.githooks/post-commit` to auto-commit Godot `.uid` files after a normal commit.
-- In a fresh clone, you can enable it with: `git config core.hooksPath .githooks`.
-- If the hook is not enabled, `.uid` files may show up after commits and can be staged manually.
-
----
-
-## Process Guardian Skills
-
-**Before starting work:**
-- Scan relevant skill files before starting new tasks to reuse known workflows
-- Common starting points: `create-plan`, `godot-dev`, `godot-gdscript-patterns`, `test-driven-development`
-- Check `.claude/learnings/INDEX.md` for relevant learnings to avoid known pitfalls
-
-**While working:**
-- Stuck in a loop? → `/skill loop-detection`
-- Editing documentation? → `/skill confident-language-guard` (mandatory for Tier 1)
-- Repeated similar errors? → `/skill skill-gap-finder`
-- Debugging? → `/skill systematic-debugging`
-- Completing work? → `/skill verification-before-completion`
-- Completely blocked? → `/skill blocked-and-escalating`
-
-**After work:**
-- Create learning entries for bugs/loops/patterns in `.claude/learnings/`
-- Update `.claude/learnings/INDEX.md`
-- Check for similar learnings (2+ similar = invoke `/skill skill-gap-finder`)
-
-**See `.claude/skills/` for complete skill documentation.**
-
----
-
-## Learnings System
-
-**Directory structure:**
-```
-.claude/learnings/
-├── INDEX.md          # Fast lookup, check before starting work
-├── bugs/             # Failed attempts and root causes
-├── loops/            # Infinite loop patterns
-└── patterns/         # Successful solutions
-```
-
-**When to create learnings:**
-- Encountered a bug → create entry in `bugs/` using TEMPLATE.md
-- Got stuck in loop → create entry in `loops/` using TEMPLATE.md
-- Found successful solution → create entry in `patterns/` using TEMPLATE.md
-
-**Always update INDEX.md when creating new entries.**
-
----
-
-## Escalation Paths
-
-```
-Tier 1 (Codex) → Tier 2 (Sonnet 4.5) → Tier 3 (Opus 4.5) → User
-```
-
-**When to escalate:**
-- After 3 attempts at same goal (loop detected)
-- Permission denied for required action
-- Architectural decision needed
-- Completely blocked
-
-**How to escalate:**
-- Invoke `/skill blocked-and-escalating`
-- Create structured escalation report in `.claude/learnings/bugs/`
-- Update learnings INDEX
-- Stop work on blocked task
-
----
-
-## MCP Playthrough Reminders (High Level)
-
-- Launch the project and navigate to the target scene via MCP.
-- Use teleporting or direct calls for quick interaction checks.
-- Read dialogue UI text nodes to confirm progression.
-- Query GameState flags to confirm quest updates.
-
-Edit Signoff: [Codex - 2025-12-29]
-Edit Signoff: [Codex - 2026-01-12]
+Edit Signoff: [Codex - 2026-01-16]

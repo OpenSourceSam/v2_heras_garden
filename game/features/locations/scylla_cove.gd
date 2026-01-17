@@ -12,9 +12,9 @@ const FINAL_CONFRONTATION_DIALOGUES := [
 ]
 
 var _cutscene_started := false
+@onready var dialogue_box: Node = $UI/DialogueBox
 
 func _ready() -> void:
-	var dialogue_box = get_tree().get_first_node_in_group("dialogue_ui")
 	if dialogue_box and dialogue_box.has_signal("dialogue_ended"):
 		if not dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
 			dialogue_box.dialogue_ended.connect(_on_dialogue_ended)
@@ -31,3 +31,5 @@ func _on_dialogue_ended(dialogue_id: String) -> void:
 		if FINAL_CONFRONTATION_DIALOGUES.has(dialogue_id):
 			_cutscene_started = true
 			CutsceneManager.play_cutscene("res://game/features/cutscenes/scylla_petrification.tscn")
+
+# [Codex - 2026-01-16]

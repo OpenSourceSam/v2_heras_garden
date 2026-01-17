@@ -114,6 +114,10 @@ func _find_closest_interactable(candidates: Array[Node]) -> Node:
 	return closest
 
 func _update_interaction_prompt() -> void:
+	var dialogue_box = get_tree().get_first_node_in_group("dialogue_ui")
+	if dialogue_box != null and dialogue_box.visible:
+		interaction_prompt.visible = false
+		return
 	var has_target := false
 	var bodies = interaction_zone.get_overlapping_bodies()
 	var areas = interaction_zone.get_overlapping_areas()
@@ -135,4 +139,6 @@ func _is_interactable(target: Node) -> bool:
 		return true
 	var parent = target.get_parent()
 	return parent != null and parent != self and parent.has_method("interact")
+
+# [Codex - 2026-01-16]
 
