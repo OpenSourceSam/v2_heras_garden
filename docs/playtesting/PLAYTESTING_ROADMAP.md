@@ -45,6 +45,7 @@ Detailed walkthrough steps live in the references below to avoid duplication.
 ## Blockers
 - Dialogue stuck after NEW GAME (reported 2026-01-14). Needs recheck.
 - Quest 11 progression did not reach choices/cutscene in 2026-01-17 run.
+- Quest 11 currently resolves to `quest11_inprogress` (no choices/next id), so the final confrontation dialogue and cutscene do not trigger.
 
 ---
 
@@ -77,3 +78,4 @@ The MCP/manual HPV snapshot exercised quest wiring through Quest 11 using shortc
 **Notes:**
 - Quest 10 trigger dialogue appeared and advanced via ui_accept; DialogueBox closed normally.
 - Quest 11 dialogue in world and Scylla's Cove advanced, but no choices/cutscene were observed.
+- During Quest 11, Scylla resolves to `quest11_inprogress`, which contains no choices or next dialogue; `act3_final_confrontation` is not reached.
