@@ -51,6 +51,7 @@ func _initialize_command_processors():
 	var script_resource_commands = _try_load_optional_command("res://addons/godot_mcp/mcp_script_resource_commands.gd")
 	var enhanced_commands = _try_load_optional_command("res://addons/godot_mcp/mcp_enhanced_commands.gd")
 	var asset_commands = _try_load_optional_command("res://addons/godot_mcp/mcp_asset_commands.gd")
+	var runtime_state_commands = _try_load_optional_command("res://addons/godot_mcp/mcp_runtime_state_commands.gd")
 	
 	# Add required processors as children for proper lifecycle management
 	add_child(node_commands)
@@ -78,6 +79,8 @@ func _initialize_command_processors():
 		print("- Enhanced Commands")
 	if asset_commands:
 		print("- Asset Commands")
+	if runtime_state_commands:
+		print("- Runtime State Commands (HPV Testing)")
 
 func _try_load_optional_command(path: String) -> Node:
 	if FileAccess.file_exists(path):
@@ -152,6 +155,8 @@ func _processor_requires_await(processor: Node) -> bool:
 	if processor.get_script():
 		var path := String(processor.get_script().resource_path)
 		if path.ends_with("mcp_enhanced_commands.gd"):
+			return true
+		if path.ends_with("mcp_runtime_state_commands.gd"):
 			return true
 	return false
 
