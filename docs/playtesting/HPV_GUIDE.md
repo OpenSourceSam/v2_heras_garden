@@ -90,6 +90,7 @@ npx -y godot-mcp-cli get_runtime_scene_structure
 npx -y godot-mcp-cli simulate_action_tap --action "ui_accept"
 
 # 4. Advance prologue (repeat 10-15 times, 1 sec apart)
+# Optional fast path: tap ui_cancel once to skip the prologue cutscene.
 npx -y godot-mcp-cli simulate_action_tap --action "ui_accept"
 
 # 5. Verify World scene loaded

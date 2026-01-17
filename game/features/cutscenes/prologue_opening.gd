@@ -4,8 +4,24 @@ extends CutsceneBase
 const CIRCE: String = "Circe"
 const HELIOS: String = "Helios"
 
+var _skip_requested: bool = false
+
 func _ready() -> void:
 	_play_sequence()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		_request_skip()
+
+func _request_skip() -> void:
+	if _skip_requested:
+		return
+	_skip_requested = true
+	narration.visible = false
+	GameState.set_flag("prologue_complete", true)
+	cutscene_finished.emit()
+	SceneManager.change_scene("res://game/features/world/world.tscn")
+	queue_free()
 
 func _play_sequence() -> void:
 	await get_tree().process_frame

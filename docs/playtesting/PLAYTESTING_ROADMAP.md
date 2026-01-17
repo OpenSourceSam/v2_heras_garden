@@ -22,6 +22,7 @@ Detailed walkthrough steps live in the references below to avoid duplication.
 | Quests 9-10 | Partial HPV | Quest 10 dialogue advanced in 2026-01-17 run; full Quest 9-10 flow still pending. |
 | Quest 11 + endings | Blocked in HPV | Quest 11 choices/cutscene not reached in 2026-01-17 run. |
 | Prologue dialogue advance | Reported blocker | 2026-01-14 report: dialogue stuck after NEW GAME (not rechecked yet). |
+| Prologue skip input | Implemented | `ui_cancel` skips the prologue cutscene for faster HPV starts. |
 | Scylla world spawn | Not observed | Marker visible, NPC spawn not observed after Quest 8-10 flags. |
 | World staging/spawns | Not checked | NPC spacing, spawn points, and interactable spacing need review. |
 
@@ -48,11 +49,10 @@ Detailed walkthrough steps live in the references below to avoid duplication.
 ---
 
 ## Next Steps (Ordered)
-1. Add a prologue skip input so HPV runs can start faster.
-2. Recheck the NEW GAME dialogue advance issue.
-3. Re-validate Quest 10 -> Quest 11 gating and Scylla spawn in world.
-4. Continue HPV through Quest 11, epilogue, and endings.
-5. Verify spawn placements and interactable spacing in world and locations.
+1. Recheck the NEW GAME dialogue advance issue.
+2. Re-validate Quest 10 -> Quest 11 gating and Scylla spawn in world.
+3. Continue HPV through Quest 11, epilogue, and endings.
+4. Verify spawn placements and interactable spacing in world and locations.
 
 ---
 
