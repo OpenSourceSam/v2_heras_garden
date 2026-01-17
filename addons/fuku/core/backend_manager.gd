@@ -64,6 +64,32 @@ func send_chat_request(messages: Array, model: String, system_content: String = 
 func _make_request(endpoint: String, method: int, body: String = "") -> void:
 	var url = current_backend.base_url + endpoint
 
+	# #region agent log
+	var project_root = ProjectSettings.globalize_path("res://")
+	var log_path = project_root + "/.cursor/debug.log"
+	var log_data = {
+		"sessionId": "debug-session",
+		"runId": "run1",
+		"hypothesisId": "D",
+		"location": "backend_manager.gd:64",
+		"message": "Making HTTP request",
+		"data": {
+			"url": url,
+			"endpoint": endpoint,
+			"method": method,
+			"headers_count": current_backend.headers.size(),
+			"api_key_empty": current_backend.api_key.is_empty(),
+			"provider": current_backend.get_provider_name()
+		},
+		"timestamp": Time.get_ticks_msec()
+	}
+	var log_file = FileAccess.open(log_path, FileAccess.READ_WRITE)
+	if log_file:
+		log_file.seek_end()
+		log_file.store_string(JSON.stringify(log_data) + "\n")
+		log_file.close()
+	# #endregion
+
 	# Add API key as query parameter for Gemini models endpoint
 	if current_backend is GeminiBackend and endpoint.contains("/models") and not endpoint.contains("generateContent"):
 		url += "?key=" + current_backend.api_key
@@ -71,13 +97,80 @@ func _make_request(endpoint: String, method: int, body: String = "") -> void:
 	var error: Error = http_request.request(url, current_backend.headers, method, body)
 
 	if error != OK:
+		# #region agent log
+		var project_root2 = ProjectSettings.globalize_path("res://")
+		var log_path2 = project_root2 + "/.cursor/debug.log"
+		var log_data2 = {
+			"sessionId": "debug-session",
+			"runId": "run1",
+			"hypothesisId": "D",
+			"location": "backend_manager.gd:74",
+			"message": "HTTP request failed",
+			"data": {"error_code": error, "url": url},
+			"timestamp": Time.get_ticks_msec()
+		}
+		var log_file2 = FileAccess.open(log_path2, FileAccess.READ_WRITE)
+		if log_file2:
+			log_file2.seek_end()
+			log_file2.store_string(JSON.stringify(log_data2) + "\n")
+			log_file2.close()
+		# #endregion
 		error_occurred.emit("Unable to make request to: " + url)
 
 # Handle HTTP request completion
 func _on_request_completed(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	# #region agent log
+	var project_root = ProjectSettings.globalize_path("res://")
+	var log_path = project_root + "/.cursor/debug.log"
+	var log_data = {
+		"sessionId": "debug-session",
+		"runId": "run1",
+		"hypothesisId": "E",
+		"location": "backend_manager.gd:77",
+		"message": "HTTP request completed",
+		"data": {
+			"result": _result,
+			"response_code": response_code,
+			"body_length": body.size(),
+			"provider": current_backend.get_provider_name()
+		},
+		"timestamp": Time.get_ticks_msec()
+	}
+	var log_file = FileAccess.open(log_path, FileAccess.READ_WRITE)
+	if log_file:
+		log_file.seek_end()
+		log_file.store_string(JSON.stringify(log_data) + "\n")
+		log_file.close()
+	# #endregion
+	
 	if response_code != 200:
 		var provider_name = current_backend.get_provider_name()
-		var error_msg = _format_error_message(response_code, body.get_string_from_utf8(), provider_name)
+		var response_text = body.get_string_from_utf8()
+		
+		# #region agent log
+		var project_root2 = ProjectSettings.globalize_path("res://")
+		var log_path2 = project_root2 + "/.cursor/debug.log"
+		var log_data2 = {
+			"sessionId": "debug-session",
+			"runId": "run1",
+			"hypothesisId": "E",
+			"location": "backend_manager.gd:82",
+			"message": "Non-200 response code",
+			"data": {
+				"response_code": response_code,
+				"response_text": response_text.substr(0, 500),
+				"provider": provider_name
+			},
+			"timestamp": Time.get_ticks_msec()
+		}
+		var log_file2 = FileAccess.open(log_path2, FileAccess.READ_WRITE)
+		if log_file2:
+			log_file2.seek_end()
+			log_file2.store_string(JSON.stringify(log_data2) + "\n")
+			log_file2.close()
+		# #endregion
+		
+		var error_msg = _format_error_message(response_code, response_text, provider_name)
 		error_occurred.emit(error_msg)
 		return
 

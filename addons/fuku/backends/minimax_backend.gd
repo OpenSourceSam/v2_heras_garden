@@ -12,9 +12,55 @@ func get_models_endpoint() -> String:
 
 func setup_headers() -> void:
 	headers = ["Content-Type: application/json"]
+	
+	# #region agent log
+	var project_root = ProjectSettings.globalize_path("res://")
+	var log_path = project_root + "/.cursor/debug.log"
+	var log_data = {
+		"sessionId": "debug-session",
+		"runId": "run1",
+		"hypothesisId": "C",
+		"location": "minimax_backend.gd:13",
+		"message": "Setting up headers",
+		"data": {
+			"api_key_empty": api_key.is_empty(),
+			"api_key_length": api_key.length(),
+			"headers_count_before": headers.size()
+		},
+		"timestamp": Time.get_ticks_msec()
+	}
+	var log_file = FileAccess.open(log_path, FileAccess.READ_WRITE)
+	if log_file:
+		log_file.seek_end()
+		log_file.store_string(JSON.stringify(log_data) + "\n")
+		log_file.close()
+	# #endregion
+	
 	if not api_key.is_empty():
 		headers.append("Authorization: Bearer " + api_key)
 		headers.append("MM-API-Source: godot-fuku-plugin")
+		
+		# #region agent log
+		var project_root2 = ProjectSettings.globalize_path("res://")
+		var log_path2 = project_root2 + "/.cursor/debug.log"
+		var log_data2 = {
+			"sessionId": "debug-session",
+			"runId": "run1",
+			"hypothesisId": "C",
+			"location": "minimax_backend.gd:17",
+			"message": "API key added to headers",
+			"data": {
+				"headers_count_after": headers.size(),
+				"has_auth_header": headers.has("Authorization: Bearer " + api_key)
+			},
+			"timestamp": Time.get_ticks_msec()
+		}
+		var log_file2 = FileAccess.open(log_path2, FileAccess.READ_WRITE)
+		if log_file2:
+			log_file2.seek_end()
+			log_file2.store_string(JSON.stringify(log_data2) + "\n")
+			log_file2.close()
+		# #endregion
 
 func build_request_body(messages: Array, model: String, system_content: String = "") -> Dictionary:
 	var formatted_messages: Array = []

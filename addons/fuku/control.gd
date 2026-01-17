@@ -161,6 +161,31 @@ func _switch_backend(backend_type: BackendManager.BackendType) -> void:
 func _update_backend_api_key() -> void:
 	var backend_name = _get_backend_name(current_backend_type)
 	var api_key = config_manager.get_api_key(backend_name)
+	
+	# #region agent log
+	var project_root = ProjectSettings.globalize_path("res://")
+	var log_path = project_root + "/.cursor/debug.log"
+	var log_data = {
+		"sessionId": "debug-session",
+		"runId": "run1",
+		"hypothesisId": "B",
+		"location": "control.gd:161",
+		"message": "Updating backend API key",
+		"data": {
+			"backend_name": backend_name,
+			"api_key_length": api_key.length(),
+			"api_key_empty": api_key.is_empty(),
+			"api_key_prefix": api_key.substr(0, 10) if api_key.length() > 10 else api_key
+		},
+		"timestamp": Time.get_ticks_msec()
+	}
+	var log_file = FileAccess.open(log_path, FileAccess.READ_WRITE)
+	if log_file:
+		log_file.seek_end()
+		log_file.store_string(JSON.stringify(log_data) + "\n")
+		log_file.close()
+	# #endregion
+	
 	backend_manager.update_api_key(api_key)
 
 	# Update UI
@@ -187,6 +212,24 @@ func _update_backend_api_key() -> void:
 
 # Get backend name from type
 func _get_backend_name(backend_type: BackendManager.BackendType) -> String:
+	# #region agent log
+	var project_root = ProjectSettings.globalize_path("res://")
+	var log_path = project_root + "/.cursor/debug.log"
+	var log_data = {
+		"sessionId": "debug-session",
+		"runId": "run1",
+		"hypothesisId": "A",
+		"location": "control.gd:189",
+		"message": "Getting backend name",
+		"data": {"backend_type": backend_type, "backend_type_int": backend_type as int},
+		"timestamp": Time.get_ticks_msec()
+	}
+	var log_file = FileAccess.open(log_path, FileAccess.WRITE)
+	if log_file:
+		log_file.store_string(JSON.stringify(log_data) + "\n")
+		log_file.close()
+	# #endregion
+	
 	match backend_type:
 		BackendManager.BackendType.OLLAMA:
 			return "ollama"
@@ -198,6 +241,45 @@ func _get_backend_name(backend_type: BackendManager.BackendType) -> String:
 			return "docker"
 		BackendManager.BackendType.GEMINI:
 			return "gemini"
+		BackendManager.BackendType.MINIMAX:
+			# #region agent log
+			var project_root2 = ProjectSettings.globalize_path("res://")
+			var log_path2 = project_root2 + "/.cursor/debug.log"
+			var log_data2 = {
+				"sessionId": "debug-session",
+				"runId": "run1",
+				"hypothesisId": "A",
+				"location": "control.gd:201",
+				"message": "MINIMAX backend detected",
+				"data": {"returning": "minimax"},
+				"timestamp": Time.get_ticks_msec()
+			}
+			var log_file2 = FileAccess.open(log_path2, FileAccess.READ_WRITE)
+			if log_file2:
+				log_file2.seek_end()
+				log_file2.store_string(JSON.stringify(log_data2) + "\n")
+				log_file2.close()
+			# #endregion
+			return "minimax"
+	
+	# #region agent log
+	var project_root3 = ProjectSettings.globalize_path("res://")
+	var log_path3 = project_root3 + "/.cursor/debug.log"
+	var log_data3 = {
+		"sessionId": "debug-session",
+		"runId": "run1",
+		"hypothesisId": "A",
+		"location": "control.gd:203",
+		"message": "Unknown backend type, returning default",
+		"data": {"backend_type": backend_type, "returning": "ollama"},
+		"timestamp": Time.get_ticks_msec()
+	}
+	var log_file3 = FileAccess.open(log_path3, FileAccess.READ_WRITE)
+	if log_file3:
+		log_file3.seek_end()
+		log_file3.store_string(JSON.stringify(log_data3) + "\n")
+		log_file3.close()
+	# #endregion
 	return "ollama"
 
 # Signal handlers
