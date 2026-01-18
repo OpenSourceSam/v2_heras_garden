@@ -75,11 +75,27 @@ Status: Core systems appear in place; routing fixes landed, but full end-to-end 
 - World spacing and interactable placement review remains optional polish after flow stability.
 - Minigame validation remains separate; log any issues in PLAYTESTING_ROADMAP.md.
 
-**Phase 7 Completion Roadmap (2026-01-18):**
-1. Fix Hermes dialogue choice selection so Quest 1 can advance in-flow.
-2. Run New Game -> Ending A and Ending B without runtime eval; log any blockers.
-3. Review world spacing and interactable placement once flow is stable.
-4. Update PLAYTESTING_ROADMAP.md and this roadmap with outcomes.
+**Phase 7 Execution Structure (2026-01-18):**
+Use these as pick-up tasks. Each task should be small enough to hand off independently.
+
+1. **Fix Hermes choice selection (P1 routing blocker).**
+   Done when: A New Game run can advance past the Hermes choice dialogue using ui_accept/d-pad, without runtime eval.
+   Symptoms (observed 2026-01-18): In-flow New Game reaches Hermes choice dialogue; ui_accept/d-pad/interact did not advance; choices appeared but selection did not progress.
+   Attempted (local, reverted): move choice input handling to _input in dialogue_box.gd; not validated.
+   Expected outcome: ui_accept/d-pad selects a choice, advances to quest2_choice_* dialogue, and progression continues.
+2. **Validate New Game -> Ending A (no runtime eval).**
+   Done when: Run reaches Ending A without debug shortcuts; blockers logged in `docs/playtesting/PLAYTESTING_ROADMAP.md`.
+3. **Validate New Game -> Ending B (no runtime eval).**
+   Done when: Run reaches Ending B without debug shortcuts; blockers logged in `docs/playtesting/PLAYTESTING_ROADMAP.md`.
+4. **Update playtesting + roadmap outcomes.**
+   Done when: `docs/playtesting/PLAYTESTING_ROADMAP.md` and this file reflect the latest validation results and remaining blockers.
+5. **Optional polish: world spacing + interactable placement.**
+   Done when: Spacing notes are recorded, and any low-risk tweaks are documented.
+
+**Skill references (Phase 7):**
+- Consider `/playtesting` for HPV onboarding and logging expectations.
+- Consider `/godot` for MCP playtest workflows.
+- Consider `/godot-gdscript-patterns` for routing and signal wiring patterns.
 
 **Phase 7 Playable Completion Plan (Option C):**
 
