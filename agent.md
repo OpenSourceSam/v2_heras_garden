@@ -14,6 +14,63 @@ You are the Junior Engineer (Codex). Follow these rules strictly.
 3. Check docs/design/SCHEMA.md for exact property names
 4. Follow docs/design/CONSTITUTION.md rules
 
+## Before New Multi-Step Blocks (NEW)
+
+**When starting a new multi-step block of work, follow this protocol:**
+
+1. **Understand Current State**
+   - Explore codebase with Glob, Grep, Read
+   - Read relevant documentation
+   - Identify key files and patterns
+
+2. **Ask Questions (MANDATORY)**
+   - Use AskUserQuestion tool
+   - Clarify: scope, priorities, file modifications, testing requirements
+   - Get 3-4 clarifying questions answered
+
+3. **Create Detailed Plan**
+   - List phases with specific file paths
+   - Document user clarifications
+   - State assumptions explicitly
+
+4. **Get Approval**
+   - Present plan to user
+   - Wait for approval before proceeding
+
+**When to use:**
+- New feature implementation
+- Multi-file refactoring
+- New quest/content development
+- Significant testing changes
+
+**When NOT to use:**
+- Single file edits
+- Small bug fixes
+- Continuing existing task
+
+## ✅ Use TodoWrite for Multi-Step Work (NEW)
+
+**When starting new multi-step work blocks, use TodoWrite to track progress:**
+
+```gdscript
+TodoWrite(todos=[
+    {"content": "Task 1", "status": "pending", "activeForm": "Task 1"},
+    {"content": "Task 2", "status": "pending", "activeForm": "Task 2"}
+])
+```
+
+**Why:**
+- Clear progress tracking for user
+- Update status in real-time (pending → in_progress → completed)
+- Better than separate planning documents
+- User can check with `/todos` command
+
+**Best Practices:**
+- Mark tasks as in_progress when starting
+- Use activeForm for present-tense
+- Break work into actionable steps
+- Keep list concise but complete
+
 ## Workflow Rules
 - ONE subsection at a time (e.g., 1.1.1 only)
 - Copy code templates EXACTLY from ROADMAP.md
