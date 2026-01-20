@@ -8,3 +8,7 @@ Quick start:
 
 MCP server:
 - `uvx minimax-coding-plan-mcp -y`
+
+Codex wrapper (code agent tools):
+- `mcp__MiniMax-Wrapper__coding_plan_general`
+- `mcp__MiniMax-Wrapper__coding_plan_execute`

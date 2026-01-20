@@ -22,6 +22,9 @@ spending long on troubleshooting.
   - `./scripts/web-search.sh "query"`
   - `./scripts/analyze-image.sh "prompt" "image.png"`
 - MCP server (desktop): see `SKILL.md` for env vars and `uvx minimax-coding-plan-mcp -y`
+- Codex wrapper tools:
+  - `mcp__MiniMax-Wrapper__coding_plan_general`
+  - `mcp__MiniMax-Wrapper__coding_plan_execute`
 
 ## Testing
 Headless: `.\Godot*\Godot*.exe --headless --script tests/run_tests.gd`
