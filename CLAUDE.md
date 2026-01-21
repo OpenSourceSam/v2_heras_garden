@@ -11,9 +11,49 @@ Environment: Cursor (not VS Code) | MCP: `.cursor/mcp.json` | Godot 4.5.1
 game/ → gameplay code | docs/ → documentation | tests/ → test suites | addons/ → plugins
 
 ## MCP Tools
-Use `mcp__godot__*` for playtesting. If unavailable: docs/agent-instructions/setup-guides/mcp-setup.md
-If MCP or the debugger is not running, ask Sam to start it rather than
-spending long on troubleshooting.
+
+**IMPORTANT: Different agent types have DIFFERENT MCP access.**
+
+### For IDE Extension Agents (Cursor, VS Code)
+- **MCP Tools Available:** `mcp__MiniMax*`, web reader, image analysis
+- **NOT Available:** `mcp__godot__*` tools (godot-mcp MCP server is NOT configured)
+- **Use PowerShell wrapper for godot-mcp CLI:**
+  ```bash
+  powershell -Command "scripts/mcp-wrapper.ps1 -McpCommand 'get_project_info'"
+  ```
+- See: [docs/agent-instructions/tools/mcp-wrapper-usage.md](docs/agent-instructions/tools/mcp-wrapper-usage.md)
+
+### For Terminal Agents (RooCode, GPT Codex)
+- **MCP Tools Available:** Possibly `mcp__godot__*` tools (if configured)
+- **Use direct npx CLI commands:**
+  ```bash
+  npx -y godot-mcp-cli@latest get_project_info
+  ```
+- DO NOT use PowerShell wrapper (you have direct subprocess access)
+
+### For Claude Desktop Agents
+- **MCP Tools Available:** Both MiniMax and godot-mcp MCP servers
+- **Use native MCP tools:** `mcp__godot__*`, `mcp__MiniMax*`
+- DO NOT use PowerShell wrapper (you have native access)
+
+### Common Commands (All Agents)
+
+**MCP Health Check:**
+```bash
+powershell -ExecutionPolicy Bypass -File scripts/mcp-health-check.ps1
+```
+
+**Start Godot with MCP:**
+```bash
+powershell -ExecutionPolicy Bypass -File .claude/skills/godot-mcp-dap-start/scripts/ensure_godot_mcp.ps1
+```
+
+**MCP Recovery:**
+```bash
+powershell -ExecutionPolicy Bypass -File .claude/skills/mcp-recovery/scripts/recover.ps1
+```
+
+If MCP issues persist after running recovery, see: `.claude/skills/mcp-recovery/error-patterns.md`
 
 ## MiniMax MCP
 - Skill docs: `.claude/skills/minimax-mcp/SKILL.md`
@@ -35,6 +75,67 @@ spending long on troubleshooting.
 Headless: `.\Godot*\Godot*.exe --headless --script tests/run_tests.gd`
 Headed (HPV): Launch Godot, use MCP for input/inspection. Teleport-assisted HPV is the default unless a full walk is requested.
 
+## How Agents "See" and Navigate Games
+
+**You are NOT "blind" when testing games.** The MCP tools provide complete visibility into the game state:
+
+### How to "See" Game State
+
+| Tool | What It Shows | Example Usage |
+|------|---------------|--------------|
+| **get_runtime_scene_structure** | Full scene tree with positions, visibility, properties | See where player/NPCs are, what's visible |
+| **Debugger Variables panel** | All runtime variables including GameState flags | See quest progress, modify values |
+| **Runtime eval patterns** | Direct access to game tree and nodes | Teleport player, read dialogue, trigger quests |
+
+### Example: Finding Player Position
+
+```bash
+# Get scene structure - returns EVERYTHING with positions
+get_runtime_scene_structure
+
+# Output shows positions like:
+# World/Player: position=[384, 96], visible=true
+# World/NPCs/Hermes: position=[400, 100], visible=true
+```
+
+### Example: Finding NPC Positions
+
+```bash
+get_runtime_scene_structure
+# Look for: World/NPCs/Hermes: position=[x, y]
+# Then walk player there using: simulate_action_tap --action ui_up
+```
+
+### Example: Checking Quest State
+
+```bash
+# Option 1: Debugger (easiest)
+# Press F5 → Set breakpoint → Check Variables panel → quest_flags dictionary
+
+# Option 2: MCP (when game running)
+get_runtime_scene_structure
+# Look for: World/GameState → quest_flags in properties
+```
+
+### Example: Navigating to Targets
+
+**Option 1: Teleport (fastest for HPV)**
+```gdscript
+# Find world index first with get_runtime_scene_structure
+get_tree().root.get_child(3).get_node("Player").set_global_position(Vector2(384, 96))
+```
+
+**Option 2: Walk (for actual movement testing)**
+```bash
+# Move toward target using scene structure for guidance
+simulate_action_tap --action ui_up
+# Repeat as needed, verify with get_runtime_scene_structure
+```
+
+### Key Point
+
+`get_runtime_scene_structure` IS your "vision" - it shows all nodes, positions, properties, and visibility in real-time. This is how you know where things are without seeing the screen.
+
 ## Conventions
 - Follow patterns in nearby files
 - GDScript: snake_case (vars/functions), PascalCase (nodes), UPPER_SNAKE (constants)
@@ -48,7 +149,60 @@ Headed (HPV): Launch Godot, use MCP for input/inspection. Teleport-assisted HPV 
 - Ask before touching: .godot/, .venv/, archive/, .cursor/, .claude/roles/
 - .uid files: use git hook (git config core.hooksPath .githooks) or stage manually
 - Ask before creating new .md files; editing existing .md files is OK
-- Prefer brief clarifying questions up front, then a longer autonomous pass
+- Prefer clarifying questions BEFORE starting autonomous work
+- During autonomous work (2A phase): work continuously, do not stop to summarize
 - Default to working within the current structure; flag major structural changes
+
+## Autonomous Work (2A Phase)
+
+**When working on a plan autonomously:**
+
+### Core Rules
+- DO NOT stop working to provide summaries, status updates, or "check-ins"
+- DO NOT stop when a task is slow, challenging, or time-consuming
+- DO NOT stop when one approach fails - try alternatives
+- ONLY stop for HARD STOPS (defined below)
+- Update plan file (.claude/plans/*.md) with quick notes - keep working
+- Continue through todos systematically - skip blocked items, circle back later
+
+### HARD STOPS (Only stop for these)
+- Creating NEW .md files (not edits)
+- Editing .cursor/ directory
+- Git push, force push, or branch operations
+- Editing CONSTITUTION.md
+- Actions outside approved scope
+- Explicit user request to stop/pause
+
+### CHALLENGES ≠ BLOCKS (Keep working, try alternatives)
+- Slow operations (time ≠ stop)
+- One approach failing (try 2-3 alternatives)
+- Uncertain about next step (document uncertainty, pick reasonable path, continue)
+- Sequential advancement taking time (skip to next todo, come back)
+
+### Skip-Around Pattern
+When stuck on a todo item:
+1. Document the challenge in plan file (1-2 lines)
+2. Move to next todo item
+3. Circle back to stuck items after making progress elsewhere
+4. Try 2-3 alternatives before documenting as pending
+
+### TodoWrite Quote (For longplan mode)
+Append this brief quote to every todo task (except final "keep working" task):
+
+"Remember: Skip around stuck tasks. Try 2-3 alternatives. Move to next todo. Circle back. Keep working. Do not make major repo changes unless approved."
+
+This reinforces the skip-around pattern and prevents getting stuck on challenging todos.
+
+### Examples of "Keep Working"
+- GOOD: Dialogue advancement slow → Skip to Quest 3, come back to Quest 2 later
+- GOOD: MCP eval not working → Try different approach, document, move on
+- GOOD: Uncertain about flag → Make reasonable assumption, note it, continue
+- BAD: Stop and summarize → VIOLATION (unless HARD STOP)
+- BAD: Ask if should continue → VIOLATION (unless HARD STOP)
+
+### Skill Usage Note
+- **create-plan skill**: For 1A (Planning Phase) - interactive, waits for user feedback
+- **longplan slash command**: For 2A (Autonomous Execution) - continuous work, no stopping
+- Use CLAUDE.md Autonomous Work section (above) during 2A phase
 
 [Codex - 2026-01-17]

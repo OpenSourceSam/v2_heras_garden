@@ -1,28 +1,25 @@
-[gd_scene load_steps=20 format=4]
+[gd_scene load_steps=24 format=4 uid="uid://g1xnkck22f4j"]
 
-[ext_resource type="TileSet" path="res://game/shared/resources/tiles/placeholder_grass_tileset.tres" id="1_1u0pp"]
+[ext_resource type="TileSet" uid="uid://d1m30oc7ybq7m" path="res://game/shared/resources/tiles/placeholder_grass_tileset.tres" id="1_1u0pp"]
 [ext_resource type="PackedScene" path="res://game/features/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://game/features/world/sundial.tscn" id="2_sundial"]
-[ext_resource type="Script" path="res://game/features/player/player.gd" id="3_i02xo"]
-[ext_resource type="Script" path="res://game/features/npcs/npc_spawner.gd" id="4_npc_spawner"]
+[ext_resource type="Script" uid="uid://yr1638mi2k63" path="res://game/features/npcs/npc_spawner.gd" id="4_npc_spawner"]
 [ext_resource type="PackedScene" path="res://game/features/world/boat.tscn" id="5_boat"]
-[ext_resource type="Script" path="res://game/features/world/quest_trigger.gd" id="6_quest_trigger"]
-[ext_resource type="Script" path="res://game/features/world/world.gd" id="7_world"]
+[ext_resource type="Script" uid="uid://b2yw8js75bkuo" path="res://game/features/world/quest_trigger.gd" id="6_quest_trigger"]
+[ext_resource type="Script" uid="uid://bk4uy1dwerxrb" path="res://game/features/world/world.gd" id="7_world"]
 [ext_resource type="PackedScene" path="res://game/features/ui/inventory_panel.tscn" id="8_inventory_panel"]
 [ext_resource type="PackedScene" path="res://game/features/farm_plot/farm_plot.tscn" id="9_farm_plot"]
 [ext_resource type="PackedScene" path="res://game/features/ui/seed_selector.tscn" id="10_seed_selector"]
 [ext_resource type="PackedScene" path="res://game/features/ui/dialogue_box.tscn" id="11_dialogue_box"]
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/npc_world_placeholder.png" id="12_landmark"]
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/quest_marker.png" id="13_quest_marker"]
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/tree.png" id="14_tree"]
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/rock.png" id="15_rock"]
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/signpost.png" id="16_signpost"]
-[ext_resource type="PackedScene" path="res://game/features/world/mortar_pestle.tscn" id="17_mortar"]
+[ext_resource type="Texture2D" uid="uid://cdow5ejcss0bk" path="res://assets/sprites/placeholders/quest_marker.png" id="13_quest_marker"]
+[ext_resource type="Texture2D" uid="uid://crk1iai5wlxok" path="res://assets/sprites/placeholders/tree.png" id="14_tree"]
+[ext_resource type="Texture2D" uid="uid://c86bjyp7cldk6" path="res://assets/sprites/placeholders/rock.png" id="15_rock"]
+[ext_resource type="PackedScene" uid="uid://db54affrulqrh" path="res://game/features/world/mortar_pestle.tscn" id="17_mortar"]
 [ext_resource type="PackedScene" path="res://game/features/world/recipe_book.tscn" id="18_recipe"]
 [ext_resource type="PackedScene" path="res://game/features/world/loom.tscn" id="19_loom"]
 [ext_resource type="PackedScene" path="res://game/features/world/house_door.tscn" id="20_house_door"]
-[ext_resource type="Script" path="res://game/features/locations/aeetes_note.gd" id="21_aeetes_note"]
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/signpost.png" id="22_note_texture"]
+[ext_resource type="Script" uid="uid://becuwbfc6asum" path="res://game/features/locations/aeetes_note.gd" id="21_aeetes_note"]
+[ext_resource type="Texture2D" uid="uid://sjbisctyukfj" path="res://assets/sprites/placeholders/signpost.png" id="22_note_texture"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_quest"]
 size = Vector2(48, 24)
@@ -77,7 +74,6 @@ position = Vector2(64, 0)
 position = Vector2(128, 0)
 
 [node name="MortarPestle" parent="Interactables" instance=ExtResource("17_mortar")]
-position = Vector2(0, 0)
 
 [node name="RecipeBook" parent="Interactables" instance=ExtResource("18_recipe")]
 position = Vector2(-64, 0)
@@ -93,8 +89,8 @@ position = Vector2(-128, 0)
 script = ExtResource("21_aeetes_note")
 
 [node name="Sprite" type="Sprite2D" parent="Interactables/AeetesNote"]
-texture = ExtResource("22_note_texture")
 scale = Vector2(0.4, 0.4)
+texture = ExtResource("22_note_texture")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/AeetesNote"]
 shape = SubResource("RectangleShape2D_quest")
@@ -133,7 +129,7 @@ texture = ExtResource("15_rock")
 
 [node name="SignA" type="Sprite2D" parent="Landmarks"]
 position = Vector2(0, -220)
-texture = ExtResource("16_signpost")
+texture = ExtResource("22_note_texture")
 
 [node name="QuestTriggers" type="Node2D" parent="."]
 
@@ -141,85 +137,10 @@ texture = ExtResource("16_signpost")
 position = Vector2(-192, 64)
 script = ExtResource("6_quest_trigger")
 required_flag = "quest_1_active"
-set_flag_on_enter = ""
 trigger_dialogue = "act1_herb_identification"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest1"]
 shape = SubResource("RectangleShape2D_quest")
-
-[node name="QuestMarkers" type="Node2D" parent="."]
-
-[node name="Quest1Marker" type="Sprite2D" parent="QuestMarkers"]
-position = Vector2(-192, 64)
-texture = ExtResource("13_quest_marker")
-modulate = Color(1, 0.9, 0.4, 1)
-z_index = 5
-
-[node name="Quest3Marker" type="Sprite2D" parent="QuestMarkers"]
-position = Vector2(-128, 64)
-texture = ExtResource("13_quest_marker")
-modulate = Color(0.9, 0.8, 0.3, 1)
-z_index = 5
-
-[node name="Quest4Marker" type="Sprite2D" parent="QuestMarkers"]
-position = Vector2(0, 64)
-texture = ExtResource("13_quest_marker")
-modulate = Color(0.9, 0.8, 0.3, 1)
-z_index = 5
-
-[node name="Quest5Marker" type="Sprite2D" parent="QuestMarkers"]
-position = Vector2(64, 64)
-texture = ExtResource("13_quest_marker")
-modulate = Color(0.9, 0.8, 0.3, 1)
-z_index = 5
-
-[node name="Quest6Marker" type="Sprite2D" parent="QuestMarkers"]
-position = Vector2(128, 64)
-texture = ExtResource("13_quest_marker")
-modulate = Color(0.9, 0.8, 0.3, 1)
-z_index = 5
-
-[node name="Quest7Marker" type="Sprite2D" parent="QuestMarkers"]
-position = Vector2(192, 64)
-texture = ExtResource("13_quest_marker")
-modulate = Color(0.9, 0.8, 0.3, 1)
-z_index = 5
-
-[node name="Quest8Marker" type="Sprite2D" parent="QuestMarkers"]
-position = Vector2(256, 64)
-texture = ExtResource("13_quest_marker")
-modulate = Color(0.9, 0.8, 0.3, 1)
-z_index = 5
-
-[node name="Quest9Marker" type="Sprite2D" parent="QuestMarkers"]
-position = Vector2(320, 64)
-texture = ExtResource("13_quest_marker")
-modulate = Color(0.9, 0.8, 0.3, 1)
-z_index = 5
-
-[node name="Quest10Marker" type="Sprite2D" parent="QuestMarkers"]
-position = Vector2(384, 64)
-texture = ExtResource("13_quest_marker")
-modulate = Color(0.9, 0.8, 0.3, 1)
-z_index = 5
-
-[node name="Quest11Marker" type="Sprite2D" parent="QuestMarkers"]
-position = Vector2(448, 64)
-texture = ExtResource("13_quest_marker")
-modulate = Color(0.9, 0.8, 0.3, 1)
-z_index = 5
-
-[node name="BoatMarker" type="Sprite2D" parent="QuestMarkers"]
-position = Vector2(128, -16)
-texture = ExtResource("13_quest_marker")
-modulate = Color(0.5, 0.8, 1, 1)
-z_index = 5
-
-[node name="LoomMarker" type="Sprite2D" parent="QuestMarkers"]
-position = Vector2(192, -16)
-texture = ExtResource("13_quest_marker")
-modulate = Color(0.9, 0.6, 0.9, 1)
-z_index = 5
 
 [node name="Quest3" type="Area2D" parent="QuestTriggers"]
 position = Vector2(-64, 64)
@@ -331,8 +252,81 @@ trigger_dialogue = "epilogue_ending_choice"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Epilogue"]
 shape = SubResource("RectangleShape2D_quest")
 
-[node name="Player" type="CharacterBody2D" parent="." instance=ExtResource("1_player")]
-script = ExtResource("3_i02xo")
+[node name="QuestMarkers" type="Node2D" parent="."]
+
+[node name="Quest1Marker" type="Sprite2D" parent="QuestMarkers"]
+modulate = Color(1, 0.9, 0.4, 1)
+z_index = 5
+position = Vector2(-192, 64)
+texture = ExtResource("13_quest_marker")
+
+[node name="Quest3Marker" type="Sprite2D" parent="QuestMarkers"]
+modulate = Color(0.9, 0.8, 0.3, 1)
+z_index = 5
+position = Vector2(-128, 64)
+texture = ExtResource("13_quest_marker")
+
+[node name="Quest4Marker" type="Sprite2D" parent="QuestMarkers"]
+modulate = Color(0.9, 0.8, 0.3, 1)
+z_index = 5
+position = Vector2(0, 64)
+texture = ExtResource("13_quest_marker")
+
+[node name="Quest5Marker" type="Sprite2D" parent="QuestMarkers"]
+modulate = Color(0.9, 0.8, 0.3, 1)
+z_index = 5
+position = Vector2(64, 64)
+texture = ExtResource("13_quest_marker")
+
+[node name="Quest6Marker" type="Sprite2D" parent="QuestMarkers"]
+modulate = Color(0.9, 0.8, 0.3, 1)
+z_index = 5
+position = Vector2(128, 64)
+texture = ExtResource("13_quest_marker")
+
+[node name="Quest7Marker" type="Sprite2D" parent="QuestMarkers"]
+modulate = Color(0.9, 0.8, 0.3, 1)
+z_index = 5
+position = Vector2(192, 64)
+texture = ExtResource("13_quest_marker")
+
+[node name="Quest8Marker" type="Sprite2D" parent="QuestMarkers"]
+modulate = Color(0.9, 0.8, 0.3, 1)
+z_index = 5
+position = Vector2(256, 64)
+texture = ExtResource("13_quest_marker")
+
+[node name="Quest9Marker" type="Sprite2D" parent="QuestMarkers"]
+modulate = Color(0.9, 0.8, 0.3, 1)
+z_index = 5
+position = Vector2(320, 64)
+texture = ExtResource("13_quest_marker")
+
+[node name="Quest10Marker" type="Sprite2D" parent="QuestMarkers"]
+modulate = Color(0.9, 0.8, 0.3, 1)
+z_index = 5
+position = Vector2(384, 64)
+texture = ExtResource("13_quest_marker")
+
+[node name="Quest11Marker" type="Sprite2D" parent="QuestMarkers"]
+modulate = Color(0.9, 0.8, 0.3, 1)
+z_index = 5
+position = Vector2(448, 64)
+texture = ExtResource("13_quest_marker")
+
+[node name="BoatMarker" type="Sprite2D" parent="QuestMarkers"]
+modulate = Color(0.5, 0.8, 1, 1)
+z_index = 5
+position = Vector2(128, -16)
+texture = ExtResource("13_quest_marker")
+
+[node name="LoomMarker" type="Sprite2D" parent="QuestMarkers"]
+modulate = Color(0.9, 0.6, 0.9, 1)
+z_index = 5
+position = Vector2(192, -16)
+texture = ExtResource("13_quest_marker")
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
 
 [node name="Boundaries" type="Node2D" parent="."]
 
@@ -363,8 +357,14 @@ shape = SubResource("RectangleShape2D_boundary_vertical")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="InventoryPanel" parent="UI" instance=ExtResource("8_inventory_panel")]
+layout_mode = 3
 
 [node name="SeedSelector" parent="UI" instance=ExtResource("10_seed_selector")]
+layout_mode = 3
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="DialogueBox" parent="UI" instance=ExtResource("11_dialogue_box")]
 visible = false
+layout_mode = 3

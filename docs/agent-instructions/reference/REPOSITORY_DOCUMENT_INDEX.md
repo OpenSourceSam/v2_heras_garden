@@ -58,7 +58,8 @@ docs/agent-instructions/
 │   └── testing-framework.md     (DELETED - Use docs/playtesting/)
 ├── tools/
 │   ├── permissions.md           (Available permissions)
-│   └── workflows.md             (Standard workflows)
+│   ├── workflows.md             (Standard workflows)
+│   └── mcp-wrapper-usage.md     (PowerShell wrapper for IDE agents)
 └── reference/
     ├── repository-structure.md  (This file)
     └── skills-catalog.md        (Detailed skill descriptions)
@@ -169,6 +170,7 @@ tests/
 
 ### Setup Guides
 - **MCP Setup:** [`docs/agent-instructions/setup-guides/mcp-setup.md`](../setup-guides/mcp-setup.md)
+- **MCP Wrapper Usage:** [`docs/agent-instructions/tools/mcp-wrapper-usage.md`](../tools/mcp-wrapper-usage.md) - PowerShell wrapper for IDE extension agents
 
 
 ### Project Documentation
@@ -299,6 +301,9 @@ This comprehensive catalog includes:
 
 **Understanding permissions?**
 → [`docs/agent-instructions/tools/permissions.md`](../tools/permissions.md)
+
+**Need MCP wrapper for IDE?**
+→ [`docs/agent-instructions/tools/mcp-wrapper-usage.md`](../tools/mcp-wrapper-usage.md)
 
 **Looking for a file?**
 → Use Glob or Grep tools as shown above

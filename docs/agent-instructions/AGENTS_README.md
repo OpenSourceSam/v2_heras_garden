@@ -20,6 +20,7 @@ This hub consolidates scattered agent instructions into a single, discoverable l
 ### 🔧 **Tools & Workflows**
 - **Permissions**: [`tools/permissions.md`](./tools/permissions.md)
 - **Standard Workflows**: [`tools/workflows.md`](./tools/workflows.md)
+- **MCP Wrapper Usage**: [`tools/mcp-wrapper-usage.md`](./tools/mcp-wrapper-usage.md) - PowerShell wrapper for IDE agents
 - **Slash Commands**: `.claude/commands/` (`/ground`, `/token-plan`, `/clarify`, `/finish`, `/explain`)
 
 ### 📚 **Reference**
@@ -44,7 +45,8 @@ docs/agent-instructions/
 │   └── testing-framework.md     (Testing procedures)
 ├── tools/                       (How to Work)
 │   ├── permissions.md           (Available permissions list)
-│   └── workflows.md             (Standard workflows)
+│   ├── workflows.md             (Standard workflows)
+│   └── mcp-wrapper-usage.md     (PowerShell wrapper for IDE agents)
 └── reference/                   (Look Here For...)
     ├── repository-structure.md  (File locations reference)
     └── skills-catalog.md        (Detailed skill descriptions)
@@ -95,6 +97,9 @@ docs/agent-instructions/
 
 **Understanding permissions?**
 → [`tools/permissions.md`](./tools/permissions.md)
+
+**Need MCP access from IDE?**
+→ [`tools/mcp-wrapper-usage.md`](./tools/mcp-wrapper-usage.md)
 
 **Looking for a file?**
 → [`reference/repository-structure.md`](./reference/repository-structure.md)

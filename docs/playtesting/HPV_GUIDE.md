@@ -119,6 +119,81 @@ npx -y godot-mcp-cli run_project --headed
 
 ---
 
+## MCP Troubleshooting Framework
+
+### Quick Health Check
+
+Before starting any HPV session, verify MCP is working:
+
+```bash
+# Run health check
+powershell -ExecutionPolicy Bypass -File scripts/mcp-health-check.ps1
+
+# For JSON output (parsing)
+powershell -ExecutionPolicy Bypass -File scripts/mcp-health-check.ps1 -JSON
+```
+
+**Expected output:** Status should be `healthy`, all checks should pass.
+
+### Health Check Status
+
+| Status | Meaning | Action |
+|--------|---------|--------|
+| `healthy` | All systems go | Proceed with playtesting |
+| `degraded` | Partial failure | Follow recommendations |
+| `down` | Complete failure | Run recovery script |
+
+### Recovery Procedures
+
+**Level 1: Light Recovery** (Single command timeout)
+```bash
+# Just retry the command
+npx -y godot-mcp-cli@latest get_project_info
+```
+
+**Level 2: Medium Recovery** (Port 9080 not listening)
+```bash
+# Check for duplicate Godot processes
+tasklist | findstr /i "Godot"
+
+# If duplicates found, kill all and restart
+Stop-Process -Name "Godot*" -Force
+powershell -File .claude/skills/godot-mcp-dap-start/scripts/ensure_godot_mcp.ps1
+```
+
+**Level 3: Heavy Recovery** (Complete MCP failure)
+```bash
+# Full automated recovery
+powershell -ExecutionPolicy Bypass -File .claude/skills/mcp-recovery/scripts/recover.ps1
+```
+
+### Common Error Patterns
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| "Port 9080 not listening" | Godot not running or MCP addon not loaded | Start Godot with MCP |
+| "Connection refused" | Duplicate Godot processes | Kill duplicates, restart one |
+| "Unknown command" | MCP CLI not installed | `npx -y godot-mcp-cli@latest --version` |
+| "Timeout on get_runtime_scene_structure" | Game not started | `run_project --headed` |
+| "Multiple Godot processes" | Previous sessions didn't close | `Stop-Process -Name "Godot*" -Force` |
+
+### Escalation Criteria
+
+Ask user for help when:
+- Recovery script fails 3 times in a row
+- Godot fails to start after heavy recovery
+- MCP addon shows errors in Godot console
+- Script errors prevent MCP from loading
+
+### Verification After Recovery
+
+Always run health check after recovery:
+```bash
+powershell -ExecutionPolicy Bypass -File scripts/mcp-health-check.ps1
+```
+
+---
+
 ## Common Issues & Solutions
 
 ### "Unknown command" Error
