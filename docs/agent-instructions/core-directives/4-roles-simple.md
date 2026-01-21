@@ -1,4 +1,6 @@
-# 4 Roles - v2_heras_garden
+# 4 Functional Roles - v2_heras_garden
+
+**Note:** This document describes functional roles (what work agents do). For permission-based tiers (what agents can edit), see [`.claude/roles/ROLES.md`](../../../../.claude/roles/ROLES.md).
 
 ## Role Definitions
 
@@ -28,17 +30,17 @@
 
 ## Default Assignment
 
-**MiniMax fills all 4 roles by default**
+**Tier-based role assignment:**
+- **Tier 1 (Codex)**: General Engineer, Play Tester
+- **Tier 2 (Sonnet)**: All 4 roles (default), plus code review
+- **Tier 3 (Opus)**: Senior Reviewer for complex tasks
 
-**Escalate to Claude Opus (Senior Reviewer):**
-- Complex debugging after 2-3 failed attempts
-- Need architectural feedback
-- Code review for major features
+**Escalation (follows tier system):**
+- **Tier 1 → Tier 2**: Stuck in loop, need architectural decision, permission blocked
+- **Tier 2 → Tier 3**: CONSTITUTION.md change, major refactoring, process change needed
+- **Tier 3 → User**: External dependency, strategic decision, clarification needed
 
-**Escalate to Claude Opus/Codex (Play Tester):**
-- Complex debugging after 2-3 failed attempts
-- Visual validation needed (screenshot comparison, headed inspection)
-- HPV (headed playability validation)
+See [`.claude/roles/ROLES.md`](../../../../.claude/roles/ROLES.md) for complete tier permissions and escalation paths.
 
 ---
 
@@ -58,4 +60,4 @@ That's it. Keep it simple.
 
 **Remember:** These are guidelines. Improvise when needed to get the game done.
 
-[Codex - 2026-01-09]
+[GLM-4.7 - 2026-01-20] (Updated: Integrated with tier-based permission system)

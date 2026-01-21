@@ -11,7 +11,7 @@ This catalog provides in-depth information about each skill, including usage pat
 ### By Category
 
 **Development Skills:**
-- `godot-dev` (`/gd`) - Godot Engine expertise
+- `godot` (`/gd`) - Godot Engine expertise
 - `godot-gdscript-patterns` (`/ggp`) - GDScript patterns
 - `test-driven-development` (`/tdd`) - TDD workflow
 
@@ -34,7 +34,7 @@ This catalog provides in-depth information about each skill, including usage pat
 
 ## 📚 Detailed Skill Descriptions
 
-### godot-dev
+### godot
 
 **Expert knowledge of Godot Engine game development**
 
@@ -58,7 +58,7 @@ This catalog provides in-depth information about each skill, including usage pat
 #### Usage Example
 ```gdscript
 # Before writing Godot code
-Skill(skill: "godot-dev")
+Skill(skill: "godot")
 
 # Then apply the guidance:
 # - Use CharacterBody2D for player movement
@@ -73,7 +73,7 @@ Skill(skill: "godot-dev")
 - **Resources:** External assets (textures, audio, scenes) loaded via paths
 
 #### File Locations
-- **Skill Directory:** `.claude/skills/godot-dev/`
+- **Skill Directory:** `.claude/skills/godot/`
 - **Documentation:** `skill.md` in skill directory
 
 ---
@@ -563,7 +563,7 @@ Skill(skill: "github")
 
 ```gdscript
 # Simple invocation
-Skill(skill: "godot-dev")
+Skill(skill: "godot")
 
 # With arguments
 Skill(skill: "git-best-practices", args: "-m 'commit message'")
@@ -578,7 +578,7 @@ Skill(skill: "systematic-debugging")
 ### Don't Forget Skills
 
 **Always check skills first:**
-- Working with Godot → `godot-dev`, `godot-gdscript-patterns`
+- Working with Godot → `godot`, `godot-gdscript-patterns`
 - Encountering bugs → `systematic-debugging`
 - Writing features → `test-driven-development`
 - Starting tasks → `token-aware-planning`
@@ -603,4 +603,4 @@ Skill(skill: "systematic-debugging")
 **Total Skills:** 18 project skills
 **Purpose:** Comprehensive skill catalog with examples
 
-[Codex - 2026-01-17]
+[GLM-4.7 - 2026-01-20] (Fixed: godot-dev → godot)

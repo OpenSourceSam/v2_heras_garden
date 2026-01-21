@@ -14,15 +14,21 @@ QUERY="$1"
 API_KEY="${MINIMAX_API_KEY:-sk-cp-xgttGx8GfmjMzMR64zQOU0BXYjrikYD0nSTMfWBbIT0Ykq17fUeT3f7Dmmt2UOQaskwOjaOPxMYk6jev0G4Av2-znT8-a3aRWGfHVpgMvgzc8dVYc4W8U6c}"
 API_HOST="${MINIMAX_API_HOST:-https://api.minimax.io}"
 
-echo "Searching: $QUERY"
+# Trusted domains for restricted search
+TRUSTED_DOMAINS="site:docs.anthropic.com OR site:platform.claude.com OR site:docs.cursor.com OR site:cursor.com OR site:cookbook.openai.com OR site:godotengine.org OR site:api.minimax.io"
+
+# Combine user query with trusted domain filter
+RESTRICTED_QUERY="($TRUSTED_DOMAINS) $QUERY"
+
+echo "Searching (trusted domains only): $QUERY"
 echo ""
 
-# Perform search
+# Perform search with domain restriction
 RESPONSE=$(curl -s -X POST "${API_HOST}/v1/coding_plan/search" \
     -H "Authorization: Bearer $API_KEY" \
     -H "Content-Type: application/json" \
     -H "MM-API-Source: Minimax-MCP" \
-    -d "{\"q\":\"$QUERY\"}")
+    -d "{\"q\":\"$RESTRICTED_QUERY\"}")
 
 # Check for errors
 if echo "$RESPONSE" | grep -q "base_resp"; then

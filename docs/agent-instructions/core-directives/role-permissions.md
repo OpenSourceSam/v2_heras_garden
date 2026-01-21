@@ -10,7 +10,7 @@ This document defines a three-tier permission hierarchy for AI agents working on
 
 Check your model name in the system prompt:
 
-- If model contains "codex", "gpt-4-turbo", or similar junior models → **Tier 1 (Junior Engineer)**
+- If model contains "codex", "gpt-4-turbo", "glm", or similar (junior models) → **Tier 1 (Junior Engineer)**
 - If model contains "claude-sonnet-4" → **Tier 2 (Senior Engineer)**
 - If model contains "claude-opus-4" → **Tier 3 (Principal Architect)**
 
@@ -42,9 +42,9 @@ Check your model name in the system prompt:
 
 ---
 
-## 🔰 Tier 1: Junior Engineer (Codex)
+## 🔰 Tier 1: Junior Engineer (Codex/GLM)
 
-**Model:** GPT-4 Codex, GPT-4 Turbo, or similar junior models
+**Model:** Codex, GPT-4 Turbo, GLM, or similar junior models
 
 ### ✅ Capabilities
 - Execute tasks from DEVELOPMENT_ROADMAP.md
@@ -244,5 +244,5 @@ See `.claude/skills/` for complete skill documentation.
 **Purpose:** Role-based permissions and tier hierarchy
 
 
-Edit Signoff: [Codex - 2026-01-12]
+Edit Signoff: [GLM-4.7 - 2026-01-20] (Updated: Clarified junior models language, added GLM)
 

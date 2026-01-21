@@ -25,6 +25,11 @@ spending long on troubleshooting.
 - Codex wrapper tools:
   - `mcp__MiniMax-Wrapper__coding_plan_general`
   - `mcp__MiniMax-Wrapper__coding_plan_execute`
+- **Delegation guidance**: Prefer MiniMax for web search, image analysis, research tasks
+- **Trusted domains** (auto-approved): docs.anthropic.com, platform.claude.com, docs.cursor.com, cursor.com, cookbook.openai.com, godotengine.org, api.minimax.io
+- **Other domains**: Ask permission before searching outside trusted list
+- Direct API (extension): Use Bash tool with curl (see SKILL.md), saves 85-90% tokens
+- **Decision trigger**: Before using Grep/Glob for research, ask: "Would MiniMax handle this better?"
 
 ## Testing
 Headless: `.\Godot*\Godot*.exe --headless --script tests/run_tests.gd`

@@ -2,7 +2,7 @@
 description: "Expert Godot Engine game development knowledge"
 ---
 
-You are now using the godot-development skill from .claude/skills/gd/SKILL.md
+You are now using the godot skill from .claude/skills/godot/SKILL.md
 
 ## Core Concepts
 

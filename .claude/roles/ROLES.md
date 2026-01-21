@@ -41,7 +41,7 @@ This project uses a **two-phase cadence** for task execution:
 ## How to Identify Your Tier
 
 Check your model name in the system prompt:
-- If model contains "codex", "gpt-4-turbo", or similar junior models → **Tier 1 (Junior Engineer)**
+- If model contains "codex", "gpt-4-turbo", "glm", or similar (junior models) → **Tier 1 (Junior Engineer)**
 - If model contains "claude-sonnet-4" → **Tier 2 (Senior Engineer)**
 - If model contains "claude-opus-4" → **Tier 3 (Principal Architect)**
 
@@ -51,9 +51,9 @@ Check your model name in the system prompt:
 
 ---
 
-## Tier 1: Junior Engineer (Codex)
+## Tier 1: Junior Engineer (Codex/GLM)
 
-**Model:** GPT-4 Codex, GPT-4 Turbo, or similar junior models
+**Model:** Codex, GPT-4 Turbo, GLM, or similar junior models
 
 ### Permissions in 2A Phase
 
@@ -198,6 +198,7 @@ All agents must sign their edits to .md files for traceability:
 
 **Examples:**
 - `[Codex - 2025-12-29]`
+- `[GLM-4.7 - 2026-01-20]`
 - `[Sonnet 4.5 - 2025-12-29]`
 - `[Opus 4.5 - 2025-12-29]`
 
