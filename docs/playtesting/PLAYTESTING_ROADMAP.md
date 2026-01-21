@@ -32,6 +32,9 @@ Detailed walkthrough steps live in the references below to avoid duplication.
 | Quests 4-8 | HPV pass (teleports, minigame skips) | Quest 6/8 completion dialogues did not appear routed via NPC logic in this run; started manually. |
 | Quests 9-10 | HPV pass (teleports, minigame skips) | Quest 9 -> 10 flow validated with runtime eval for Sacred Grove minigame. |
 | Quest 11 + endings | HPV pass (runtime eval for choices) | Final confrontation + both endings completed. |
+| HPV Infrastructure (2026-01-21) | ✅ VALIDATED | MCP wrapper, vision tools, input simulation all working. See session log. |
+| Quest 0-1 Flow (2026-01-21) | ✅ PASS | Prologue skip, arrival dialogue, Hermes interaction all confirmed. |
+| Dialogue Choice Fix | ⚠️ CODE VERIFIED | `button.pressed = true` applied in dialogue_box.gd; runtime manual test needed. |
 | Full playthrough A/B | 🔄 READY | Tool improvements complete. Ready for systematic HPV testing. |
 
 **New Workflow (2026-01-21):**
@@ -62,7 +65,8 @@ Minigames are not part of Phase 7 HPV. Mark them as not recently validated and v
 ---
 
 ## Blockers
-- Hermes dialogue choice selection appeared stuck during an in-flow run (ui_accept/d-pad did not advance).
+- ~~Hermes dialogue choice selection appeared stuck during an in-flow run~~ ✅ FIX APPLIED (dialogue_box.gd button.pressed = true)
+- Dialogue choice fix requires runtime manual testing for full validation (code verified)
 
 ---
 
@@ -365,3 +369,47 @@ quest_flags["quest_2_active"] = true
 - `docs/agent-instructions/tools/godot-tools-extension-hpv-guide.md` - Complete guide for using extension with HPV
 
 **Status:** Godot Tools extension provides a robust alternative for flag-setting and state inspection. Hybrid workflow (Extension for flags + MCP for input) is recommended for HPV testing.
+
+---
+
+## HPV Session Log (2026-01-21) - Autonomous Testing with 1A2A Plan
+
+**Scope:** Autonomous HPV validation using hpv-playtesting-2026-01-21.md plan with teleport-assisted testing.
+
+**What worked:**
+- MCP health check script (`scripts/mcp-health-check.ps1`) working reliably
+- MCP wrapper (`scripts/mcp-wrapper.ps1`) for all godot-mcp CLI commands
+- `get_runtime_scene_structure` provides complete "vision" into game state
+- `simulate_action_tap` for input simulation working correctly
+- Prologue skip via `ui_cancel` works reliably
+- DialogueBox advances via `ui_accept` batch commands
+- Quest markers updating correctly (Quest1Marker became visible)
+- `get_runtime_scene_structure` shows NPC positions, player position, dialogue state
+
+**Infrastructure validated:**
+- HPV_QUICK_REFERENCE.md contains all vision and navigation patterns
+- playtesting SKILL.md has "How You 'See' the Game State" section
+- Teleport-assisted testing approach documented in plan
+- Skip scripts (skip_to_quest2.gd, skip_to_quest3.gd) work headless
+- godot-mcp-dap-start skill for MCP recovery working
+
+**Workflow tested:**
+1. MCP health check → Start game → Skip prologue → World loaded
+2. Walk to Hermes → Dialogue opens → Advance with ui_accept
+3. Quest1Marker visibility confirms quest activation
+4. DialogueBox visibility tracked through scene structure
+
+**Findings:**
+- Quest 0 (Prologue/Arrival): ✅ PASS - Prologue skip works, arrival dialogue advances
+- Quest 1 (Hermes intro): ✅ PASS - Hermes interaction triggers, dialogue advances
+- Dialogue choice fix (button.pressed = true): Code verified, runtime choices not encountered in this session
+- Vision system (get_runtime_scene_structure): ✅ VERIFIED - Complete scene visibility working
+
+**Notes:**
+- Skip scripts set flags headless but don't persist to new game runs (expected behavior)
+- Hybrid workflow for flag-setting: Use VSCode debugger (F5) + Variables panel for quest_flags
+- MCP for input simulation only (quote escaping broken for execute_editor_script)
+- Full quest playthrough would require manual debugger flag-setting or in-flow progression
+- Dialogue choice selection fix applied in dialogue_box.gd (lines 119-138) - verified in code
+
+**Status:** HPV infrastructure validated. Vision, navigation, and input simulation all working. Quest 0-1 flow confirmed. Dialogue choice fix code-verified (needs runtime manual testing for full validation).
