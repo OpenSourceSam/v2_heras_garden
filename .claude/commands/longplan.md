@@ -35,11 +35,58 @@ TodoWrite(todos=[
 ])
 ```
 
-### Step 4: Present Plan for Approval
+### Step 4: Sanity Check with MiniMax Reviewer
+
+Before finalizing your plan, get external perspective:
+
+```powershell
+# Invoke MiniMax reviewer as "devil's advocate"
+powershell -File .claude/skills/minimax-mcp/scripts/review-work.ps1 -Context "Plan summary" -Question "What risks or blind spots should I consider?"
+```
+
+**What to ask MiniMax:**
+- "What's missing from this plan?"
+- "What could go wrong that I haven't considered?"
+- "Are there better approaches for [specific aspect]?"
+- "What documentation should I reference?"
+
+**Remember:** Use the feedback autonomously to strengthen your plan. MiniMax is advisory, not authoritative.
+
+### Step 5: Create Self-Contained Plan File
+
+For long autonomous sessions (30+ minutes), create a persistent .md file with:
+
+**REQUIRED SECTIONS:**
+
+1. **🚫 Common Pitfalls** - Anti-patterns to avoid
+   - Table format: "Don't do X → Instead do Y"
+   - Task-specific mistakes agents commonly make
+
+2. **📚 Quick Reference Links** - Essential docs for this task
+   - List: roadmaps, instructions, troubleshooting guides
+   - Brief one-line description of each
+
+3. **⚠️ Troubleshooting** - When things don't work
+   - Table: Symptom → Check → Fix
+   - Common failures and their solutions
+
+4. **🔄 Reminders** - Keep these in mind throughout
+   - "Remember to reference [doc] after every N tasks"
+   - "Use [skill] when [situation] occurs"
+   - Gentle guidance for autonomous execution
+
+**Key phrasing for 2A autonomous work:**
+- "Remember to reference X" (not "check X")
+- "Keep in mind to use Y" (not "verify Y")
+- "Use Z for W" (clear autonomous action)
+- Avoid: "ask", "check", "verify" (can trigger stops)
+
+### Step 6: Present Plan for Approval
 Before proceeding, summarize:
 - What will be done
 - What files will be modified
 - What the user should expect
+- Any concerns raised by MiniMax review (and how you addressed them)
 
 **WAIT for user to say "START 2A" before proceeding to autonomous phase.**
 
@@ -47,7 +94,14 @@ Before proceeding, summarize:
 
 ## 2A Phase: Autonomous Execution
 
-**User has approved.** You are now in **Autonomous Phase** - work through the todo list independently.
+**User has approved.** You are now in **Autonomous Phase** - work through the todo list independently without stopping to ask questions.
+
+**CRITICAL:** During 2A, work continuously. Do NOT stop for:
+- Clarification questions (make reasonable assumptions)
+- "Should I do X?" (use your best judgment)
+- "Is this correct?" (proceed with confidence)
+
+**HARD STOPS still apply:** Creating .md files, git push, editing CONSTITUTION.md, actions outside scope.
 
 ### Work Guidelines
 

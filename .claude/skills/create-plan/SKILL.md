@@ -115,9 +115,24 @@ Recommendation: [Preferred option with rationale]
 
 Wait for user feedback on approach before detailing phases.
 
-### Phase 5: Phase Structure Review
+### Phase 5: External Review and Phase Structure
 
-Before writing detailed plan, present proposed phases:
+Before writing detailed plan, get external perspective:
+
+#### MiniMax Sanity Check (Devil's Advocate)
+
+```powershell
+powershell -File .claude/skills/minimax-mcp/scripts/review-work.ps1 -Context "[plan summary]" -Question "What risks or blind spots should I consider?"
+```
+
+**Ask MiniMax:**
+- "What's missing from this approach?"
+- "What could go wrong?"
+- "Are there better alternatives?"
+
+**Remember:** Use feedback to strengthen the plan autonomously. MiniMax is advisory.
+
+#### Then Present Proposed Phases
 
 ```
 Proposed Implementation Phases:
@@ -132,6 +147,43 @@ Does this structure make sense? Any phases to add/remove/reorder?
 Get explicit approval before writing the full plan.
 
 ### Phase 6: Write the Plan
+
+**For Long-Execution Plans (30+ minutes autonomous work):**
+
+Include a **"Key References"** section at the top:
+
+```markdown
+## 📚 Key References (Keep These Handy)
+
+- **[ROADMAP.md]** - [One-line: what it's for]
+- **[INSTRUCTIONS.md]** - [One-line: what it's for]
+- **[TROUBLESHOOTING.md]** - [One-line: what it's for]
+- **[RELEVANT_SKILL]** - [One-line: what it's for]
+```
+
+**Also include these self-contained sections:**
+
+1. **🚫 Common Pitfalls** - "Don't do X → Instead do Y"
+2. **📚 Quick Reference** - Essential docs with one-line descriptions
+3. **⚠️ Troubleshooting** - Symptom → Check → Fix table
+4. **🔄 Reminders** - "Remember to reference [doc] for [guidance]"
+
+**Key phrasing for autonomous execution:**
+- "Remember to reference X" (not "check X")
+- "Keep in mind to use Y" (not "verify Y")
+- "Use Z for W" (clear autonomous action)
+- Avoid: "ask", "check", "verify" (can trigger stops)
+
+**Then append to each plan step:**
+```markdown
+### Step X: [Task Name]
+
+[Step content...]
+
+*Reference: [DOC_NAME.md] for [specific guidance]*
+```
+
+---
 
 Prefer capturing the plan inside the primary roadmap so there is a single
 source of truth, then track work with the built-in to-do list tool.
