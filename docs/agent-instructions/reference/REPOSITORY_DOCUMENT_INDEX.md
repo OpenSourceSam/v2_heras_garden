@@ -91,11 +91,33 @@ docs/agent-instructions/
 game/
 ├── features/              # Game features
 │   ├── cutscenes/         # Cutscene scenes and scripts
+│   │   ├── sailing_first.tscn/gd (Quest 3 sailing)
+│   │   ├── sailing_final.tscn/gd (Quest 11 sailing)
+│   │   ├── calming_draught_failed.tscn/gd (Quest 5 failure)
+│   │   ├── reversal_elixir_failed.tscn/gd (Quest 6 failure)
+│   │   ├── binding_ward_failed.tscn/gd (Quest 8 failure)
+│   │   └── epilogue.tscn/gd (Epilogue cutscene)
+│   ├── locations/         # Location scenes
+│   │   ├── aiaia_shore.tscn/gd (Shore location - Quest 3)
+│   │   ├── titan_battlefield.tscn/gd (Divine blood collection)
+│   │   ├── daedalus_workshop.tscn/gd (Daedalus crafting area)
+│   │   ├── sacred_grove.tscn/gd (Moon tears location)
+│   │   └── scylla_cove.tscn/gd (Scylla confrontation)
 │   ├── minigames/         # Minigame implementations
 │   ├── npcs/              # NPC definitions
+│   │   ├── circe.tscn (Circe NPC)
+│   │   ├── npc_spawner.gd (Location-specific spawning)
+│   │   └── npc_base.gd (Dialogue routing)
 │   └── world/             # World scenes
+│       ├── boat.gd (Travel system)
+│       ├── shore_path.gd (Shore access trigger)
+│       └── workshop_path.gd (Workshop access trigger)
 ├── shared/                # Shared resources
 │   ├── resources/         # Game resources (dialogues, quests)
+│   │   └── dialogues/
+│   │       ├── quest3_confrontation.tres (Shore dialogue)
+│   │       ├── epilogue_circe.tres (Epilogue dialogue)
+│   │       └── quest1_choice_*.tres (Hermes choices)
 │   └── scripts/           # Shared GDScript
 └── ui/                    # User interface
 ```
