@@ -1,13 +1,37 @@
 extends Node2D
 ## Sacred Grove flow controller for Sacred Earth and Moon Tears minigames.
+## Enhanced with nighttime atmosphere for Quest 9 (Moon Tears)
 
 @onready var ui_layer: CanvasLayer = $UI
+@onready var sky: ColorRect = $Sky
+@onready var moon: ColorRect = $Moon
+@onready var stars: Node2D = $Stars
 
 var _active_minigame: Control = null
 
 func _ready() -> void:
 	assert(ui_layer != null, "UI layer missing")
+	_apply_time_of_day_atmosphere()
 	_start_active_minigame()
+
+func _apply_time_of_day_atmosphere() -> void:
+	# Check if we're in Quest 9 (Moon Tears) - this is a night scene
+	if GameState.get_flag("quest_9_active") and not GameState.get_flag("quest_9_complete"):
+		# Nighttime atmosphere for Moon Tears collection
+		if sky:
+			sky.color = Color(0.05, 0.05, 0.15, 1)  # Deep night blue
+		if moon:
+			moon.visible = true
+		if stars:
+			stars.visible = true
+	else:
+		# Daytime atmosphere for Sacred Earth (Quest 8)
+		if sky:
+			sky.color = Color(0.5, 0.7, 0.9, 1)  # Day sky blue
+		if moon:
+			moon.visible = false
+		if stars:
+			stars.visible = false
 
 func _start_active_minigame() -> void:
 	if GameState.get_flag("quest_8_active") and not GameState.get_flag("quest_8_complete"):

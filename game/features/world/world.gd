@@ -141,17 +141,25 @@ func _resolve_crafting_recipe() -> String:
 func _on_dialogue_ended(dialogue_id: String) -> void:
 	# Start herb identification minigame after quest 1 dialogue
 	if dialogue_id == "act1_herb_identification":
-		_start_herb_identification_minigame()
+		_start_herb_identification_minigame("normal")
+	# Start saffron herb identification minigame after quest 6 dialogue
+	if dialogue_id == "quest6_inprogress":
+		_start_herb_identification_minigame("saffron")
 	if dialogue_id == "act3_ultimate_crafting":
 		_play_divine_blood_cutscene()
 
-func _start_herb_identification_minigame() -> void:
+func _start_herb_identification_minigame(variant: String = "normal") -> void:
 	var minigame_scene = load("res://game/features/minigames/herb_identification.tscn")
 	if not minigame_scene:
 		push_error("Failed to load herb identification minigame")
 		return
 
 	var minigame = minigame_scene.instantiate()
+
+	# Set variant mode (normal or saffron)
+	if minigame.has_method("set_variant_mode"):
+		minigame.set_variant_mode(variant)
+
 	ui_layer.add_child(minigame)
 
 	# Connect to minigame completion signal
@@ -161,8 +169,15 @@ func _start_herb_identification_minigame() -> void:
 
 func _on_herb_minigame_complete(success: bool, items: Array) -> void:
 	if success:
-		GameState.set_flag("quest_1_complete", true)
-		print("Quest 1 completed! Items awarded: %s" % [items])
+		# Check which quest this was for based on items received
+		if items.has("saffron"):
+			# Quest 6 saffron variant completed
+			GameState.set_flag("quest_6_complete", true)
+			print("Quest 6 saffron completed! Items awarded: %s" % [items])
+		else:
+			# Quest 1 normal variant completed
+			GameState.set_flag("quest_1_complete", true)
+			print("Quest 1 completed! Items awarded: %s" % [items])
 	else:
 		print("Herb identification minigame failed")
 

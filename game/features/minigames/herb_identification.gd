@@ -6,6 +6,9 @@ signal minigame_complete(success: bool, items: Array)
 @export var correct_per_round: Array[int] = [3, 3, 3]
 @export var max_wrong: int = 5
 
+# Variant modes: "normal" (glow/color) or "saffron" (stamen color discrimination)
+var variant_mode: String = "normal"
+
 const GLOW_LOOP_COUNT: int = 999999
 
 @onready var plant_grid: GridContainer = $PlantGrid
@@ -28,6 +31,10 @@ func _ready() -> void:
 		_show_tutorial()
 	else:
 		_setup_round(0)
+
+func set_variant_mode(mode: String) -> void:
+	# Set variant mode: "normal" (glow/color) or "saffron" (stamen color discrimination)
+	variant_mode = mode
 
 func _setup_round(round_num: int) -> void:
 	current_round = round_num
@@ -90,8 +97,12 @@ func _select_current() -> void:
 func _advance_round() -> void:
 	current_round += 1
 	if current_round >= plants_per_round.size():
-		# All rounds complete
-		var items = ["pharmaka_flower", "pharmaka_flower", "pharmaka_flower"]
+		# All rounds complete - award items based on variant mode
+		var items: Array[String] = []
+		if variant_mode == "saffron":
+			items = ["saffron", "saffron", "saffron"]
+		else:
+			items = ["pharmaka_flower", "pharmaka_flower", "pharmaka_flower"]
 		_award_items(items)
 		minigame_complete.emit(true, items)
 		# Auto-close minigame after a short delay to show completion
@@ -112,16 +123,53 @@ func _generate_plants(total_plants: int, correct_plants: int) -> void:
 			correct_indices.append(idx)
 
 	for i in range(total_plants):
-		var slot := ColorRect.new()
-		slot.custom_minimum_size = Vector2(32, 32)
-		slot.modulate = Color(0.5, 0.5, 0.55, 1.0)  # Gray flowers
 		var is_correct = correct_indices.has(i)
-		if is_correct:
-			slot.modulate = Color(1.0, 0.85, 0.3, 1.0)  # Bright gold for correct
-			_add_glow_effect(slot)
-		slot.set_meta("is_correct", is_correct)
-		plant_grid.add_child(slot)
-		plant_slots.append(slot)
+
+		if variant_mode == "saffron":
+			# Saffron variant: All flowers look similar (purple), stamen color differs
+			# 3 real saffron (red stamens), 27 fake saffron (yellow stamens)
+			var slot := _create_saffron_plant(is_correct)
+			slot.set_meta("is_correct", is_correct)
+			plant_grid.add_child(slot)
+			plant_slots.append(slot)
+		else:
+			# Normal variant: Correct plants glow gold, incorrect are gray
+			var slot := ColorRect.new()
+			slot.custom_minimum_size = Vector2(32, 32)
+			slot.modulate = Color(0.5, 0.5, 0.55, 1.0)  # Gray flowers
+			if is_correct:
+				slot.modulate = Color(1.0, 0.85, 0.3, 1.0)  # Bright gold for correct
+				_add_glow_effect(slot)
+			slot.set_meta("is_correct", is_correct)
+			plant_grid.add_child(slot)
+			plant_slots.append(slot)
+
+func _create_saffron_plant(is_correct: bool) -> Control:
+	# Create a plant container with petal and stamen
+	var container := Control.new()
+	container.custom_minimum_size = Vector2(32, 32)
+
+	# Purple petals (all saffron look similar)
+	var petals := ColorRect.new()
+	petals.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	petals.custom_minimum_size = Vector2(28, 28)
+	petals.position = Vector2(2, 2)
+	petals.color = Color(0.6, 0.3, 0.7, 1.0)  # Purple petals
+	container.add_child(petals)
+
+	# Stamen color indicates correctness (red = correct/saffron, yellow = incorrect/fake)
+	var stamen_color := Color(1.0, 0.8, 0.0, 1.0)  # Yellow (fake saffron)
+	if is_correct:
+		stamen_color = Color(0.9, 0.1, 0.2, 1.0)  # Red (real saffron)
+
+	var stamen := ColorRect.new()
+	stamen.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	stamen.custom_minimum_size = Vector2(8, 8)
+	stamen.position = Vector2(12, 12)
+	stamen.color = stamen_color
+	container.add_child(stamen)
+
+	return container
 
 func _move_selection(delta: int) -> void:
 	if plant_slots.is_empty():
@@ -140,7 +188,10 @@ func _update_selection() -> void:
 func _update_labels() -> void:
 	round_label.text = "Round %d/%d" % [current_round + 1, plants_per_round.size()]
 	attempts_label.text = "Wrong: %d/%d" % [wrong_count, max_wrong]
-	instruction_label.text = "Find the glowing plants"
+	if variant_mode == "saffron":
+		instruction_label.text = "Find the red-stamen flowers (not yellow)"
+	else:
+		instruction_label.text = "Find the glowing plants"
 	_update_status()
 
 func _update_status() -> void:

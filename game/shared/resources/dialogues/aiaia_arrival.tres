@@ -9,6 +9,9 @@ lines = [{
 "speaker": "Circe",
 "text": "So this is Aiaia. Quiet. Empty. Perfect."
 }, {
+"speaker": "System",
+"text": "Use D-Pad to move. Explore the island."
+}, {
 "speaker": "Narrator",
 "text": "A small house sits ahead, the only shelter on the island."
 }]

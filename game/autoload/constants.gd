@@ -110,6 +110,9 @@ const INPUT_CANCEL: String = "ui_cancel"
 ## Main scene paths for SceneManager
 const SCENE_MAIN_MENU: String = "res://game/features/ui/main_menu.tscn"
 const SCENE_WORLD: String = "res://game/features/world/world.tscn"
+const SCENE_SHORE: String = "res://game/features/locations/aiaia_shore.tscn"
+const SCENE_TITAN_BATTLEFIELD: String = "res://game/features/locations/titan_battlefield.tscn"
+const SCENE_DAEDALUS_WORKSHOP: String = "res://game/features/locations/daedalus_workshop.tscn"
 const SCENE_TEST: String = "res://tests/test_scene.tscn"
 
 # ============================================

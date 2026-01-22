@@ -27,6 +27,18 @@ func _on_dialogue_ended(dialogue_id: String) -> void:
 			_cutscene_started = true
 			CutsceneManager.play_cutscene("res://game/features/cutscenes/scylla_transformation.tscn")
 		return
+	if GameState.get_flag("quest_5_active") and GameState.has_item("calming_draught") and not GameState.get_flag("calming_draught_failed"):
+		_cutscene_started = true
+		CutsceneManager.play_cutscene("res://game/features/cutscenes/calming_draught_failed.tscn")
+		return
+	if GameState.get_flag("quest_6_active") and GameState.has_item("reversal_elixir") and not GameState.get_flag("reversal_elixir_failed"):
+		_cutscene_started = true
+		CutsceneManager.play_cutscene("res://game/features/cutscenes/reversal_elixir_failed.tscn")
+		return
+	if GameState.get_flag("quest_8_active") and GameState.has_item("binding_ward") and not GameState.get_flag("binding_ward_failed"):
+		_cutscene_started = true
+		CutsceneManager.play_cutscene("res://game/features/cutscenes/binding_ward_failed.tscn")
+		return
 	if GameState.get_flag("quest_11_active") and not GameState.get_flag("quest_11_complete"):
 		if FINAL_CONFRONTATION_DIALOGUES.has(dialogue_id):
 			_cutscene_started = true

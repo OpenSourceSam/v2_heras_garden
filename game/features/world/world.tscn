@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" path="res://game/features/world/loom.tscn" id="19_loom"]
 [ext_resource type="PackedScene" path="res://game/features/world/house_door.tscn" id="20_house_door"]
 [ext_resource type="Script" uid="uid://becuwbfc6asum" path="res://game/features/locations/aeetes_note.gd" id="21_aeetes_note"]
+[ext_resource type="Script" path="res://game/features/world/shore_path.gd" id="21_shore_path"]
+[ext_resource type="Script" path="res://game/features/world/workshop_path.gd" id="23_workshop_path"]
 [ext_resource type="Texture2D" uid="uid://sjbisctyukfj" path="res://assets/sprites/placeholders/signpost.png" id="22_note_texture"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_quest"]
@@ -94,6 +96,14 @@ texture = ExtResource("22_note_texture")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/AeetesNote"]
 shape = SubResource("RectangleShape2D_quest")
+
+[node name="ShorePath" type="StaticBody2D" parent="Interactables"]
+position = Vector2(-200, 200)
+script = ExtResource("21_shore_path")
+
+[node name="WorkshopPath" type="StaticBody2D" parent="Interactables"]
+position = Vector2(300, 200)
+script = ExtResource("23_workshop_path")
 
 [node name="NPCs" type="Node2D" parent="."]
 

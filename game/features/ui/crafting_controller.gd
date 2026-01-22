@@ -14,6 +14,15 @@ extends Control
 var _recipes: Dictionary = {} # { "recipe_id": RecipeData }
 var current_recipe: RecipeData = null
 
+# Map recipe IDs to difficulty levels (0=TUTORIAL, 1=ADVANCED, 2=ADVANCED_PLUS, 3=EXPERT, 4=EXPERT_PLUS)
+const RECIPE_DIFFICULTY = {
+	"moly_grind": 0,
+	"calming_draught": 1,
+	"reversal_elixir": 2,
+	"binding_ward": 3,
+	"petrification_potion": 4
+}
+
 func _ready() -> void:
 	assert(crafting_minigame != null, "CraftingMinigame node missing")
 	_load_recipes()
@@ -31,10 +40,6 @@ func start_craft(recipe_id: String) -> void:
 		push_error("Recipe not found: %s" % recipe_id)
 		return
 
-	if recipe.grinding_pattern.is_empty() or recipe.button_sequence.is_empty():
-		push_error("Recipe inputs missing for: %s" % recipe_id)
-		return
-
 	current_recipe = recipe
 
 	# Check ingredients
@@ -42,12 +47,17 @@ func start_craft(recipe_id: String) -> void:
 		print("Missing ingredients!")
 		return
 
-	# Start minigame
-	crafting_minigame.start_crafting(
-		recipe.grinding_pattern,
-		recipe.button_sequence,
-		recipe.timing_window
-	)
+	# Get difficulty level for this recipe
+	var diff = RECIPE_DIFFICULTY.get(recipe_id, crafting_minigame.Difficulty.TUTORIAL)
+
+	# Start minigame with new memorization mechanic
+	if recipe.has_method("get_custom_pattern") and recipe.get_custom_pattern():
+		# Use custom pattern if recipe provides one
+		crafting_minigame.start_crafting(diff, recipe.get_custom_pattern())
+	else:
+		# Use random pattern
+		crafting_minigame.start_crafting(diff)
+
 	crafting_minigame.visible = true
 
 func _on_crafting_complete(success: bool) -> void:

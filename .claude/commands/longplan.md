@@ -13,6 +13,21 @@ model: sonnet
 
 You are in the **Ask Phase** - gather information and create a detailed plan before autonomous execution.
 
+Spawn parallel sub-tasks using specialized agents:
+
+```
+Research Tasks:
+- codebase-locator: Find all files related to the feature area
+- codebase-analyzer: Understand existing patterns and architecture
+- Explore: Investigate integration points and dependencies
+```
+
+For each research task, provide:
+- Specific directories to examine
+- Exact patterns or code to find
+- Required output: file:line references
+
+
 ### Step 1: Understand the Task
 - Use Glob/Grep/Read to explore relevant codebase areas
 - Identify files that will be modified

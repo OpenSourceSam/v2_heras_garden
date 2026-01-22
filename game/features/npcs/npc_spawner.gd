@@ -4,7 +4,8 @@ extends Node
 	"hermes": preload("res://game/features/npcs/hermes.tscn"),
 	"aeetes": preload("res://game/features/npcs/aeetes.tscn"),
 	"daedalus": preload("res://game/features/npcs/daedalus.tscn"),
-	"scylla": preload("res://game/features/npcs/scylla.tscn")
+	"scylla": preload("res://game/features/npcs/scylla.tscn"),
+	"circe": preload("res://game/features/npcs/circe.tscn")
 }
 
 var spawned_npcs: Dictionary = {}
@@ -40,6 +41,9 @@ func _update_npcs() -> void:
 		GameState.get_flag("quest_9_active") or
 		GameState.get_flag("quest_10_active") or
 		GameState.get_flag("quest_11_active"))
+
+	# Note: Circe spawning is handled by location-specific NPCSpawners
+	# (e.g., AiaiaShore has its own NPCSpawner with CirceSpawnPoint)
 
 func _set_npc_visible(npc_id: String, visible: bool) -> void:
 	if visible and npc_id not in spawned_npcs:

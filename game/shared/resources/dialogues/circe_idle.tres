@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "circe_idle"
+lines = [{
+"speaker": "Circe",
+"text": "The garden is flourishing. The pharmaka responds to care.",
+"emotion": "content"
+}, {
+"speaker": "Circe",
+"text": "I've learned much since coming to Aiaia. About power. About mercy.",
+"emotion": "thoughtful"
+}, {
+"speaker": "Circe",
+"text": "Come find me when you're ready to continue our work.",
+"emotion": "encouraging"
+}]
+choices = []
+flags_required = ["met_circe"]
+flags_to_set = []
+next_dialogue_id = ""

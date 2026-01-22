@@ -15,15 +15,6 @@ Create detailed, well-researched implementation plans through interactive collab
 - Structuring complex refactoring work
 - Any task requiring upfront planning and design
 
-### When to Consider /longplan Instead
-
-For multi-hour autonomous work sessions with dual-reviewer supervision, consider using the `/longplan` slash command instead.
-
-**Use `/longplan` if:**
-- Work will take 30+ minutes
-- You'll be away from terminal during execution
-- Dual-reviewer supervision needed (GLM Devil's Advocate + MiniMax)
-- TodoWrite tracking with autonomous 2A phase desired
 
 **Use create-plan skill if:**
 - Creating detailed implementation plans for manual execution

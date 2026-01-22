@@ -7,14 +7,34 @@ script = ExtResource("1_dialogue_data")
 id = "quest1_inprogress"
 lines = [{
 "speaker": "Hermes",
-"text": "Still searching? The true herbs are there. Trust your eyes.",
-"emotion": "encouraging"
+"text": "I see you've found the pharmaka flowers. The true ones, I mean.",
+"emotion": "observant"
 }, {
 "speaker": "Hermes",
-"text": "Look for the glow. It is subtle but unmistakable once you know.",
-"emotion": "helpful"
+"text": "Three flowers. Enough to begin... whatever you're planning.",
+"emotion": "suspicious"
+}, {
+"speaker": "Hermes",
+"text": "Before you proceed with your... 'experiment'...",
+"emotion": "cautious"
+}, {
+"speaker": "Hermes",
+"text": "I must ask: Why do you seek these flowers?",
+"emotion": "curious"
 }]
-choices = []
+choices = [{
+"text": "I know what I'm doing.",
+"emotion": "defensive",
+"next_id": "quest1_choice_dismissive"
+}, {
+"text": "I'm just experimenting.",
+"emotion": "evasive",
+"next_id": "quest1_choice_lying"
+}, {
+"text": "She deserves it.",
+"emotion": "honest",
+"next_id": "quest1_choice_honest"
+}]
 flags_required = ["quest_1_active"]
 flags_to_set = []
 next_dialogue_id = ""

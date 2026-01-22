@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest1_choice_dismissive"
+lines = [{
+"speaker": "Hermes",
+"text": "Famous last words. Very well.",
+"emotion": "amused"
+}, {
+"speaker": "Hermes",
+"text": "Don't say I didn't warn you.",
+"emotion": "warning"
+}, {
+"speaker": "Hermes",
+"text": "I'll leave you to it. But when this goes wrong—and it will—I'll be back with news. I always am.",
+"emotion": "ominous"
+}, {
+"speaker": "Hermes",
+"text": "[Hermes vanishes in golden light]",
+"emotion": "departure"
+}]
+choices = []
+flags_required = []
+flags_to_set = ["quest_2_active"]
+next_dialogue_id = ""

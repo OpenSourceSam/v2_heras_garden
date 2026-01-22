@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://sailing_first_001"]
+
+[ext_resource type="PackedScene" path="res://game/features/cutscenes/cutscene_base.tscn" id="1_base"]
+[ext_resource type="Script" path="res://game/features/cutscenes/sailing_first.gd" id="2_script"]
+
+[node name="SailingFirst" instance=ExtResource("1_base")]
+layout_mode = 3
+script = ExtResource("2_script")

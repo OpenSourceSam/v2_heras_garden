@@ -6,15 +6,31 @@
 script = ExtResource("1_dialogue_data")
 id = "quest6_inprogress"
 lines = [{
+"speaker": "Circe",
+"text": "Saffron? I don't have that.",
+"emotion": "concerned"
+}, {
 "speaker": "Aeetes",
-"text": "The Reversal Elixir needs double moly and nightshade.",
+"text": "Saffron looks like any other flower. But its stamens are red, not yellow.",
+"emotion": "teaching"
+}, {
+"speaker": "Aeetes",
+"text": "You must examine closely. Three saffron flowers grow here.",
 "emotion": "serious"
 }, {
 "speaker": "Aeetes",
-"text": "Harvest lotus petals to bind the mixture.",
-"emotion": "thoughtful"
+"text": "Find them. Look at the stamens, not the petals.",
+"emotion": "warning"
+}, {
+"speaker": "System",
+"text": "[HERB IDENTIFICATION: SAFFRON VARIANT]",
+"emotion": "system"
+}, {
+"speaker": "System",
+"text": "Find 3 red-stamen flowers (not yellow).",
+"emotion": "system"
 }]
 choices = []
 flags_required = []
-flags_to_set = []
+flags_to_set = ["herb_id_saffron_active"]
 next_dialogue_id = ""

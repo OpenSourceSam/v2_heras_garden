@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=4]
+
+[ext_resource type="Script" path="res://game/features/locations/return_trigger.gd" id="1_return_trigger"]
+[ext_resource type="PackedScene" path="res://game/features/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://game/features/ui/dialogue_box.tscn" id="3_dialogue_box"]
+[ext_resource type="PackedScene" path="res://game/features/npcs/npc_spawner.tscn" id="4_npc_spawner"]
+[ext_resource type="PackedScene" path="res://game/features/world/boat.tscn" id="5_boat"]
+
+[sub_resource type="RectangleShape2D" id="1_exit_shape"]
+size = Vector2(96, 32)
+
+[node name="AiaiaShore" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_left = -540.0
+offset_top = -620.0
+offset_right = 540.0
+offset_bottom = 620.0
+color = Color(0.3, 0.4, 0.5, 1)
+
+[node name="Ocean" type="ColorRect" parent="."]
+offset_left = -540.0
+offset_top = 0.0
+offset_right = -200.0
+offset_bottom = 620.0
+color = Color(0.1, 0.3, 0.6, 1)
+
+[node name="Sand" type="ColorRect" parent="."]
+offset_left = -540.0
+offset_top = 200.0
+offset_right = 540.0
+offset_bottom = 620.0
+color = Color(0.76, 0.7, 0.5, 1)
+
+[node name="PlayerSpawn" type="Marker2D" parent="."]
+position = Vector2(0, 300)
+
+[node name="CirceSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(-100, 350)
+
+[node name="ReturnTrigger" type="Area2D" parent="."]
+position = Vector2(0, 550)
+script = ExtResource("1_return_trigger")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnTrigger"]
+shape = SubResource("1_exit_shape")
+
+[node name="ReturnBoat" parent="." instance=ExtResource("5_boat")]
+position = Vector2(-150, 350)
+is_return_boat = true
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(0, 300)
+
+[node name="NPCSpawner" parent="." instance=ExtResource("4_npc_spawner")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DialogueBox" parent="UI" instance=ExtResource("3_dialogue_box")]
+visible = false

@@ -133,6 +133,8 @@ func _resolve_dialogue_id() -> String:
 			return _resolve_daedalus_dialogue()
 		"scylla":
 			return _resolve_scylla_dialogue()
+		"circe":
+			return _resolve_circe_dialogue()
 		_:
 			return dialogue_id
 
@@ -237,4 +239,19 @@ func _resolve_scylla_dialogue() -> String:
 		return "act3_final_confrontation"
 	if _dialogue_exists("scylla_idle"):
 		return "scylla_idle"
+	return dialogue_id
+
+func _resolve_circe_dialogue() -> String:
+	if not GameState.get_flag("met_circe"):
+		return "circe_intro"
+	if GameState.get_flag("quest_3_active") and not GameState.get_flag("quest_3_complete"):
+		return "quest3_confrontation"
+	if GameState.get_flag("quest_11_complete") and not GameState.get_flag("epilogue_seen"):
+		return "epilogue_circe"
+	if GameState.get_flag("epilogue_seen") and not GameState.get_flag("epilogue_cutscene_seen"):
+		# Trigger epilogue cutscene
+		CutsceneManager.play_cutscene("res://game/features/cutscenes/epilogue.tscn")
+		return ""
+	if _dialogue_exists("circe_idle"):
+		return "circe_idle"
 	return dialogue_id

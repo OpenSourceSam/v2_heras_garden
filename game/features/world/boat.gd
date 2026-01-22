@@ -15,6 +15,17 @@ func interact() -> void:
 		# Departure boat - determine destination based on quest state
 		var destination: String = ""
 
+		# Check for sailing cutscenes first
+		if GameState.get_flag("quest_2_complete") and not GameState.get_flag("sailing_to_scylla_first"):
+			# Play first sailing cutscene
+			CutsceneManager.play_cutscene("res://game/features/cutscenes/sailing_first.tscn")
+			return
+
+		if GameState.get_flag("quest_10_complete") and not GameState.get_flag("sailing_to_scylla_final"):
+			# Play final sailing cutscene
+			CutsceneManager.play_cutscene("res://game/features/cutscenes/sailing_final.tscn")
+			return
+
 		# Scylla Cove destinations
 		if GameState.get_flag("quest_3_active") and not GameState.get_flag("quest_3_complete"):
 			destination = "scylla_cove"  # Confront Scylla
@@ -26,6 +37,10 @@ func interact() -> void:
 		# Sacred Grove destinations
 		elif GameState.get_flag("quest_8_active") or GameState.get_flag("quest_9_active"):
 			destination = "sacred_grove"  # Sacred Earth / Moon Tears
+
+		# Titan Battlefield destination (Quest 10 - Divine Blood)
+		elif GameState.get_flag("quest_10_active") and not GameState.get_flag("divine_blood_collected"):
+			destination = "titan_battlefield"  # Collect divine blood
 
 		# Return to world (after quest_3_complete, before quest_8)
 		elif GameState.get_flag("quest_3_complete") and not GameState.get_flag("quest_8_active"):

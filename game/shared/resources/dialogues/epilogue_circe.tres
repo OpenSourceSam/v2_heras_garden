@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "epilogue_circe"
+lines = [{
+"speaker": "Circe",
+"text": "It's done, then. Scylla is... at peace.",
+"emotion": "relieved"
+}, {
+"speaker": "Circe",
+"text": "Hermes says my exile is partially lifted. That I can choose my path now.",
+"emotion": "contemplative"
+}, {
+"speaker": "Circe",
+"text": "I could stay here, continue my work with pharmaka. Help others.",
+"emotion": "hopeful"
+}, {
+"speaker": "Circe",
+"text": "Or I could leave Aiaia. See what the world has become.",
+"emotion": "wistful"
+}, {
+"speaker": "Circe",
+"text": "What do you think I should do?",
+"emotion": "asking"
+}]
+choices = []
+flags_required = ["quest_11_complete"]
+flags_to_set = ["epilogue_seen"]
+next_dialogue_id = ""

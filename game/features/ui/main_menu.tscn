@@ -1,19 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://main_menu_001"]
+[gd_scene load_steps=5 format=3 uid="uid://dgncbwgj7vjnb"]
 
-[ext_resource type="Script" path="res://game/features/ui/main_menu.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://c0rn1n66b1e34" path="res://game/features/ui/main_menu.gd" id="1_script"]
 [ext_resource type="PackedScene" path="res://game/features/ui/settings_menu.tscn" id="2_scene"]
-[ext_resource type="Theme" path="res://game/shared/ui_theme.tres" id="3_theme"]
-[ext_resource type="Texture2D" path="res://assets/StartScreenNewImage.jpg" id="4_menu_art"]
+[ext_resource type="Theme" uid="uid://bunkvelisdtfv" path="res://game/shared/ui_theme.tres" id="3_theme"]
+[ext_resource type="Texture2D" uid="uid://d0ulfojx6dds6" path="res://assets/StartScreenNewImage.jpg" id="4_menu_art"]
 
 [node name="MainMenu" type="Control"]
-script = ExtResource("1_script")
-theme = ExtResource("3_theme")
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_theme")
+script = ExtResource("1_script")
 
 [node name="MenuArt" type="TextureRect" parent="."]
 layout_mode = 1
@@ -27,7 +27,8 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="NewGameButton" type="Button" parent="."]
-anchors_preset = 8
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -36,11 +37,10 @@ offset_left = -210.0
 offset_top = -10.0
 offset_right = 210.0
 offset_bottom = 54.0
-text = ""
-modulate = Color(1, 1, 1, 0)
 
 [node name="ContinueButton" type="Button" parent="."]
-anchors_preset = 8
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -49,12 +49,11 @@ offset_left = -210.0
 offset_top = 60.0
 offset_right = 210.0
 offset_bottom = 124.0
-text = ""
-modulate = Color(1, 1, 1, 0)
 disabled = true
 
 [node name="SettingsButton" type="Button" parent="."]
-anchors_preset = 8
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -63,13 +62,11 @@ offset_left = -210.0
 offset_top = 142.0
 offset_right = 210.0
 offset_bottom = 206.0
-text = ""
-modulate = Color(1, 1, 1, 0)
 
 [node name="WeavingButton" type="Button" parent="."]
 visible = false
-focus_mode = 0
-anchors_preset = 8
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -78,11 +75,11 @@ offset_left = -210.0
 offset_top = 224.0
 offset_right = 210.0
 offset_bottom = 288.0
-text = ""
-modulate = Color(1, 1, 1, 0)
+focus_mode = 0
 
 [node name="QuitButton" type="Button" parent="."]
-anchors_preset = 8
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -91,9 +88,6 @@ offset_left = -210.0
 offset_top = 224.0
 offset_right = 210.0
 offset_bottom = 288.0
-text = ""
-modulate = Color(1, 1, 1, 0)
 
 [node name="SettingsMenu" parent="." instance=ExtResource("2_scene")]
-
-
+anchors_preset = 0
