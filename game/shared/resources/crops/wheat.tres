@@ -1,16 +1,13 @@
-[gd_resource type="Resource" script_class="CropData" load_steps=6 format=3]
+[gd_resource type="Resource" script_class="CropData" load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://src/resources/crop_data.gd" id="1_crop_data"]
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/wheat_stage_1.png" id="2_stage1"]
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/wheat_stage_2.png" id="3_stage2"]
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/wheat_stage_3.png" id="4_stage3"]
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/wheat_stage_4.png" id="5_stage4"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/wheat_crop.png" id="2_texture"]
 
 [resource]
 script = ExtResource("1_crop_data")
 id = "wheat"
 display_name = "Wheat"
-growth_stages = Array[Texture2D]([ExtResource("2_stage1"), ExtResource("3_stage2"), ExtResource("4_stage3"), ExtResource("5_stage4")])
+growth_stages = Array[Texture2D]([ExtResource("2_texture"), ExtResource("2_texture"), ExtResource("2_texture"), ExtResource("2_texture")])
 days_to_mature = 2
 harvest_item_id = "wheat"
 seed_item_id = "wheat_seed"

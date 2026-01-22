@@ -1,19 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6xrp1bsyjbnj"]
+[gd_scene load_steps=3 format=3 uid="uid://sacred_earth_001"]
 
-[ext_resource type="Script" uid="uid://3827glbc81yx" path="res://game/features/minigames/sacred_earth.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://d0og4jta73r2x" path="res://assets/sprites/placeholders/sacred_earth_digging_area.png" id="2_dig_area"]
+[ext_resource type="Script" path="res://game/features/minigames/sacred_earth.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/sacred_earth_digging_area.png" id="2_dig_area"]
 
 [node name="SacredEarth" type="Control"]
-layout_mode = 3
+script = ExtResource("1_script")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_script")
 
 [node name="Background" type="TextureRect" parent="."]
-layout_mode = 0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -24,37 +23,35 @@ position = Vector2(540, 620)
 texture = ExtResource("2_dig_area")
 
 [node name="ProgressBar" type="TextureProgressBar" parent="."]
-layout_mode = 0
 anchor_left = 0.2
 anchor_top = 0.75
 anchor_right = 0.8
 anchor_bottom = 0.8
+value = 0.0
 
 [node name="ProgressGlow" type="ColorRect" parent="ProgressBar"]
-visible = false
-layout_mode = 0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+visible = false
 color = Color(1, 0.9, 0.4, 0.4)
 
 [node name="TimerLabel" type="Label" parent="."]
-layout_mode = 0
 anchor_left = 0.45
 anchor_top = 0.68
 anchor_right = 0.55
 anchor_bottom = 0.72
-text = "10.0"
 horizontal_alignment = 1
+text = "10.0"
 
 [node name="MashHint" type="Label" parent="."]
-layout_mode = 0
 anchor_left = 0.2
 anchor_top = 0.82
 anchor_right = 0.8
 anchor_bottom = 0.87
-text = "Mash A to dig!"
 horizontal_alignment = 1
+text = "Mash A to dig!"
 
 [node name="DirtParticles" type="GPUParticles2D" parent="."]
