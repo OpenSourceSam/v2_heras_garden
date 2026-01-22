@@ -125,14 +125,16 @@ func _activate_choice_from_input() -> bool:
 	if focus_owner is Button and focus_owner.get_parent() == choices_container:
 		# Vital debug: Log which button is being activated
 		print("[DEBUG] DialogueBox: Activating focused choice '%s'" % focus_owner.text)
-		focus_owner.pressed = true  # Use pressed property instead of emit_signal
+		# Emit the pressed signal to trigger the button's action
+		focus_owner.emit_signal("pressed")
 		return true
 	if choices_container.get_child_count() > 0:
 		var first_button = choices_container.get_child(0)
 		if first_button is Button:
 			# Vital debug: Log fallback to first button
 			print("[DEBUG] DialogueBox: No focused button, activating first choice '%s'" % first_button.text)
-			first_button.pressed = true  # Use pressed property instead of emit_signal
+			# Emit the pressed signal to trigger the button's action
+			first_button.emit_signal("pressed")
 			return true
 	print("[DEBUG] DialogueBox: Failed to activate choice - no buttons found")
 	return false
