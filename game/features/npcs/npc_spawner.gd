@@ -18,10 +18,12 @@ func _on_flag_changed(_flag: String, _value: bool) -> void:
 	_update_npcs()
 
 func _update_npcs() -> void:
-	# Hermes: appears after prologue, before quest 3 complete
+	# Hermes: appears after prologue, returns briefly after quest 3 complete for quest 4
 	_set_npc_visible("hermes",
-		GameState.get_flag("prologue_complete") and
-		not GameState.get_flag("quest_3_complete"))
+		(GameState.get_flag("prologue_complete") and
+		 not GameState.get_flag("quest_3_complete")) or
+		(GameState.get_flag("quest_3_complete") and
+		 not GameState.get_flag("quest_4_active")))
 
 	# Aeetes: appears after quest 3 and during quests 4-6
 	_set_npc_visible("aeetes",

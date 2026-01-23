@@ -6,62 +6,58 @@ These are the critical rules extracted from CLAUDE.md. All agents must understan
 
 ---
 
-## 🚨 CRITICAL: NO SUB-AGENTS
+##  Sub-Agent Guidance
 
-**NEVER use the Task tool to spawn sub-agents.** This is an absolute rule with no exceptions.
+Sub-agents are allowed, but use **MiniMax MCP sub-agents only**. Avoid spawning Codex or Claude (Opus/Sonnet) sub-agents.
 
-Sub-agents burned 70k+ tokens in under a minute. This is unacceptable.
+Skills remain the preferred way to access specialized knowledge without spawning agents.
 
-**Exception: USE the Skill tool to invoke project skills. Skills are NOT sub-agents.**
+### Preferred Tooling
 
-Skills provide specialized knowledge without spawning agents.
-
-### Use Direct Tools Only
-
-- Glob, Grep, Read, Edit, Write, Bash
-- No Task tool for research, exploration, or delegation
-- Even if skills instruct agent spawning, DO NOT DO IT
+- Use direct tools (Glob, Grep, Read, Edit, Write, Bash) for most research and edits.
+- Use MiniMax MCP wrappers when a sub-agent is needed.
+- Avoid non-MiniMax sub-agents unless Sam explicitly requests otherwise.
 
 ---
 
-## 🛠️ Use Skills First - Before Manual Implementation
+## ️ Use Skills First - Before Manual Implementation
 
 **CHECK AVAILABLE SKILLS BEFORE WRITING CODE**
 
-Available project skills (see also: [`../core-directives/skill-inventory.md`](../core-directives/skill-inventory.md)):
+Available project skills (see also: [../core-directives/skill-inventory.md](../core-directives/skill-inventory.md)):
 
-- `godot-dev` - Godot Engine expertise (scenes, nodes, GDScript)
-- `godot-gdscript-patterns` - GDScript best practices and patterns
-- `pixel-art-professional` - Advanced pixel art techniques (dithering, palette optimization, shading)
-- `systematic-debugging` - Debug workflow for errors/bugs
-- `test-driven-development` - TDD workflow before implementation
-- `git-best-practices` - Commit message generation
-- `skill-gap-finder` - Identify when to create new skills
-- `verification-before-completion` - Verify work before claiming complete
+- godot-dev - Godot Engine expertise (scenes, nodes, GDScript)
+- godot-gdscript-patterns - GDScript best practices and patterns
+- pixel-art-professional - Advanced pixel art techniques (dithering, palette optimization, shading)
+- systematic-debugging - Debug workflow for errors/bugs
+- test-driven-development - TDD workflow before implementation
+- git-best-practices - Commit message generation
+- skill-gap-finder - Identify when to create new skills
+- verification-before-completion - Verify work before claiming complete
 - Other skills listed in skill inventory
 
 **When to invoke skills:**
 
-1. Working with Godot → Use `godot-dev` or `godot-gdscript-patterns`
-2. Working with pixel art → Use `pixel-art-professional` (dithering, palettes, shading)
-3. Encountering bugs → Use `systematic-debugging`
-4. Writing new features → Use `test-driven-development`
-5. Creating commits → Use `git-best-practices`
+1. Working with Godot → Use godot-dev or godot-gdscript-patterns
+2. Working with pixel art → Use pixel-art-professional (dithering, palettes, shading)
+3. Encountering bugs → Use systematic-debugging
+4. Writing new features → Use test-driven-development
+5. Creating commits → Use git-best-practices
 6. User explicitly asks you to "use your [X] skill"
 
 **How to invoke:**
 
-```gdscript
+gdscript
 Skill(skill: "godot-dev")
 Skill(skill: "pixel-art-professional")
 Skill(skill: "systematic-debugging")
-```
+
 
 **IMPORTANT:** Don't manually implement what skills already know.
 
 ---
 
-## ⚡ Token Efficiency
+##  Token Efficiency
 
 - **Opus**: Strategic planning and architecture decisions only
 - **Sonnet**: All execution and editing work
@@ -72,7 +68,7 @@ Skill(skill: "systematic-debugging")
 
 **Note:** Refer to the skills inventory for guidance on when to invoke specific skills before beginning work.
 
-## 📋 Multi-Step Project Planning Protocol
+##  Multi-Step Project Planning Protocol
 
 **When starting a new multi-step block of work, always follow this protocol:**
 
@@ -80,11 +76,11 @@ Skill(skill: "systematic-debugging")
 - Explore codebase to understand current state
 - Read relevant documentation
 - Identify key files and patterns
-- Use Glob, Grep, and Read tools directly (no sub-agents)
+- Use Glob, Grep, and Read tools directly when possible; use MiniMax MCP sub-agents only when needed.
 
-### Phase 2: Q&A Phase (MANDATORY for new blocks)
+### Phase 2: Q&A Phase (Recommended for new blocks)
 - Ask clarifying questions about scope, priorities, and assumptions
-- Use AskUserQuestion tool to get user input
+- Use AskUserQuestion when it helps gather missing requirements
 - Cover: implementation scope, file modifications, testing requirements, phase priorities
 
 ### Phase 3: Planning Phase
@@ -100,31 +96,31 @@ Skill(skill: "systematic-debugging")
 
 **When to apply this protocol:**
 
-- ✅ New feature implementation
-- ✅ Multi-file refactoring
-- ✅ New quest/content development
-- ✅ Significant testing methodology changes
-- ✅ Project restructuring
+-  New feature implementation
+-  Multi-file refactoring
+-  New quest/content development
+-  Significant testing methodology changes
+-  Project restructuring
 
 **When NOT to apply:**
 
-- ❌ Single file edits
-- ❌ Small bug fixes
-- ❌ Simple documentation updates
-- ❌ Continuing existing task
+-  Single file edits
+-  Small bug fixes
+-  Simple documentation updates
+-  Continuing existing task
 
 ---
 
-## 📝 Planning and Documentation Guidelines
+##  Planning and Documentation Guidelines
 
 **CRITICAL: Avoid Documentation Clutter**
 
-**DO NOT create one-off planning documents in `docs/plans/` unless the plan is a canonical reference needed by future agents.**
+**DO NOT create one-off planning documents in docs/plans/ unless the plan is a canonical reference needed by future agents.**
 
 ### When Planning:
 
 1. **First Try TodoWrite**
-   - Use `TodoWrite(todos=[...])` for most multi-step tasks
+   - Use TodoWrite(todos=[...]) for most multi-step tasks
    - This is the preferred tracking method
    - Keep todo list as your plan
 
@@ -134,33 +130,33 @@ Skill(skill: "systematic-debugging")
    - You've tried TodoWrite and it's insufficient for the complexity
 
 3. **Plan Document Storage:**
-   - **Canonical docs** → `docs/plans/` (kept long-term, added to docs index)
-   - **One-off implementation plans** → `temp/plans/` (deleted after completion)
-   - **Never** create throwaway plans in `docs/plans/`
+   - **Canonical docs** → docs/plans/ (kept long-term, added to docs index)
+   - **One-off implementation plans** → temp/plans/ (deleted after completion)
+   - **Never** create throwaway plans in docs/plans/
 
 ### Examples:
 
-❌ **DON'T DO THIS:**
-```
+ **DON'T DO THIS:**
+
 Created: docs/plans/my-implementation-plan-2026-01-03.md
 Purpose: Just for this task
 Result: Clutters repo with single-use documents
-```
 
-✅ **DO THIS:**
-```
+
+ **DO THIS:**
+
 Option 1: Use TodoWrite
 Option 2: If absolutely necessary, create in temp/plans/ and delete after completion
-```
+
 
 ### Post-Task Cleanup:
 - Review any plan documents created
-- Move canonical docs to `docs/plans/` and add to index
-- Delete one-off plans from `temp/plans/`
+- Move canonical docs to docs/plans/ and add to index
+- Delete one-off plans from temp/plans/
 - Never leave throwaway plans in the repo
 
 ### Why This Matters:
-- Keeps `docs/` clean with only canonical references
+- Keeps docs/ clean with only canonical references
 - Makes it easy for future agents to find important docs
 - Reduces repository clutter and confusion
 - TodoWrite is often sufficient for task tracking
@@ -172,7 +168,7 @@ Option 2: If absolutely necessary, create in temp/plans/ and delete after comple
 
 ---
 
-## 🧪 Testing Methodology Requirements
+##  Testing Methodology Requirements
 
 **CRITICAL:** This section establishes cardinal rules for how agents approach testing. These rules are essential for validating human playability of the game.
 
@@ -189,7 +185,7 @@ Option 2: If absolutely necessary, create in temp/plans/ and delete after comple
 - **Note:** Scripted Playthrough Testing (SPT) is automation, not a playtest. Use it when Sam explicitly asks; otherwise avoid it.
 
 **For Logic Validation - Engineering Roles Only:**
-- **Appropriate:** Headless Logic Check via CLI (`Godot*.exe --headless --script tests/*.gd`)
+- **Appropriate:** Headless Logic Check via CLI (Godot*.exe --headless --script tests/*.gd)
 - **Goal:** Verify mechanics work (quest flags, inventory, save/load, crafting logic, day advancement)
 - **When to use:** Fast regression testing, CI/CD validation
 
@@ -201,8 +197,8 @@ Option 2: If absolutely necessary, create in temp/plans/ and delete after comple
 - **HPV (headed) testing** lets agents see what renders and inspect game state at any moment
 
 **When testing human playability:**
-- ❌ **Don't:** Run HLC → parse logs → guess at UI issues
-- ✅ **Do:** Run HPV with programmatic debugging → inspect visual state → document findings
+-  **Don't:** Run HLC → parse logs → guess at UI issues
+-  **Do:** Run HPV with programmatic debugging → inspect visual state → document findings
 
 ### Programmatic Debugging for Autonomous Testing
 
@@ -216,34 +212,34 @@ Agents can validate UX with headed playthrough plus runtime inspection:
 
 When writing tests for this Godot project:
 
-1. **Use `extends SceneTree` for HLC scripts**
-   - Access autoloads via `root.get_node_or_null("AutoloadName")`
-   - Use `call_deferred("_run_all_tests")` in `_init()`
-   - Exit with `quit(0)` for pass, `quit(1)` for fail
+1. **Use extends SceneTree for HLC scripts**
+   - Access autoloads via root.get_node_or_null("AutoloadName")
+   - Use call_deferred("_run_all_tests") in _init()
+   - Exit with quit(0) for pass, quit(1) for fail
 
 2. **Test game state transitions properly**
-   - Reset state between tests: `GameState.new_game()`
+   - Reset state between tests: GameState.new_game()
    - Progress flags sequentially (e.g., complete quest 4 before testing quest 5)
    - Don't create inconsistent states (e.g., quest_6_complete without quest_4_complete)
 
 3. **Understand default game state**
-   - `new_game()` sets `prologue_complete=true` by default
-   - `new_game()` adds starter items (e.g., 3 wheat_seeds)
+   - new_game() sets prologue_complete=true by default
+   - new_game() adds starter items (e.g., 3 wheat_seeds)
    - Account for these in test expectations
 
 4. **Test structure**
-   - Group related tests in functions (e.g., `test_hermes_quest_flow()`)
+   - Group related tests in functions (e.g., test_hermes_quest_flow())
    - Use descriptive test names that explain what's being verified
-   - Provide failure details: `record_test("Test name", condition, "Expected X, got Y")`
+   - Provide failure details: record_test("Test name", condition, "Expected X, got Y")
 
 5. **Use skills for testing guidance**
-   - `test-driven-development` - Before writing new features
-   - `verification-before-completion` - Before claiming tests pass
-   - `godot-dev` - For Godot-specific testing patterns
+   - test-driven-development - Before writing new features
+   - verification-before-completion - Before claiming tests pass
+   - godot-dev - For Godot-specific testing patterns
 
 ---
 
-## ✅ Phase 4 Autonomous Execution Authorization
+##  Phase 4 Autonomous Execution Authorization
 
 **GRANTED: Run Phase 4 (Balance and QA) completely autonomously.**
 
@@ -251,8 +247,8 @@ The user authorizes full execution of Phase 4 without additional input:
 
 ### Approved Actions:
 - Execute all Phase 4 tasks from docs/execution/DEVELOPMENT_ROADMAP.md
-- Run any HLC tests (`Godot*.exe --headless --script tests/*.gd`)
-- Create new test files following existing patterns in `tests/` folder
+- Run any HLC tests (Godot*.exe --headless --script tests/*.gd)
+- Create new test files following existing patterns in tests/ folder
 - Run GdUnit4 suite and document results
 - Update DEVELOPMENT_ROADMAP.md with Phase 4 findings and checkpoint
 - Create verification scripts for difficulty tuning, D-pad controls, save/load
@@ -278,17 +274,17 @@ The user authorizes full execution of Phase 4 without additional input:
 
 ---
 
-## 📚 Additional Resources
+##  Additional Resources
 
 **For comprehensive testing guidance, refer to:**
-- **Human playability testing:** `tests/visual/playthrough_guide.md` - Testing methodology reference
-- **Godot Tools reference:** `docs/testing/GODOT_TOOLS_GUIDE.md` - Cardinal Rules: HPV for UX validation section
+- **Human playability testing:** tests/visual/playthrough_guide.md - Testing methodology reference
+- **Godot Tools reference:** docs/testing/GODOT_TOOLS_GUIDE.md - Cardinal Rules: HPV for UX validation section
 
-**For complete project directives, see:** `CLAUDE.md`
+**For complete project directives, see:** CLAUDE.md
 
-**For role-based permissions, see:** [`role-permissions.md`](./role-permissions.md)
+**For role-based permissions, see:** [role-permissions.md](./role-permissions.md)
 
-**For skills inventory, see:** [`skill-inventory.md`](./skill-inventory.md)
+**For skills inventory, see:** [skill-inventory.md](./skill-inventory.md)
 
 ---
 

@@ -28,10 +28,11 @@ func _play_sequence() -> void:
 	await show_text("The chains shatter. Sacred earth scatters like dust.", 3.0)
 	await show_text("The Binding Ward has failed.", 2.5)
 	await show_text("Scylla looks up. Six heads. Twelve eyes. Full of pain.", 3.5)
-	await show_text("Scylla: \"Why won't you let me REST?\"", 3.0)
+	await show_text("Scylla: \"JUST LET ME DIE, CIRCE!\"", 3.0)
 	await show_text("Circe: \"Because... because I have to try to help...\"", 3.5)
-	await show_text("Scylla: \"Then you know what true mercy would be.\"", 3.0)
+	await show_text("Scylla: \"IF YOU EVER CARED AT ALL... JUST... LET... ME... DIE!\"", 3.0)
 	await show_text("Silence hangs heavy in the cave.", 2.5)
+	await show_text("Circe: \"Let you die...\" (whisper)", 3.0)
 	await show_text("The only mercy left is the hardest choice of all.", 3.5)
 	fade_out(1.0)
 	await get_tree().create_timer(1.0).timeout

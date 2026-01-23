@@ -154,6 +154,10 @@ func _resolve_hermes_dialogue() -> String:
 		return "act1_extract_sap"
 	if GameState.get_flag("quest_2_complete") and not GameState.get_flag("quest_3_active"):
 		return "quest3_start"
+	# Quest 4: Hermes returns after Scylla confrontation to deliver seeds
+	if GameState.get_flag("quest_3_complete") and not GameState.get_flag("quest_4_active"):
+		if _dialogue_exists("quest4_hermes_seeds") and not GameState.get_flag("has_seeds"):
+			return "quest4_hermes_seeds"
 	return "hermes_idle"
 
 func _resolve_aeetes_dialogue() -> String:

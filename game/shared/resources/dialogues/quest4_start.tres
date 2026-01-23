@@ -9,6 +9,6 @@ lines = [{"speaker": "Aeetes", "text": "Hermes brought seeds and grim news."},
 {"speaker": "Aeetes", "text": "Scylla is killing sailors. We need to learn this craft properly."},
 {"speaker": "Aeetes", "text": "Plant moly, nightshade, and lotus. Keep a steady garden."}]
 choices = []
-flags_required = ["quest_3_complete"]
+flags_required = ["quest_3_complete", "has_seeds"]
 flags_to_set = ["quest_4_active"]
 next_dialogue_id = ""

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest4_hermes_seeds"
+lines = [{"speaker": "Hermes", "text": "Miss me?"}, {"speaker": "Circe", "text": "Hermes! Zeus said no visitors—"}, {"speaker": "Hermes", "text": "Zeus said no visitors without his permission."}, {"speaker": "Hermes", "text": "I have permission. Messenger god perks."}, {"speaker": "Circe", "text": "Have you seen her? Scylla?"}, {"speaker": "Hermes", "text": "I have."}, {"speaker": "Hermes", "text": "She's... not doing well."}, {"speaker": "Circe", "text": "Tell me. I need to know."}, {"speaker": "Hermes", "text": "Three sailors died this week."}, {"speaker": "Hermes", "text": "She attacked a ship passing her strait."}, {"speaker": "Hermes", "text": "Six men at once. She's... efficient."}, {"speaker": "Circe", "text": "No... no, this is my fault."}, {"speaker": "Hermes", "text": "Yes, it is."}, {"speaker": "Hermes", "text": "But wallowing won't help."}, {"speaker": "Hermes", "text": "Here. Seeds. Pharmaka seeds."}, {"speaker": "Circe", "text": "Why would you—"}, {"speaker": "Hermes", "text": "You want to fix this? Learn witchcraft properly."}, {"speaker": "Hermes", "text": "Grow pharmaka. Experiment. Find a solution."}, {"speaker": "Hermes", "text": "You made a monster with it. Maybe you can unmake one too."}, {"speaker": "Circe", "text": "Moly... Nightshade... Lotus..."}, {"speaker": "Hermes", "text": "The basics. Aeetes says they're versatile."}, {"speaker": "Hermes", "text": "Plant them. See what happens."}, {"speaker": "Circe", "text": "Hermes, wait. Thank you."}, {"speaker": "Hermes", "text": "Don't thank me yet. I'm not doing this for you."}, {"speaker": "Hermes", "text": "I'm doing it because sailor deaths are bad for business."}, {"speaker": "Hermes", "text": "Less sailors means less offerings at temples."}, {"speaker": "Hermes", "text": "Enlightened self-interest."}]
+choices = []
+flags_required = ["quest_3_complete"]
+flags_to_set = ["has_seeds"]
+next_dialogue_id = ""
