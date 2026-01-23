@@ -5,11 +5,12 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "act2_farming_tutorial"
-lines = [{"speaker": "Aeetes", "text": "Hermes left you seeds. We need steady crops to keep moving."},
-{"speaker": "Aeetes", "text": "Till the soil, plant the seed, then water."},
-{"speaker": "Aeetes", "text": "Use the sundial to pass the day."},
-{"speaker": "Aeetes", "text": "Harvest when the stalks are full."},
-{"speaker": "Aeetes", "text": "Keep your stores stocked."}]
+lines = [{"speaker": "Aeetes", "text": "Hermes brought you hope. I bring reality."},
+{"speaker": "Aeetes", "text": "Pharmaka doesn't fix mistakes easily, sister. You know this."},
+{"speaker": "Circe", "text": "I have to try. Every day she suffers..."},
+{"speaker": "Aeetes", "text": "Then you'll need ingredients. Hermes left seeds—we need steady crops."},
+{"speaker": "Aeetes", "text": "Till the soil, plant the seed, then water. Use the sundial to pass days."},
+{"speaker": "Aeetes", "text": "Each seed you plant is another chance to do right. But don't expect miracles."}]
 choices = []
 flags_required = []
 flags_to_set = []

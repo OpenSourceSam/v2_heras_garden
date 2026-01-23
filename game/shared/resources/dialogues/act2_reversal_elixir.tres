@@ -6,10 +6,12 @@
 script = ExtResource("1_dialogue_data")
 id = "act2_reversal_elixir"
 lines = [{"speaker": "Circe", "text": "The first two failed. We try reversal."},
-{"speaker": "Circe", "text": "Two nightshade, two moly, and a pinch of lotus."},
-{"speaker": "Circe", "text": "The pattern is tighter now."},
-{"speaker": "Circe", "text": "Do not miss the window."},
-{"speaker": "Circe", "text": "If this works, she may remember her name."}]
+{"speaker": "Aeetes", "text": "I told you when we were children. Pharmaka doesn't undo pharmaka."},
+{"speaker": "Circe", "text": "But maybe... maybe this is different. The pattern is tighter."},
+{"speaker": "Aeetes", "text": "Two nightshade, two moly, pinch of lotus. Same ingredients, different intent."},
+{"speaker": "Circe", "text": "If this works, she may remember her name. She may be herself again."},
+{"speaker": "Aeetes", "text": "And if it fails? What then, Circe? How many attempts before you accept the truth?"},
+{"speaker": "Circe", "text": "There is always another way. Do not miss the window."}]
 choices = []
 flags_required = []
 flags_to_set = []

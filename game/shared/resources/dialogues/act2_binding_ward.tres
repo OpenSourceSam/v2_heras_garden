@@ -5,11 +5,13 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "act2_binding_ward"
-lines = [{"speaker": "Circe", "text": "Calm is not enough. We must bind the rage."},
-{"speaker": "Circe", "text": "Blend nightshade with woven cloth fibers."},
-{"speaker": "Circe", "text": "Trace the ward pattern with care."},
-{"speaker": "Circe", "text": "Do not rush the final press."},
-{"speaker": "Circe", "text": "This ward should hold her for a moment."}]
+lines = [{"speaker": "Circe", "text": "She asked me to let her die. 'Just end it, Circe!' she screamed."},
+{"speaker": "Circe", "text": "I won't accept that. There must be something—containment, if not cure."},
+{"speaker": "Circe", "text": "Calm is not enough. We must bind the rage itself."},
+{"speaker": "Circe", "text": "Blend nightshade with woven cloth fibers. Trace the ward pattern with care."},
+{"speaker": "Circe", "text": "Daedalus said to ask her what she wants. She wants death. I can't give her that."},
+{"speaker": "Circe", "text": "This ward will hold her. Maybe long enough to find another way."},
+{"speaker": "Circe", "text": "Do not rush the final press. This must work. It has to."}]
 choices = []
 flags_required = []
 flags_to_set = []

@@ -175,6 +175,13 @@ func _end_dialogue() -> void:
 	for flag in current_dialogue.flags_to_set:
 		GameState.set_flag(flag, true)
 
+	# Auto-track quest completion dialogues (questX_complete pattern)
+	if current_dialogue.id.begins_with("quest") and current_dialogue.id.ends_with("_complete"):
+		# Extract quest number from dialogue ID (e.g., "quest1_complete" -> "1")
+		var quest_id = current_dialogue.id.trim_prefix("quest").trim_suffix("_complete")
+		if quest_id.is_valid_int():
+			GameState.mark_dialogue_completed(quest_id)
+
 	dialogue_ended.emit(current_dialogue.id)
 	visible = false
 	current_dialogue = null

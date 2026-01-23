@@ -70,24 +70,25 @@ auto_harvestable = true
 [node name="Interactables" type="Node2D" parent="."]
 
 [node name="Sundial" parent="Interactables" instance=ExtResource("2_sundial")]
-position = Vector2(64, 0)
+position = Vector2(64, -32)
 
 [node name="Boat" parent="Interactables" instance=ExtResource("5_boat")]
-position = Vector2(128, 0)
+position = Vector2(128, -32)
 
 [node name="MortarPestle" parent="Interactables" instance=ExtResource("17_mortar")]
+position = Vector2(96, 64)
 
 [node name="RecipeBook" parent="Interactables" instance=ExtResource("18_recipe")]
-position = Vector2(-64, 0)
+position = Vector2(-64, 64)
 
 [node name="Loom" parent="Interactables" instance=ExtResource("19_loom")]
-position = Vector2(192, 0)
+position = Vector2(192, -64)
 
 [node name="HouseDoor" parent="Interactables" instance=ExtResource("20_house_door")]
-position = Vector2(-128, -64)
+position = Vector2(-128, -96)
 
 [node name="AeetesNote" type="StaticBody2D" parent="Interactables"]
-position = Vector2(-128, 0)
+position = Vector2(-128, -32)
 script = ExtResource("21_aeetes_note")
 
 [node name="Sprite" type="Sprite2D" parent="Interactables/AeetesNote"]
@@ -113,19 +114,16 @@ script = ExtResource("4_npc_spawner")
 [node name="SpawnPoints" type="Node2D" parent="NPCs/NPCSpawner"]
 
 [node name="Hermes" type="Marker2D" parent="NPCs/NPCSpawner/SpawnPoints"]
-position = Vector2(160, -32)
+position = Vector2(160, -96)
 
 [node name="Aeetes" type="Marker2D" parent="NPCs/NPCSpawner/SpawnPoints"]
 position = Vector2(224, -32)
 
 [node name="Daedalus" type="Marker2D" parent="NPCs/NPCSpawner/SpawnPoints"]
-position = Vector2(288, -32)
+position = Vector2(288, 32)
 
 [node name="Scylla" type="Marker2D" parent="NPCs/NPCSpawner/SpawnPoints"]
-position = Vector2(352, -32)
-
-[node name="Circe" type="Marker2D" parent="NPCs/NPCSpawner/SpawnPoints"]
-position = Vector2(416, -32)
+position = Vector2(352, 96)
 
 [node name="Landmarks" type="Node2D" parent="."]
 

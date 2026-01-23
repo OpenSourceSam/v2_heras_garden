@@ -159,6 +159,15 @@ func set_flag(flag: String, value: bool = true) -> void:
 func get_flag(flag: String) -> bool:
 	return quest_flags.get(flag, false)
 
+## Mark a quest completion dialogue as seen
+## Automatically sets the appropriate quest_X_complete_dialogue_seen flag
+## Returns true if the flag was newly set (first time seeing this dialogue)
+func mark_dialogue_completed(quest_id: String) -> bool:
+	var flag_name = "quest_%s_complete_dialogue_seen" % quest_id
+	var was_already_seen = get_flag(flag_name)
+	set_flag(flag_name, true)
+	return not was_already_seen
+
 # ============================================
 # DAY/SEASON MANAGEMENT
 # ============================================

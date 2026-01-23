@@ -212,6 +212,8 @@ func _resolve_scylla_dialogue() -> String:
 	if _dialogue_exists("scylla_intro") and not GameState.get_flag("met_scylla"):
 		return "scylla_intro"
 	if GameState.get_flag("quest_8_complete") and not GameState.get_flag("quest_9_active"):
+		if _dialogue_exists("quest8_complete") and not GameState.get_flag("quest_8_complete_dialogue_seen"):
+			return "quest8_complete"
 		return "quest9_start"
 	if GameState.get_flag("quest_9_active") and not GameState.get_flag("quest_9_complete"):
 		if _dialogue_exists("quest9_inprogress"):
@@ -237,6 +239,9 @@ func _resolve_scylla_dialogue() -> String:
 		if _dialogue_exists("quest11_inprogress"):
 			return "quest11_inprogress"
 		return "act3_final_confrontation"
+	if GameState.get_flag("quest_11_complete") and not GameState.get_flag("quest_11_complete_dialogue_seen"):
+		if _dialogue_exists("quest11_complete"):
+			return "quest11_complete"
 	if _dialogue_exists("scylla_idle"):
 		return "scylla_idle"
 	return dialogue_id

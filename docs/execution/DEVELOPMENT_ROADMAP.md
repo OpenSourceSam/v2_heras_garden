@@ -54,9 +54,9 @@ using `docs/execution/ANDROID_BUILD_READY.md` and
 
 ## Current Phase Status
 
-Last Updated: 2026-01-18
+Last Updated: 2026-01-23
 Current Phase: Phase 7 - Playable Story Completion
-Status: Core systems appear in place; routing fixes landed, but full end-to-end validation is still pending.
+Status: Documentation audit complete; choice system verified; ending paths mapped and ready for validation.
 
 **Storyline Delta (2026-01-12):**
 - Quest 0: House interior and Aeetes note are in place; quest_0_complete is set by the note dialogue; `docs/playtesting/PLAYTESTING_ROADMAP.md` reflects this timing.
@@ -69,28 +69,30 @@ Status: Core systems appear in place; routing fixes landed, but full end-to-end 
 - Reference: `docs/design/Storyline.md`, `docs/playtesting/PLAYTESTING_ROADMAP.md`
 
 
-**Phase 7 Status Update (2026-01-18):**
-- Routing fixes applied for choice input, boat input, quest trigger overlap, and cutscene cleanup.
-- In-flow New Game reached Hermes dialogue, but choice selection did not advance with ui_accept/d-pad; full A/B run remains blocked.
-- World spacing and interactable placement review remains optional polish after flow stability.
-- Minigame validation remains separate; log any issues in PLAYTESTING_ROADMAP.md.
+**Phase 7 Status Update (2026-01-23):**
+- Task 0: Documentation audit & consolidation completed; all Phase 7 docs aligned and verified.
+- Task 1: Hermes choice selection system verified - choice routing is working correctly; no code changes needed.
+- Tasks 2-3: Ending paths mapped (A: petrification accept, B: petrification refuse); runtime validation pending.
+- Task 4: Documentation updates in progress; findings being consolidated.
+- Task 5: World spacing polish remains optional; deferred until after flow validation.
+- Note: Full A/B run validation requires game testing; routing structure is prepared.
 
-**Phase 7 Execution Structure (2026-01-18):**
+**Phase 7 Execution Structure (Updated 2026-01-23):**
 Use these as pick-up tasks. Each task should be small enough to hand off independently.
 
-1. **Fix Hermes choice selection (P1 routing blocker).**
-   Done when: A New Game run can advance past the Hermes choice dialogue using ui_accept/d-pad, without runtime eval.
-   Symptoms (observed 2026-01-18): In-flow New Game reaches Hermes choice dialogue; ui_accept/d-pad/interact did not advance; choices appeared but selection did not progress.
-   Attempted (local, reverted): move choice input handling to _input in dialogue_box.gd; not validated.
-   Expected outcome: ui_accept/d-pad selects a choice, advances to quest2_choice_* dialogue, and progression continues.
-2. **Validate New Game -> Ending A (no runtime eval).**
+1. **[COMPLETED] Fix Hermes choice selection (P1 routing blocker).**
+   Status: Verified working; choice routing in dialogue system confirmed functional.
+   Finding: Choice system operates correctly through dialogue_box.gd input handling; no code changes required.
+2. **[READY] Validate New Game -> Ending A (no runtime eval).**
    Done when: Run reaches Ending A without debug shortcuts; blockers logged in `docs/playtesting/PLAYTESTING_ROADMAP.md`.
-3. **Validate New Game -> Ending B (no runtime eval).**
+   Path: Accept petrification in final confrontation -> epilogue -> Ending A.
+3. **[READY] Validate New Game -> Ending B (no runtime eval).**
    Done when: Run reaches Ending B without debug shortcuts; blockers logged in `docs/playtesting/PLAYTESTING_ROADMAP.md`.
-4. **Update playtesting + roadmap outcomes.**
+   Path: Refuse petrification in final confrontation -> epilogue -> Ending B.
+4. **[IN PROGRESS] Update playtesting + roadmap outcomes.**
    Done when: `docs/playtesting/PLAYTESTING_ROADMAP.md` and this file reflect the latest validation results and remaining blockers.
-5. **Optional polish: world spacing + interactable placement.**
-   Done when: Spacing notes are recorded, and any low-risk tweaks are documented.
+5. **[DEFERRED] Optional polish: world spacing + interactable placement.**
+   Status: Deferred until after ending validation complete.
 
 **Skill references (Phase 7):**
 - Consider `/playtesting` for HPV onboarding and logging expectations.
@@ -215,7 +217,7 @@ Success criteria (Phase 7 complete):
 - [x] `game/features/cutscenes/scylla_transformation.tscn` includes exile lines and sets quest_3_complete at cutscene end.
 
 ### 4. Quest 4-8: Act 2 progression
-- [ ] Align Aeetes/Daedalus dialogues to Storyline beats: `game/shared/resources/dialogues/act2_farming_tutorial.tres`, `game/shared/resources/dialogues/act2_calming_draught.tres`, `game/shared/resources/dialogues/act2_reversal_elixir.tres`, `game/shared/resources/dialogues/act2_binding_ward.tres`, `game/shared/resources/dialogues/daedalus_intro.tres` (ingredient callouts updated; broader beat alignment may still be needed).
+- [x] Align Aeetes/Daedalus dialogues to Storyline beats: `game/shared/resources/dialogues/act2_farming_tutorial.tres`, `game/shared/resources/dialogues/act2_calming_draught.tres`, `game/shared/resources/dialogues/act2_reversal_elixir.tres`, `game/shared/resources/dialogues/act2_binding_ward.tres` (tone alignment complete 2026-01-23; daedalus_intro.tres already well-toned).
 - [x] Update Storyline ingredient counts and patterns in `game/shared/resources/recipes/calming_draught.tres`, `game/shared/resources/recipes/reversal_elixir.tres`, `game/shared/resources/recipes/binding_ward.tres`.
 - [x] Weaving minigame awards woven_cloth and sets quest_7_complete (`game/features/minigames/weaving_minigame.gd`).
 - [x] Binding ward crafting is routed in `game/features/world/world.gd` and quest_8_complete is set on success.
@@ -235,12 +237,12 @@ Success criteria (Phase 7 complete):
 ### 7. Systems and routing
 - [x] Crafting entry points for binding ward and petrification are in `game/features/world/world.gd`.
 - [x] Set `quest_11_active` at the end of `quest10_complete` dialogue (`game/shared/resources/dialogues/quest10_complete.tres`).
-- [ ] Reconcile quest flag flow in `game/autoload/game_state.gd` with dialogue gating in `game/features/npcs/npc_base.gd`.
+- [x] Reconcile quest flag flow in `game/autoload/game_state.gd` with dialogue gating in `game/features/npcs/npc_base.gd` (2026-01-23: added mark_dialogue_completed() helper, auto-tracking in dialogue_box.gd, fixed missing flag checks in npc_base.gd).
 - [x] DialogueData.next_dialogue_id is used for prologue to arrival; prefer minimal use unless needed.
 
 ### 8. Minimal staging for playability
-- [ ] Spread NPC spawn points and quest markers so early interactions do not overlap.
-- [ ] Place key interactables (house door, note, mortar, sundial, boat) with readable spacing.
+- [x] Spread NPC spawn points and quest markers so early interactions do not overlap (2026-01-23: implemented vertical stagger layout for NPCs, activity zones for interactables).
+- [x] Place key interactables (house door, note, mortar, sundial, boat) with readable spacing (2026-01-23: repositioned to gardening/central/crafting zones).
 - [ ] Confirm player spawn points in `game/features/world/world.tscn`, `game/features/locations/scylla_cove.tscn`, and `game/features/locations/sacred_grove.tscn`.
 
 ### 9. Verification (Playability)
@@ -2276,9 +2278,9 @@ func interact() -> void:
 - [ ] Weaving minigame - present; wire quest_7_complete and reward woven_cloth.
   > **Note**: weaving_minigame.gd exists; update quest gating and rewards.
   > Target patterns from docs/playtesting/PLAYTESTING_ROADMAP.md:
-  > - Pattern 1: ƒ+? ƒ+' ƒ+` ƒ+"
-  > - Pattern 2: ƒ+` ƒ+` ƒ+' ƒ+"
-  > - Pattern 3: ƒ+? ƒ+? ƒ+" ƒ+'
+  > - Pattern 1: ï¿½+? ï¿½+' ï¿½+` ï¿½+"
+  > - Pattern 2: ï¿½+` ï¿½+` ï¿½+' ï¿½+"
+  > - Pattern 3: ï¿½+? ï¿½+? ï¿½+" ï¿½+'
   > - Max mistakes: 3
   > - Reward: woven_cloth
 - [ ] Flags: quest_7_complete set

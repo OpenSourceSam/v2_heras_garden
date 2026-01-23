@@ -5,11 +5,12 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "act2_calming_draught"
-lines = [{"speaker": "Circe", "text": "Her pain is endless. We begin with calm."},
-{"speaker": "Circe", "text": "Grind two moly sprigs with lotus petals."},
-{"speaker": "Circe", "text": "Follow the pattern on the mortar."},
-{"speaker": "Circe", "text": "Keep the timing steady."},
-{"speaker": "Circe", "text": "A calming draught might ease her pain."}]
+lines = [{"speaker": "Circe", "text": "Her pain is endless. Every night I hear her crying out in the cove."},
+{"speaker": "Circe", "text": "We begin with calm. Maybe she'll finally listen to reason."},
+{"speaker": "Circe", "text": "Grind two moly sprigs with lotus petals. Releasing the essence... for peace."},
+{"speaker": "Circe", "text": "Follow the pattern on the mortar. Keep the timing steady."},
+{"speaker": "Circe", "text": "Please, Scylla. Let this be the first step toward healing."},
+{"speaker": "Circe", "text": "A calming draught might ease her pain. It has to."}]
 choices = []
 flags_required = []
 flags_to_set = []
