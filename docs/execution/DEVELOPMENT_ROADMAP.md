@@ -40,6 +40,7 @@ Local Git Hook Note (2026-01-12):
 - Added a lightweight offload workflow for MiniMax summaries; Codex remains the supervisor for edits.
 - Offload notes are logged only when they affect decisions (see workflow guidance).
 - For multi-step tasks, default to sub-agent fanout: synthesis + plan (and optional edge-case pass) before edits.
+ - Local beta pipeline pegs documented in `docs/execution/LOCAL_BETA_PIPELINES.md`.
 
 **Sub-agent run log (template):**
 ```
@@ -345,6 +346,13 @@ Manual Verification:
 - Increased player outline contrast for better readability in-world.
 - Screenshots: `temp/screenshots/Screenshot 2026-01-25 13-10-33-628.jpg`, `temp/screenshots/Screenshot 2026-01-25 13-14-50-51.jpg`
 - Note: UI text readability flagged (dialogue box size/contrast) for future polish.
+
+**Local Beta Pipeline Pegs (2026-01-25):**
+- Intro -> world skip verified; fade alpha cleared.
+- Quest 1 marker toggle verified via GameState flag; core interactables present.
+- Minigame smoke via `CraftingController.start_craft('moly_grind')` (UI appears).
+- Save/load sanity: `save_game` + `load_game` returned true.
+- Pipeline checklist captured in `docs/execution/LOCAL_BETA_PIPELINES.md`.
 
 **Map Visual Overlay (2026-01-25):**
 - Added a low-opacity concept-art overlay in `game/features/world/world.tscn` (assets/reference/FullMap-Example.png) as a temporary layout guide.

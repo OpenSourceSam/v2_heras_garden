@@ -107,6 +107,18 @@ Before proceeding, summarize:
 
 ---
 
+## Scope Guardrails (Finish Game Requests)
+
+When the user says "finish the game" or "finish the roadmap":
+
+- Default to **full local beta scope**, not a partial pass.
+- Include **explicit success criteria** (intro stability, quest flow to ending, basic HPV, key visuals, tests).
+- Do **not** narrow scope unless the user explicitly approves the reduction.
+- Plan should cover **multiple phases** and be marked as multi-session if needed.
+- If you must break into blocks, note that the **overall goal remains unchanged** and continue into the next block without waiting for re-approval unless a HARD STOP applies.
+
+---
+
 ## 2A Phase: Autonomous Execution
 
 **User has approved.** You are now in **Autonomous Phase** - work through the todo list independently without stopping to ask questions.

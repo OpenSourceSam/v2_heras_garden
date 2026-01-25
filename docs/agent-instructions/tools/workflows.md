@@ -47,6 +47,11 @@ Read(file_path: "game/shared/resources/dialogues/quest3_start.tres")
 3. Document user clarifications received
 4. State assumptions explicitly
 
+**Finish-game requests (default behavior):**
+- Treat “finish the game / finish the roadmap” as a full local-beta scope unless the user narrows it.
+- Include explicit success criteria and multi-phase steps.
+- Avoid scope reduction unless the user explicitly approves it.
+
 **Example Plan:**
 gdscript
 # Use TodoWrite for tracking
@@ -182,6 +187,8 @@ TodoWrite(todos=[
 **Long-running autonomous work (approved):**
 - A temp plan file under `temp/` is acceptable when using a longplan workflow.
 - Prefer `update_plan` for tracking in Codex environments where `TodoWrite` is not available.
+- Request permission for any new .md files during the 1A planning phase.
+- If a new .md is created without prior approval, keep working and report it at the end of the work block.
 
 **Storage Options:**
 

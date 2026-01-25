@@ -301,6 +301,16 @@ P2 (Polish):
 - A temp plan file under `temp/` is acceptable for longplan sessions.
 - `update_plan` is a valid substitute for `TodoWrite` in Codex environments.
 
+**New .md files (permission flow):**
+- Ask for permission during 1A before creating any new .md files.
+- If a new .md is created without prior approval, keep working and report it at
+  the end of the work block for a keep/move/delete decision.
+
+**Finish-game requests (default behavior):**
+- Treat “finish the game / finish the roadmap” as a full local-beta scope unless the user narrows it.
+- Include explicit success criteria and multi-phase steps in the plan.
+- Avoid scope reduction unless the user explicitly approves it.
+
 ### HARD STOPS (Only stop for these)
 - Creating NEW .md files (not edits)
 - Editing .cursor/ directory

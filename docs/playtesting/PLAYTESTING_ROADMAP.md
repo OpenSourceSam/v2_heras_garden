@@ -97,6 +97,21 @@ Detailed walkthrough steps live in the references below to avoid duplication.
 
 ---
 
+## HPV Session Log (2026-01-25) - Pipeline Pegs Smoke
+
+**Scope:** Validate minimal pipelines for intro->world stability, quest marker toggle, minigame start, and save/load.
+
+**Findings:**
+- Intro -> world skip lands in `world.tscn`; fade alpha at 0.
+- Quest1 marker visible when `quest_1_active` set via GameState.
+- Crafting minigame starts via `CraftingController.start_craft('moly_grind')` (UI appears).
+- Save/load returns true and world remains loaded.
+
+**Artifacts:**
+- Screenshot: `temp/screenshots/Screenshot 2026-01-25 13-45-00-385.jpg`
+
+---
+
 ## HPV Session Log (2026-01-25) - Light Smoke (Input + UI)
 
 **Scope:** Lightweight headed smoke to validate input registration, skip flow, and UI gating.

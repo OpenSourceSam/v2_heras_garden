@@ -42,7 +42,9 @@ Headed (HPV): Launch Godot, use MCP for input/inspection
   current branch instead
 - Ask before touching: .godot/, .venv/, archive/, .cursor/, .claude/roles/
 - .uid files: use git hook (git config core.hooksPath .githooks) or stage manually
-- Ask before creating new .md files; editing existing .md files is OK
+- Creating new .md files: request permission during the 1A planning phase (longplan).
+  If a new .md is created without prior approval, continue the work block and
+  report it at the end for decision (delete/move/keep).
 - Prefer brief clarifying questions up front, then a longer autonomous pass
 - Default to working within the current structure; flag major structural changes
 

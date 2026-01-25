@@ -198,6 +198,7 @@ tests/
 ### Project Documentation
 - **Repository Catalog:** `docs/REPOSITORY_STRUCTURE_CATALOG.md` - **Complete analysis**
 - **Roadmap:** `docs/execution/DEVELOPMENT_ROADMAP.md`
+- **Local Beta Pipelines:** `docs/execution/LOCAL_BETA_PIPELINES.md`
 - **Testing Guide:** `docs/playtesting/HPV_GUIDE.md` (canonical HPV guide)
 
 ---
