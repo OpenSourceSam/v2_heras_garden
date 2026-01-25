@@ -83,7 +83,7 @@ TodoWrite(todos=[
 
 ## Supervisor Offload Protocol (Codex -> MiniMax/GLM)
 
-Use Codex as the supervisor for precise edits and tool orchestration, and offload long-read analysis to cheaper workers.
+Use Codex as the supervisor for precise edits and tool orchestration, and offload long-read analysis to cheaper workers (MiniMax by default; GLM can be used for more creative exploration when time allows). Default is a recommendation; agents can override based on task needs.
 
 **Offload when:**
 - You need to digest many files or long logs
@@ -95,7 +95,7 @@ Use Codex as the supervisor for precise edits and tool orchestration, and offloa
 - Diff verification and correctness checks
 
 **Structured output (recommended):**
-Require JSON with short fields to keep Codex context small. Example:
+Use a compact base schema and add optional fields when needed. Keep fields short to limit Codex context. Example base schema:
 
 ```
 {
@@ -112,10 +112,11 @@ Require JSON with short fields to keep Codex context small. Example:
 3. Apply changes in Codex
 4. Record outcomes in roadmap or todo
 
-**Token guardrails (suggested):**
-- If you would read >10 files or >20k tokens, offload first
+**Token guardrails (suggested, adjustable):**
+- If you would read >10 files or >20k tokens, consider offloading first
 - Cap worker output to <1,000 tokens
 - Clip long tool outputs before bringing them back to Codex
+- Adjust thresholds per task and budget (agent judgment; no fixed global cutoff)
 
 ---
 
