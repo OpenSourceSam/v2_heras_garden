@@ -351,7 +351,7 @@ Manual Verification:
 - Errors cleared for NPC TalkIndicator and sprite idle fallback.
 
 **Remaining Items (from verification synthesis):**
-- [ ] Quest 4: Add Hermes direct dialogue (HIGH priority - missing essential beat)
+- [x] Quest 4: Hermes seeds dialogue grants starter seeds (2026-01-25)
 - [x] Quest 8: Fix "Let me die" text (2026-01-25: updated quest8_complete line)
 - [ ] Manual debugger-based playthrough to Ending A and B
 - [ ] Minigame validation (separate from narrative flow testing)

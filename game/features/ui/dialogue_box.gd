@@ -171,9 +171,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			_show_next_line()
 
 func _end_dialogue() -> void:
+	var had_seeds := GameState.get_flag("has_seeds")
 	# Set flags if specified
 	for flag in current_dialogue.flags_to_set:
 		GameState.set_flag(flag, true)
+
+	# Quest 4 Hermes seeds: grant starter seeds once
+	if current_dialogue.id == "quest4_hermes_seeds" and not had_seeds:
+		GameState.add_item("moly_seed", 3)
+		GameState.add_item("nightshade_seed", 3)
+		GameState.add_item("golden_glow_seed", 3)
 
 	# Auto-track quest completion dialogues (questX_complete pattern)
 	if current_dialogue.id.begins_with("quest") and current_dialogue.id.ends_with("_complete"):
