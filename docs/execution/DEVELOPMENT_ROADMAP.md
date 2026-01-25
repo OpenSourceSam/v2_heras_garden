@@ -350,6 +350,25 @@ Manual Verification:
 - Papershot screenshot saved to `temp/screenshots/` via `res://temp/screenshots/`.
 - Errors cleared for NPC TalkIndicator and sprite idle fallback.
 
+**Light MCP Input Check (2026-01-25, follow-up):**
+- `simulate_action_tap` can time out if sent before MCPInputHandler registers; once `_registered == true`, input works.
+- Fallback used: runtime eval to call `MainMenu._on_new_game_pressed()` + `PrologueOpening._request_skip()` when input not ready.
+- Confirmed `_registered` check before input is a stable workaround.
+
+**Light HPV Smoke (2026-01-25, follow-up):**
+- New Game -> prologue skip -> world load succeeds; scene tree only contains world after skip.
+- Seed selector now blocked while dialogue is visible; no UI overlap with active dialogue.
+- Seed planting test: wheat_seed 3 → 2 after plant via `_on_seed_selected`.
+- New game reset test: flags=2, inventory=1, wheat_seed=3 after `GameState.new_game()` runtime call.
+- Screenshots: `temp/screenshots/Screenshot 2026-01-25 02-58-17-952.jpg`.
+
+**Map Visual QA (MiniMax, 2026-01-25):**
+- Score: 3/10 on current prototype map.
+- P0: harsh grass seam, weak path logic, no visible bounds.
+- P1: interaction readability low, flat lighting (shadows still not reading).
+- Quick wins applied: player outline + shadow, landmark shadow boost, note/sign scale up.
+- Screenshot: `temp/screenshots/Screenshot 2026-01-25 02-58-17-952.jpg`.
+
 **Remaining Items (from verification synthesis):**
 - [x] Quest 4: Hermes seeds dialogue grants starter seeds (2026-01-25)
 - [x] Quest 8: Fix "Let me die" text (2026-01-25: updated quest8_complete line)
@@ -1142,6 +1161,7 @@ Log bugs inline in this roadmap. Create a dedicated file only if the list become
 - **Actual:** Follow-up resource is missing (no dialogue to load).
 - **Scene/File:** `game/shared/resources/dialogues/circe_intro.tres`
 - **Status:** FIXED
+- **Resolution:** Verified both `circe_accept_farming.tres` and `circe_explain_pharmaka.tres` exist and load (MCP check, 2026-01-25).
 
 ### Bug #2: New Game does not reset GameState
 - **Severity:** HIGH
@@ -1154,6 +1174,7 @@ Log bugs inline in this roadmap. Create a dedicated file only if the list become
 - **Actual:** GameState remains unchanged (no starter seeds).
 - **Scene/File:** `game/features/ui/main_menu.gd`
 - **Status:** FIXED
+- **Resolution:** `GameState.new_game()` clears flags/inventory and grants starter seeds; runtime check shows flags=2, inventory=1, wheat_seed=3 after reset (MCP, 2026-01-25).
 
 ### Bug #3: Planting seeds does not consume inventory
 - **Severity:** MEDIUM
@@ -1166,6 +1187,7 @@ Log bugs inline in this roadmap. Create a dedicated file only if the list become
 - **Actual:** Seed count remains unchanged.
 - **Scene/File:** `game/features/world/world.gd`
 - **Status:** FIXED
+- **Resolution:** Seed selection now removes one seed; runtime check shows wheat_seed 3 → 2 after planting (MCP, 2026-01-25).
 
 **Severity Guidelines:**
 - **CRITICAL:** Game-breaking, soft-lock, crash, data loss

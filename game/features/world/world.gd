@@ -44,6 +44,9 @@ func _ready() -> void:
 	if dialogue_box and dialogue_box.has_signal("dialogue_ended"):
 		if not dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
 			dialogue_box.dialogue_ended.connect(_on_dialogue_ended)
+	if dialogue_box and dialogue_box.has_signal("dialogue_started"):
+		if not dialogue_box.dialogue_started.is_connected(_on_dialogue_started):
+			dialogue_box.dialogue_started.connect(_on_dialogue_started)
 
 	_update_quest_markers()
 
@@ -106,6 +109,9 @@ func _on_mortar_interacted() -> void:
 		crafting_controller.start_craft(recipe_id)
 
 func _on_seed_requested(plot: Node) -> void:
+	var dialogue_box = get_tree().get_first_node_in_group("dialogue_ui")
+	if dialogue_box != null and dialogue_box.visible:
+		return
 	_active_plot = plot
 	seed_selector.open()
 
@@ -162,6 +168,11 @@ func _on_dialogue_ended(dialogue_id: String) -> void:
 		_start_herb_identification_minigame("saffron")
 	if dialogue_id == "act3_ultimate_crafting":
 		_play_divine_blood_cutscene()
+
+func _on_dialogue_started(_dialogue_id: String) -> void:
+	if seed_selector.visible:
+		seed_selector.close()
+	_active_plot = null
 
 func _start_herb_identification_minigame(variant: String = "normal") -> void:
 	var minigame_scene = load("res://game/features/minigames/herb_identification.tscn")

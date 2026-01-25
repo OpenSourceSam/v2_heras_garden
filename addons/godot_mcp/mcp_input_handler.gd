@@ -196,12 +196,19 @@ func _handle_action_tap(data: Array) -> bool:
 		})
 		return true
 	
-	# Execute tap asynchronously
-	_execute_tap(request_id, action_name, duration_ms)
+	# Execute tap asynchronously; return immediately to avoid host timeouts.
+	call_deferred("_execute_tap", action_name, duration_ms)
+	_send_result(request_id, {
+		"success": true,
+		"action": action_name,
+		"type": "tap",
+		"duration_ms": duration_ms,
+		"queued": true
+	})
 	return true
 
 
-func _execute_tap(request_id: int, action_name: String, duration_ms: int) -> void:
+func _execute_tap(action_name: String, duration_ms: int) -> void:
 	_emit_action_event(action_name, true, 1.0)
 	Input.action_press(action_name)
 	var tree := get_tree()
@@ -209,13 +216,6 @@ func _execute_tap(request_id: int, action_name: String, duration_ms: int) -> voi
 		await tree.create_timer(float(duration_ms) / 1000.0).timeout
 	_emit_action_event(action_name, false, 0.0)
 	Input.action_release(action_name)
-	
-	_send_result(request_id, {
-		"success": true,
-		"action": action_name,
-		"type": "tap",
-		"duration_ms": duration_ms
-	})
 
 
 func _handle_mouse_click(data: Array) -> bool:

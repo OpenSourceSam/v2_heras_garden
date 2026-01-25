@@ -12,6 +12,8 @@ const SPEED: float = 100.0
 # NODE REFERENCES
 # ============================================
 @onready var sprite: AnimatedSprite2D = $Sprite
+@onready var sprite_shadow: AnimatedSprite2D = $SpriteShadow
+@onready var sprite_outline: AnimatedSprite2D = $SpriteOutline
 @onready var interaction_zone: Area2D = $InteractionZone
 @onready var interaction_prompt: Label = $InteractionPrompt
 
@@ -26,6 +28,8 @@ signal interacted_with(target: Node)
 
 func _ready() -> void:
 	assert(sprite != null, "Player Sprite node missing")
+	assert(sprite_shadow != null, "Player SpriteShadow node missing")
+	assert(sprite_outline != null, "Player SpriteOutline node missing")
 	assert(interaction_zone != null, "Player InteractionZone missing")
 	assert(interaction_prompt != null, "Player InteractionPrompt missing")
 	# Align interaction zone with the sprite center to make side interactions consistent.
@@ -55,6 +59,17 @@ func _physics_process(delta: float) -> void:
 		sprite.animation = "right"
 	elif direction.x < 0:
 		sprite.animation = "left"
+
+	if sprite_shadow:
+		if sprite_shadow.animation != sprite.animation:
+			sprite_shadow.animation = sprite.animation
+		sprite_shadow.frame = sprite.frame
+		sprite_shadow.frame_progress = sprite.frame_progress
+	if sprite_outline:
+		if sprite_outline.animation != sprite.animation:
+			sprite_outline.animation = sprite.animation
+		sprite_outline.frame = sprite.frame
+		sprite_outline.frame_progress = sprite.frame_progress
 
 	_update_interaction_prompt()
 
@@ -148,4 +163,3 @@ func _is_interactable(target: Node) -> bool:
 	return parent != null and parent != self and parent.has_method("interact")
 
 # [Codex - 2026-01-16]
-

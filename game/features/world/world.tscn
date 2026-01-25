@@ -105,7 +105,7 @@ position = Vector2(-128, -32)
 script = ExtResource("21_aeetes_note")
 
 [node name="Sprite" type="Sprite2D" parent="Interactables/AeetesNote"]
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("22_note_texture")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/AeetesNote"]
@@ -140,9 +140,21 @@ position = Vector2(640, 32)
 
 [node name="Landmarks" type="Node2D" parent="."]
 
+[node name="TreeAShadow" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-250, -154)
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+texture = ExtResource("14_tree")
+
 [node name="TreeA" type="Sprite2D" parent="Landmarks"]
 position = Vector2(-256, -160)
 texture = ExtResource("14_tree")
+
+[node name="RockAShadow" type="Sprite2D" parent="Landmarks"]
+position = Vector2(230, 166)
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+texture = ExtResource("15_rock")
 
 [node name="RockA" type="Sprite2D" parent="Landmarks"]
 position = Vector2(224, 160)
@@ -150,6 +162,7 @@ texture = ExtResource("15_rock")
 
 [node name="SignA" type="Sprite2D" parent="Landmarks"]
 position = Vector2(0, -220)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("22_note_texture")
 
 [node name="QuestTriggers" type="Node2D" parent="."]

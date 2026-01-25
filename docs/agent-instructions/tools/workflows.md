@@ -192,7 +192,8 @@ Result: Clutters repo with single-use documents
 bash
 # 1. Run HPV for playability validation (MCP/manual)
 # Use MCP to run the project and simulate input, or play manually.
-# If MCP input times out right after launch, wait 1-2 seconds and retry; the MCP input handler registers after the debugger attaches.
+# If MCP input times out right after launch, check `get_node("/root/MCPInputHandler")._registered` via runtime eval.
+# Only send simulate_action_* once `_registered == true`; otherwise retry after a short delay or use runtime eval fallbacks.
 # If HPV shows a completion dialogue does not set a *_dialogue_seen flag, check the dialogue resource setter for underscore mismatches.
 
 # 2. Run HLC for fast logic checks when useful

@@ -68,6 +68,22 @@ Detailed walkthrough steps live in the references below to avoid duplication.
 
 ---
 
+## HPV Session Log (2026-01-25) - Light Smoke (Input + UI)
+
+**Scope:** Lightweight headed smoke to validate input registration, skip flow, and UI gating.
+
+**Findings:**
+- `simulate_action_tap` works after `MCPInputHandler._registered == true` (pre-check required).
+- Fallback used: runtime eval to trigger main menu + prologue skip when input not ready.
+- Seed selector no longer opens while dialogue is visible (prevents UI overlap).
+- Seed consumption confirmed (wheat_seed 3 → 2 after planting via `_on_seed_selected`).
+- New game reset confirmed via runtime eval (flags reset, wheat_seed restored to 3).
+
+**Artifacts:**
+- Screenshot: `temp/screenshots/Screenshot 2026-01-25 02-58-17-952.jpg`
+
+---
+
 ## HPV Session Log (2026-01-23) - Phase 7 Documentation Audit & Testing Preparation
 
 **Scope:** Comprehensive documentation audit and preparation for systematic HPV testing (Phases 0-3).
