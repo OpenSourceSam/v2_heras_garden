@@ -1,7 +1,7 @@
 # CIRCE'S GARDEN - DEVELOPMENT ROADMAP
 
 Version: 3.1
-Last Updated: 2026-01-23
+Last Updated: 2026-01-25
 Status: Phase 7 verification COMPLETE (100% complete)
 Purpose: Accurate, test-based roadmap for the current repo state.
 
@@ -35,6 +35,11 @@ Local Git Hook Note (2026-01-12):
 - To enable it in your clone, run: `git config core.hooksPath .githooks`.
 - If the hook is not enabled, you may see leftover `.uid` files that need manual staging.
 
+## Process Update (2026-01-25)
+
+- Added a lightweight offload workflow for MiniMax summaries; Codex remains the supervisor for edits.
+- Offload notes are logged only when they affect decisions (see workflow guidance).
+
 ## Playability Focus (Option C)
 
 This roadmap currently emphasizes getting the narrative playable end to end.
@@ -54,7 +59,7 @@ using `docs/execution/ANDROID_BUILD_READY.md` and
 
 ## Current Phase Status
 
-Last Updated: 2026-01-23
+Last Updated: 2026-01-25
 Current Phase: Phase 7 - Playable Story Completion
 Status: COMPLETE - 100% finished (commit 8380c4a). All 49/49 essential beats present. P2/P3 implementation complete with passing unit tests.
 
@@ -255,6 +260,7 @@ Success criteria (Phase 7 complete):
 - [x] Spread NPC spawn points and quest markers so early interactions do not overlap (2026-01-23: implemented vertical stagger layout for NPCs, activity zones for interactables).
 - [x] Place key interactables (house door, note, mortar, sundial, boat) with readable spacing (2026-01-23: repositioned to gardening/central/crafting zones).
 - [ ] Confirm player spawn points in `game/features/world/world.tscn`, `game/features/locations/scylla_cove.tscn`, and `game/features/locations/sacred_grove.tscn`.
+  - Note: scylla_cove and sacred_grove include `PlayerSpawn` markers; world scene currently has a Player instance but no explicit PlayerSpawn marker. Headed verification still pending.
 
 ### 9. Verification (Playability)
 **Verification Status (2026-01-23): 85% Complete**
@@ -301,9 +307,11 @@ Manual Verification:
 - Screenshot: `temp/screenshots/hpv_after_skip_clear_v2.png`
 
 **Light HPV Sanity (2026-01-25):**
-- After skip, world is present; MCP input taps timed out, so movement was validated by adjusting player position via runtime eval.
-- Player global_position moved from (0,0) to (32,0) successfully.
+- After skip, world is present; MCP input taps timed out.
+- Player position updated via runtime eval (0,0 -> 32,0) confirming movement updates.
+- MapReference node visible in runtime scene.
 - Screenshot: `temp/screenshots/hpv_world_after_skip.png`
+- Scope note: MCP input handler needs follow-up if this persists.
 
 **Intro Transition Fix (2026-01-25):**
 - Main menu now changes to the prologue via `get_tree().change_scene_to_file(...)`.
@@ -312,7 +320,23 @@ Manual Verification:
 - Screenshot: `temp/screenshots/Screenshot 2026-01-25 00-02-38-917.jpg`
 
 **Map Visual Overlay (2026-01-25):**
-- Added a low-opacity concept-art overlay in `game/features/world/world.tscn` (FullMap-Example.png) as a temporary layout guide.
+- Added a low-opacity concept-art overlay in `game/features/world/world.tscn` (assets/reference/FullMap-Example.png) as a temporary layout guide.
+- Ground tilemap alpha reduced so the overlay reads behind the playfield.
+- Scope note: placeholder visual guidance only; still needs a proper tile pass later.
+
+**Tooling Stabilization (2026-01-25):**
+- MCP input handler now retries registration until debugger active; input taps succeeded after restart.
+- Papershot now ensures `res://temp/screenshots/` exists; runtime screenshots save into repo temp folder.
+- NPCBase now includes TalkIndicator sprite to prevent runtime assert during NPC spawn.
+- MapReference texture moved under `assets/reference/` because `docs/` is ignored by Godot.
+
+**Light MCP Input Check (2026-01-25):**
+- Main menu -> prologue -> skip -> world transition succeeds; current scene updates to world.
+- MCP input taps working after handler retry; player position changes with ui_right.
+- Papershot screenshot saved to `temp/screenshots/` via `res://temp/screenshots/`.
+- Errors cleared for NPC TalkIndicator and sprite idle fallback.
+- NPCBase now includes TalkIndicator sprite to prevent runtime assert during NPC spawn.
+- MapReference texture moved under `assets/reference/` because `docs/` is ignored by Godot.
 - Ground tilemap alpha reduced so the overlay reads behind the playfield.
 - Scope note: placeholder visual guidance only; still needs a proper tile pass later.
 

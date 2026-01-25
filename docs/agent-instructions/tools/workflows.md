@@ -106,6 +106,20 @@ Use a compact base schema and add optional fields when needed. Keep fields short
 }
 ```
 
+**Delegation Request Template (recommended):**
+Use a short, structured prompt to keep worker output compact.
+
+```
+Objective: <what to decide or produce>
+Inputs: <files/logs pasted or summarized>
+Constraints: <max tokens, avoid code edits, format>
+Output: JSON with summary/risks/actions/open_questions
+```
+
+**Offload logging (lightweight):**
+- If an offload result changes a decision, add a 1-line note in `docs/execution/DEVELOPMENT_ROADMAP.md`.
+- For long-running tasks, keep a temp plan in `temp/plans/` and delete it after completion.
+
 **Default delegation flow:**
 1. Gather file paths or logs to send
 2. Ask MiniMax for a compressed summary + actions
@@ -338,6 +352,21 @@ feat(quest): add quest 4 dialogue system
 
  Generated with [Claude Code]
 
+
+---
+
+## Editor Auto-Artifacts (Godot)
+
+Some editor actions can create noisy files or scene diffs. Handle these consistently to avoid repeated interruptions.
+
+**Typical artifacts:**
+- Temp plugin binaries (e.g., `addons/limboai/bin/~*`)
+- Unintentional `.tscn` diffs when opening/saving scenes
+
+**Recommended handling:**
+- Ignore temp binaries via `.gitignore` (already configured).
+- Only commit `.tscn` diffs when the change is intentional.
+- If a scene loses a reference unexpectedly, restore it explicitly and record the reason.
 
 ---
 

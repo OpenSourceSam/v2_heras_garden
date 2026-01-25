@@ -1,4 +1,4 @@
-# Circe's Garden: Playtesting Roadmap (Streamlined)
+﻿# Circe's Garden: Playtesting Roadmap (Streamlined)
 
 ## Navigation
 Line numbers reflect this file as of 2026-01-21 and may shift after edits.
@@ -51,6 +51,20 @@ Detailed walkthrough steps live in the references below to avoid duplication.
 
 **Artifacts:**
 - Screenshot: `temp/screenshots/Screenshot 2026-01-25 00-02-38-917.jpg`
+
+---
+
+## HPV Session Log (2026-01-25) - Tooling Follow-up
+
+**Scope:** Short MCP follow-up to verify input and screenshot capture after tool fixes.
+
+**Findings:**
+- MCP input taps now work after handler retry; player position changes with ui_right.
+- Main menu -> prologue -> skip -> world transition confirmed in runtime scene path.
+- Papershot saves screenshots to `temp/screenshots/` (res://temp/screenshots).
+
+**Artifacts:**
+- Latest screenshot: `temp/screenshots/Screenshot 2026-01-25 02-06-14-798.jpg`
 
 ---
 
