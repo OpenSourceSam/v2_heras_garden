@@ -2,7 +2,7 @@
 
 **Available project skills and when to use them**
 
-This catalog lists repo-local skills in `.claude/skills/`.
+This catalog lists repo-local skills in `.claude/skills/` and mirrored in `.codex/skills/` for Codex.
 
 ---
 
@@ -19,6 +19,13 @@ This catalog lists repo-local skills in `.claude/skills/`.
 | `gh-fix-ci` | CI failure triage | Fixing failed checks |
 | `github` | GitHub management | Issues/PRs |
 | `create-plan` | Implementation planning | Complex planning tasks |
+| `review` | Sanity code review | When asked to run `/review` |
+| `clarify` | Clarify requirements | When asked to run `/clarify` |
+| `explain` | CEO-friendly explanation | When asked to run `/explain` |
+| `finish` | Wrap-up protocol | When asked to run `/finish` |
+| `ground` | Context grounding | When asked to run `/ground` |
+| `longplan` | 1A2A workflow | When asked to run `/longplan` |
+| `token-plan` | Role/model selection | When asked to run `/token-plan` |
 | `finishing-a-development-branch` | Branch finishing | Work complete and tests pass |
 | `confident-language-guard` | Documentation guard | Editing .md files |
 | `sam-ceo-communication` | CEO-friendly comms | Explaining work to Sam |
@@ -36,6 +43,13 @@ Note: Slash commands and shortcuts can vary by client; prefer the full skill nam
 See each skill's `SKILL.md` for full details:
 - `confident-language-guard`
 - `create-plan`
+- `review`
+- `clarify`
+- `explain`
+- `finish`
+- `ground`
+- `longplan`
+- `token-plan`
 - `finishing-a-development-branch`
 - `gh-address-comments`
 - `gh-fix-ci`
@@ -64,10 +78,11 @@ Open `.claude/skills/<skill>/SKILL.md` for the full instructions.
 ## Additional Resources
 
 - Skills Location: `.claude/skills/`
+- Codex Mirror: `.codex/skills/`
 - Slash Commands: `.claude/commands/`
 - Project Rules: `docs/agent-instructions/core-directives/project-rules.md`
 
 ---
 
-**Last Updated:** 2026-01-18
+**Last Updated:** 2026-01-25
 **Source:** `.claude/skills/` directory

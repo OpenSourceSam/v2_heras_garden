@@ -7,8 +7,80 @@ Environment: Cursor (not VS Code) | MCP: `.cursor/mcp.json` | Godot 4.5.1
 - Testing: docs/playtesting/HPV_GUIDE.md
 - Roadmap: docs/execution/DEVELOPMENT_ROADMAP.md
 
+## Project Context
+- This project is run by autonomous AI agents with Sam providing oversight.
+- Sam has limited technical background; favor clear language, explicit steps, and visible evidence.
+- Capture decisions and risks in docs so future agents can build on them.
+
+
 ## Repo Layout
 game/ → gameplay code | docs/ → documentation | tests/ → test suites | addons/ → plugins
+
+## Compound Engineering (Lightweight)
+
+**Philosophy:** Each unit of work should make future work easier.
+
+**Core Loop (Plan → Delegate → Assess → Codify):**
+1. **Plan**: Confirm scope and constraints, then track work (use TodoWrite or the built-in plan tool).
+2. **Delegate**: Use MiniMax for research or image analysis; use MCP for headed smoke checks.
+3. **Assess**: Verify the change worked (small headed check, targeted runtime inspection).
+4. **Codify**: Record outcomes in `docs/execution/DEVELOPMENT_ROADMAP.md` and (if HPV-related) `docs/playtesting/PLAYTESTING_ROADMAP.md`.
+
+**Todo Tracking (approved):**
+- Use `todos/` for unresolved issues and long-tail work.
+- Start from `todos/template.md` (full template) and keep entries actionable.
+- Template is manual (no automation); copy the file and fill it out.
+
+## Common Solutions (Living Log)
+
+**Template (copy for new entries):**
+```
+### YYYY-MM-DD: <Short Title>
+**Problem:** <What was broken/needed>
+**Solution:** <What was done and why>
+**Key Files Changed:**
+- <path> - <what changed>
+**Lessons Learned:**
+- <pattern>
+- <gotcha>
+**Use This When:** <future situations>
+```
+
+### 2026-01-25: Intro transition stuck after prologue
+**Problem:** New Game could load the prologue but leave the runtime scene on main menu or prologue; the world loaded in the tree but wasn’t current.
+
+**Solution:** Route intro transitions through `get_tree().change_scene_to_file(...)` for both the main menu and prologue skip/end, and keep `SceneManager` current-scene updates centralized.
+
+**Key Files Changed:**
+- `game/features/ui/main_menu.gd` — New Game now loads the prologue via `change_scene_to_file`.
+- `game/features/cutscenes/prologue_opening.gd` — Skip/end now load world via `change_scene_to_file`.
+- `game/autoload/scene_manager.gd` — Centralized current scene updates in `_finalize_scene_change`.
+- `game/autoload/cutscene_manager.gd` — Ensures cutscene cleanup after await.
+
+**Lessons Learned:**
+- `get_tree().change_scene_to_file(...)` reliably updates `current_scene` for top-level transitions.
+- Signal-only cleanup can leave nodes lingering if the connection doesn’t land; prefer deterministic cleanup.
+
+**Use This When:** Intro/cutscene transitions leave multiple root scenes visible or cause black screens.
+
+### 2026-01-25: Map layout guidance overlay
+**Problem:** World layout lacked a strong visual guide aligned to concept art.
+
+**Solution:** Add a low-opacity concept art overlay in `world.tscn` and dim the ground tiles to make the layout read while keeping gameplay visible.
+
+**Key Files Changed:**
+- `game/features/world/world.tscn` — Added `MapReference` sprite and reduced `Ground` alpha.
+
+**Lessons Learned:**
+- Low-opacity overlays are a fast, reversible way to guide layout before a full tile pass.
+
+**Use This When:** You need quick spatial guidance before committing to a full tile/asset pass.
+
+## Skills Sharing (Claude <-> Codex)
+- Source of truth: `.claude/skills/`
+- Codex mirror: `.codex/skills/` (keep in sync with `.claude/skills/`)
+- Mirror is manual; copy updated skills to `.codex/skills/` when they change
+- Slash commands live in `.claude/commands/` (ported as skills only when needed)
 
 ## MCP Tools
 
@@ -158,6 +230,11 @@ simulate_action_tap --action ui_up
 - Prefer clarifying questions BEFORE starting autonomous work
 - During autonomous work (2A phase): work continuously, do not stop to summarize
 - Default to working within the current structure; flag major structural changes
+
+## After Completing Work
+- Add a dated entry to **Common Solutions** if you solved a new problem.
+- Log test findings in `docs/execution/DEVELOPMENT_ROADMAP.md` and (if HPV) `docs/playtesting/PLAYTESTING_ROADMAP.md`.
+- If you encountered unresolved issues, note them in the roadmap (or `todos/` if approved).
 
 ## Planning Guidelines
 
