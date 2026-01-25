@@ -227,6 +227,7 @@ simulate_action_tap --action ui_up
 - Ask before touching: .godot/, .venv/, archive/, .cursor/, .claude/roles/
 - .uid files: use git hook (git config core.hooksPath .githooks) or stage manually
 - Ask before creating new .md files; editing existing .md files is OK
+- Prefer updating existing docs; doc sprawl causes drift and conflicting guidance. See docs/agent-instructions/AGENTS_README.md for rationale.
 - Prefer clarifying questions BEFORE starting autonomous work
 - During autonomous work (2A phase): work continuously, do not stop to summarize
 - Default to working within the current structure; flag major structural changes

@@ -29,6 +29,11 @@ This hub consolidates scattered agent instructions into a single, discoverable l
 - Project owner and CEO
 - Non-technical stakeholder who directs agent work
 
+**How this project runs**
+- Work is executed by autonomous AI agents; Sam provides oversight and approvals.
+- Agents operate in Claude Code Extension, Codex Extension, and Claude Code terminal harnesses.
+- Current models in rotation: GLM 4.7, MiniMax M.21, Claude, Codex (subject to change).
+
 **Development Status:**
 - All major features implemented
 - Current focus: Map layout, art assets, visual polish
@@ -215,6 +220,10 @@ docs/agent-instructions/
 **Current Phase**: Phase 8 - Map Visual Development
 
 **Note**: See commit 8380c4a for Phase 7 completion
+
+**Recent Updates (2026-01-25):**
+- Added AI-run project context and model rotation note
+- Added MiniMax delegation protocol and documentation hygiene rules
 
 **Recent Updates (2026-01-23):**
 - Added TESTING_WORKFLOW.md as single source of truth for testing methods
