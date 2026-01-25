@@ -24,7 +24,7 @@ animation = &"down"
 [node name="SpriteOutline" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 scale = Vector2(1.08, 1.08)
-modulate = Color(1, 1, 1, 0.5)
+modulate = Color(0, 0, 0, 0.6)
 z_index = -1
 sprite_frames = ExtResource("2_player_sprites")
 animation = &"down"

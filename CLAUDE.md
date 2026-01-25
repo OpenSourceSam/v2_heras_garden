@@ -297,6 +297,10 @@ P2 (Polish):
 - Update plan file (.claude/plans/*.md) with quick notes - keep working
 - Continue through todos systematically - skip blocked items, circle back later
 
+**Planning artifacts (approved):**
+- A temp plan file under `temp/` is acceptable for longplan sessions.
+- `update_plan` is a valid substitute for `TodoWrite` in Codex environments.
+
 ### HARD STOPS (Only stop for these)
 - Creating NEW .md files (not edits)
 - Editing .cursor/ directory

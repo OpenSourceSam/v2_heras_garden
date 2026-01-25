@@ -82,6 +82,21 @@ Detailed walkthrough steps live in the references below to avoid duplication.
 
 ---
 
+## HPV Session Log (2026-01-25) - Quest Marker Smoke + Map Readability
+
+**Scope:** Lightweight smoke for quest marker toggles and map readability capture.
+
+**Findings:**
+- `quest_1_active` toggles Quest1Marker visibility as expected.
+- Core interactables present (Boat, HouseDoor, MortarPestle).
+- Map readability improved via reduced ground noise; player outline contrast increased.
+- UI text readability noted as future polish (dialogue box size/contrast).
+
+**Artifacts:**
+- Screenshot: `temp/screenshots/Screenshot 2026-01-25 13-14-50-51.jpg`
+
+---
+
 ## HPV Session Log (2026-01-25) - Light Smoke (Input + UI)
 
 **Scope:** Lightweight headed smoke to validate input registration, skip flow, and UI gating.

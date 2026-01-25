@@ -179,6 +179,10 @@ TodoWrite(todos=[
 - Plan will be a **canonical reference** for future agents
 - You've tried TodoWrite and it's insufficient for complexity
 
+**Long-running autonomous work (approved):**
+- A temp plan file under `temp/` is acceptable when using a longplan workflow.
+- Prefer `update_plan` for tracking in Codex environments where `TodoWrite` is not available.
+
 **Storage Options:**
 
 1. **Canonical docs** → docs/plans/ (kept long-term, added to docs index)

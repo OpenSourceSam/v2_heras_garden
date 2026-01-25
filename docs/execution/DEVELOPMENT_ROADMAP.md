@@ -335,6 +335,17 @@ Manual Verification:
 - Runtime check: prologue skip lands in `world.tscn`, fade alpha at 0, MCP input active.
 - Screenshot: `temp/screenshots/Screenshot 2026-01-25 12-50-46-224.jpg`
 
+**Light HPV Smoke (2026-01-25):**
+- New Game -> prologue -> skip -> world confirmed via runtime scene path.
+- Quest marker visibility toggles with `quest_1_active` flag (Quest1Marker visible).
+- Core interactables present in world scene (Boat, HouseDoor, MortarPestle).
+
+**Map Readability Pass (2026-01-25):**
+- Reduced grass scatter density and removed dirt noise tiles in `world.gd`.
+- Increased player outline contrast for better readability in-world.
+- Screenshots: `temp/screenshots/Screenshot 2026-01-25 13-10-33-628.jpg`, `temp/screenshots/Screenshot 2026-01-25 13-14-50-51.jpg`
+- Note: UI text readability flagged (dialogue box size/contrast) for future polish.
+
 **Map Visual Overlay (2026-01-25):**
 - Added a low-opacity concept-art overlay in `game/features/world/world.tscn` (assets/reference/FullMap-Example.png) as a temporary layout guide.
 - Ground tilemap alpha reduced so the overlay reads behind the playfield.

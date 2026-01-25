@@ -153,10 +153,8 @@ func _scatter_ground_detail(half_w: int, half_h: int) -> void:
 			if ground.get_cell_source_id(Vector2i(x, y)) != GRASS_SOURCE_ID:
 				continue
 			var seed: int = abs(int(x * 17 + y * 29))
-			if seed % 83 == 0:
+			if seed % 173 == 0:
 				ground.set_cell(Vector2i(x, y), STONE_SOURCE_ID, Vector2i.ZERO)
-			elif seed % 79 == 0:
-				ground.set_cell(Vector2i(x, y), DIRT_SOURCE_ID, Vector2i.ZERO)
 
 func _ensure_papershot_folder() -> void:
 	var papershot = get_node_or_null("Papershot")
