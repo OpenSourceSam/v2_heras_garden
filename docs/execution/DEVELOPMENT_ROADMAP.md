@@ -278,6 +278,12 @@ Manual Verification:
 - Screenshots captured: `temp/screenshots/main_menu.png`, `temp/screenshots/Screenshot 2026-01-24 19-24-28-888.jpg`
 - Scope note: This was a light render/DAP pass, not full HPV.
 
+**Light Runtime Smoke (2026-01-25):**
+- New Game sets flags (`quest_0_active`, `prologue_complete`), but `current_scene` stayed on `main_menu`.
+- PrologueOpening overlay visible; world scene not promoted as current scene.
+- Screenshot captured: `temp/screenshots/new_game_overlay.png`
+- Scope note: light runtime check only; needs follow-up on scene transition.
+
 **Remaining Items (from verification synthesis):**
 - [ ] Quest 4: Add Hermes direct dialogue (HIGH priority - missing essential beat)
 - [ ] Quest 8: Fix "Let me die" text (MEDIUM priority - incorrect dialogue text)
