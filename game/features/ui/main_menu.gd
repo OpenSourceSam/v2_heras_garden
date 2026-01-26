@@ -27,6 +27,9 @@ func _ready() -> void:
 	assert(quit_button != null, "QuitButton missing")
 	assert(settings_menu != null, "SettingsMenu missing")
 
+	# Play main menu theme
+	AudioController.play_music("main_menu_theme")
+
 	new_game_button.pressed.connect(_on_new_game_pressed)
 	continue_button.pressed.connect(_on_continue_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)

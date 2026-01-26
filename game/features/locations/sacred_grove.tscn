@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4]
+[gd_scene load_steps=18 format=4]
 
 [ext_resource type="TileSet" path="res://game/shared/resources/tiles/placeholder_grass_tileset.tres" id="1_tileset"]
 [ext_resource type="Script" path="res://game/features/locations/return_trigger.gd" id="2_return_trigger"]
@@ -6,6 +6,17 @@
 [ext_resource type="PackedScene" path="res://game/features/player/player.tscn" id="4_player"]
 [ext_resource type="PackedScene" path="res://game/features/world/boat.tscn" id="5_boat"]
 [ext_resource type="Script" path="res://game/features/locations/sacred_grove.gd" id="6_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/tree.png" id="7_tree"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/pharmaka_flower.png" id="8_flower"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/moon_tear.png" id="9_moontear"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/sacred_earth.png" id="10_sacredearth"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/moly.png" id="11_moly"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/rock.png" id="12_rock"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/nightshade.png" id="13_nightshade"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/wheat.png" id="14_wheat"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/binding_ward_potion.png" id="15_potion"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/moon_tears_moon.png" id="16_moonicon"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/moon_tears_stars.png" id="17_stars"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(64, 32)
@@ -86,3 +97,114 @@ shape = SubResource("RectangleShape2D_1")
 
 [node name="DialogueBox" parent="UI" instance=ExtResource("3_dialogue_box")]
 visible = false
+
+[node name="Landmarks" type="Node2D" parent="."]
+z_index = -1
+
+[node name="SacredTree1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-60, -40)
+texture = ExtResource("7_tree")
+modulate = Color(0.5, 0.4, 0.3, 1)
+scale = Vector2(2, 2)
+
+[node name="SacredTree2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(400, -50)
+texture = ExtResource("7_tree")
+modulate = Color(0.45, 0.35, 0.25, 1)
+scale = Vector2(2.2, 2.2)
+
+[node name="SacredTree3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(700, -60)
+texture = ExtResource("7_tree")
+modulate = Color(0.4, 0.3, 0.2, 1)
+scale = Vector2(1.8, 1.8)
+
+[node name="MoonTear1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(100, -20)
+texture = ExtResource("9_moontear")
+modulate = Color(0.9, 0.95, 1, 1)
+scale = Vector2(0.5, 0.5)
+
+[node name="MoonTear2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(300, -30)
+texture = ExtResource("9_moontear")
+modulate = Color(0.85, 0.9, 1, 1)
+scale = Vector2(0.4, 0.4)
+
+[node name="MoonTear3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(500, -25)
+texture = ExtResource("9_moontear")
+modulate = Color(0.88, 0.93, 1, 1)
+scale = Vector2(0.45, 0.45)
+
+[node name="SacredEarth1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(200, 40)
+texture = ExtResource("10_sacredearth")
+modulate = Color(0.7, 0.6, 0.4, 0.9)
+scale = Vector2(0.6, 0.6)
+
+[node name="SacredEarth2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(600, 50)
+texture = ExtResource("10_sacredearth")
+modulate = Color(0.65, 0.55, 0.35, 0.9)
+scale = Vector2(0.7, 0.7)
+
+[node name="MolyBush1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-30, 70)
+texture = ExtResource("11_moly")
+modulate = Color(0.6, 0.5, 0.7, 1)
+scale = Vector2(0.9, 0.9)
+
+[node name="MolyBush2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(350, 80)
+texture = ExtResource("11_moly")
+modulate = Color(0.55, 0.45, 0.65, 1)
+scale = Vector2(1, 1)
+
+[node name="NightshadeBush1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(150, 20)
+texture = ExtResource("13_nightshade")
+modulate = Color(0.6, 0.4, 0.5, 1)
+scale = Vector2(0.7, 0.7)
+
+[node name="NightshadeBush2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(550, 30)
+texture = ExtResource("13_nightshade")
+modulate = Color(0.55, 0.35, 0.45, 1)
+scale = Vector2(0.8, 0.8)
+
+[node name="SacredFlower1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(80, 50)
+texture = ExtResource("8_flower")
+modulate = Color(0.7, 0.8, 0.7, 1)
+scale = Vector2(0.6, 0.6)
+
+[node name="SacredFlower2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(450, 60)
+texture = ExtResource("8_flower")
+modulate = Color(0.65, 0.75, 0.65, 1)
+scale = Vector2(0.7, 0.7)
+
+[node name="SacredFlower3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(750, 40)
+texture = ExtResource("8_flower")
+modulate = Color(0.6, 0.7, 0.6, 1)
+scale = Vector2(0.5, 0.5)
+
+[node name="Rock1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-40, -10)
+texture = ExtResource("12_rock")
+modulate = Color(0.5, 0.4, 0.35, 1)
+scale = Vector2(0.8, 0.8)
+
+[node name="Rock2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(780, 70)
+texture = ExtResource("12_rock")
+modulate = Color(0.45, 0.35, 0.3, 1)
+scale = Vector2(1, 1)
+
+[node name="AltarPotion" type="Sprite2D" parent="Landmarks"]
+position = Vector2(400, -20)
+texture = ExtResource("15_potion")
+modulate = Color(0.8, 0.7, 0.9, 1)
+scale = Vector2(0.5, 0.5)

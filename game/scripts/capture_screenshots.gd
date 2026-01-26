@@ -8,14 +8,20 @@ const INPUT_ACTION = "screenshot"
 
 func _ready() -> void:
 	# Ensure screenshot directory exists
-	DirAccess.make_dir_absolute(SCREENSHOT_DIR.get_base_dir())
-	DirAccess.make_dir_absolute(SCREENSHOT_DIR)
+	var user_dir = OS.get_user_data_dir()
+	var temp_path = user_dir.path_join("temp")
+	var screenshots_path = temp_path.path_join("screenshots")
+
+	# Create directories using absolute paths
+	DirAccess.make_dir_absolute(temp_path)
+	DirAccess.make_dir_absolute(screenshots_path)
 
 	# Create input action if it doesn't exist
 	if not InputMap.has_action(INPUT_ACTION):
 		_define_screenshot_input()
 
 	print("Screenshot capture initialized. Press F12 to capture.")
+	print("Screenshots will be saved to: ", screenshots_path)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(INPUT_ACTION):

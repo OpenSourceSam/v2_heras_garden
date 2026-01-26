@@ -30,6 +30,10 @@ func _ready() -> void:
 	assert(status_label != null, "StatusLabel missing")
 	assert(mistakes_label != null, "MistakesLabel missing")
 	assert(hint_label != null, "HintLabel missing")
+
+	# Play minigame music
+	AudioController.play_music("minigame")
+
 	_select_pattern()
 	_update_ui()
 

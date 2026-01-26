@@ -26,6 +26,8 @@ func _ready() -> void:
 	_setup_music_player()
 	_setup_sfx_pool()
 	_load_placeholder_sfx()
+	_load_music()
+	_set_default_volumes()
 	print("[AudioController] Initialized")
 
 func _setup_music_player() -> void:
@@ -140,6 +142,22 @@ func _load_placeholder_sfx() -> void:
 		else:
 			push_error("[AudioController] Missing SFX: %s" % path)
 
+func _load_music() -> void:
+	var music_paths = {
+		"main_menu_theme": "res://assets/audio/music/main_menu_theme.mp3",
+		"world_exploration": "res://assets/audio/music/world_exploration_bgm.mp3",
+		"minigame": "res://assets/audio/music/minigame_bgm.mp3",
+		"ending_epilogue": "res://assets/audio/music/ending_epilogue_bgm.ogg"
+	}
+
+	for track_name in music_paths.keys():
+		var path = music_paths[track_name]
+		var stream = load(path) as AudioStream
+		if stream:
+			register_music(track_name, stream)
+		else:
+			push_warning("[AudioController] Missing music: %s" % path)
+
 func register_sfx(sfx_name: String, stream: AudioStream) -> void:
 	_sfx_library[sfx_name] = stream
 	print("[AudioController] Registered SFX: %s" % sfx_name)
@@ -147,3 +165,10 @@ func register_sfx(sfx_name: String, stream: AudioStream) -> void:
 func register_music(track_name: String, stream: AudioStream) -> void:
 	_music_library[track_name] = stream
 	print("[AudioController] Registered music: %s" % track_name)
+
+func _set_default_volumes() -> void:
+	# Set music bus volume lower than SFX (approximately -10 dB)
+	# This ensures BGM doesn't overpower sound effects
+	set_music_volume(0.3)  # 30% volume ≈ -10 dB
+	set_sfx_volume(1.0)    # 100% volume for SFX
+	print("[AudioController] Default volumes set")

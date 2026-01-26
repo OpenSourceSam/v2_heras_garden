@@ -27,6 +27,10 @@ func _ready() -> void:
 	assert(instruction_label != null, "InstructionLabel missing")
 	assert(attempts_label != null, "AttemptsLabel missing")
 	assert(round_label != null, "RoundLabel missing")
+
+	# Play minigame music
+	AudioController.play_music("minigame")
+
 	if not GameState.get_flag("herb_minigame_tutorial_done"):
 		_show_tutorial()
 	else:

@@ -115,28 +115,21 @@ func _show_choices() -> void:
 	continue_prompt.visible = false
 	if first_button:
 		first_button.grab_focus()
-		# Vital debug: Log focus state for troubleshooting
-		print("[DEBUG] DialogueBox: First choice button '%s' grabbed focus" % first_button.text)
 
 func _activate_choice_from_input() -> bool:
 	if not choices_container.visible:
 		return false
 	var focus_owner = get_viewport().gui_get_focus_owner()
 	if focus_owner is Button and focus_owner.get_parent() == choices_container:
-		# Vital debug: Log which button is being activated
-		print("[DEBUG] DialogueBox: Activating focused choice '%s'" % focus_owner.text)
 		# Emit the pressed signal to trigger the button's action
 		focus_owner.emit_signal("pressed")
 		return true
 	if choices_container.get_child_count() > 0:
 		var first_button = choices_container.get_child(0)
 		if first_button is Button:
-			# Vital debug: Log fallback to first button
-			print("[DEBUG] DialogueBox: No focused button, activating first choice '%s'" % first_button.text)
 			# Emit the pressed signal to trigger the button's action
 			first_button.emit_signal("pressed")
 			return true
-	print("[DEBUG] DialogueBox: Failed to activate choice - no buttons found")
 	return false
 
 func _on_choice_selected(index: int, choice: Dictionary) -> void:

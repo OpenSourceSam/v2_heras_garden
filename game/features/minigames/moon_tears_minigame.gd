@@ -25,6 +25,10 @@ func _ready() -> void:
 	player_marker.size = MARKER_SIZE
 	player_marker.custom_minimum_size = MARKER_SIZE
 	player_marker.position = Vector2(size.x * player_x, size.y - 50)
+
+	# Play minigame music
+	AudioController.play_music("minigame")
+
 	_spawn_tear()
 
 func _process(delta: float) -> void:

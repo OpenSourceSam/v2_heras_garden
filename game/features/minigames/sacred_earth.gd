@@ -24,6 +24,9 @@ func _ready() -> void:
 	assert(digging_area != null, "DiggingArea missing")
 	original_position = position
 
+	# Play minigame music
+	AudioController.play_music("minigame")
+
 func _process(delta: float) -> void:
 	if is_complete:
 		return

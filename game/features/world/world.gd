@@ -30,6 +30,9 @@ func _ready() -> void:
 	assert(loom_marker != null, "LoomMarker missing")
 	assert(ui_layer != null, "UI layer missing")
 
+	# Play world exploration music
+	AudioController.play_music("world_exploration")
+
 	# Cache quest marker references
 	for i in range(1, 12):
 		var marker = quest_markers.get_node_or_null("Quest%dMarker" % i)
@@ -304,3 +307,58 @@ func _show_aiaia_arrival_dialogue() -> void:
 			var dialogue_res = load("res://game/shared/resources/dialogues/aiaia_arrival.tres")
 			if dialogue_res:
 				dialogue_box.show_dialogue(dialogue_res)
+
+## DEBUG: Teleport player and capture screenshot
+## Call this function via MCP eval to capture screenshots from different locations
+## Example: get_tree().get_current_scene().debug_capture_screenshot(Vector2(640, 32), "scylla_cove")
+func debug_capture_screenshot(player_pos: Vector2, location_name: String) -> String:
+	# Find player
+	var player = get_tree().get_first_node_in_group("player")
+	if not player:
+		push_error("debug_capture_screenshot: Player not found")
+		return ""
+
+	# Teleport player
+	player.global_position = player_pos
+	print("Teleported to ", location_name, ": ", player_pos)
+
+	# Wait for scene to update
+	await get_tree().process_frame
+	await get_tree().process_frame
+
+	# Clear any dialogue
+	var dialogue_box = get_tree().get_first_node_in_group("dialogue_ui")
+	if dialogue_box and dialogue_box.visible:
+		dialogue_box.hide()
+
+	# Capture screenshot
+	var viewport = get_viewport()
+	var image = viewport.get_texture().get_image()
+
+	# Save to both user data and project temp directory
+	var user_dir = OS.get_user_data_dir()
+	var screenshots_path = user_dir.path_join("temp").path_join("screenshots")
+	DirAccess.make_dir_absolute(screenshots_path)
+
+	var datetime = Time.get_datetime_dict_from_system()
+	var timestamp = "%04d%02d%02d_%02d%02d%02d" % [
+		datetime.year, datetime.month, datetime.day,
+		datetime.hour, datetime.minute, datetime.second
+	]
+	var filename = screenshots_path + "/screenshot_" + timestamp + ".png"
+	var error = image.save_png(filename)
+
+	if error == OK:
+		print("Screenshot saved: ", filename)
+
+		# Also copy to project temp directory
+		var project_temp = "res://temp/screenshots".replace("res://", ProjectSettings.globalize_path("res://") + "/")
+		DirAccess.make_dir_absolute(project_temp)
+		var project_filename = project_temp + "/" + location_name + ".png"
+		image.save_png(project_filename)
+		print("Screenshot copied to: ", project_filename)
+
+		return project_filename
+	else:
+		push_error("Failed to save screenshot: " + filename)
+		return ""
