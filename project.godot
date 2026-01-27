@@ -45,6 +45,7 @@ config/icon="res://game/icon.png"
 
 GameState="*res://game/autoload/game_state.gd"
 AudioController="*res://game/autoload/audio_controller.gd"
+VisualFeedbackController="*res://game/autoload/visual_feedback_controller.gd"
 SaveController="*res://game/autoload/save_controller.gd"
 SceneManager="*res://game/autoload/scene_manager.gd"
 CutsceneManager="*res://game/autoload/cutscene_manager.gd"

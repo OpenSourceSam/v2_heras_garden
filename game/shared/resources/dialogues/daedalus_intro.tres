@@ -7,24 +7,24 @@ script = ExtResource("1_dialogue_data")
 id = "daedalus_intro"
 lines = [{
 "speaker": "Daedalus",
-"text": "Ah, a visitor. It has been some time since I had company.",
+"text": "Hello? Is anyone here? I heard a witch lives on this island.",
+"emotion": "hopeful"
+}, {
+"speaker": "Daedalus",
+"text": "Ah, thank the gods. I am Daedalus - a craftsman, architect, and inventor.",
 "emotion": "warm"
 }, {
 "speaker": "Daedalus",
-"text": "I am Daedalus. Architect, inventor, and... prisoner of these islands for a time.",
-"emotion": "sad"
+"text": "My ship needs repairs. Storms battered us off course, and we sought shelter here.",
+"emotion": "concerned"
 }, {
 "speaker": "Daedalus",
-"text": "I built the Labyrinth for King Minos. A masterpiece of engineering, if I may say.",
+"text": "I can pay for supplies, or work in exchange. I built the Labyrinth for King Minos, back in Crete.",
 "emotion": "proud"
 }, {
 "speaker": "Daedalus",
-"text": "But genius has its burdens. My wings... they carried me to freedom. Carried my son to his death.",
-"emotion": "grief"
-}, {
-"speaker": "Daedalus",
-"text": "Circe offered me sanctuary. In exchange, I help with her... experiments.",
-"emotion": "neutral"
+"text": "The woman here - Circe, was it? - she has offered me shelter while repairs are made.",
+"emotion": "grateful"
 }, {
 "speaker": "Daedalus",
 "text": "If you want to help her, ask her what she wants.",

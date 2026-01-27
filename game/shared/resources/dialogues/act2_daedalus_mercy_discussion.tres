@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "act2_daedalus_mercy_discussion"
+lines = [{
+"speaker": "Circe",
+"text": "I destroyed her life. If I kill her, I'm a murderer.",
+"emotion": "anguished"
+}, {
+"speaker": "Daedalus",
+"text": "Can it be fixed?",
+"emotion": "thoughtful"
+}, {
+"speaker": "Circe",
+"text": "No. My brother says the only option left is... to end it.",
+"emotion": "defeated"
+}, {
+"speaker": "Circe",
+"text": "To turn her to stone. Kill her.",
+"emotion": "horrified"
+}, {
+"speaker": "Daedalus",
+"text": "And you don't want to do that.",
+"emotion": "gentle"
+}, {
+"speaker": "Circe",
+"text": "How can I? I already destroyed her life.",
+"emotion": "despairing"
+}, {
+"speaker": "Circe",
+"text": "If I kill her, I'm a murderer.",
+"emotion": "panicked"
+}, {
+"speaker": "Daedalus",
+"text": "Or... you're merciful.",
+"emotion": "wise"
+}, {
+"speaker": "Circe",
+"text": "How is killing her merciful?",
+"emotion": "sharp"
+}, {
+"speaker": "Daedalus",
+"text": "If she's suffering. If there's no cure.",
+"emotion": "gentle"
+}, {
+"speaker": "Daedalus",
+"text": "Sometimes the kindest thing is to let someone rest.",
+"emotion": "philosophical"
+}, {
+"speaker": "Circe",
+"text": "But that's my choice. Not hers.",
+"emotion": "struggling"
+}, {
+"speaker": "Daedalus",
+"text": "Then ask her.",
+"emotion": "direct"
+}, {
+"speaker": "Circe",
+"text": "What?",
+"emotion": "confused"
+}, {
+"speaker": "Daedalus",
+"text": "Ask her what she wants.",
+"emotion": "gentle"
+}, {
+"speaker": "Daedalus",
+"text": "Give her the choice.",
+"emotion": "wise"
+}, {
+"speaker": "Daedalus",
+"text": "That's true mercy.",
+"emotion": "reassuring"
+}, {
+"speaker": "Circe",
+"text": "Ask her... I never thought...",
+"emotion": "realizing"
+}, {
+"speaker": "Daedalus",
+"text": "We often don't. But it's never too late.",
+"emotion": "philosophical"
+}]
+choices = []
+flags_required = ["quest_4_complete", "met_daedalus"]
+flags_to_set = ["mercy_discussed"]
+next_dialogue_id = ""

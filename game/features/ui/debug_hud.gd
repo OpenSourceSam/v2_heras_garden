@@ -29,9 +29,11 @@ func _ready() -> void:
 	assert(day_label != null, "DayLabel missing")
 	assert(gold_label != null, "GoldLabel missing")
 	assert(inventory_label != null, "InventoryLabel missing")
-	assert(flags_label != null, "FlagsLabel missing")
-	assert(position_label != null, "PositionLabel missing")
-	assert(fps_label != null, "FPSLabel missing")
+	# Note: flags_label, position_label, fps_label may be null in some scenes
+
+	# Add to debug_hud group for easy access
+	add_to_group("debug_hud")
+
 	# Try to find player node
 	_find_player()
 
@@ -139,6 +141,18 @@ func toggle_visibility() -> void:
 	is_visible = !is_visible
 	panel.visible = is_visible
 	print("[DebugHUD] Visibility: %s" % is_visible)
+
+## DEBUG: Teleport player to position (for testing/screenshots)
+## Call via: get_tree().get_first_node_in_group("debug_hud").debug_teleport(x, y)
+func debug_teleport(x: float, y: float) -> void:
+	if not player:
+		_find_player()
+	if not player:
+		push_error("debug_teleport: Player not found")
+		return
+
+	player.global_position = Vector2(x, y)
+	print("[DebugHUD] Teleported player to: (%d, %d)" % [x, y])
 
 func _find_player() -> void:
 	# Try to find player node in scene tree

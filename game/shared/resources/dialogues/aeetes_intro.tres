@@ -11,8 +11,8 @@ lines = [{
 "emotion": "dismissive"
 }, {
 "speaker": "Aeetes",
-"text": "I am Aeetes, King of Colchis once. Now... merely a refugee seeking Circe's protection.",
-"emotion": "sad"
+"text": "I am Aeetes, King of Colchis once. Now... Circe's brother and fellow teacher.",
+"emotion": "proud"
 }, {
 "speaker": "Aeetes",
 "text": "Do not mistake my circumstances for weakness. I still command the secrets of the earth.",

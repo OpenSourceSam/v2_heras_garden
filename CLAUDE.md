@@ -92,6 +92,122 @@ game/ → gameplay code | docs/ → documentation | tests/ → test suites | add
 - Review process should catch obvious mismatches (e.g., "key expired" but same key working elsewhere)
 
 **Use This When:** Getting API authentication errors for a service while other services using the same provider work fine. Check environment variable names and whether they're actually set in the current shell session. (Claude <-> Codex)
+
+### 2026-01-26: Visual polish transparency fix
+**Problem:** User reported sprites had "blocky backgrounds" due to opaque images
+
+**Solution:** Created transparency verification script, regenerated 22 assets with GLM CogView-4 API from RGB to RGBA
+
+**Key Files Changed:**
+- 22 assets in `assets/sprites/placeholders/` (crop stages, world props, UI elements)
+- `.claude/skills/glm-image-gen/scripts/check-transparency.ps1`
+- `.claude/skills/glm-image-gen/scripts/fix-transparency.ps1`
+- `docs/reference/concept_art/HERAS_GARDEN_PALETTE.md`
+
+**Lessons Learned:**
+- RGB vs RGBA format matters for sprite transparency
+- Batch regeneration with GLM API is faster than manual conversion
+- Verification scripts prevent regressions
+- Parallel subagent delegation accelerates work significantly
+
+**Use This When:** Sprites appear with solid backgrounds instead of transparent
+
+### 2026-01-27: GLM-4.6v vision model token limit errors
+**Problem:** GLM API vision requests failed with "Request 193477 input tokens exceeds the model's maximum context length 202750" when analyzing screenshots.
+
+**Solution:** GLM-4.6v vision model has a token limit on image input. Large screenshots (1920x1080+) when base64-encoded exceed this limit. Must resize images to max 800px width/height before API call.
+
+**Key Files Changed:**
+- `.claude/skills/glm-image-gen/SKILL.md` — Added GLM-4.6v vision model documentation with resize requirements
+- Created sand texture: `game/textures/tiles/sand_procedural.png`
+
+**Lessons Learned:**
+- GLM-4.6v is the **vision model** (the "v" suffix) - has FREE native image understanding
+- glm-4.6 is text-only; glm-4.7 (current me) has no native vision and needs MCP tools
+- Always resize images to max 800px before encoding for vision API
+- Quick resize: `convert input.png -resize 800x800> resized_input.png` (ImageMagick)
+- Or use Python/Pillow: `img.thumbnail((800, 800)); img.save('resized.png', 'PNG', optimize=True)`
+
+**Use This When:** Getting "token limit exceeded" errors from GLM vision API. Resize images before sending.
+
+### 2026-01-27: Context window limit error during file operations
+**Problem:** "API Error: The model has reached its context window limit" after 7 Read/Write operations in <5 minutes.
+
+**Solution:** File Read/Write operations dump full content (~1,500-2,000 tokens each) to context, bypassing auto-compaction. Implemented operation-based checkpointing - checkpoint after 3 writes or 5 total Read/Write operations.
+
+**Key Files Changed:**
+- `.claude/commands/longplan.md` - Added operation-based context management section
+- `.claude/skills/longplan/SKILL.md` - Synced context management changes
+
+**Lessons Learned:**
+- GLM-4.7: 200K context vs Claude: 1M context (5x difference)
+- File operations (Read/Write) return ~1,500-2,000 tokens each to context
+- Tool outputs don't auto-compact like conversation messages
+- Time is irrelevant - 7 operations in <5 min can overflow, but 1000-turn Q&A sessions don't
+- Counter-based checkpointing (3 writes / 5 total ops) prevents overflow
+- `/clear` command is buggy - use `/context clear` or restart session
+
+**Use This When:** File-heavy work sessions (creating/editing multiple resources like dialogues, textures, etc.)
+
+---
+
+## Context Safety Protocol
+
+**CRITICAL:** Context overflow happens from FILE OPERATIONS, not time or conversation length.
+
+### File Operation Impact
+| Operation | Tokens Added | Auto-Compacts? |
+|-----------|--------------|----------------|
+| Read/Write | ~1,500-2,000 | ❌ No |
+| Message | ~50-500 | ✅ Yes |
+
+**Danger Zone:** 5+ file operations in rapid succession
+
+### Safety Rules
+1. **Checkpoint after 3 Write operations**
+2. **Checkpoint after 5 total file operations (Read + Write)**
+3. **Use safe aliases when available:**
+   - `lss` instead of `ls` (limits output to 50 items)
+   - `cats` instead of `cat` (limits large files to 500 lines)
+   - `finds` instead of `find` (limits results to 100 matches)
+
+### Installation
+```bash
+# Install context safety hooks
+cd scripts
+.\install-context-safety.ps1
+```
+
+Then restart PowerShell to load the aliases.
+
+### When to Checkpoint
+- After editing 3+ files
+- Before starting a new logical task group
+- When switching between unrelated work areas
+
+**Remember:** Mark todos IMMEDIATELY after each file write - don't batch updates.
+
+### 2026-01-27: World map expansion for prologue beach and Titan battlefield
+**Problem:** Current map was too small (bounds at ±540 x and ±620 y). Storyline.md requires beach area where Circe washes up after prologue, and Titan battlefield for pharmaka gathering.
+
+**Solution:** Expanded world bounds significantly and added beach terrain at bottom, Titan battlefield area on western cliffs with glowing spots for pharmaka flowers.
+
+**Key Files Changed:**
+- `game/features/world/world.tscn` — Expanded boundaries (2400x3000 instead of 1080x1240)
+- `game/features/world/world.gd` — Added `_paint_beach_area()`, `_paint_titan_battlefield()`, expanded `_ensure_ground_fill()`
+- `game/shared/resources/tiles/procedural_tiles.tres` — Added sand source (4) to tileset
+- `game/textures/tiles/sand_procedural.png` — Created procedural sand texture
+- `temp/create_sand_texture.py` — Python script to generate sand tile
+
+**Lessons Learned:**
+- World now spans -35 to 35 tiles (70 width) by -45 to 45 tiles (90 height)
+- Beach at bottom (y > 30) with sand/water gradient for prologue arrival
+- Titan battlefield at western edge (x < -20) with stone ground and glowing spots
+- Player spawns at (0, 560) on beach for first arrival after prologue
+- Paths connect beach → main area → Titan battlefield
+
+**Use This When:** Storyline requires multiple biomes or locations. Use procedural generation with tile layers for terrain variety.
+
 - Source of truth: `.claude/skills/`
 - Codex mirror: `.codex/skills/` (keep in sync with `.claude/skills/`)
 - Preferred sync: `scripts/sync-skills.ps1` (supports `-DryRun`, `-Prune`)

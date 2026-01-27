@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "scylla_nymph_intro"
+lines = [{
+"speaker": "Scylla",
+"text": "La la la~ The water is perfect today.",
+"emotion": "happy"
+}, {
+"speaker": "Scylla",
+"text": "Glaucos will love how my hair shines in the sun.",
+"emotion": "vain"
+}, {
+"speaker": "Scylla",
+"text": "Circe? Is that you? What are you doing all the way out here?",
+"emotion": "surprised"
+}, {
+"speaker": "Scylla",
+"text": "Did Glaucos send you? Is he planning something? He's so romantic!",
+"emotion": "hopeful"
+}]
+choices = []
+flags_required = []
+flags_to_set = ["met_scylla_nymph"]
+next_dialogue_id = ""

@@ -7,6 +7,19 @@ description: Create detailed implementation plans through interactive research a
 
 Create detailed, well-researched implementation plans through interactive collaboration and thorough codebase investigation.
 
+## Compound Engineering Context
+
+This skill follows the **compound engineering** approach: each unit of work should make future work easier.
+
+**The Work Loop: Plan → Delegate → Assess → Codify**
+
+1. **Plan** (this skill): Confirm scope, identify parallelization opportunities, structure work
+2. **Delegate**: Use parallel subagents (MiniMax MCP, etc.) for independent workstreams
+3. **Assess**: Verify changes worked (headed check, runtime inspection)
+4. **Codify**: Record outcomes in roadmaps for continuous improvement
+
+**For autonomous work patterns (2A phase)**, see `docs/agent-instructions/COMPOUND_ENGINEERING.md`.
+
 ## When to Use This Skill
 
 - Planning new features or functionality
@@ -15,11 +28,23 @@ Create detailed, well-researched implementation plans through interactive collab
 - Structuring complex refactoring work
 - Any task requiring upfront planning and design
 
-
 **Use create-plan skill if:**
-- Creating detailed implementation plans for manual execution
-- Planning with user present for interactive feedback
+- Creating detailed implementation plans for autonomous execution
+- Planning work that can be split across 5-10+ parallel subagents
+- Breaking complex features into independent chunks
+- Planning with user present for interactive feedback (1A phase)
 - Research-heavy planning before coding
+
+**Key Philosophy: Parallel-First Planning**
+- Design plans to maximize independent parallel work
+- Break tasks into chunks that don't block each other
+- Enable 5-10+ agents to work simultaneously without coordination overhead
+- Each chunk should be: self-contained, clearly bounded, independently testable
+
+**Compound Engineering Mindset:**
+- Every task should document patterns for future agents
+- Note gotchas, integration points, and reusable solutions
+- Think: "What would the next agent need to know to build on this?"
 
 ## Initial Input Handling
 
@@ -41,21 +66,31 @@ Parse the user's request to identify:
 
 **Critical**: Thoroughly investigate the codebase before planning.
 
-Spawn parallel sub-tasks using specialized agents:
+**Spawn Parallel Research Subtasks:**
+
+Use 5-10+ specialized agents simultaneously to gather context fast:
 
 ```
-Research Tasks:
-- codebase-locator: Find all files related to the feature area
-- codebase-analyzer: Understand existing patterns and architecture
-- Explore: Investigate integration points and dependencies
+Research Tasks (Parallel Execution):
+- Agent 1: codebase-locator - Find all files related to the feature area
+- Agent 2: codebase-analyzer - Understand existing patterns and architecture
+- Agent 3: dependency-mapper - Investigate integration points and dependencies
+- Agent 4: pattern-finder - Locate similar implementations for reference
+- Agent 5: edge-case-researcher - Identify potential edge cases and constraints
 ```
 
 For each research task, provide:
 - Specific directories to examine
 - Exact patterns or code to find
 - Required output: file:line references
+- Clear boundaries (no overlap with other agents)
 
 **Read all identified files completely** - no partial reads or summaries.
+
+**Compound Engineering Mindset:**
+- Research not just for current task, but to document patterns for future agents
+- Note reusable patterns, gotchas, and integration points
+- Think: "What would the next agent need to know to build on this?"
 
 ### Phase 2: Present Understanding
 
@@ -139,6 +174,25 @@ Get explicit approval before writing the full plan.
 
 ### Phase 6: Write the Plan
 
+**Plan for Parallel Execution:**
+
+Structure plans to enable maximum autonomous parallel work:
+
+1. **Identify Independent Workstreams** - What can run simultaneously?
+2. **Define Clear Boundaries** - Each chunk has no dependencies on others
+3. **Enable Skip-Around** - Agents can work chunks in any order
+4. **Self-Contained Chunks** - Each task has everything needed to complete
+
+**Example Parallel Structure:**
+```
+P0 (Must Have) - Can run 5 agents in parallel:
+- Chunk 1: Core system A (independent, testable alone)
+- Chunk 2: Core system B (independent, testable alone)
+- Chunk 3: Integration layer (depends on A+B, but can be prepped)
+- Chunk 4: Data migration (can run alongside A+B)
+- Chunk 5: Test infrastructure (can be built in parallel)
+```
+
 **For Long-Execution Plans (30+ minutes autonomous work):**
 
 Include a **"Key References"** section at the top:
@@ -163,16 +217,34 @@ Include a **"Key References"** section at the top:
 - "Remember to reference X" (not "check X")
 - "Keep in mind to use Y" (not "verify Y")
 - "Use Z for W" (clear autonomous action)
+- "Skip blocked tasks, circle back" (enable parallel progress)
 - Avoid: "ask", "check", "verify" (can trigger stops)
 
-**Then append to each plan step:**
+**Todo Tracking for Parallel Work:**
+
+Append skip-around reminder to each autonomous task:
 ```markdown
 ### Step X: [Task Name]
 
 [Step content...]
 
 *Reference: [DOC_NAME.md] for [specific guidance]*
+
+**Remember:** Skip around stuck tasks. Try 2-3 alternatives. Move to next todo. Circle back. Keep working. Do not make major repo changes unless approved.
 ```
+
+**Compound Engineering: Document for Future Agents:**
+
+Each chunk should include:
+```markdown
+## Outcomes to Document (When Complete)
+- Pattern discovered: [What future agents should reuse]
+- Integration point: [How this connects to other systems]
+- Gotcha: [What to avoid next time]
+- Test approach: [How to verify this works]
+```
+
+This enables continuous improvement and knowledge accumulation.
 
 ---
 
@@ -231,6 +303,19 @@ Manual Verification:
 ```
 
 ## Critical Guidelines
+
+### Be Parallel-First
+- Design work to maximize independent concurrent execution
+- Break tasks into chunks that can run simultaneously
+- Target 5-10+ parallel workstreams where possible
+- Each chunk should be independently verifiable
+- Enable skip-around: no single task should block all progress
+
+### Enable Compound Engineering
+- Document patterns for future agents to reuse
+- Note gotchas and integration points as you discover them
+- Write outcomes to roadmaps for continuous improvement
+- Think: "What does the next agent need to know?"
 
 ### Be Thorough
 - Read entire files, not partial content

@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "act1_transformation_cutscene"
+lines = [{
+"speaker": "Scylla",
+"text": "Circe, what is that? What are you—",
+"emotion": "alarmed"
+}, {
+"speaker": "Scylla",
+"text": "IT BURNS! IT BURNS!",
+"emotion": "screaming"
+}, {
+"speaker": "Scylla",
+"text": "CIRCE, WHAT HAVE YOU DONE TO ME?!",
+"emotion": "horrified"
+}, {
+"speaker": "Circe",
+"text": "I... I didn't mean for it to be so—",
+"emotion": "horrified"
+}, {
+"speaker": "Scylla",
+"text": "LOOK AT ME! LOOK WHAT YOU'VE DONE!",
+"emotion": "monstrous"
+}, {
+"speaker": "Scylla",
+"text": "YOU MONSTER! YOU WITCH!",
+"emotion": "raging"
+}, {
+"speaker": "Circe",
+"text": "Scylla, wait! I can fix—",
+"emotion": "terrified"
+}, {
+"speaker": "Scylla",
+"text": "FIX?! YOU CAN'T FIX THIS!",
+"emotion": "defeated"
+}, {
+"speaker": "Scylla",
+"text": "LEAVE! LEAVE ME ALONE!",
+"emotion": "anguished"
+}, {
+"speaker": "Circe",
+"text": "No... no, no, no.",
+"emotion": "whispering"
+}, {
+"speaker": "Circe",
+"text": "I just wanted her to be ugly. Not... not a monster.",
+"emotion": "sobbing"
+}, {
+"speaker": "Circe",
+"text": "This wasn't supposed to happen.",
+"emotion": "breaking"
+}, {
+"speaker": "Scylla",
+"text": "What have you done... what have you done...",
+"emotion": "sobbing"
+}]
+choices = []
+flags_required = ["sap_poured"]
+flags_to_set = ["transformation_complete"]
+next_dialogue_id = "exile_cutscene"

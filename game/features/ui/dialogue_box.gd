@@ -106,7 +106,9 @@ func _show_choices() -> void:
 		button.text = choice["text"]
 		button.pressed.connect(_on_choice_selected.bind(i, choice))
 		choices_container.add_child(button)
-		UIHelpers.setup_button_focus(button)
+
+		# Complete button setup (focus + press + hover)
+		UIHelpers.setup_button(button)
 
 		if first_button == null:
 			first_button = button

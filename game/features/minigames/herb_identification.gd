@@ -38,7 +38,7 @@ func _ready() -> void:
 
 func set_variant_mode(mode: String) -> void:
 	# Set variant mode: "normal" (glow/color) or "saffron" (stamen color discrimination)
-	variant_mode = mode
+	self.variant_mode = mode
 
 func _setup_round(round_num: int) -> void:
 	current_round = round_num
@@ -237,4 +237,15 @@ func _spawn_particles(pos: Vector2) -> void:
 
 func _award_items(items: Array) -> void:
 	for item_id in items:
-		GameState.add_item(item_id, 1)
+		# Add item with visual feedback
+		GameState.collect_item_at_position(item_id, 1, global_position)
+
+		# Show pickup effect
+		if Engine.get_main_loop().root.has_node("VisualFeedbackController"):
+			var feedback = Engine.get_main_loop().root.get_node("VisualFeedbackController")
+			if feedback.has_method("item_pickup_effect"):
+				# Load item icon if available
+				var item_path = "res://game/shared/resources/items/%s.tres" % item_id
+				var item_data = load(item_path) as ItemData
+				var item_texture = item_data.icon if item_data else null
+				feedback.item_pickup_effect(global_position, item_texture)

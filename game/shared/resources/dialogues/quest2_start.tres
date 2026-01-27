@@ -7,52 +7,68 @@ script = ExtResource("1_dialogue_data")
 id = "quest2_start"
 lines = [{
 "speaker": "Circe",
-"text": "Three. Enough to begin."
+"text": "Three. Enough to begin.",
+"emotion": "determined"
 }, {
 "speaker": "Circe",
-"text": "Scylla won't be so beautiful when I'm done."
+"text": "Scylla won't be so beautiful when I'm done.",
+"emotion": "bitter"
 }, {
 "speaker": "Hermes",
-"text": "Well, well. Little Circe, picking flowers."
+"text": "Well, well. Little Circe, picking flowers.",
+"emotion": "amused"
 }, {
 "speaker": "Hermes",
-"text": "How pastoral."
+"text": "How pastoral.",
+"emotion": "sarcastic"
 }, {
 "speaker": "Circe",
-"text": "Hermes! What are you doing here?"
+"text": "Hermes! What are you doing here?",
+"emotion": "startled"
 }, {
 "speaker": "Hermes",
-"text": "I go everywhere, darling. Messenger god, remember?"
+"text": "I go everywhere, darling. Messenger god, remember?",
+"emotion": "casual"
 }, {
 "speaker": "Hermes",
-"text": "Besides, I heard you were exiled - wait, not exiled yet."
+"text": "Besides, I heard you were exiled - wait, not exiled yet.",
+"emotion": "playful"
 }, {
 "speaker": "Hermes",
-"text": "You're here voluntarily. Interesting."
+"text": "You're here voluntarily. Interesting.",
+"emotion": "curious"
 }, {
 "speaker": "Circe",
-"text": "I needed space."
+"text": "I needed space.",
+"emotion": "defensive"
 }, {
 "speaker": "Hermes",
-"text": "And what are those behind your back?"
+"text": "And what are those behind your back?",
+"emotion": "suspicious"
 }, {
 "speaker": "Hermes",
-"text": "Pharmaka, if I'm not mistaken."
+"text": "Pharmaka, if I'm not mistaken.",
+"emotion": "knowing"
 }, {
 "speaker": "Circe",
-"text": "That's none of your business."
+"text": "That's none of your business.",
+"emotion": "cold"
 }, {
 "speaker": "Hermes",
-"text": "Circe. Whatever you're planning... think carefully."
+"text": "Circe. Whatever you're planning... think carefully.",
+"emotion": "serious"
 }, {
 "speaker": "Hermes",
-"text": "Pharmaka doesn't forgive mistakes."
+"text": "Pharmaka doesn't forgive mistakes.",
+"emotion": "warning"
 }, {
 "speaker": "Hermes",
-"text": "Trust me, I've seen what it can do."
+"text": "Trust me, I've seen what it can do.",
+"emotion": "foreboding"
 }, {
 "speaker": "Hermes",
-"text": "So tell me. What are you really doing here?"
+"text": "So tell me. What are you really doing here?",
+"emotion": "demanding"
 }]
 choices = [{
 "text": "I know what I am doing.",

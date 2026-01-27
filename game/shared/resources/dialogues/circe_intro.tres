@@ -7,24 +7,24 @@ script = ExtResource("1_dialogue_data")
 id = "circe_intro"
 lines = [{
 "speaker": "Circe",
-"text": "Welcome to Aiaia, traveler. I am Circe, daughter of Helios.",
-"emotion": "neutral"
+"text": "One week. Alone on this island. No visitors. No family. Just me and my guilt.",
+"emotion": "sad"
 }, {
 "speaker": "Circe",
-"text": "My garden holds many pharmaka - herbs of great power.",
-"emotion": "thoughtful"
+"text": "Scylla is still out there. Still suffering. I have to fix this.",
+"emotion": "guilty"
 }, {
 "speaker": "Circe",
-"text": "The soil here is stubborn, and the sea winds dry it fast.",
-"emotion": "neutral"
+"text": "I... did something terrible. To someone I was jealous of.",
+"emotion": "remorseful"
 }, {
 "speaker": "Circe",
-"text": "If you can plant and harvest, I can focus on my remedies.",
-"emotion": "thoughtful"
+"text": "I turned her into a monster. And now she's suffering.",
+"emotion": "guilty"
 }, {
 "speaker": "Circe",
-"text": "Perhaps you could help me tend to it?",
-"emotion": "hopeful"
+"text": "I've tried everything to fix it, but nothing works.",
+"emotion": "exhausted"
 }]
 choices = [{
 "text": "I'll help you with your garden.",

@@ -9,6 +9,18 @@ model: sonnet
 
 **Task:** `$ARGUMENTS`
 
+## Compound Engineering Principles
+
+**Core Philosophy:** Each unit of work should make future work easier.
+
+This framework uses massive parallel delegation with 5-10+ subagents working simultaneously across multiple waves of work. Each wave compounds on the previous one, creating exponential progress rather than linear advancement.
+
+**Key Principles:**
+1. **Parallel Over Sequential** - Spawn multiple subagents simultaneously, not one at a time
+2. **Skip-Around Pattern** - Never get stuck; move to next task and circle back
+3. **Continuous Work** - No stopping for summaries or check-ins during 2A phase
+4. **Compound Progress** - Each wave of work enables faster subsequent waves
+
 ## 1A Phase: Ask & Plan
 
 You are in the **Ask Phase** - gather information and create a detailed plan before autonomous execution.
@@ -49,6 +61,11 @@ TodoWrite(todos=[
   // ... more tasks
 ])
 ```
+
+**Todo Quote for Autonomous Work:**
+For each todo item (except final "keep working" task), append this reinforcement:
+
+"Remember: Skip around stuck tasks. Try 2-3 alternatives. Move to next todo. Circle back. Keep working. Do not make major repo changes unless approved."
 
 ### Step 4: Sanity Check with MiniMax Reviewer
 
@@ -127,8 +144,196 @@ When the user says "finish the game" or "finish the roadmap":
 - Clarification questions (make reasonable assumptions)
 - "Should I do X?" (use your best judgment)
 - "Is this correct?" (proceed with confidence)
+- Progress summaries or "check-ins"
+- Slow operations or challenging work
+- One approach failing (try 2-3 alternatives)
 
 **HARD STOPS still apply:** Creating .md files, git push, editing CONSTITUTION.md, actions outside scope.
+
+### Compound Engineering: Multi-Agent Delegation
+
+**Core Principle:** Each unit of work should make future work easier.
+
+**Massive Parallel Delegation (5-10+ Subagents):**
+
+During 2A phase, aggressively delegate work across multiple subagents working simultaneously:
+
+### Context Management (2A Phase)
+
+**CRITICAL for GLM-4.7:** Checkpoint based on FILE OPERATIONS, not time or todo count.
+
+**Checkpoint triggers:**
+1. **After 3 Write operations** (each returns ~1,500-2,000 tokens to context)
+2. **After 5 total Read/Write operations** combined
+3. **Before starting large batch operations** (reading/writing many files)
+
+**Checkpoint procedure:**
+
+1. **Update plan file with checkpoint:**
+   - What's been completed (file list with line numbers)
+   - Current blockers / pending items
+   - Next 3-5 todos to work on
+   - Critical state (quest flags, positions, etc.)
+
+2. **Clear API context properly:**
+   ```bash
+   # Option 1: Proper context clear sequence
+   /context clear
+   /context status  # Verify it's actually cleared
+
+   # Option 2: Start completely fresh (most reliable)
+   - Close Cursor/Claude Code completely
+   - Reopen and start new session
+   - Reference plan: @temp/autonomous-work-[task].md
+   ```
+
+3. **Resume 2A phase:**
+   - Reference the plan file: @temp/autonomous-work-[task].md
+   - Continue with 2A phase from where you left off
+
+**Why this doesn't violate "keep working":**
+- You're not stopping to ask questions
+- You're not providing a summary to the user
+- You're just clearing token bloat and resuming
+- Work continues uninterrupted across sessions
+
+**GLM-4.7 Specific Notes:**
+- GLM-4.7 has ~200K context (vs Claude's 1M)
+- File operations are the primary context consumers
+- `/clear` command is BUGGY - use `/context clear` or restart session entirely
+- Consider using native Claude model for very long file-heavy sessions
+
+**Example checkpoint format:**
+```markdown
+## Context Checkpoint [operation count]
+
+### Operations Since Last Checkpoint
+- Read: hermes_idle.tres, quest2_start.tres, daedalus_idle.tres (3)
+- Write: act1_transformation_cutscene.tres, exile_cutscene.tres (2)
+- Total: 5 operations → Checkpoint triggered
+
+### Completed
+- game/shared/resources/dialogues/act1_transformation_cutscene.tres - 64 lines
+- game/shared/resources/dialogues/exile_cutscene.tres - 100 lines
+
+### Current Todo
+- Adding Daedalus mercy discussion dialogue
+
+### Next 3 Todos
+- Fix Aeetes character dialogue
+- Add missing quest completion dialogues
+- Implement missing choice branches
+
+### Blockers
+- None
+
+### Critical State
+- Quest 4 complete, met_daedalus flag set
+- Next: act2_daedalus_mercy_discussion.tres
+```
+
+**Quick Reference Card:**
+
+| Operation | Token Cost | Checkpoint After |
+|-----------|------------|------------------|
+| Read file | ~1,000-2,000 | Count toward 5 total |
+| Write file | ~1,500-2,000 | **3 writes = checkpoint** |
+| Edit file | ~500-1,000 | Count toward 5 total |
+| Grep/Glob | ~100-500 | Negligible |
+| TodoWrite | ~50-100 | Negligible |
+| Bash (short) | ~100-500 | Negligible |
+
+**When in doubt:** After creating 3 new dialogue files, ALWAYS checkpoint before continuing.
+
+**When to delegate:**
+- Research tasks (codebase exploration, pattern finding, dependency analysis)
+- Implementation of independent features/components
+- Testing and validation across multiple areas
+- Documentation updates for different systems
+- Asset generation (sprites, images, textures via MiniMax)
+- Review and validation tasks
+
+**Delegation Strategy:**
+```
+Wave 1 (Parallel Research - 5-10 agents):
+- Agent 1: Locate all files related to feature X
+- Agent 2: Analyze existing patterns in similar features
+- Agent 3: Explore integration points and dependencies
+- Agent 4: Review test coverage in relevant areas
+- Agent 5: Check documentation and precedents
+- Agent 6: Examine asset requirements
+- Agent 7: Validate resource loading patterns
+- Agent 8: Review related quest/dialogue systems
+- ... continue as needed
+
+Wave 2 (Parallel Implementation - 5-10 agents):
+- Agent 1: Implement core feature A
+- Agent 2: Implement core feature B
+- Agent 3: Add tests for feature A
+- Agent 4: Add tests for feature B
+- Agent 5: Update documentation
+- Agent 6: Generate required assets
+- Agent 7: Validate integration points
+- Agent 8: Handle edge cases
+- ... continue as needed
+```
+
+**Key Points:**
+- Spawn multiple subagents simultaneously, not sequentially
+- Let them work in parallel on independent tasks
+- Aggregate results and integrate
+- Continue with next wave of subtasks
+- Each wave makes future waves easier (compound engineering)
+
+### Skip-Around Pattern
+
+**When stuck on a task:**
+
+1. **Document** the challenge in plan file (1-2 lines)
+2. **Move immediately** to next todo item
+3. **Circle back** to stuck items after making progress elsewhere
+4. **Try 2-3 alternatives** before documenting as pending
+
+**Examples of "stuck":**
+- One approach failing → Try 2 more alternatives, then skip
+- Slow operation → Note it, move to next task, come back
+- Uncertain about implementation detail → Make reasonable assumption, note it, continue
+- Sequential task blocked → Skip to parallel task, circle back
+
+**Examples of NOT stuck (keep working):**
+- Work is taking time → Time ≠ stop, keep going
+- Challenging problem → Try alternatives, don't stop
+- Need to research → Use MiniMax, keep going
+- Multiple failures → Try more approaches, keep going
+
+**Only stop for HARD STOPS:**
+- Creating NEW .md files (not edits)
+- Editing `.cursor/` directory
+- Git push, force push, branch operations
+- Editing CONSTITUTION.md
+- Actions outside approved scope
+- Explicit user request to stop/pause
+
+### Work Guidelines
+
+**DO autonomously:**
+- Work through todos systematically without stopping
+- Update plan file with quick notes (keep working)
+- Delegate to 5-10+ subagents in parallel waves
+- Skip around stuck tasks, circle back later
+- Try 2-3 alternatives before documenting blockers
+- Use skills before manual implementation
+- Run tests when appropriate
+- Commit changes when work blocks complete
+- Continue working continuously until blocked or complete
+
+**DO NOT:**
+- Stop to provide progress summaries
+- Stop to "check in" during work
+- Stop when work is slow or challenging
+- Stop when one approach fails (try alternatives)
+- Ask "should I continue?" (unless HARD STOP)
+- Wait for subagents sequentially (spawn them in parallel)
 
 ### Work Guidelines
 

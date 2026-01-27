@@ -7,24 +7,24 @@ script = ExtResource("1_dialogue_data")
 id = "hermes_intro"
 lines = [{
 "speaker": "Hermes",
-"text": "Ah, a new face on Aiaia! How refreshing.",
-"emotion": "cheerful"
+"text": "Well, well. Look what washed up on shore.",
+"emotion": "amused"
 }, {
 "speaker": "Hermes",
-"text": "I am Hermes, messenger of the gods. Swift of foot, silver of tongue.",
-"emotion": "proud"
+"text": "Another wanderer washed up. How... quaint.",
+"emotion": "amused"
 }, {
 "speaker": "Hermes",
-"text": "Circe asked me to keep watch while she works. Boring duty, really.",
-"emotion": "bored"
+"text": "I'm Hermes. Messenger god, professional busybody.",
+"emotion": "playful"
 }, {
 "speaker": "Hermes",
-"text": "But you look like someone who could make things interesting.",
-"emotion": "curious"
+"text": "Circe gets lonely. Someone has to keep her entertained.",
+"emotion": "amused"
 }, {
 "speaker": "Hermes",
-"text": "Stick around. I have a feeling we will be seeing much of each other.",
-"emotion": "friendly"
+"text": "Don't worry, I'll be around. Boredom is terrible, after all.",
+"emotion": "casual"
 }]
 choices = []
 flags_required = []

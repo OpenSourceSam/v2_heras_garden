@@ -10,13 +10,77 @@ lines = [{
 "text": "It's done, then. Scylla is... at peace.",
 "emotion": "relieved"
 }, {
+"speaker": "Hermes",
+"text": "Circe.",
+"emotion": "gentle"
+}, {
 "speaker": "Circe",
-"text": "Hermes says my exile is partially lifted. That I can choose my path now.",
-"emotion": "contemplative"
+"text": "Hermes. I wasn't expecting you.",
+"emotion": "surprised"
+}, {
+"speaker": "Hermes",
+"text": "I heard what you did. About Scylla.",
+"emotion": "serious"
+}, {
+"speaker": "Circe",
+"text": "I... I tried to save her. But I was too late.",
+"emotion": "sad"
+}, {
+"speaker": "Hermes",
+"text": "The sailors are safe now.",
+"emotion": "reassuring"
+}, {
+"speaker": "Circe",
+"text": "At least that's something. Small comfort.",
+"emotion": "wistful"
+}, {
+"speaker": "Hermes",
+"text": "You... did the right thing. Hard as it was.",
+"emotion": "acknowledging"
+}, {
+"speaker": "Circe",
+"text": "It doesn't feel like the right thing. It feels like failure.",
+"emotion": "sorrowful"
+}, {
+"speaker": "Hermes",
+"text": "Zeus has lifted part of your exile. You can receive visitors now.",
+"emotion": "informative"
+}, {
+"speaker": "Circe",
+"text": "Visitors? I don't need visitors. I have my work. My garden.",
+"emotion": "defensive"
+}, {
+"speaker": "Hermes",
+"text": "You say that now. But immortality is long, Circe. You'll get lonely.",
+"emotion": "knowing"
+}, {
+"speaker": "Circe",
+"text": "I'll manage. I always have.",
+"emotion": "resigned"
+}, {
+"speaker": "Hermes",
+"text": "For what it's worth... you've grown. Changed.",
+"emotion": "sincere"
+}, {
+"speaker": "Circe",
+"text": "Changed? How?",
+"emotion": "curious"
+}, {
+"speaker": "Hermes",
+"text": "The Circe who transformed Scylla wouldn't have cried for her. The Circe who turned her to stone did. That's... something.",
+"emotion": "gentle"
+}, {
+"speaker": "Circe",
+"text": "I... thank you, Hermes. That means more than I can say.",
+"emotion": "touched"
+}, {
+"speaker": "Hermes",
+"text": "You can choose your path now, Circe. Stay or go. The choice is yours.",
+"emotion": "encouraging"
 }, {
 "speaker": "Circe",
 "text": "I could stay here, continue my work with pharmaka. Help others.",
-"emotion": "hopeful"
+"emotion": "contemplative"
 }, {
 "speaker": "Circe",
 "text": "Or I could leave Aiaia. See what the world has become.",

@@ -7,28 +7,28 @@ script = ExtResource("1_dialogue_data")
 id = "quest1_start"
 lines = [{
 "speaker": "Hermes",
-"text": "Circe, you seek pharmaka. I am here to deliver a warning.",
-"emotion": "businesslike"
+"text": "So, you're after pharmaka. Let me make this interesting.",
+"emotion": "amused"
 }, {
 "speaker": "Hermes",
-"text": "The true flowers glow faint gold, like captured sunlight.",
-"emotion": "informative"
+"text": "The real ones glow gold. Like sunlight, if sunlight weren't so dull.",
+"emotion": "sarcastic"
 }, {
 "speaker": "Hermes",
-"text": "Most are ordinary; the glow is the clue.",
-"emotion": "helpful"
+"text": "The rest are just weeds. Boring.",
+"emotion": "dismissive"
 }, {
 "speaker": "Hermes",
-"text": "Bring back three. The sap comes next.",
-"emotion": "warning"
+"text": "Grab three. Assuming you can spot them, of course.",
+"emotion": "mocking"
 }, {
 "speaker": "Hermes",
-"text": "Be careful. Pharmaka does not forgive mistakes.",
-"emotion": "cautious"
+"text": "Pharmaka doesn't do 'forgive'. Try not to embarrass yourself.",
+"emotion": "casual"
 }, {
 "speaker": "Hermes",
-"text": "Find the true herb. Prove you have the eye for it.",
-"emotion": "encouraging"
+"text": "Show me you've got the eye for it. Or don't. Either way, I'm entertained.",
+"emotion": "amused"
 }]
 choices = []
 flags_required = ["prologue_complete"]

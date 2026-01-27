@@ -1,0 +1,100 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "exile_cutscene"
+lines = [{
+"speaker": "Zeus",
+"text": "PHARMAKA.",
+"emotion": "booming"
+}, {
+"speaker": "Zeus",
+"text": "You used pharmaka, Circe, daughter of Helios.",
+"emotion": "wrathful"
+}, {
+"speaker": "Helios",
+"text": "What have you done, child?",
+"emotion": "furious"
+}, {
+"speaker": "Helios",
+"text": "Do you understand the consequences?",
+"emotion": "disappointed"
+}, {
+"speaker": "Circe",
+"text": "Father, I didn't mean—",
+"emotion": "desperate"
+}, {
+"speaker": "Zeus",
+"text": "Intent is irrelevant. You created a monster.",
+"emotion": "dismissive"
+}, {
+"speaker": "Zeus",
+"text": "Already, ships passing this strait have been attacked.",
+"emotion": "grave"
+}, {
+"speaker": "Zeus",
+"text": "Sailors have died.",
+"emotion": "accusatory"
+}, {
+"speaker": "Circe",
+"text": "That's not my fault! She chose to—",
+"emotion": "defensive"
+}, {
+"speaker": "Helios",
+"text": "You caused this! You and your jealousy!",
+"emotion": "sharp"
+}, {
+"speaker": "Helios",
+"text": "Your brother Aeëtes taught you pharmaka, didn't he?",
+"emotion": "accusatory"
+}, {
+"speaker": "Circe",
+"text": "He only told me where to find it! I acted alone!",
+"emotion": "defensive"
+}, {
+"speaker": "Zeus",
+"text": "Enough. The punishment is decided.",
+"emotion": "final"
+}, {
+"speaker": "Zeus",
+"text": "Circe, you are hereby exiled to the island of Aiaia.",
+"emotion": "booming"
+}, {
+"speaker": "Zeus",
+"text": "You will remain there, alone, for eternity.",
+"emotion": "wrathful"
+}, {
+"speaker": "Zeus",
+"text": "No god or mortal may visit without my permission.",
+"emotion": "absolute"
+}, {
+"speaker": "Circe",
+"text": "Eternity? Father, please—",
+"emotion": "stunned"
+}, {
+"speaker": "Helios",
+"text": "You embarrassed me for the last time.",
+"emotion": "dismissive"
+}, {
+"speaker": "Helios",
+"text": "Live with your choices, daughter.",
+"emotion": "cold"
+}, {
+"speaker": "Circe",
+"text": "Exiled. Forever.",
+"emotion": "numb"
+}, {
+"speaker": "Circe",
+"text": "Because of what I did to Scylla.",
+"emotion": "defeated"
+}, {
+"speaker": "Circe",
+"text": "I have to fix this. Somehow.",
+"emotion": "determined"
+}]
+choices = []
+flags_required = ["transformation_complete"]
+flags_to_set = ["exile_declared"]
+next_dialogue_id = "world_after_exile"

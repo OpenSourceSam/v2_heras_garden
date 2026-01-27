@@ -14,6 +14,8 @@ extends Node2D
 const GRASS_SOURCE_ID := 0
 const DIRT_SOURCE_ID := 1
 const STONE_SOURCE_ID := 2
+const WATER_SOURCE_ID := 3
+const SAND_SOURCE_ID := 4
 const PATH_WIDTH := 2
 
 var _active_plot: Node = null
@@ -98,28 +100,34 @@ func _ensure_ground_fill() -> void:
 	if ground == null or ground.tile_set == null:
 		return
 
+	# Expanded map size: -35 to 35 tiles in X, -45 to 45 tiles in Y
+	# This gives us room for beach area (bottom), house (center), and expansion areas
 	var tile_size := Constants.TILE_SIZE
-	var width_tiles := int(ceil(float(Constants.VIEWPORT_WIDTH) / tile_size)) + 6
-	var height_tiles := int(ceil(float(Constants.VIEWPORT_HEIGHT) / tile_size)) + 6
-	var half_w := int(floor(width_tiles / 2.0))
-	var half_h := int(floor(height_tiles / 2.0))
-	var border_margin := 2
-	var border_w := half_w - border_margin
-	var border_h := half_h - border_margin
+	var half_w := 35  # 70 tiles wide
+	var half_h := 45  # 90 tiles tall
 
+	# Fill with grass first
 	for x in range(-half_w, half_w + 1):
 		for y in range(-half_h, half_h + 1):
 			ground.set_cell(Vector2i(x, y), GRASS_SOURCE_ID, Vector2i.ZERO)
 
-	# Border frame to define bounds (pulled in from the edge for visibility).
+	# Create beach area at the bottom (y > 30)
+	_paint_beach_area(-half_w, half_w, 30, half_h)
+
+	# Border frame to define bounds
+	var border_margin := 2
+	var border_w := half_w - border_margin
+	var border_h := half_h - border_margin
+
 	for x in range(-border_w, border_w + 1):
 		ground.set_cell(Vector2i(x, -border_h), STONE_SOURCE_ID, Vector2i.ZERO)
-		ground.set_cell(Vector2i(x, border_h), STONE_SOURCE_ID, Vector2i.ZERO)
+		ground.set_cell(Vector2i(x, border_h), WATER_SOURCE_ID, Vector2i.ZERO)  # Water at bottom
 	for y in range(-border_h, border_h + 1):
 		ground.set_cell(Vector2i(-border_w, y), STONE_SOURCE_ID, Vector2i.ZERO)
 		ground.set_cell(Vector2i(border_w, y), STONE_SOURCE_ID, Vector2i.ZERO)
 
 	_paint_paths()
+	_paint_titan_battlefield()  # Add Titan battlefield area for pharmaka gathering
 	_scatter_ground_detail(half_w, half_h)
 
 func _paint_paths() -> void:
@@ -131,6 +139,15 @@ func _paint_paths() -> void:
 	_paint_vertical_path(6, 2, -2, PATH_WIDTH)  # Loom
 	_paint_vertical_path(0, 2, -7, PATH_WIDTH)  # Signpost
 	_paint_vertical_path(7, 2, 5, PATH_WIDTH)   # Rock landmark
+
+	# Beach arrival path (from bottom beach to main path)
+	# This is the path Circe takes when she first arrives
+	_paint_vertical_path(0, 35, 2, PATH_WIDTH)  # Beach to main area
+	_paint_horizontal_path(-3, 3, 35, PATH_WIDTH)  # Beach landing area
+
+	# Path to Titan battlefield (western cliffs)
+	_paint_horizontal_path(-25, -5, 0, PATH_WIDTH)  # To battlefield
+	_paint_vertical_path(-25, 0, -5, PATH_WIDTH)  # Connect to main path
 
 func _paint_horizontal_path(start_x: int, end_x: int, y: int, width: int) -> void:
 	var step := 1 if end_x >= start_x else -1
@@ -150,13 +167,77 @@ func _paint_vertical_path(x: int, start_y: int, end_y: int, width: int) -> void:
 		ground.set_cell(Vector2i(x - 1, y), STONE_SOURCE_ID, Vector2i.ZERO)
 		ground.set_cell(Vector2i(x + width, y), STONE_SOURCE_ID, Vector2i.ZERO)
 
+func _paint_beach_area(start_x: int, end_x: int, beach_y: int, max_y: int) -> void:
+	# Create sandy beach area at the bottom of the map
+	# Gradient from grass to sand to water
+	for y in range(beach_y, max_y + 1):
+		# Calculate sand depth (more sand as we go down)
+		var sand_depth = y - beach_y
+
+		for x in range(start_x, end_x + 1):
+			# Create organic beach edge with some variation
+			var noise = abs(int(x * 13 + y * 7)) % 7
+
+			if y > max_y - 5:
+				# Water at the very bottom
+				ground.set_cell(Vector2i(x, y), WATER_SOURCE_ID, Vector2i.ZERO)
+			elif y > max_y - 12:
+				# Sand/water mix area
+				if noise > 3:
+					ground.set_cell(Vector2i(x, y), SAND_SOURCE_ID, Vector2i.ZERO)
+				else:
+					ground.set_cell(Vector2i(x, y), WATER_SOURCE_ID, Vector2i.ZERO)
+			elif sand_depth < 3:
+				# Grass/sand transition
+				if noise > 2:
+					ground.set_cell(Vector2i(x, y), SAND_SOURCE_ID, Vector2i.ZERO)
+				else:
+					ground.set_cell(Vector2i(x, y), GRASS_SOURCE_ID, Vector2i.ZERO)
+			else:
+				# Pure sand
+				ground.set_cell(Vector2i(x, y), SAND_SOURCE_ID, Vector2i.ZERO)
+
+func _paint_titan_battlefield() -> void:
+	# Create ancient Titan battlefield area on western cliffs
+	# This is where pharmaka flowers grow (Storyline.md lines 499-521)
+	# Located at the western edge (negative x), elevated/cliff area
+
+	var cliff_start_x := -30
+	var cliff_end_x := -20
+	var cliff_y_start := -10
+	var cliff_y_end := 5
+
+	# Create rocky cliff terrain
+	for y in range(cliff_y_start, cliff_y_end + 1):
+		for x in range(cliff_start_x, cliff_end_x + 1):
+			# Mix of stone and some grass for ancient battlefield feel
+			var noise = abs(int(x * 7 + y * 11)) % 5
+			if noise < 2:
+				ground.set_cell(Vector2i(x, y), STONE_SOURCE_ID, Vector2i.ZERO)
+			else:
+				ground.set_cell(Vector2i(x, y), GRASS_SOURCE_ID, Vector2i.ZERO)
+
+	# Add glowing spots where Titan blood was spilled (pharmaka grows here)
+	var num_glowing_spots := 5
+	for i in range(num_glowing_spots):
+		var spot_x = cliff_start_x + randi() % (cliff_end_x - cliff_start_x)
+		var spot_y = cliff_y_start + randi() % (cliff_y_end - cliff_y_start)
+		# Create a small glowing area (3x3)
+		for dy in range(-1, 2):
+			for dx in range(-1, 2):
+				var tx = spot_x + dx
+				var ty = spot_y + dy
+				if tx >= cliff_start_x and tx <= cliff_end_x and ty >= cliff_y_start and ty <= cliff_y_end:
+					# Use stone for the glowing earth (pharmaka grows on sacred earth)
+					ground.set_cell(Vector2i(tx, ty), STONE_SOURCE_ID, Vector2i.ZERO)
+
 func _scatter_ground_detail(half_w: int, half_h: int) -> void:
 	for x in range(-half_w + 1, half_w):
 		for y in range(-half_h + 1, half_h):
 			if ground.get_cell_source_id(Vector2i(x, y)) != GRASS_SOURCE_ID:
 				continue
-			var seed: int = abs(int(x * 17 + y * 29))
-			if seed % 173 == 0:
+			var rand_val: int = abs(int(x * 17 + y * 29))
+			if rand_val % 173 == 0:
 				ground.set_cell(Vector2i(x, y), STONE_SOURCE_ID, Vector2i.ZERO)
 
 func _ensure_papershot_folder() -> void:
@@ -290,6 +371,14 @@ func _check_aiaia_arrival() -> void:
 	# Show arrival dialogue after prologue if not already shown
 	if GameState.get_flag("prologue_complete") and not GameState.get_flag("aiaia_arrival_shown"):
 		GameState.set_flag("aiaia_arrival_shown", true)
+
+		# Spawn player on beach for first arrival (Storyline: Circe washes up on beach)
+		var player = get_tree().get_first_node_in_group("player")
+		if player:
+			# Beach landing position: x=0, y=35 tiles = (0, 560) pixels
+			# This is the sandy beach area at the bottom of the map
+			player.global_position = Vector2(0, 560)
+
 		# Use call_deferred to let scene fully initialize
 		call_deferred("_show_aiaia_arrival_dialogue")
 

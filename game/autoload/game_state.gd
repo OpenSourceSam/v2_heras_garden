@@ -9,6 +9,7 @@ signal day_advanced(new_day: int)
 signal flag_changed(flag: String, value: bool)
 signal crop_planted(plot_id: Vector2i, crop_id: String)
 signal crop_harvested(plot_id: Vector2i, item_id: String, quantity: int)
+signal item_collected(item_id: String, quantity: int, position: Vector2)
 
 # Note: For TILE_SIZE and other constants, use Constants.TILE_SIZE (see game/autoload/constants.gd)
 
@@ -103,6 +104,11 @@ func add_item(item_id: String, quantity: int = 1) -> void:
 	inventory_changed.emit(item_id, inventory[item_id])
 	print("[GameState] Added %d x %s (total: %d)" % [quantity, item_id, inventory[item_id]])
 	_check_quest4_completion()
+
+## Collect item at a specific world position (triggers visual feedback)
+func collect_item_at_position(item_id: String, quantity: int, position: Vector2) -> void:
+	add_item(item_id, quantity)
+	item_collected.emit(item_id, quantity, position)
 
 func remove_item(item_id: String, quantity: int = 1) -> bool:
 	if not has_item(item_id, quantity):

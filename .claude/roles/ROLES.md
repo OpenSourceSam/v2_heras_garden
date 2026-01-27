@@ -1,6 +1,7 @@
 # Agent Role Hierarchy
 
 Last updated: [Codex - 2026-01-22]
+Image Analysis Subagent added: [Claude Sonnet 4.5 - 2026-01-26]
 
 ## Overview
 
@@ -56,6 +57,16 @@ Check your model name in the system prompt:
 **Requirement:** When delegating to sub-agents, use MiniMax or GLM-based sub-agents. Do not use Codex, Sonnet, or Opus models as sub-agents.
 
 **Recommendation:** Keep sub-agent tasks tightly scoped and review results before acting on them.
+
+### Available Subagents
+
+**Image Analysis Subagent (GLM-4.6v)**
+- **Role:** Visual quality assessment of game screenshots and sprites
+- **Tool:** `mcp__4_5v_mcp__analyze_image`
+- **Documentation:** `.claude/roles/image-analysis-subagent.md`
+- **Skill:** `.claude/skills/image-analysis/SKILL.md`
+- **Use when:** Analyzing sprite quality, checking transparency issues, validating Harvest Moon SNES style alignment
+- **Invoke:** `/skill image-analysis` or direct MCP tool call
 
 ---
 

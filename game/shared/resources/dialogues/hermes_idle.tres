@@ -7,44 +7,44 @@ script = ExtResource("1_dialogue_data")
 id = "hermes_idle"
 lines = [{
 "speaker": "Hermes",
-"text": "The winds carry interesting news from Olympus today.",
-"emotion": "thoughtful"
+"text": "Still tending your garden, I see. Very domestic for a witch.",
+"emotion": "mocking"
 }, {
 "speaker": "Hermes",
-"text": "Did you know I once raced the north wind? I won, naturally.",
-"emotion": "proud"
-}, {
-"speaker": "Hermes",
-"text": "Circe's garden grows stranger plants than any I have seen.",
-"emotion": "curious"
-}, {
-"speaker": "Hermes",
-"text": "Between you and me, the other gods find this island unsettling.",
-"emotion": "conspiratorial"
-}, {
-"speaker": "Hermes",
-"text": "I have delivered messages to stranger places than this. Not many, though.",
+"text": "The sailors are calling Scylla's statue a 'warning'. Cute, right?",
 "emotion": "amused"
 }, {
 "speaker": "Hermes",
-"text": "The pharmaka here... Circe knows their true names. That is rare power.",
-"emotion": "respectful"
+"text": "Your sister Pasiphaë sends her regards. Well, no, she didn't. I lied.",
+"emotion": "casual"
 }, {
 "speaker": "Hermes",
-"text": "Need directions? I know every path in the mortal and divine realms.",
-"emotion": "helpful"
+"text": "Heard about Odysseus. Clever type. This should be fun to watch.",
+"emotion": "amused"
 }, {
 "speaker": "Hermes",
-"text": "Aeetes visits sometimes. He and Circe share an... intense history.",
-"emotion": "cautious"
+"text": "You're getting good at this. Almost impressive.",
+"emotion": "mocking"
 }, {
 "speaker": "Hermes",
-"text": "The sea nymph Scylla has been spotted nearby. Tread carefully.",
-"emotion": "warning"
+"text": "Three ships last week. Scylla's been busy.",
+"emotion": "casual"
 }, {
 "speaker": "Hermes",
-"text": "Working hard? Good. Idle hands invite divine mischief.",
-"emotion": "cheerful"
+"text": "Zeus finds you amusing. For now.",
+"emotion": "casual"
+}, {
+"speaker": "Hermes",
+"text": "The pharmaka don't do 'safe'. Just so you know.",
+"emotion": "casual"
+}, {
+"speaker": "Hermes",
+"text": "Aeetes thinks you're brewing trouble. Shocking, I know.",
+"emotion": "sarcastic"
+}, {
+"speaker": "Hermes",
+"text": "Working hard? Or just hiding from your thoughts? Either way, beats boredom.",
+"emotion": "mocking"
 }]
 choices = []
 flags_required = ["met_hermes"]
