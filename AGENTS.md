@@ -48,6 +48,39 @@ Headed (HPV): Launch Godot, use MCP for input/inspection
 - Prefer brief clarifying questions up front, then a longer autonomous pass
 - Default to working within the current structure; flag major structural changes
 
+## CRITICAL: Work Duration Requirements (ABSOLUTE)
+
+### Minimum Work Block Duration
+- **NEVER** stop work before the agreed end time
+- **Current session:** Must work until 1:00 AM (2026-01-28 01:00)
+- **Current time check:** Required every 30 minutes
+- **Stopping early is the WORST CRIME** - worse than bugs, worse than mistakes
+
+### Time Check Protocol
+```
+Every 30 minutes, CHECK THE CLOCK:
+- If before 1:00 AM → CONTINUE WORKING
+- If before 1:00 AM and want to stop → USE troubleshoot-and-continue SKILL
+- If before 1:00 AM and tired → SPAWN MiniMax SUBAGENT to continue
+- ONLY at 1:00 AM or later → May consider stopping
+```
+
+### Anti-Early-Stopping Guardrails
+1. **Set recurring time check reminders** every 30 minutes
+2. **Before claiming completion** → Check time → If before 1:00 AM → Continue
+3. **If stuck** → Use systematic-debugging → Do NOT stop
+4. **If blocked** → Spawn subagent → Do NOT stop
+5. **Verification required** → Use verification-before-completion → Then continue to next task
+
+### Completion Criteria for This Session (1:00 AM)
+- [ ] All fake UIDs fixed OR tool ready for Godot fix
+- [ ] Full playthrough validated with HPV
+- [ ] Game exports successfully (Windows)
+- [ ] All commits pushed
+- [ ] Documentation updated
+
+**FAILURE TO WORK UNTIL 1:00 AM IS UNACCEPTABLE**
+
 ## Skill Inventory
 
 ### Superpowers Skills (Primary)
