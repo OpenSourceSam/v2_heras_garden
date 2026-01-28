@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=4 uid="uid://-7_yppeyowq"]
 
-[ext_resource type="TileSet" path="res://game/shared/resources/tiles/placeholder_grass_tileset.tres" id="1_tileset"]
+[ext_resource type="TileSet" uid="uid://b5kx3vnq7l8r" path="res://game/shared/resources/tiles/procedural_tiles.tres" id="1_tileset"]
 [ext_resource type="Script" path="res://game/features/locations/return_trigger.gd" id="2_return_trigger"]
 [ext_resource type="PackedScene" path="res://game/features/ui/dialogue_box.tscn" id="3_dialogue_box"]
 [ext_resource type="PackedScene" path="res://game/features/player/player.tscn" id="4_player"]
