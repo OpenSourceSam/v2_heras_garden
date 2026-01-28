@@ -97,5 +97,7 @@ Export-ModuleMember -Function @(
     'Show-ContextStats'
 ) -Alias @('lss', 'cats', 'finds')
 
-Write-Host "Context safety hooks loaded!" -ForegroundColor Green
-Write-Host "Use lss, cats, and finds instead of ls, cat, and find to prevent context overflow." -ForegroundColor Yellow
+# Only show message if not in quiet mode
+if (-not $env:CONTEXT_SAFETY_QUIET) {
+    Write-Host "Context safety hooks loaded!" -ForegroundColor Green
+}

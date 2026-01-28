@@ -2,7 +2,8 @@ param(
   [Parameter(Mandatory=$true)]
   [string]$McpCommand,
   [int]$TimeoutSec = 30,
-  [switch]$Quiet
+  [switch]$Quiet,
+  [switch]$Verbose
 )
 
 $ErrorActionPreference = "Continue"
@@ -11,8 +12,11 @@ $ErrorActionPreference = "Continue"
 $env:GODOT_PROJECT_PATH = "C:\Users\Sam\Documents\GitHub\v2_heras_garden"
 $env:MCP_TRANSPORT = "stdio"
 
+# Default to quiet mode unless verbose is specified
+$Quiet = -not $Verbose
+
 if (-not $Quiet) {
-  Write-Host "MCP Wrapper: $McpCommand" -ForegroundColor Cyan
+  Write-Host "MCP: $McpCommand" -ForegroundColor Cyan
 }
 
 # Helper function to read script file and convert to --code argument

@@ -16,7 +16,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-stretch_mode = 5
+stretch_mode = 6  # Stretch mode - fill while maintaining aspect
+
+[node name="DefaultBackground" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.15, 1)  # Dark blue-gray fallback
 
 [node name="Overlay" type="ColorRect" parent="."]
 anchors_preset = 15

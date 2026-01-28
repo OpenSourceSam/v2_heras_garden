@@ -1,8 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://epilogue_001"]
+[gd_scene load_steps=4 format=3 uid="uid://epilogue_001"]
 
 [ext_resource type="PackedScene" path="res://game/features/cutscenes/cutscene_base.tscn" id="1_base"]
 [ext_resource type="Script" path="res://game/features/cutscenes/epilogue.gd" id="2_script"]
+[ext_resource type="Texture2D" uid="uid://aiaia_bg" path="res://assets/backgrounds/cutscenes/aiaia_island_beach.png" id="3_bg"]
 
 [node name="Epilogue" instance=ExtResource("1_base")]
 layout_mode = 3
 script = ExtResource("2_script")
+
+[node name="Background" parent="." index="0"]
+texture = ExtResource("3_bg")
