@@ -48,4 +48,53 @@ Headed (HPV): Launch Godot, use MCP for input/inspection
 - Prefer brief clarifying questions up front, then a longer autonomous pass
 - Default to working within the current structure; flag major structural changes
 
-[Codex - 2026-01-17]
+## Skill Inventory
+
+### Superpowers Skills (Primary)
+- `brainstorming` - Clarify and explore ideas
+- `dispatching-parallel-agents` - Coordinate multiple subagents
+- `executing-plans` - Execute development plans
+- `receiving-code-review` - Process and apply code review feedback
+- `requesting-code-review` - Request and manage code reviews
+- `subagent-driven-development` - Develop using subagent patterns (NEW)
+- `systematic-debugging` - Structured debugging workflows
+- `test-driven-development` - TDD workflows
+- `using-git-worktrees` - Git worktree management
+- `using-superpowers` - Superpowers overview and guidance
+- `verification-before-completion` - Pre-completion verification
+- `writing-plans` - Create implementation plans
+- `writing-skills` - Create new skills
+
+### Project-Specific Skills
+- `longplan` - Complex multi-step planning (1A2A workflow)
+- `ralph` - Autonomous coding loop with MiniMax
+- `minimax-mcp` - MiniMax MCP integration
+- `godot` - Godot engine guidance
+- `godot-gdscript-patterns` - GDScript best practices
+- `godot-mcp-dap-start` - Godot MCP/DAP startup
+- `playtesting` - Game playtesting workflows
+- `glm-image-gen` - GLM image generation
+- `image-analysis` - Image quality assessment
+- `mcp-recovery` - MCP recovery procedures
+- `subagent-best-practices` - Subagent delegation patterns
+- `troubleshoot-and-continue` - Recovery workflows
+- `confident-language-guard` - Documentation language guidance
+- `skill-creator` - Create new skills
+- `skill-installer` - Install skills from repos
+- `sam-ceo-communication` - Non-technical communication
+- `github` - GitHub issue management
+- `gh-address-comments` - Address PR comments
+- `gh-fix-ci` - Fix CI failures
+- `git-best-practices` - Git commit best practices
+- `finishing-a-development-branch` - Branch completion workflow
+
+### Deprecated/Removed Skills (Replaced by Superpowers)
+- ~~`create-plan`~~ → use `writing-plans`
+- ~~`clarify`~~ → use `brainstorming`
+- ~~`explain`~~ → not used
+- ~~`ground`~~ → not used
+- ~~`finish`~~ → not used
+- ~~`review`~~ → use `requesting-code-review` or `receiving-code-review`
+- ~~`token-plan`~~ → use `writing-plans`
+
+[Codex - 2026-01-27]
