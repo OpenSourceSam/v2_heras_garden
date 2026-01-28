@@ -33,6 +33,7 @@ This catalog lists repo-local skills in `.claude/skills/` and mirrored in `.code
 | `skill-installer` | Skill installation | Installing skills into repo |
 | `subagent-best-practices` | Subagent delegation | Auto-injects when Task tool/subagents mentioned |
 | `ralph` | Autonomous asset generation | Scalable content creation with MiniMax |
+| `troubleshoot-and-continue` | Problem-solving protocol | When blocked - use before stopping |
 
 Note: Slash commands and shortcuts can vary by client; prefer the full skill name when invoking.
 
@@ -62,6 +63,7 @@ See each skill's `SKILL.md` for full details:
 - `sam-ceo-communication`
 - `skill-creator`
 - `skill-installer`
+- `troubleshoot-and-continue`
 
 Open `.claude/skills/<skill>/SKILL.md` for the full instructions.
 
@@ -84,5 +86,5 @@ Open `.claude/skills/<skill>/SKILL.md` for the full instructions.
 
 ---
 
-**Last Updated:** 2026-01-25
+**Last Updated:** 2026-01-27 (Added troubleshoot-and-continue skill)
 **Source:** `.claude/skills/` directory
