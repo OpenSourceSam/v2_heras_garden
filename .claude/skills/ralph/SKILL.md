@@ -145,6 +145,43 @@ if consecutive_failures >= 5:
     stop("Too many consecutive failures")
 ```
 
+**Layer 3: Completion Criteria Gate (CRITICAL)**
+```python
+# NEVER stop early without meeting ALL criteria
+if user_specified_time:
+    if elapsed_time < user_specified_time:
+        continue_working("Time commitment not yet fulfilled")
+
+if visual_quality_required:
+    if not screenshots_captured:
+        continue_working("Visual proof required")
+    if not quality_surpasses_reference:
+        continue_working("Quality gate not met")
+
+if narrative_consistency_required:
+    if not checked_against_storyline_md:
+        continue_working("Narrative verification required")
+
+if success_criteria_defined:
+    if not all_criteria_verified:
+        continue_working("Completion criteria not satisfied")
+```
+
+**Completion Criteria Enforcement:**
+- Document explicit criteria in progress file at START
+- Verify each criterion with evidence before marking complete
+- Visual work requires visual proof (screenshots)
+- Narrative work requires Storyline.md cross-reference
+- Time commitments MUST be honored (no early stopping)
+- "Good enough" is not a completion criterion
+
+**Anti-Pattern Prevention:**
+Track and prevent these early-exit justifications:
+- ❌ "I've made good progress" → Continue until criteria met
+- ❌ "No blockers found" → Continue until work complete
+- ❌ "Let me summarize" → Continue working, summarize at true end
+- ❌ "This seems done" → Verify against criteria list first
+
 ## Quick Reference
 
 **When to decompose:** Task has multiple independent chunks

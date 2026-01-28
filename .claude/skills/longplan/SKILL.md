@@ -199,6 +199,45 @@ Main Agent (Orchestrator):
 - Actions outside approved scope
 - Explicit user request to stop/pause
 
+**CRITICAL: Completion Criteria Enforcement**
+
+NEVER declare a task "complete" until ALL completion criteria are met:
+
+```
+BEFORE declaring done, verify:
+□ All explicit success criteria from plan are satisfied
+□ Visual quality gates passed (if applicable)
+□ Narrative consistency verified (if applicable)
+□ Time commitment fulfilled (if user specified duration)
+□ No premature "good enough" declarations
+```
+
+**Visual Quality Gates (for game/assets):**
+- Screenshots of actual rendered game MUST be captured
+- Quality MUST surpass reference images (e.g., Harvest Moon comparison)
+- NO declaring visual work done without visual proof
+
+**Narrative Consistency Gates (for dialogue/story):**
+- Dialogue MUST be checked against Storyline.md
+- All choices and branches MUST align with narrative doc
+- NO declaring narrative work done without cross-reference
+
+**Time Commitment Enforcement:**
+- If user says "work for 1 hour" → Work the FULL hour unless HARD STOP
+- Track start time, do not stop early
+- Set timer/alarm if needed to ensure full duration
+- Early completion does NOT equal early stopping
+
+**Compound Engineering Prevention:**
+Document these anti-patterns to prevent recurrence:
+- ❌ "I think this is good enough" → ✅ Criteria met + evidence
+- ❌ "I'll stop early and summarize" → ✅ Continue until time/criteria complete
+- ❌ "No blockers so I'll finish" → ✅ Finish criteria check first
+
+**Todo Quote for Reinforcement:**
+Append to each autonomous todo task:
+"Remember: Skip around stuck tasks. Try 2-3 alternatives. Move to next todo. Circle back. Keep working. Do not make major repo changes unless approved. DO NOT STOP EARLY - complete all criteria first."
+
 **Todo Quote for Reinforcement:**
 Append to each autonomous todo task:
 "Remember: Skip around stuck tasks. Try 2-3 alternatives. Move to next todo. Circle back. Keep working. Do not make major repo changes unless approved."
