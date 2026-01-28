@@ -21,6 +21,45 @@ NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST
 
 If you haven't completed Phase 1, you cannot propose fixes.
 
+## When to Use This vs Alternatives
+
+| Your Situation | Use This | Not These |
+|----------------|----------|-----------|
+| Any bug, test failure, unexpected behavior | `systematic-debugging` | Random guessing |
+| 3+ failed attempts, need more resources | Add `troubleshoot-and-continue` | Giving up |
+| Working autonomously, blocked | Both skills together | Stopping early |
+
+**Relationship to `troubleshoot-and-continue`:**
+- `systematic-debugging` = Scientific methodology (4 phases)
+- `troubleshoot-and-continue` = Resource exhaustion protocol for autonomous work
+- **Use together:** After 3 failed attempts in Phase 4, activate `troubleshoot-and-continue` to exhaust all resources before questioning architecture.
+
+## Autonomous Debugging Mode
+
+**When debugging without human interaction:**
+
+### Self-Guided Investigation
+- [ ] Phase 1: Root cause investigation (errors, reproduction, evidence)
+- [ ] Phase 2: Pattern analysis (find working examples)
+- [ ] Phase 3: Hypothesis formation (single clear theory)
+- [ ] Phase 4: Implementation (test first, then fix)
+
+### If Blocked (No Progress After 3 Attempts)
+1. **Activate `troubleshoot-and-continue`** protocol
+2. **Spawn 3 MiniMax subagents** for alternative approaches
+3. **Try all suggestions** before stopping
+4. **Document attempts** in plan file
+5. **Then** question architecture (Phase 4.5)
+
+### Quality Gates (Before Declaring Fixed)
+- [ ] Failing test case created BEFORE fix
+- [ ] Single fix addresses root cause (not symptom)
+- [ ] All tests pass
+- [ ] No new warnings/errors introduced
+- [ ] Fix verified with evidence
+
+**Remember:** For autonomous work, use ALL resources (subagents, docs, alternatives) before escalating to user.
+
 ## When to Use
 
 Use for ANY technical issue:

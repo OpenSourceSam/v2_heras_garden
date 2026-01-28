@@ -12,6 +12,37 @@ Comprehensive wrap-up before agent handoff. Ensure ALL work is documented and re
 
 ## Steps to Complete
 
+### 0. Time Gate Verification (Prerequisite)
+
+**BEFORE running /finish:** Verify the session time commitment has been fulfilled.
+
+**Check `.session_manifest.json`:**
+```powershell
+$manifest = Get-Content .session_manifest.json | ConvertFrom-Json
+$elapsed = ([DateTime]::Now - [DateTime]$manifest.started).TotalMinutes
+$remaining = $manifest.minimum_minutes - $elapsed
+
+if ($remaining -gt 0) {
+    Write-Host "⏰ CANNOT FINISH: $([int]$remaining) minutes remaining"
+    Write-Host "   Continue working until time elapsed."
+    exit
+}
+```
+
+**If time remaining:** 
+- Continue working (review code, add tests, improve documentation)
+- Do NOT run /finish until time gate passed
+- Reference: `finish-work` skill
+
+**If time elapsed:** Proceed with wrap-up
+
+**Relationship to finish-work skill:**
+- `finish-work` = Time gate enforcement (use during work)
+- `/finish` = Handoff documentation (use after time gate passed)
+- **Sequence:** finish-work check FIRST → then /finish command
+
+---
+
 ### 1. Review Work Session
 Read through what was accomplished:
 - Modified files: Check git status or recent changes
