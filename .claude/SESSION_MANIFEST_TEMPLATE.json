@@ -1,0 +1,9 @@
+{
+  "session_id": "unique-session-name",
+  "started": "2026-01-27T23:00:00",
+  "target_end": "2026-01-28T01:00:00",
+  "minimum_minutes": 120,
+  "reason": "Deep implementation work",
+  "hard_stop": true,
+  "created_by": "user"
+}

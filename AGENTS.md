@@ -50,36 +50,62 @@ Headed (HPV): Launch Godot, use MCP for input/inspection
 
 ## CRITICAL: Work Duration Requirements (ABSOLUTE)
 
-### Minimum Work Block Duration
-- **NEVER** stop work before the agreed end time
-- **Current session:** Must work until 1:00 AM (2026-01-28 01:00)
-- **Current time check:** Required every 30 minutes
-- **Stopping early is the WORST CRIME** - worse than bugs, worse than mistakes
+### The Time Check Rule (DO NOT VIOLATE)
 
-### Time Check Protocol
 ```
-Every 30 minutes, CHECK THE CLOCK:
-- If before 1:00 AM → CONTINUE WORKING
-- If before 1:00 AM and want to stop → USE troubleshoot-and-continue SKILL
-- If before 1:00 AM and tired → SPAWN MiniMax SUBAGENT to continue
-- ONLY at 1:00 AM or later → May consider stopping
+YOU ARE WORKING A SESSION WITH A TIME COMMITMENT.
+
+1. At session START: Read .session_manifest.json ONCE
+2. During work: NEVER check time again - trust the system
+3. When "done": MUST use finish-work skill BEFORE claiming completion
+4. If finish-work says continue: YOU CONTINUE - no exceptions
 ```
 
-### Anti-Early-Stopping Guardrails
-1. **Set recurring time check reminders** every 30 minutes
-2. **Before claiming completion** → Check time → If before 1:00 AM → Continue
-3. **If stuck** → Use systematic-debugging → Do NOT stop
-4. **If blocked** → Spawn subagent → Do NOT stop
-5. **Verification required** → Use verification-before-completion → Then continue to next task
+**DO NOT:**
+- Check the time repeatedly (wastes tokens, breaks focus)
+- Claim completion without using finish-work skill
+- Stop working because "you're done" - there's always more to do
+- Make excuses - work the full duration
 
-### Completion Criteria for This Session (1:00 AM)
-- [ ] All fake UIDs fixed OR tool ready for Godot fix
-- [ ] Full playthrough validated with HPV
-- [ ] Game exports successfully (Windows)
-- [ ] All commits pushed
-- [ ] Documentation updated
+**THIS SESSION:** Must work until 1:00 AM (2026-01-28 01:00)
 
-**FAILURE TO WORK UNTIL 1:00 AM IS UNACCEPTABLE**
+### Session Manifest Location
+File: `.session_manifest.json` (project root)
+
+Template: `.claude/SESSION_MANIFEST_TEMPLATE.json`
+
+### Finish-Work Gate (MANDATORY)
+Before claiming work is complete:
+1. **Use finish-work skill** - it checks if time elapsed
+2. **If it says CONTINUE** - find more work (docs, tests, polish, edge cases)
+3. **Only when it says COMPLETE** - may finish
+
+### What To Do When "Done" But Time Remains
+- Review code for issues
+- Add documentation
+- Run more tests
+- Refactor for clarity  
+- Add error handling
+- Check edge cases
+- Optimize performance
+- Add logging
+- Review similar code for patterns
+- Spawn subagent for parallel improvements
+
+**Stopping early is the WORST CRIME** - worse than bugs, worse than mistakes
+
+### Current Session Manifest
+```json
+{
+  "session_id": "finish-game-2026-01-27",
+  "started": "2026-01-27T23:44:00",
+  "target_end": "2026-01-28T01:00:00",
+  "minimum_minutes": 76,
+  "reason": "Finish the game - integrate Superpowers, fix fake UIDs, validate",
+  "hard_stop": true,
+  "created_by": "user"
+}
+```
 
 ## Skill Inventory
 
