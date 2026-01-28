@@ -4,7 +4,7 @@ Complete reference for MiniMax MCP slash commands and usage patterns.
 
 ## Command Overview
 
-Slash commands provide quick access to MiniMax capabilities within Claude terminal and IDE environments.
+Slash commands provide quick access to MiniMax capabilities within Kimi Code CLI terminal and IDE environments.
 
 ### Available Commands
 
@@ -352,7 +352,7 @@ Next steps:
 2. Use /minimax-query for follow-up questions
 3. Use /minimax-analyze for specific image analysis
 
-Token efficiency achieved: Claude planned (~100 tokens), MiniMax executed (~2000 tokens saved)
+Token efficiency achieved: Kimi Code CLI planned (~100 tokens), MiniMax executed (~2000 tokens saved)
 ```
 
 **Implementation**:
@@ -463,7 +463,7 @@ for r in data.get('organic', []):
 
 ## Integration Patterns
 
-### Terminal Claude
+### Terminal Kimi Code CLI
 
 **Step 1: Set Up Environment**
 ```bash
@@ -473,16 +473,16 @@ export MINIMAX_API_HOST="https://api.minimax.io"
 
 **Step 2: Use Commands**
 ```
-Claude: /minimax-search "Godot 4.5 features"
+Kimi Code CLI: /minimax-search "Godot 4.5 features"
 [Terminal executes search]
-Claude: /minimax-analyze "UI bugs?" "screenshot.png"
+Kimi Code CLI: /minimax-analyze "UI bugs?" "screenshot.png"
 [Terminal analyzes image]
 ```
 
 **Step 3: Review Results**
-Claude processes outputs and provides insights.
+Kimi Code CLI processes outputs and provides insights.
 
-### Desktop Claude
+### Desktop Kimi Code CLI
 
 **Step 1: Start MCP Server**
 ```bash
@@ -691,8 +691,8 @@ echo "All commands tested"
 - `/minimax-query` - General query
 
 **Integration**:
-- Terminal Claude: Direct script execution
-- Desktop Claude: MCP tools
+- Terminal Kimi Code CLI: Direct script execution
+- Desktop Kimi Code CLI: MCP tools
 - Cursor IDE: Existing slash commands
 
 **Best Practices**:

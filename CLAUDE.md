@@ -1,4 +1,4 @@
-# Claude Project Directives
+# Project Directives (Claude & Kimi Code CLI)
 
 **Environment:** Cursor (not VS Code) | **MCP:** `.cursor/mcp.json` | **Godot 4.5.1**
 
@@ -21,7 +21,7 @@
 **How this project runs:**
 - Work is executed by autonomous AI agents
 - Agents operate in Cursor, VS Code, Claude Desktop, Terminal
-- Models: MiniMax M.21, Claude, Codex (rotation)
+- Models: MiniMax M.21, Claude, Kimi Code CLI, Codex (rotation)
 
 **Current Status (2026-01-28):**
 - Story: 100% (49/49 beats, 11 quests, both endings)

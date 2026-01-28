@@ -5,11 +5,11 @@ Detailed usage patterns, examples, and best practices for MiniMax MCP integratio
 ## Core Workflow Principles
 
 ### Token Efficiency Pattern
-The fundamental principle: **Claude plans and reviews, MiniMax executes**
+The fundamental principle: **Kimi Code CLI plans and reviews, MiniMax executes**
 
-1. **Claude Plans** (~50-100 tokens): Structure approach, define requirements
+1. **Kimi Code CLI Plans** (~50-100 tokens): Structure approach, define requirements
 2. **MiniMax Executes** (~2000 tokens): Heavy computation, research, analysis
-3. **Claude Reviews** (~50-100 tokens): Quality control, synthesis, decisions
+3. **Kimi Code CLI Reviews** (~50-100 tokens): Quality control, synthesis, decisions
 
 **Result**: 85-90% token savings
 
@@ -25,14 +25,14 @@ The fundamental principle: **Claude plans and reviews, MiniMax executes**
 
 ### Pattern
 ```
-Claude: "Research X using MiniMax"
+Kimi Code CLI: "Research X using MiniMax"
 Terminal: Execute search via API
-Claude: Review and synthesize results
+Kimi Code CLI: Review and synthesize results
 ```
 
 ### Example: Godot Features Research
 
-**Step 1: Claude Plans**
+**Step 1: Kimi Code CLI Plans**
 ```
 I'll research Godot 4.5 features using MiniMax for comprehensive web search.
 This will gather current information from multiple sources efficiently.
@@ -49,7 +49,7 @@ curl -s -X POST "https://api.minimax.io/v1/coding_plan/search" \
 
 **Response**: 7+ search results with titles, links, snippets
 
-**Step 3: Claude Reviews**
+**Step 3: Kimi Code CLI Reviews**
 ```
 Based on the MiniMax search results, here are the key Godot 4.5 features:
 1. Performance improvements...
@@ -73,7 +73,7 @@ curl -s -X POST "https://api.minimax.io/v1/coding_plan/search" \
 curl -s -X POST "https://api.minimax.io/v1/coding_plan/search" \
   -d '{"q":"Godot 4.5 rendering new features"}'
 
-# Claude synthesizes all results
+# Kimi Code CLI synthesizes all results
 ```
 
 ### Benefits
@@ -94,14 +94,14 @@ curl -s -X POST "https://api.minimax.io/v1/coding_plan/search" \
 
 ### Pattern
 ```
-Claude: "Analyze this screenshot"
+Kimi Code CLI: "Analyze this screenshot"
 MiniMax: Understand image content
-Claude: Interpret analysis, provide insights
+Kimi Code CLI: Interpret analysis, provide insights
 ```
 
 ### Example: Debug Screenshot
 
-**Step 1: Claude Plans**
+**Step 1: Kimi Code CLI Plans**
 ```
 I'll analyze this screenshot for UI bugs using MiniMax vision capabilities.
 ```
@@ -129,7 +129,7 @@ curl -s -X POST "https://api.minimax.io/v1/coding_plan/vlm" \
 
 **Response**: Detailed vision analysis
 
-**Step 3: Claude Interprets**
+**Step 3: Kimi Code CLI Interprets**
 ```
 Based on MiniMax analysis, I found these issues:
 1. Button alignment: Off by 5px in top-right corner
@@ -176,14 +176,14 @@ curl -d '{"prompt":"Compare this with a modern design system. What needs updatin
 
 ### Pattern
 ```
-Claude: Create structured plan
+Kimi Code CLI: Create structured plan
 MiniMax: Execute comprehensive research
-Claude: Review and validate results
+Kimi Code CLI: Review and validate results
 ```
 
 ### Example: Technology Evaluation
 
-**Step 1: Claude Creates Plan**
+**Step 1: Kimi Code CLI Creates Plan**
 ```
 Plan: Evaluate React 18 for our project
 
@@ -207,7 +207,7 @@ curl -d '{"q":"React 18 vs Vue 3 comparison 2025"}'
 curl -d '{"q":"React 18 migration guide best practices"}'
 ```
 
-**Step 3: Claude Reviews**
+**Step 3: Kimi Code CLI Reviews**
 ```
 React 18 Evaluation Summary:
 
@@ -231,9 +231,9 @@ Recommendation: Adopt React 18 with 6-month migration plan
 
 ---
 
-## Workflow 4: Terminal Claude Integration
+## Workflow 4: Terminal Kimi Code CLI Integration
 
-### Setup for Terminal Claude
+### Setup for Terminal Kimi Code CLI
 
 **Step 1: Verify Environment**
 ```bash
@@ -273,9 +273,9 @@ for r in data.get('organic', []):
 
 ### Workflow in Terminal
 
-**Claude**: "I'll search for Docker best practices"
+**Kimi Code CLI**: "I'll search for Docker best practices"
 **Terminal**: `./minimax-quick.sh "Docker best practices 2025"`
-**Claude**: "Based on results, here are the key practices..."
+**Kimi Code CLI**: "Based on results, here are the key practices..."
 
 ### Benefits
 ✅ **Immediate results**: No server startup
@@ -285,9 +285,9 @@ for r in data.get('organic', []):
 
 ---
 
-## Workflow 5: Desktop Claude with MCP
+## Workflow 5: Desktop Kimi Code CLI with MCP
 
-### Setup for Desktop Claude
+### Setup for Desktop Kimi Code CLI
 
 **Step 1: Start MCP Server**
 ```bash
@@ -296,7 +296,7 @@ MINIMAX_API_KEY="..." MINIMAX_API_HOST="..." uvx minimax-coding-plan-mcp -y
 
 **Step 2: Verify Tools Available**
 ```bash
-# In Claude Desktop, tools should be available:
+# In Kimi Code CLI Desktop, tools should be available:
 # - mcp__minimax__web_search
 # - mcp__minimax__understand_image
 ```
@@ -308,7 +308,7 @@ understand_image(prompt="Analyze this UI", image_source="screenshot.png")
 ```
 
 ### Benefits
-✅ **Native integration**: Tools built into Claude
+✅ **Native integration**: Tools built into Kimi Code CLI
 ✅ **Easy to use**: Simple function calls
 ✅ **Automatic**: No manual curl commands
 ✅ **Consistent**: Unified interface
@@ -364,7 +364,7 @@ ls .cursor/commands/
   curl -s -d '{"q":"React 18 migration"}' &
 ) | wait
 
-# Claude reviews all results together
+# Kimi Code CLI reviews all results together
 ```
 
 ### Pattern 2: Iterative Refinement
@@ -379,7 +379,7 @@ curl -d '{"q":"Godot vs Unity vs Unreal 2025"}'
 # Deep dive
 curl -d '{"q":"Godot 4.5 vs Unity 2025 comparison"}'
 
-# Claude synthesizes progressively
+# Kimi Code CLI synthesizes progressively
 ```
 
 ### Pattern 3: Image + Text Analysis
@@ -391,7 +391,7 @@ ANALYSIS=$(curl -s -d '{"prompt":"What bugs?","image_url":"bug.png"}')
 # Search for solutions
 curl -s -d '{"q":"Godot UI button alignment fix"}'
 
-# Claude combines both
+# Kimi Code CLI combines both
 ```
 
 ### Pattern 4: Batch Processing
@@ -421,18 +421,18 @@ done
 
 ### 2. Optimize for Token Efficiency
 
-**❌ Wrong**: Claude does everything
+**❌ Wrong**: Kimi Code CLI does everything
 ```
-Claude: "Search for X, analyze Y, compare Z, summarize..."
+Kimi Code CLI: "Search for X, analyze Y, compare Z, summarize..."
 Tokens: 3000+
 ```
 
 **✅ Correct**: Delegate to MiniMax
 ```
-Claude: "Use MiniMax to research X"
+Kimi Code CLI: "Use MiniMax to research X"
 MiniMax: Executes search
-Claude: "Review these results"
-Tokens: 100 (Claude) + 0 (API) vs 3000 (all in Claude)
+Kimi Code CLI: "Review these results"
+Tokens: 100 (Kimi Code CLI) + 0 (API) vs 3000 (all in Kimi Code CLI)
 ```
 
 ### 3. Handle Errors
@@ -513,7 +513,7 @@ echo "Research: AI trends 2025"
 ./scripts/execute-plan.sh "AI trends 2025 comprehensive research"
 
 # 3. Review
-# Claude synthesizes findings
+# Kimi Code CLI synthesizes findings
 ```
 
 ### Bug Analysis
@@ -525,13 +525,13 @@ echo "Research: AI trends 2025"
 ./scripts/web-search.sh "Godot UI bug fix button alignment"
 
 # 3. Combine results
-# Claude provides solution
+# Kimi Code CLI provides solution
 ```
 
 ### Technology Evaluation
 ```bash
 # 1. Create structured plan
-# Claude creates evaluation criteria
+# Kimi Code CLI creates evaluation criteria
 
 # 2. Research each criterion
 ./scripts/web-search.sh "React 18 features"
@@ -539,20 +539,20 @@ echo "Research: AI trends 2025"
 ./scripts/web-search.sh "React 18 adoption"
 
 # 3. Analyze results
-# Claude provides recommendation
+# Kimi Code CLI provides recommendation
 ```
 
 ---
 
 ## Summary
 
-**Key Principle**: Claude plans and reviews, MiniMax executes
+**Key Principle**: Kimi Code CLI plans and reviews, MiniMax executes
 
 **Token Efficiency**: 85-90% savings
 
 **Integration Methods**:
-1. Direct API (curl) - Terminal Claude
-2. MCP Server - Desktop Claude
+1. Direct API (curl) - Terminal Kimi Code CLI
+2. MCP Server - Desktop Kimi Code CLI
 3. Slash Commands - Cursor IDE
 
 **Best Practices**:

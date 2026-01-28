@@ -65,7 +65,7 @@ Main Agent (Orchestrator):
    /context status  # Verify it's actually cleared
 
    # Option 2: Start completely fresh (most reliable)
-   - Close Cursor/Claude Code completely
+   - Close Kimi Code CLI completely
    - Reopen and start new session
    - Reference plan: @temp/autonomous-work-[task].md
    ```
@@ -84,7 +84,7 @@ Main Agent (Orchestrator):
 - GLM-4.7 has ~200K context (vs Claude's 1M)
 - File operations are the primary context consumers
 - `/clear` command is BUGGY - use `/context clear` or restart session entirely
-- Consider using native Claude model for very long file-heavy sessions
+- Consider using native Claude model for very long file-heavy sessions (as an alternative with larger context)
 
 **Example checkpoint format:**
 ```markdown

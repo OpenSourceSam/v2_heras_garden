@@ -196,7 +196,7 @@ if response['base_resp']['status_code'] != 0:
 
 ### 4. Token Efficiency
 - Use MiniMax for heavy computational tasks
-- Let Claude handle planning and review
+- Let Kimi Code CLI handle planning and review
 - Delegate web searches and image analysis
 
 ### 5. Caching
@@ -267,9 +267,9 @@ for query in queries:
 
 ## Integration Examples
 
-### Terminal Claude Workflow
+### Terminal Kimi Code CLI Workflow
 ```bash
-# 1. Claude plans
+# 1. Kimi Code CLI plans
 # "I'll search for Godot 4.5 features using MiniMax"
 
 # 2. Terminal executes
@@ -279,11 +279,11 @@ curl -s -X POST "https://api.minimax.io/v1/coding_plan/search" \
   -H "MM-API-Source: Minimax-MCP" \
   -d '{"q":"Godot 4.5 new features"}'
 
-# 3. Claude reviews results
+# 3. Kimi Code CLI reviews results
 # "Based on the search results, here are the key features..."
 ```
 
-### Desktop Claude with MCP Server
+### Desktop Kimi Code CLI with MCP Server
 ```bash
 # Start MCP server
 MINIMAX_API_KEY="..." MINIMAX_API_HOST="..." uvx minimax-coding-plan-mcp -y
@@ -350,7 +350,7 @@ analysis = client.analyze_image("What do you see?", image_url="screenshot.png")
 - **Batch Requests**: Add 1 second delay between requests
 
 ### Token Efficiency Metrics
-- **Claude Planning**: ~50-100 tokens
+- **Kimi Code CLI Planning**: ~50-100 tokens
 - **MiniMax Execution**: ~2000 tokens saved
 - **Total Savings**: 85-90% token reduction
 

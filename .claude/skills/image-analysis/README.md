@@ -172,5 +172,5 @@ mcp__4_5v_mcp__analyze_image --imageSource "assets/sprites/modified.png" --promp
 ---
 
 **Version:** 1.0
-**Created by:** Claude (Sonnet 4.5)
+**Created by:** Kimi Code CLI
 **Last updated:** 2026-01-26

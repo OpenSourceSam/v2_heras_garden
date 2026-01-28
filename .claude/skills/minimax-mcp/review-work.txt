@@ -25,7 +25,7 @@
 ## Issue Encountered
 - Initial 401 API errors due to environment variable name mismatch
 - Scripts expected GLM_API_KEY but key was stored as ANTHROPIC_AUTH_TOKEN
-- Fixed by creating PowerShell wrappers that read from Claude settings
+- Fixed by creating PowerShell wrappers that read from agent settings
 
 ## Please Review
 1. Code quality and correctness

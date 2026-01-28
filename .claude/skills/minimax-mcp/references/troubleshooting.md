@@ -261,7 +261,7 @@ retry_with_backoff() {
 
 **Symptoms**:
 - `mcp__minimax__web_search` not found
-- No MiniMax tools in Claude Desktop
+- No MiniMax tools in Kimi Code CLI Desktop
 
 **Solutions**:
 
@@ -324,7 +324,7 @@ bash scripts/web-search.sh "query"
 ```bash
 # Check if delegation is working correctly
 
-# ❌ Wrong: Claude doing all work
+# ❌ Wrong: Kimi Code CLI doing all work
 # "Search for React features and summarize 50 articles"
 
 # ✅ Correct: Delegate to MiniMax
@@ -335,9 +335,9 @@ curl ... -d '{"q":"React 18 features comprehensive"}'
 
 **Solution**:
 1. Use direct API calls for heavy tasks
-2. Let Claude handle planning and review
+2. Let Kimi Code CLI handle planning and review
 3. Delegate web searches to MiniMax
-4. Review results with Claude
+4. Review results with Kimi Code CLI
 
 ---
 
@@ -497,7 +497,7 @@ done
 echo "$(date): Query: $query" >> minimax.log
 
 # Track token savings
-# Claude planning: ~100 tokens
+# Kimi Code CLI planning: ~100 tokens
 # MiniMax execution: ~2000 tokens saved
 echo "Token efficiency: 85-90%" >> minimax.log
 ```

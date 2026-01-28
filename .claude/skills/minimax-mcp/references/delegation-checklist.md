@@ -97,7 +97,7 @@ Is it research/web search/image analysis?
 **✅ Good - Delegate to MiniMax:**
 - "How does Godot 4.5 handle signals?" → Search godotengine.org
 - "Analyze this screenshot for bugs" → Use VLM API
-- "What are Claude Code best practices?" → Search docs.anthropic.com
+- "What are Kimi Code CLI best practices?" → Search docs.anthropic.com
 
 **✅ Good - Use Local Tools:**
 - "Find where player_health is defined" → Grep codebase

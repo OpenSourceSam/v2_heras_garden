@@ -38,4 +38,4 @@ Provide a brief summary of:
 
 If topic specified: `$ARGUMENTS`, focus on relevant context for that topic.
 
-[Codex - 2026-01-08]
+[Kimi Code CLI - 2026-01-28]

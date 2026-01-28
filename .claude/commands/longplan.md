@@ -182,7 +182,7 @@ During 2A phase, aggressively delegate work across multiple subagents working si
    /context status  # Verify it's actually cleared
 
    # Option 2: Start completely fresh (most reliable)
-   - Close Cursor/Claude Code completely
+   - Close Cursor/Kimi Code CLI completely
    - Reopen and start new session
    - Reference plan: @temp/autonomous-work-[task].md
    ```
@@ -467,4 +467,4 @@ Agent: [2A Phase]
 
 ---
 
-**Signature:** `[GLM-4.7 - 2026-01-20]`
+**Signature:** `[Kimi Code CLI - 2026-01-28]`

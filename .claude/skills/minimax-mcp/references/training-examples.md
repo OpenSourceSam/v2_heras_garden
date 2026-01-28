@@ -8,17 +8,17 @@ Real-world examples showing correct vs incorrect delegation patterns for Godot g
 
 ### ❌ Wrong Approach (High Token Usage)
 ```
-Agent uses Glob to search for "auth*" files in codebase
-Agent reads game/auth.gd (if exists)
-Agent reads game/network.gd looking for auth code
-Agent uses WebSearch tool
-Agent synthesizes from local files + web results
+Kimi Code CLI uses Glob to search for "auth*" files in codebase
+Kimi Code CLI reads game/auth.gd (if exists)
+Kimi Code CLI reads game/network.gd looking for auth code
+Kimi Code CLI uses WebSearch tool
+Kimi Code CLI synthesizes from local files + web results
 Result: 1500+ tokens, may miss official best practices
 ```
 
 ### ✅ Correct Approach (Token-Efficient)
 ```bash
-# Agent calls MiniMax immediately with trusted domain
+# Kimi Code CLI calls MiniMax immediately with trusted domain
 curl -s -X POST "https://api.minimax.io/v1/coding_plan/search" \
   -H "Authorization: Bearer sk-cp-xgttGx8GfmjMzMR64zQOU0BXYjrikYD0nSTMfWBbIT0Ykq17fUeT3f7Dmmt2UOQaskwOjaOPxMYk6jev0G4Av2-znT8-a3aRWGfHVpgMvgzc8dVYc4W8U6c" \
   -H "Content-Type: application/json" \
@@ -26,8 +26,8 @@ curl -s -X POST "https://api.minimax.io/v1/coding_plan/search" \
   -d '{"q":"site:godotengine.org authentication implementation patterns best practices"}'
 
 # MiniMax returns comprehensive official docs
-# Agent reviews results (100 tokens)
-# Agent provides summary to user
+# Kimi Code CLI reviews results (100 tokens)
+# Kimi Code CLI provides summary to user
 Result: 85% token savings, official best practices
 ```
 
@@ -39,15 +39,15 @@ Result: 85% token savings, official best practices
 
 ### ❌ Wrong Approach (Task Fails)
 ```
-Agent: "I can't analyze images directly, please describe what you see"
-Or: Agent tries to use local screenshot analysis tools
-Or: Agent asks user to manually describe UI elements
+Kimi Code CLI: "I can't analyze images directly, please describe what you see"
+Or: Kimi Code CLI tries to use local screenshot analysis tools
+Or: Kimi Code CLI asks user to manually describe UI elements
 Result: User frustrated, task incomplete or requires manual work
 ```
 
 ### ✅ Correct Approach (Task Completed)
 ```bash
-# Agent uses MiniMax VLM API
+# Kimi Code CLI uses MiniMax VLM API
 curl -s -X POST "https://api.minimax.io/v1/coding_plan/vlm" \
   -H "Authorization: Bearer sk-cp-xgttGx8GfmjMzMR64zQOU0BXYjrikYD0nSTMfWBbIT0Ykq17fUeT3f7Dmmt2UOQaskwOjaOPxMYk6jev0G4Av2-znT8-a3aRWGfHVpgMvgzc8dVYc4W8U6c" \
   -H "Content-Type: application/json" \
@@ -58,7 +58,7 @@ curl -s -X POST "https://api.minimax.io/v1/coding_plan/vlm" \
 # - Button overlapping text
 # - Inconsistent spacing in dialogue box
 # - Health bar alignment issue
-# Agent presents findings to user with actionable fixes
+# Kimi Code CLI presents findings to user with actionable fixes
 Result: Task completed, token-efficient, actionable insights
 ```
 
@@ -70,12 +70,12 @@ Result: Task completed, token-efficient, actionable insights
 
 ### ❌ Wrong Approach (Inefficient)
 ```
-Agent reads game/ui/theme.gd
-Agent reads game/ui/settings.gd
-Agent reads game/ui/main_menu.gd
-Agent reads game/ui/dialogue_box.gd
-Agent reads game/ui/inventory.gd
-Agent synthesizes approach from 5+ files
+Kimi Code CLI reads game/ui/theme.gd
+Kimi Code CLI reads game/ui/settings.gd
+Kimi Code CLI reads game/ui/main_menu.gd
+Kimi Code CLI reads game/ui/dialogue_box.gd
+Kimi Code CLI reads game/ui/inventory.gd
+Kimi Code CLI synthesizes approach from 5+ files
 Result: 2000+ tokens, may miss current best practices
 ```
 
@@ -89,8 +89,8 @@ curl -s -X POST "https://api.minimax.io/v1/coding_plan/search" \
 # MiniMax returns: Theme resource pattern, Color override approach, etc.
 
 # Step 2: Read only critical files identified from research
-# Agent reads game/ui/theme.gd (targeted)
-# Agent reads game/ui/settings.gd (targeted)
+# Kimi Code CLI reads game/ui/theme.gd (targeted)
+# Kimi Code CLI reads game/ui/settings.gd (targeted)
 
 # Step 3: Create plan based on research + targeted code review
 Result: Comprehensive plan, 80% token savings, modern best practices
@@ -104,11 +104,11 @@ Result: Comprehensive plan, 80% token savings, modern best practices
 
 ### ❌ Wrong Approach (Token-Heavy)
 ```
-Agent reads Godot docs about signals (local or web)
-Agent reads docs about direct function calls
-Agent reads examples in codebase
-Agent compares and contrasts manually
-Agent synthesizes recommendation
+Kimi Code CLI reads Godot docs about signals (local or web)
+Kimi Code CLI reads docs about direct function calls
+Kimi Code CLI reads examples in codebase
+Kimi Code CLI compares and contrasts manually
+Kimi Code CLI synthesizes recommendation
 Result: 1000+ tokens
 ```
 
@@ -125,7 +125,7 @@ curl -s -X POST "https://api.minimax.io/v1/coding_plan/search" \
 # - Use signals for UI events, gameplay events
 # - Use direct calls for internal state changes
 
-# Agent reviews and applies to user's specific context (200 tokens):
+# Kimi Code CLI reviews and applies to user's specific context (200 tokens):
 # "For player-NPC interaction, signals are better because..."
 Result: 75% token savings, informed recommendation with context
 ```
@@ -134,19 +134,19 @@ Result: 75% token savings, informed recommendation with context
 
 ## Example 5: Documentation Check
 
-**User Request:** "Does Claude Code support MCP tools in plan mode?"
+**User Request:** "Does Kimi Code CLI support MCP tools in plan mode?"
 
 ### ❌ Wrong Approach (Wrong Tool)
 ```
-Agent uses Grep to search local .claude/ directory
-Agent reads multiple local .md files
-Agent tries to infer from codebase
+Kimi Code CLI uses Grep to search local .claude/ directory
+Kimi Code CLI reads multiple local .md files
+Kimi Code CLI tries to infer from codebase
 Result: May miss official guidance, 800+ tokens
 ```
 
 ### ✅ Correct Approach (Authoritative Source)
 ```bash
-# Search official Claude docs via MiniMax
+# Search official Kimi Code CLI docs via MiniMax
 curl -s -X POST "https://api.minimax.io/v1/coding_plan/search" \
   -H "Authorization: Bearer sk-cp-xgttGx8GfmjMzMR64zQOU0BXYjrikYD0nSTMfWBbIT0Ykq17fUeT3f7Dmmt2UOQaskwOjaOPxMYk6jev0G4Av2-znT8-a3aRWGfHVpgMvgzc8dVYc4W8U6c" \
   -d '{"q":"site:docs.anthropic.com OR site:platform.claude.com plan mode MCP tools bash API calls"}'
@@ -156,7 +156,7 @@ curl -s -X POST "https://api.minimax.io/v1/coding_plan/search" \
 # - Bash/curl for API calls is allowed
 # - MCP tools are supported
 
-# Agent reviews and answers with authority (100 tokens)
+# Kimi Code CLI reviews and answers with authority (100 tokens)
 Result: 80% token savings, authoritative answer
 ```
 
@@ -168,9 +168,9 @@ Result: 80% token savings, authoritative answer
 
 ### ❌ Wrong Approach (Outdated Info)
 ```
-Agent reads local test files
-Agent tries to infer from codebase structure
-Agent may use outdated information
+Kimi Code CLI reads local test files
+Kimi Code CLI tries to infer from codebase structure
+Kimi Code CLI may use outdated information
 Result: May recommend outdated approach, 1000+ tokens
 ```
 
@@ -186,7 +186,7 @@ curl -s -X POST "https://api.minimax.io/v1/coding_plan/search" \
 # - Gut: Legacy option, less active
 # - Recommendation: GDUnit4 for new projects
 
-# Agent reviews and contextualizes for Hera's Garden
+# Kimi Code CLI reviews and contextualizes for Hera's Garden
 Result: Current best practices, 85% token savings
 ```
 

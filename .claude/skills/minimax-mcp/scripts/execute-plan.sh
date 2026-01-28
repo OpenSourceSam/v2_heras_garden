@@ -39,7 +39,7 @@ FOCUS AREAS:
 - Code examples where applicable
 - Best practices and recommendations
 
-Execute efficiently with maximum detail for Claude review."
+Execute efficiently with maximum detail for agent review."
 
 echo "Delegating to MiniMax..."
 echo ""
@@ -89,7 +89,7 @@ else:
     echo "2. Use /minimax-query for follow-up questions"
     echo "3. Use /minimax-analyze for specific image analysis"
     echo ""
-    echo "Token efficiency achieved: Claude planned (~100 tokens), MiniMax executed (~2000 tokens saved)"
+    echo "Token efficiency achieved: Agent planned (~100 tokens), MiniMax executed (~2000 tokens saved)"
 else
     echo "❌ Error executing plan:"
     echo "$RESPONSE"
