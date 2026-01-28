@@ -46,18 +46,23 @@ The game is **playable end-to-end** with all 11 quests and both endings implemen
 ## 🔄 IN PROGRESS
 
 ### Visual Presentation (Phase 8)
-**Status:** Individual assets done, composition unknown
+**Status:** Phase 8B in progress - texture fixes applied, screenshot validation needed
 
-**Completed:**
+**Completed (2026-01-28 Session):**
 - [x] All sprites improved individually
 - [x] Outlines added to all sprites
 - [x] Shading applied per style guide
+- [x] **Visual targets established** - `docs/reference/visual_targets/`
+- [x] **Grass texture fixed** - replaced dithering with flat color patches
+- [x] **Dirt/stone textures fixed** - warm earth tones applied
+- [x] **House sprite improved** - added windows, door, architectural detail
 
-**Unknown (Need Screenshots):**
-- [ ] World scene layout
-- [ ] Tilemap appearance (grass, paths)
-- [ ] Overall visual cohesion
-- [ ] Lighting/atmosphere
+**In Progress:**
+- [ ] Screenshot validation of texture fixes
+- [ ] Scylla Cove atmosphere (dark/ominous overlay)
+- [ ] Sacred Grove atmosphere (mystical/golden overlay)
+- [ ] Building detail pass (more structures)
+- [ ] Vegetation redesign (purposeful framing)
 
 ---
 
@@ -158,8 +163,14 @@ The game is **playable end-to-end** with all 11 quests and both endings implemen
 - Individual assets production-quality
 - **Gap:** Overall scene composition unknown
 
+**Visual Target Reference:**
+See `docs/reference/visual_targets/` for Harvest Moon comparison
+- Current state: "programmer art" quality
+- Target state: "Harvest Moon" quality
+- Key gaps: dithering (fixed), path edges, building detail, density
+
 **Critical Need:**
-Visual feedback to assess actual game appearance.
+Screenshot validation to confirm texture fixes in rendered game.
 
 ---
 
