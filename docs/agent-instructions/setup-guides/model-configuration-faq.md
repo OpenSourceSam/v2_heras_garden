@@ -20,9 +20,11 @@ Comprehensive guide for configuring GLM, MiniMax, Kimi K2.5, and Anthropic model
 
 ---
 
-## Section 1: GLM Configuration (How to Set Up)
+## Section 1: GLM Configuration (Official Z.AI Documentation)
 
-### Q1: How do I configure GLM-4.7 as my main model in Cursor/Claude Code?
+### Q1: How do I configure GLM-4.7 as my main model in Claude Code?
+
+**Official Source:** https://open.bigmodel.cn (Zhipu AI / Z.AI platform)
 
 #### Prerequisites
 
@@ -61,7 +63,7 @@ Comprehensive guide for configuring GLM, MiniMax, Kimi K2.5, and Anthropic model
 
 5. **Save the file**
 
-6. **Restart Cursor/Claude Code** for changes to take effect
+6. **Restart Claude Code** for changes to take effect
 
 #### Verification Steps
 
@@ -159,7 +161,7 @@ To remove GLM and restore Anthropic models:
 
 3. **Save the file**
 
-4. **Restart Cursor/Claude Code**
+4. **Restart Claude Code**
 
    The default Anthropic API will be used automatically when `ANTHROPIC_BASE_URL` is not set.
 
@@ -185,7 +187,7 @@ To use MiniMax as your primary model:
 
 3. **Replace** `your-minimax-api-key` with your actual MiniMax API key
 
-4. **Save and restart** Cursor/Claude Code
+4. **Save and restart** Claude Code
 
 ---
 
@@ -248,15 +250,15 @@ For a clean reset to defaults:
 
 ---
 
-### Q8: Cursor/Claude Code isn't detecting the model change
+### Q8: Claude Code isn't detecting the model change
 
 #### Restart Requirements
 
 Model configuration changes **always require a restart**:
 
-1. **Close Cursor/Claude Code completely**
+1. **Close Claude Code completely**
 2. **Wait 2-3 seconds** for processes to terminate
-3. **Reopen Cursor/Claude Code**
+3. **Reopen Claude Code**
 
 #### Cache Clearing (if restart doesn't work)
 
@@ -269,7 +271,7 @@ Model configuration changes **always require a restart**:
    rm -rf ~/.claude/cache/*
    ```
 
-2. **Restart Cursor/Claude Code**
+2. **Restart Claude Code**
 
 ---
 
@@ -553,25 +555,11 @@ Edit `~/.claude/settings.json` (or `C:\Users\YourName\.claude\settings.json` on 
    - API Key: Your OpenRouter key
    - Model: `moonshotai/kimi-k2`
 
-#### Cursor with Direct Moonshot (MCP)
+#### Cursor with Direct Moonshot API
 
-**MCP Configuration in `.cursor/mcp.json`:**
+**Note:** For direct Moonshot integration in Cursor without OpenRouter, check the official Cursor documentation at https://docs.cursor.com for the latest supported configuration methods. Cursor's native model support changes frequently.
 
-```json
-{
-  "mcpServers": {
-    "moonshot": {
-      "command": "npx",
-      "args": ["-y", "@anthropic-ai/mcp-server-moonshot@latest"],
-      "env": {
-        "MOONSHOT_API_KEY": "your-moonshot-api-key"
-      }
-    }
-  }
-}
-```
-
-**Note:** Cursor's native model support changes frequently. Check the official Cursor documentation for the latest supported models.
+**Current verified method:** Use OpenRouter (see above) or configure via Cursor's native model settings.
 
 ---
 
