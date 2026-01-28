@@ -1,39 +1,149 @@
-# Agent Onboarding
+# Claude Project Directives
 
-Environment: Cursor (not VS Code) | MCP: `.cursor/mcp.json` | Godot 4.5.1
+**Environment:** Cursor (not VS Code) | **MCP:** `.cursor/mcp.json` | **Godot 4.5.1**
 
-## Quick Start
-- Read: docs/agent-instructions/AGENTS_README.md
-- Testing: docs/playtesting/HPV_GUIDE.md
-- Roadmap: docs/execution/DEVELOPMENT_ROADMAP.md
+**Last Updated:** 2026-01-28
 
-## Project Context
-- This project is run by autonomous AI agents with Sam providing oversight.
-- Sam has limited technical background; favor clear language, explicit steps, and visible evidence.
-- Capture decisions and risks in docs so future agents can build on them.
+---
 
+## 📋 Project Context
 
-## Repo Layout
-game/ → gameplay code | docs/ → documentation | tests/ → test suites | addons/ → plugins
+**What is this project?**
+- "Circe's Garden" - A 2D Godot game about Circe from Greek mythology
+- Narrative farming sim with dialogue choices and consequences
+- **Phase 7 COMPLETE** (story), **Phase 8 IN PROGRESS** (visuals)
 
-## Compound Engineering (Lightweight)
+**Who is Sam?**
+- Project owner and CEO
+- Non-technical stakeholder who directs agent work
+- Favor clear language, explicit steps, visible evidence
+
+**How this project runs:**
+- Work is executed by autonomous AI agents
+- Agents operate in Cursor, VS Code, Claude Desktop, Terminal
+- Models: MiniMax M.21, Claude, Codex (rotation)
+
+**Current Status (2026-01-28):**
+- Story: 100% (49/49 beats, 11 quests, both endings)
+- Code: Tests passing (5/5), no TODOs, no fake UIDs
+- Visuals: 45+ sprites improved, overall composition review needed
+- Last Work: Sprite improvements (10 commits)
+
+---
+
+## 🎯 Compound Engineering
 
 **Philosophy:** Each unit of work should make future work easier.
 
-**Core Loop (Plan → Delegate → Assess → Codify):**
-1. **Plan**: Confirm scope and constraints, then track work (use TodoWrite or the built-in plan tool).
-2. **Delegate**: Use MiniMax for research or image analysis; use MCP for headed smoke checks.
-3. **Assess**: Verify the change worked (small headed check, targeted runtime inspection).
-4. **Codify**: Record outcomes in `docs/execution/DEVELOPMENT_ROADMAP.md` and (if HPV-related) `docs/playtesting/PLAYTESTING_ROADMAP.md`.
+**Core Loop:**
+1. **Plan** - Confirm scope, track work (TodoWrite or plan tool)
+2. **Delegate** - MiniMax for research/image analysis; MCP for testing
+3. **Assess** - Verify with small headed check
+4. **Codify** - Record in `docs/execution/DEVELOPMENT_ROADMAP.md`
 
-**Todo Tracking (approved):**
-- Use `todos/` for unresolved issues and long-tail work.
-- Start from `todos/template.md` (full template) and keep entries actionable.
-- Template is manual (no automation); copy the file and fill it out.
+---
 
-## Common Solutions (Living Log)
+## 🎮 Testing Workflows
 
-**Template (copy for new entries):**
+### HPV (Headed Playability Validation) - Primary Method
+
+**What it is:** Programmatic testing using MCP to inspect state and simulate input
+
+**What it is NOT:** Full human-level playthroughs, "beating the game manually"
+
+**Workflow:**
+```
+1. Launch: F5 debugger or run_project --headed
+2. Inspect: get_runtime_scene_structure for game state
+3. Act: simulate_action_tap --action "ui_accept" for input
+4. Verify: Check scene structure for state changes
+5. Skip: Use debugger to set quest flags (minigames)
+6. Document: Log in PLAYTESTING_ROADMAP.md
+```
+
+### MCP Commands Quick Reference
+
+```bash
+# Launch
+npx -y godot-mcp-cli run_project --headed
+
+# Inspection
+npx -y godot-mcp-cli get_runtime_scene_structure
+npx -y godot-mcp-cli get_input_actions
+
+# Input
+npx -y godot-mcp-cli simulate_action_tap --action "ui_accept"
+npx -y godot-mcp-cli simulate_action_tap --action "interact"
+npx -y godot-mcp-cli simulate_action_tap --action "ui_up"
+```
+
+### VSCode Debugger (F5)
+
+All agents can use VSCode debugger:
+1. Press F5 to start debugging
+2. Set breakpoints by clicking line numbers
+3. Inspect Variables panel for `GameState.quest_flags`
+4. Modify values directly (e.g., set `quest_1_complete = true`)
+
+### Testing Methods Decision Tree
+
+```
+Need to test something?
+│
+├─ Unit test / logic only? → HLC (headless)
+│   .\Godot*\Godot*.exe --headless --script tests/run_tests.gd
+│
+├─ Need game state? → HPV with MCP
+│   Launch: npx -y godot-mcp-cli run_project --headed
+│   Inspect: get_runtime_scene_structure
+│   Input: simulate_action_tap
+│
+└─ Need breakpoints? → DAP (Desktop only)
+│   F5 in VSCode, set breakpoints, inspect variables
+```
+
+**Full Guide:** `docs/agent-instructions/TESTING_WORKFLOW.md`
+
+---
+
+## 📁 Essential File Locations
+
+### Current Status & Planning
+| File | Purpose |
+|------|---------|
+| `.session_manifest.json` | Session time commitment (READ FIRST) |
+| `docs/Development/CURRENT_STATUS.md` | Current project status |
+| `docs/Development/DEVELOPMENT_HUB.md` | Quick reference hub |
+| `docs/execution/DEVELOPMENT_ROADMAP.md` | Full roadmap |
+| `docs/Development/Storyline.md` | 49 beats, narrative |
+
+### Testing & QA
+| File | Purpose |
+|------|---------|
+| `docs/playtesting/PLAYTESTING_ROADMAP.md` | Quest walkthrough |
+| `docs/playtesting/HPV_GUIDE.md` | Detailed HPV patterns |
+| `tests/run_tests.gd` | Core test suite |
+
+### Game Code
+| Directory | Contents |
+|-----------|----------|
+| `game/features/world/` | World scene, player, NPCs |
+| `game/features/locations/` | Scylla Cove, Sacred Grove, House |
+| `game/features/cutscenes/` | All cutscenes |
+| `game/shared/resources/dialogues/` | 80+ dialogue files |
+
+### Visual Assets
+| Directory | Contents |
+|-----------|----------|
+| `assets/sprites/placeholders/` | 45+ improved sprites |
+| `docs/qa/VISUAL_IMPROVEMENTS_2026-01-28.md` | Sprite improvement log |
+| `docs/reference/concept_art/HERAS_GARDEN_PALETTE.md` | Style guide |
+
+---
+
+## 📝 Common Solutions (Living Log)
+
+### Template for New Entries
 ```
 ### YYYY-MM-DD: <Short Title>
 **Problem:** <What was broken/needed>
@@ -47,440 +157,103 @@ game/ → gameplay code | docs/ → documentation | tests/ → test suites | add
 ```
 
 ### 2026-01-25: Intro transition stuck after prologue
-**Problem:** New Game could load the prologue but leave the runtime scene on main menu or prologue; the world loaded in the tree but wasn’t current.
-
-**Solution:** Route intro transitions through `get_tree().change_scene_to_file(...)` for both the main menu and prologue skip/end, and keep `SceneManager` current-scene updates centralized.
-
-**Key Files Changed:**
-- `game/features/ui/main_menu.gd` — New Game now loads the prologue via `change_scene_to_file`.
-- `game/features/cutscenes/prologue_opening.gd` — Skip/end now load world via `change_scene_to_file`.
-- `game/autoload/scene_manager.gd` — Centralized current scene updates in `_finalize_scene_change`.
-- `game/autoload/cutscene_manager.gd` — Ensures cutscene cleanup after await.
-
-**Lessons Learned:**
-- `get_tree().change_scene_to_file(...)` reliably updates `current_scene` for top-level transitions.
-- Signal-only cleanup can leave nodes lingering if the connection doesn’t land; prefer deterministic cleanup.
-
-**Use This When:** Intro/cutscene transitions leave multiple root scenes visible or cause black screens.
-
-### 2026-01-25: Map layout guidance overlay
-**Problem:** World layout lacked a strong visual guide aligned to concept art.
-
-**Solution:** Add a low-opacity concept art overlay in `world.tscn` and dim the ground tiles to make the layout read while keeping gameplay visible.
-
-**Key Files Changed:**
-- `game/features/world/world.tscn` — Added `MapReference` sprite and reduced `Ground` alpha.
-
-**Lessons Learned:**
-- Low-opacity overlays are a fast, reversible way to guide layout before a full tile pass.
-
-**Use This When:** You need quick spatial guidance before committing to a full tile/asset pass.
-
-### 2026-01-26: GLM API key environment variable mismatch
-**Problem:** GLM image generation pipeline failed with 401 errors. Initial diagnosis was "API key expired" but this was wrong - the key was valid, just not accessible to the scripts due to environment variable name mismatch.
-
-**Solution:** The Z.AI API key is stored in `~/.claude/settings.json` as `ANTHROPIC_AUTH_TOKEN`, but the GLM image generation scripts expect `GLM_API_KEY` environment variable. Fixed by creating a wrapper script that exports the key with the expected variable name before running generation.
-
-**Key Files Changed:**
-- `.claude/skills/glm-image-gen/scripts/generate-image.ps1` — Windows PowerShell wrapper that reads API key from settings and exports as GLM_API_KEY
-- `.gitignore` — Added `.claude/skills/glm-image-gen/` to keep API-related scripts out of repo
-
-**Lessons Learned:**
-- When a service is working (MiniMax MCP using GLM) but another service using the same API fails, the issue is **configuration/access**, not key validity
-- 401 "token expired" errors can mean "token not provided" - check if the environment variable is actually set first
-- Always verify environment variables with `echo $VAR` before concluding authentication issues
-- Review process should catch obvious mismatches (e.g., "key expired" but same key working elsewhere)
-
-**Use This When:** Getting API authentication errors for a service while other services using the same provider work fine. Check environment variable names and whether they're actually set in the current shell session. (Claude <-> Codex)
+**Problem:** New Game could load prologue but leave runtime scene on main menu
+**Solution:** Route transitions through `get_tree().change_scene_to_file(...)`
+**Files:**
+- `game/features/ui/main_menu.gd`
+- `game/features/cutscenes/prologue_opening.gd`
+- `game/autoload/scene_manager.gd`
+**Lesson:** `change_scene_to_file` reliably updates `current_scene`
 
 ### 2026-01-26: Visual polish transparency fix
-**Problem:** User reported sprites had "blocky backgrounds" due to opaque images
+**Problem:** Sprites had blocky backgrounds (opaque instead of transparent)
+**Solution:** Regenerated 22 assets with RGBA format
+**Lesson:** Always verify transparency with check-transparency.ps1
 
-**Solution:** Created transparency verification script, regenerated 22 assets with GLM CogView-4 API from RGB to RGBA
-
-**Key Files Changed:**
-- 22 assets in `assets/sprites/placeholders/` (crop stages, world props, UI elements)
-- `.claude/skills/glm-image-gen/scripts/check-transparency.ps1`
-- `.claude/skills/glm-image-gen/scripts/fix-transparency.ps1`
-- `docs/reference/concept_art/HERAS_GARDEN_PALETTE.md`
-
-**Lessons Learned:**
-- RGB vs RGBA format matters for sprite transparency
-- Batch regeneration with GLM API is faster than manual conversion
-- Verification scripts prevent regressions
-- Parallel subagent delegation accelerates work significantly
-
-**Use This When:** Sprites appear with solid backgrounds instead of transparent
-
-### 2026-01-27: GLM-4.6v vision model token limit errors
-**Problem:** GLM API vision requests failed with "Request 193477 input tokens exceeds the model's maximum context length 202750" when analyzing screenshots.
-
-**Solution:** GLM-4.6v vision model has a token limit on image input. Large screenshots (1920x1080+) when base64-encoded exceed this limit. Must resize images to max 800px width/height before API call.
-
-**Key Files Changed:**
-- `.claude/skills/glm-image-gen/SKILL.md` — Added GLM-4.6v vision model documentation with resize requirements
-- Created sand texture: `game/textures/tiles/sand_procedural.png`
-
-**Lessons Learned:**
-- GLM-4.6v is the **vision model** (the "v" suffix) - has FREE native image understanding
-- glm-4.6 is text-only; glm-4.7 (current me) has no native vision and needs MCP tools
-- Always resize images to max 800px before encoding for vision API
-- Quick resize: `convert input.png -resize 800x800> resized_input.png` (ImageMagick)
-- Or use Python/Pillow: `img.thumbnail((800, 800)); img.save('resized.png', 'PNG', optimize=True)`
-
-**Use This When:** Getting "token limit exceeded" errors from GLM vision API. Resize images before sending.
-
-### 2026-01-27: Context window limit error during file operations
-**Problem:** "API Error: The model has reached its context window limit" after 7 Read/Write operations in <5 minutes.
-
-**Solution:** File Read/Write operations dump full content (~1,500-2,000 tokens each) to context, bypassing auto-compaction. Implemented operation-based checkpointing - checkpoint after 3 writes or 5 total Read/Write operations.
-
-**Key Files Changed:**
-- `.claude/commands/longplan.md` - Added operation-based context management section
-- `.claude/skills/longplan/SKILL.md` - Synced context management changes
-
-**Lessons Learned:**
-- GLM-4.7: 200K context vs Claude: 1M context (5x difference)
-- File operations (Read/Write) return ~1,500-2,000 tokens each to context
-- Tool outputs don't auto-compact like conversation messages
-- Time is irrelevant - 7 operations in <5 min can overflow, but 1000-turn Q&A sessions don't
-- Counter-based checkpointing (3 writes / 5 total ops) prevents overflow
-- `/clear` command is buggy - use `/context clear` or restart session
-
-**Use This When:** File-heavy work sessions (creating/editing multiple resources like dialogues, textures, etc.)
+### 2026-01-28: Sprite improvements with outlines
+**Problem:** Placeholder sprites lacked outlines and shading
+**Solution:** Created Python tools to generate production-quality sprites
+**Tools:** `tools/improve_*.py` (9 scripts)
+**Lesson:** Batch generation with proper style guide compliance
 
 ---
 
-## Context Safety Protocol
-
-**CRITICAL:** Context overflow happens from FILE OPERATIONS, not time or conversation length.
-
-### File Operation Impact
-| Operation | Tokens Added | Auto-Compacts? |
-|-----------|--------------|----------------|
-| Read/Write | ~1,500-2,000 | ❌ No |
-| Message | ~50-500 | ✅ Yes |
-
-**Danger Zone:** 5+ file operations in rapid succession
-
-### Safety Rules
-1. **Checkpoint after 3 Write operations**
-2. **Checkpoint after 5 total file operations (Read + Write)**
-3. **Use safe aliases when available:**
-   - `lss` instead of `ls` (limits output to 50 items)
-   - `cats` instead of `cat` (limits large files to 500 lines)
-   - `finds` instead of `find` (limits results to 100 matches)
-
-### Installation
-```bash
-# Install context safety hooks
-cd scripts
-.\install-context-safety.ps1
-```
-
-Then restart PowerShell to load the aliases.
-
-### When to Checkpoint
-- After editing 3+ files
-- Before starting a new logical task group
-- When switching between unrelated work areas
-
-**Remember:** Mark todos IMMEDIATELY after each file write - don't batch updates.
-
-### 2026-01-27: World map expansion for prologue beach and Titan battlefield
-**Problem:** Current map was too small (bounds at ±540 x and ±620 y). Storyline.md requires beach area where Circe washes up after prologue, and Titan battlefield for pharmaka gathering.
-
-**Solution:** Expanded world bounds significantly and added beach terrain at bottom, Titan battlefield area on western cliffs with glowing spots for pharmaka flowers.
-
-**Key Files Changed:**
-- `game/features/world/world.tscn` — Expanded boundaries (2400x3000 instead of 1080x1240)
-- `game/features/world/world.gd` — Added `_paint_beach_area()`, `_paint_titan_battlefield()`, expanded `_ensure_ground_fill()`
-- `game/shared/resources/tiles/procedural_tiles.tres` — Added sand source (4) to tileset
-- `game/textures/tiles/sand_procedural.png` — Created procedural sand texture
-- `temp/create_sand_texture.py` — Python script to generate sand tile
-
-**Lessons Learned:**
-- World now spans -35 to 35 tiles (70 width) by -45 to 45 tiles (90 height)
-- Beach at bottom (y > 30) with sand/water gradient for prologue arrival
-- Titan battlefield at western edge (x < -20) with stone ground and glowing spots
-- Player spawns at (0, 560) on beach for first arrival after prologue
-- Paths connect beach → main area → Titan battlefield
-
-**Use This When:** Storyline requires multiple biomes or locations. Use procedural generation with tile layers for terrain variety.
-
-- Source of truth: `.claude/skills/`
-- Codex mirror: `.codex/skills/` (keep in sync with `.claude/skills/`)
-- Preferred sync: `scripts/sync-skills.ps1` (supports `-DryRun`, `-Prune`)
-- Slash commands live in `.claude/commands/` (ported as skills only when needed)
-
-## MCP Tools
-
-**IMPORTANT: Different agent types have DIFFERENT MCP access.**
-
-### For IDE Extension Agents (Cursor, VS Code)
-- **MCP Tools Available:** `mcp__MiniMax*`, web reader, image analysis
-- **NOT Available:** `mcp__godot__*` tools (godot-mcp MCP server is NOT configured)
-- **Use PowerShell wrapper for godot-mcp CLI:**
-  ```bash
-  powershell -Command "scripts/mcp-wrapper.ps1 -McpCommand 'get_project_info'"
-  ```
-- See: [docs/agent-instructions/tools/mcp-wrapper-usage.md](docs/agent-instructions/tools/mcp-wrapper-usage.md)
-
-### For Terminal Agents (RooCode, GPT Codex)
-- **MCP Tools Available:** Possibly `mcp__godot__*` tools (if configured)
-- **Use direct npx CLI commands:**
-  ```bash
-  npx -y godot-mcp-cli@latest get_project_info
-  ```
-- DO NOT use PowerShell wrapper (you have direct subprocess access)
-
-### For Claude Desktop Agents
-- **MCP Tools Available:** Both MiniMax and godot-mcp MCP servers
-- **Use native MCP tools:** `mcp__godot__*`, `mcp__MiniMax*`
-- DO NOT use PowerShell wrapper (you have native access)
-
-### Common Commands (All Agents)
-
-**MCP Health Check:**
-```bash
-powershell -ExecutionPolicy Bypass -File scripts/mcp-health-check.ps1
-```
-
-**Start Godot with MCP:**
-```bash
-powershell -ExecutionPolicy Bypass -File .claude/skills/godot-mcp-dap-start/scripts/ensure_godot_mcp.ps1
-```
-
-**MCP Recovery:**
-```bash
-powershell -ExecutionPolicy Bypass -File .claude/skills/mcp-recovery/scripts/recover.ps1
-```
-
-If MCP issues persist after running recovery, see: `.claude/skills/mcp-recovery/error-patterns.md`
-
-## MiniMax MCP
-- Skill docs: `.claude/skills/minimax-mcp/SKILL.md`
-- Terminal quick start (direct API via scripts):
-  - `cd .claude/skills/minimax-mcp`
-  - `./scripts/web-search.sh "query"`
-  - `./scripts/analyze-image.sh "prompt" "image.png"`
-- MCP server (desktop): see `SKILL.md` for env vars and `uvx minimax-coding-plan-mcp -y`
-- Codex wrapper tools:
-  - `mcp__MiniMax-Wrapper__coding_plan_general`
-  - `mcp__MiniMax-Wrapper__coding_plan_execute`
-- **Delegation guidance**: Prefer MiniMax for web search, image analysis, research tasks
-- **Trusted domains** (auto-approved): docs.anthropic.com, platform.claude.com, docs.cursor.com, cursor.com, cookbook.openai.com, godotengine.org, api.minimax.io
-- **Other domains**: Ask permission before searching outside trusted list
-- Direct API (extension): Use Bash tool with curl (see SKILL.md), saves 85-90% tokens
-- **Decision trigger**: Before using Grep/Glob for research, ask: "Would MiniMax handle this better?"
-
-## Testing
-Headless: `.\Godot*\Godot*.exe --headless --script tests/run_tests.gd`
-Headed (HPV): Launch Godot, use MCP for input/inspection. Teleport-assisted HPV is the default unless a full walk is requested.
-
-## HPV Interaction Reminder
-
-- If `DialogueBox` is visible, clear it first; `interact` is ignored while dialogue is open.
-- Use `get_runtime_scene_structure` once to locate World/Player/NPCs, then cache paths.
-- Prefer teleport for speed unless you are validating movement feel.
-
-## How Agents "See" and Navigate Games
-
-**You are NOT "blind" when testing games.** The MCP tools provide complete visibility into the game state:
-
-### How to "See" Game State
-
-| Tool | What It Shows | Example Usage |
-|------|---------------|--------------|
-| **get_runtime_scene_structure** | Full scene tree with positions, visibility, properties | See where player/NPCs are, what's visible |
-| **Debugger Variables panel** | All runtime variables including GameState flags | See quest progress, modify values |
-| **Runtime eval patterns** | Direct access to game tree and nodes | Teleport player, read dialogue, trigger quests |
-
-### Example: Finding Player Position
-
-```bash
-# Get scene structure - returns EVERYTHING with positions
-get_runtime_scene_structure
-
-# Output shows positions like:
-# World/Player: position=[384, 96], visible=true
-# World/NPCs/Hermes: position=[400, 100], visible=true
-```
-
-### Example: Finding NPC Positions
-
-```bash
-get_runtime_scene_structure
-# Look for: World/NPCs/Hermes: position=[x, y]
-# Then walk player there using: simulate_action_tap --action ui_up
-```
-
-### Example: Checking Quest State
-
-```bash
-# Option 1: Debugger (easiest)
-# Press F5 → Set breakpoint → Check Variables panel → quest_flags dictionary
-
-# Option 2: MCP (when game running)
-get_runtime_scene_structure
-# Look for: World/GameState → quest_flags in properties
-```
-
-### Example: Navigating to Targets
-
-**Option 1: Teleport (fastest for HPV)**
-```gdscript
-# Find world index first with get_runtime_scene_structure
-get_tree().root.get_child(3).get_node("Player").set_global_position(Vector2(384, 96))
-```
-
-**Option 2: Walk (for actual movement testing)**
-```bash
-# Move toward target using scene structure for guidance
-simulate_action_tap --action ui_up
-# Repeat as needed, verify with get_runtime_scene_structure
-```
-
-### Key Point
-
-`get_runtime_scene_structure` IS your "vision" - it shows all nodes, positions, properties, and visibility in real-time. This is how you know where things are without seeing the screen.
-
-## Conventions
-- Follow patterns in nearby files
-- GDScript: snake_case (vars/functions), PascalCase (nodes), UPPER_SNAKE (constants)
-
-## Repo Rules
-- When asked to commit, prefer scoped commits; avoid history rewrites unless asked
-- When pausing or ending a work block, it is usually better to commit changes
-  rather than leave them pending; ask if unsure
-- Avoid creating or switching branches unless Sam explicitly asks; work in the
-  current branch instead
-- Ask before touching: .godot/, .venv/, archive/, .cursor/, .claude/roles/
-- .uid files: use git hook (git config core.hooksPath .githooks) or stage manually
-- Ask before creating new .md files; editing existing .md files is OK
-- Exception: temp/plans/ files are allowed for long-running tasks or delegation tracking; delete them when the work finishes
-- Prefer updating existing docs; doc sprawl causes drift and conflicting guidance. See docs/agent-instructions/AGENTS_README.md for rationale.
-- Prefer clarifying questions BEFORE starting autonomous work
-- During autonomous work (2A phase): work continuously, do not stop to summarize
-- Default to working within the current structure; flag major structural changes
-
-## After Completing Work
-- Add a dated entry to **Common Solutions** if you solved a new problem.
-- Log test findings in `docs/execution/DEVELOPMENT_ROADMAP.md` and (if HPV) `docs/playtesting/PLAYTESTING_ROADMAP.md`.
-- If you encountered unresolved issues, note them in the roadmap (or `todos/` if approved).
-
-## Planning Guidelines
-
-**CRITICAL: How to structure implementation plans**
-
-### What NOT to Use
-- ❌ **Time estimates** (weeks, hours, days) - meaningless for AI work
-- ❌ **Token estimates** - unreliable and unnecessary
-- ❌ **Story points** - not applicable to AI agents
-
-### What TO Use Instead
-
-**Priority Levels (P0/P1/P2):**
-- **P0** - Must have for feature to work (MVP core)
-- **P1** - Makes it actually useful/enhanced
-- **P2** - Nice to have, polish
-
-**Step Numbers (1, 2, 3...):**
-- Use when tasks have dependency order (B requires A)
-- Simple linear sequence
-- Easy to track progress
-
-**Example:**
+## ⏰ Time Gate Rules (ABSOLUTE)
 
 ```
-P0 (Must have):
-- Step 1: Create basic structure
-- Step 2: Implement core loop
-- Step 3: Add minimal validation
-
-P1 (Enhanced):
-- Step 4: Add completion detection
-- Step 5: Implement error recovery
-
-P2 (Polish):
-- Step 6: Add session resume
-- Step 7: Advanced circuit breakers
+1. At session START: Read .session_manifest.json
+2. During work: RE-READ manifest after context restart
+3. Every ~30 min: Note remaining time
+4. When "done": MUST use finish-work skill
+5. If finish-work says CONTINUE: YOU CONTINUE - no exceptions
 ```
 
-### Rationale
-- AI works in minutes, not weekly sprints
-- No human scheduling constraints
-- Priority makes scope flexible (stop after P0 if needed)
-- Steps show dependencies clearly
+**DO NOT:**
+- Claim completion without finish-work skill
+- Stop because "you're done"
+- Make excuses - work the full duration
+
+**When "Done" But Time Remains:**
+- Review code for issues
+- Add documentation
+- Run more tests
+- Refactor for clarity
+- Check edge cases
+
+**finish-work Skill:** `.claude/skills/finish-work/SKILL.md`
 
 ---
 
-## Autonomous Work (2A Phase)
+## 🛠️ Conventions
 
-**When working on a plan autonomously:**
+### GDScript
+- **Variables/Functions:** snake_case
+- **Nodes:** PascalCase
+- **Constants:** UPPER_SNAKE
 
-### Core Rules
-- DO NOT stop working to provide summaries, status updates, or "check-ins"
-- DO NOT send progress updates until the task is fully complete, unless blocked or explicitly asked
-- DO NOT stop when a task is slow, challenging, or time-consuming
-- DO NOT stop when one approach fails - try alternatives
-- ONLY stop for HARD STOPS (defined below)
-- Update plan file (.claude/plans/*.md) with quick notes - keep working
-- Continue through todos systematically - skip blocked items, circle back later
+### Git
+- Scoped commits preferred
+- Avoid history rewrites unless asked
+- Work in current branch
+- Commit before pausing/ending
 
-**Planning artifacts (approved):**
-- A temp plan file under `temp/` is acceptable for longplan sessions.
-- `update_plan` is a valid substitute for `TodoWrite` in Codex environments.
+### New Files
+- Request permission for new .md files in planning phase
+- If created without approval: continue work, report at end
 
-**New .md files (permission flow):**
-- Ask for permission during 1A before creating any new .md files.
-- If a new .md is created without prior approval, keep working and report it at
-  the end of the work block for a keep/move/delete decision.
+---
 
-**Finish-game requests (default behavior):**
-- Treat “finish the game / finish the roadmap” as a full local-beta scope unless the user narrows it.
-- Include explicit success criteria and multi-phase steps in the plan.
-- Avoid scope reduction unless the user explicitly approves it.
+## 🚨 Critical Rules
 
-### HARD STOPS (Only stop for these)
-- Creating NEW .md files (not edits)
-- Editing .cursor/ directory
-- Git push, force push, or branch operations
-- Editing CONSTITUTION.md
-- Actions outside approved scope
-- Explicit user request to stop/pause
+1. **Visual Quality Gates** - Screenshots required for visual claims
+2. **Narrative Consistency** - Check against Storyline.md
+3. **Time Commitment** - Work full duration
+4. **Testing** - Run tests before claiming completion
+5. **MCP Issues** - Ask Sam to restart, don't troubleshoot long
 
-### CHALLENGES ≠ BLOCKS (Keep working, try alternatives)
-- Slow operations (time ≠ stop)
-- One approach failing (try 2-3 alternatives)
-- Uncertain about next step (document uncertainty, pick reasonable path, continue)
-- Sequential advancement taking time (skip to next todo, come back)
+---
 
-### Skip-Around Pattern
-When stuck on a todo item:
-1. Document the challenge in plan file (1-2 lines)
-2. Move to next todo item
-3. Circle back to stuck items after making progress elsewhere
-4. Try 2-3 alternatives before documenting as pending
+## 📞 When to Escalate to Sam
 
-### TodoWrite Quote (For longplan mode)
-Append this brief quote to every todo task (except final "keep working" task):
+- MCP/debugger not working after quick check
+- Need to create new .md files
+- Unsure about scope or approach
+- Blocked >30 minutes
+- Before major structural changes
 
-"Remember: Skip around stuck tasks. Try 2-3 alternatives. Move to next todo. Circle back. Keep working. Do not make major repo changes unless approved."
+---
 
-This reinforces the skip-around pattern and prevents getting stuck on challenging todos.
+## 🔗 Quick Links
 
-### Examples of "Keep Working"
-- GOOD: Dialogue advancement slow → Skip to Quest 3, come back to Quest 2 later
-- GOOD: MCP eval not working → Try different approach, document, move on
-- GOOD: Uncertain about flag → Make reasonable assumption, note it, continue
-- BAD: Stop and summarize → VIOLATION (unless HARD STOP)
-- BAD: Ask if should continue → VIOLATION (unless HARD STOP)
+- **Status:** `docs/Development/CURRENT_STATUS.md`
+- **Dev Hub:** `docs/Development/DEVELOPMENT_HUB.md`
+- **Roadmap:** `docs/execution/DEVELOPMENT_ROADMAP.md`
+- **Testing:** `docs/agent-instructions/TESTING_WORKFLOW.md`
+- **HPV Guide:** `docs/playtesting/HPV_GUIDE.md`
+- **Skills:** `.claude/skills/`
 
-### Skill Usage Note
-- **create-plan skill**: For 1A (Planning Phase) - interactive, waits for user feedback
-- **longplan slash command**: For 2A (Autonomous Execution) - continuous work, no stopping
-- Use CLAUDE.md Autonomous Work section (above) during 2A phase
+---
 
-[Codex - 2026-01-17]
-[Codex - 2026-01-22]
+**See Also:**
+- `AGENTS.md` - Quick onboarding
+- `docs/agent-instructions/AGENTS_README.md` - Full instructions hub

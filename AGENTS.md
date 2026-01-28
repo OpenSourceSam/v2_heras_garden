@@ -1,168 +1,211 @@
 # Agent Onboarding
 
-Environment: Cursor (not VS Code) | MCP: `.cursor/mcp.json` | Godot 4.5.1
+**Environment:** Cursor (not VS Code) | **MCP:** `.cursor/mcp.json` | **Godot 4.5.1**
 
-## Quick Start
-- Read: docs/agent-instructions/AGENTS_README.md
-- Testing: docs/playtesting/HPV_GUIDE.md
-- Roadmap: docs/execution/DEVELOPMENT_ROADMAP.md
+**Last Updated:** 2026-01-28
 
-## Repo Layout
-game/ → gameplay code | docs/ → documentation | tests/ → test suites | addons/ → plugins
+---
 
-## MCP Tools
-Use `mcp__godot__*` for playtesting. If unavailable: docs/agent-instructions/setup-guides/mcp-setup.md
-If MCP or the debugger is not running, ask Sam to start it rather than
-spending long on troubleshooting.
+## 🚀 Quick Start (New Agents)
 
-## MiniMax MCP
-- Skill docs: `.claude/skills/minimax-mcp/SKILL.md`
-- Terminal quick start (direct API via scripts):
-  - `cd .claude/skills/minimax-mcp`
-  - `./scripts/web-search.sh "query"`
-  - `./scripts/analyze-image.sh "prompt" "image.png"`
-- MCP server (desktop): see `SKILL.md` for env vars and `uvx minimax-coding-plan-mcp -y`
-- Codex wrapper tools:
-  - `mcp__MiniMax-Wrapper__coding_plan_general`
-  - `mcp__MiniMax-Wrapper__coding_plan_execute`
+1. **Read Session Manifest:** `.session_manifest.json` - Check time commitment
+2. **Read Current Status:** `docs/Development/CURRENT_STATUS.md` - What's happening now
+3. **Read Testing Guide:** Below - How to test effectively
+4. **Check Skills:** `.claude/skills/` - Available capabilities
 
-## Testing
-Headless: `.\Godot*\Godot*.exe --headless --script tests/run_tests.gd`
-Headed (HPV): Launch Godot, use MCP for input/inspection
+---
 
-## Conventions
-- Follow patterns in nearby files
-- GDScript: snake_case (vars/functions), PascalCase (nodes), UPPER_SNAKE (constants)
+## 📊 Current Project Status
 
-## Repo Rules
-- When asked to commit, prefer scoped commits; avoid history rewrites unless asked
-- When pausing or ending a work block, it is usually better to commit changes
-  rather than leave them pending; ask if unsure
-- Avoid creating or switching branches unless Sam explicitly asks; work in the
-  current branch instead
-- Ask before touching: .godot/, .venv/, archive/, .cursor/, .claude/roles/
-- .uid files: use git hook (git config core.hooksPath .githooks) or stage manually
-- Creating new .md files: request permission during the 1A planning phase (longplan).
-  If a new .md is created without prior approval, continue the work block and
-  report it at the end for decision (delete/move/keep).
-- Prefer brief clarifying questions up front, then a longer autonomous pass
-- Default to working within the current structure; flag major structural changes
+**Game:** Circe's Garden v2  
+**Phase:** 8 (Visual Development)  
+**Story:** ✅ 100% Complete (49/49 beats, 11 quests)  
+**Code:** ✅ Tests passing (5/5)  
+**Visuals:** 🔄 In Progress (sprites improved, composition review needed)
 
-## CRITICAL: Work Duration Requirements (ABSOLUTE)
+**Last Work:** 2026-01-28 - 45+ sprites improved to production quality
 
-### The Time Check Rule (DO NOT VIOLATE)
+**See:** `docs/Development/DEVELOPMENT_HUB.md` for full details
 
-```
-YOU ARE WORKING A SESSION WITH A TIME COMMITMENT.
+---
 
-1. At session START: Read .session_manifest.json, acknowledge it out loud
-2. During work: RE-READ manifest after context compaction/restart  
-3. Every ~30 min: Note remaining time to keep commitment fresh
-4. When "done": MUST use finish-work skill BEFORE claiming completion
-5. If finish-work says continue: YOU CONTINUE - no exceptions
-6. If unsure about time: ALWAYS re-read manifest (cheap insurance)
+## 🎮 Testing Guide (HPV - Headed Playability Validation)
+
+### Quick Test
+```bash
+# Run tests
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/run_tests.gd
+
+# Launch game (if MCP available)
+npx -y godot-mcp-cli run_project --headed
+
+# Check scene
+npx -y godot-mcp-cli get_runtime_scene_structure
+
+# Simulate input
+npx -y godot-mcp-cli simulate_action_tap --action "ui_accept"
 ```
 
-**CRITICAL:** When you see "Continuing from previous..." or after any interruption,
-you MUST re-read .session_manifest.json. Context loss means commitment loss.
+### Testing Methods
 
-**CHECKPOINT OUTPUT (every ~30 min):**
+| Method | Use When | Command |
+|--------|----------|---------|
+| **HLC** (Headless) | Unit tests, logic | `--headless --script tests/run_tests.gd` |
+| **HPV** (Headed) | Game state, flow | `run_project --headed` + MCP tools |
+| **DAP** (Debugger) | Breakpoints, variables | F5 in VSCode |
+
+### Key MCP Commands
+```bash
+# Inspection
+npx -y godot-mcp-cli get_runtime_scene_structure
+npx -y godot-mcp-cli get_input_actions
+
+# Input
+npx -y godot-mcp-cli simulate_action_tap --action "ui_accept"
+npx -y godot-mcp-cli simulate_action_tap --action "interact"
+npx -y godot-mcp-cli simulate_action_tap --action "ui_up"
 ```
-⏰ Checkpoint: [X] minutes remaining until [target_time]
+
+### VSCode Debugger (F5)
+- Set breakpoints by clicking line numbers
+- Inspect Variables panel for `GameState.quest_flags`
+- Modify flags directly to skip minigames
+
+**Full Guide:** `docs/agent-instructions/TESTING_WORKFLOW.md`
+
+---
+
+## 📁 Essential File Locations
+
+### Must Know
+| File | Location | Purpose |
+|------|----------|---------|
+| **Current Status** | `docs/Development/CURRENT_STATUS.md` | What's happening now |
+| **Dev Hub** | `docs/Development/DEVELOPMENT_HUB.md` | Quick reference |
+| **Roadmap** | `docs/execution/DEVELOPMENT_ROADMAP.md` | Full status |
+| **Story** | `docs/Development/Storyline.md` | 49 beats, narrative |
+| **Playtesting** | `docs/playtesting/PLAYTESTING_ROADMAP.md` | Quest walkthrough |
+| **Visual QA** | `docs/qa/VISUAL_IMPROVEMENTS_2026-01-28.md` | Sprite status |
+
+### Game Code
+| Directory | Contents |
+|-----------|----------|
+| `game/features/world/` | World scene, player, NPCs |
+| `game/features/locations/` | Scylla Cove, Sacred Grove, House |
+| `game/features/cutscenes/` | All cutscenes |
+| `game/shared/resources/dialogues/` | 80+ dialogue files |
+| `assets/sprites/placeholders/` | 45+ improved sprites |
+
+### Test & QA
+| File | Purpose |
+|------|---------|
+| `tests/run_tests.gd` | Core test suite |
+| `docs/playtesting/HPV_GUIDE.md` | Detailed HPV patterns |
+
+---
+
+## 🛠️ Development Workflow
+
+### Compound Engineering
+1. **Plan** - Confirm scope, track work
+2. **Delegate** - MiniMax for research, MCP for testing
+3. **Assess** - Verify with small headed check
+4. **Codify** - Record in ROADMAP and PLAYTESTING_ROADMAP
+
+### Conventions
+- **GDScript:** snake_case (vars/functions), PascalCase (nodes), UPPER_SNAKE (constants)
+- **Commits:** Scoped commits, avoid rewrites
+- **Branches:** Work in current branch unless Sam asks
+- **New .md files:** Request permission in planning phase
+
+---
+
+## ⏰ Time Gate Rules (CRITICAL)
+
+```
+1. At session START: Read .session_manifest.json
+2. During work: Re-read after context restart
+3. Every ~30 min: Note remaining time
+4. When "done": MUST use finish-work skill
+5. If finish-work says CONTINUE: Continue - no exceptions
 ```
 
 **DO NOT:**
-- Claim completion without using finish-work skill
-- Stop working because "you're done" - there's always more to do
+- Claim completion without finish-work skill
+- Stop because "you're done" - always more to do
 - Make excuses - work the full duration
 
-**THIS SESSION:** Must work until 1:00 AM (2026-01-28 01:00)
-
-### Session Manifest Location
-File: `.session_manifest.json` (project root)
-
-Template: `.claude/SESSION_MANIFEST_TEMPLATE.json`
-
-### Finish-Work Gate (MANDATORY)
-Before claiming work is complete:
-1. **Use finish-work skill** - it checks if time elapsed
-2. **If it says CONTINUE** - find more work (docs, tests, polish, edge cases)
-3. **Only when it says COMPLETE** - may finish
-
-### What To Do When "Done" But Time Remains
+**When "Done" But Time Remains:**
 - Review code for issues
 - Add documentation
 - Run more tests
-- Refactor for clarity  
-- Add error handling
+- Refactor for clarity
 - Check edge cases
 - Optimize performance
-- Add logging
-- Review similar code for patterns
-- Spawn subagent for parallel improvements
 
-**Stopping early is the WORST CRIME** - worse than bugs, worse than mistakes
+**See:** `.claude/skills/finish-work/SKILL.md`
 
-### Current Session Manifest
-```json
-{
-  "session_id": "finish-game-2026-01-27",
-  "started": "2026-01-27T23:44:00",
-  "target_end": "2026-01-28T01:00:00",
-  "minimum_minutes": 76,
-  "reason": "Finish the game - integrate Superpowers, fix fake UIDs, validate",
-  "hard_stop": true,
-  "created_by": "user"
-}
-```
+---
 
-## Skill Inventory
+## 🔧 MCP Tools
 
-### Superpowers Skills (Primary)
-- `brainstorming` - Clarify and explore ideas
-- `dispatching-parallel-agents` - Coordinate multiple subagents
-- `executing-plans` - Execute development plans
-- `receiving-code-review` - Process and apply code review feedback
-- `requesting-code-review` - Request and manage code reviews
-- `subagent-driven-development` - Develop using subagent patterns (NEW)
-- `systematic-debugging` - Structured debugging workflows
-- `test-driven-development` - TDD workflows
-- `using-git-worktrees` - Git worktree management
-- `using-superpowers` - Superpowers overview and guidance
-- `verification-before-completion` - Pre-completion verification
-- `writing-plans` - Create implementation plans
-- `writing-skills` - Create new skills
+### Available
+- `mcp__godot__get_runtime_scene_structure` - Full scene tree
+- `mcp__godot__simulate_action_tap` - Input simulation
+- `mcp__MiniMax-Wrapper__coding_plan_general` - Planning
+- `mcp__MiniMax-Wrapper__coding_plan_execute` - Execution
 
-### Project-Specific Skills
-- `longplan` - Complex multi-step planning (1A2A workflow)
-- `ralph` - Autonomous coding loop with MiniMax
-- `minimax-mcp` - MiniMax MCP integration
-- `godot` - Godot engine guidance
-- `godot-gdscript-patterns` - GDScript best practices
-- `godot-mcp-dap-start` - Godot MCP/DAP startup
-- `playtesting` - Game playtesting workflows
-- `glm-image-gen` - GLM image generation
-- `image-analysis` - Image quality assessment
-- `mcp-recovery` - MCP recovery procedures
-- `subagent-best-practices` - Subagent delegation patterns
-- `troubleshoot-and-continue` - Recovery workflows
-- `confident-language-guard` - Documentation language guidance
-- `skill-creator` - Create new skills
-- `skill-installer` - Install skills from repos
-- `sam-ceo-communication` - Non-technical communication
-- `github` - GitHub issue management
-- `gh-address-comments` - Address PR comments
-- `gh-fix-ci` - Fix CI failures
-- `git-best-practices` - Git commit best practices
-- `finishing-a-development-branch` - Branch completion workflow
+### If MCP Unavailable
+Use PowerShell wrapper: `scripts/mcp-wrapper.ps1`
 
-### Deprecated/Removed Skills (Replaced by Superpowers)
-- ~~`create-plan`~~ → use `writing-plans`
-- ~~`clarify`~~ → use `brainstorming`
-- ~~`explain`~~ → not used
-- ~~`ground`~~ → not used
-- ~~`finish`~~ → not used
-- ~~`review`~~ → use `requesting-code-review` or `receiving-code-review`
-- ~~`token-plan`~~ → use `writing-plans`
+---
 
-[Codex - 2026-01-27]
+## 📚 Skill Inventory
+
+### Superpowers Skills
+- `brainstorming` - Explore ideas
+- `writing-plans` - Create plans
+- `executing-plans` - Execute plans
+- `subagent-driven-development` - Subagent patterns
+- `test-driven-development` - TDD
+- `systematic-debugging` - Debug workflows
+- `verification-before-completion` - Verify before claiming done
+- `finish-work` - Time gate enforcement
+
+### Project-Specific
+- `longplan` - Multi-step planning (1A2A)
+- `ralph` - Autonomous coding loop
+- `minimax-mcp` - MiniMax integration
+- `godot` - Godot guidance
+- `godot-gdscript-patterns` - Patterns
+- `godot-mcp-dap-start` - MCP/DAP startup
+- `playtesting` - HPV workflows
+- `glm-image-gen` - Image generation
+- `troubleshoot-and-continue` - Recovery
+
+---
+
+## 🚨 Critical Rules
+
+1. **Time Gates** - Work full duration, use finish-work skill
+2. **Visual Validation** - Screenshots required for visual claims
+3. **Tests** - Run tests before claiming completion
+4. **Documentation** - Update ROADMAP with decisions
+5. **MCP Issues** - Ask Sam to restart, don't troubleshoot long
+
+---
+
+## 📞 When to Ask Sam
+
+- MCP/debugger not working after quick check
+- Need to create new .md files
+- Unsure about scope or approach
+- Blocked >30 minutes
+- Before major structural changes
+
+---
+
+**See Also:**
+- `CLAUDE.md` - Detailed project rules
+- `docs/agent-instructions/AGENTS_README.md` - Full instructions hub
+- `docs/agent-instructions/TESTING_WORKFLOW.md` - Testing details
