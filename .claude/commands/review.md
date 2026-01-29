@@ -1,16 +1,25 @@
 ---
-description: Self-contained code review with back-and-forth between agents
+description: Self-contained code review - main agent reviews own work, uses cheaper subagent for blind spot detection
 argument-hint: <optional_commit_hash_or_pr_number>
-model: sonnet
-allowed-tools: [Read, Bash, Glob, Grep]
+allowed-tools: [Read, Bash, Glob, Grep, Task]
 ---
 
 # Code Review (Self-Contained with Internal Back-and-Forth)
 
 **Context:** `$ARGUMENTS` (commit hash, PR number, or current work)
 
-## Maximum Rounds: 3
-If consensus not reached after 3 back-and-forth rounds, Main Agent makes final decision and documents any disagreement.
+## Power Dynamic
+
+**Main Agent (Claude Opus) is MORE capable than the reviewer subagent.**
+
+The reviewer's role is to surface *potential* blind spots - NOT to be an authority. Main Agent:
+- Has full context (lived through the work)
+- Makes all final decisions
+- Should trust own judgment over reviewer when confident
+- Uses reviewer insights as "things to consider", not directives
+
+## Maximum Rounds: 2
+Main Agent conducts primary review. Subagent provides one round of blind spot detection. Main Agent decides.
 
 ---
 
@@ -28,50 +37,38 @@ If consensus not reached after 3 back-and-forth rounds, Main Agent makes final d
    - If PR number provided → Review that PR
    - If no argument → Review current uncommitted work
 
-3. **Invoke Reviewer Agent:**
-   - Use Task tool with full context
-   - Include: conversation excerpt, file changes, work summary
-   - Set `model: sonnet` for reviewer
+3. **Conduct Primary Review (YOU):**
+   - Review the diff yourself
+   - Identify issues, edge cases, consistency problems
+   - Document findings
 
-4. **Continue Back-and-Forth:**
-   - Read reviewer's response
-   - If you agree → Proceed to report
-   - If you disagree → Explain why (provide missing context)
-   - If you need clarification → Ask specific questions
-   - Use Task tool continuation (same agent_id) to respond
+4. **Optional: Invoke Blind Spot Detector:**
+   - Use Task tool with general-purpose agent (MiniMax - cheap)
+   - Give summary of changes + your findings
+   - Ask: "What did I miss?"
+   - Treat response as suggestions, not authority
 
-5. **Report Final Consensus:**
-   - After consensus (or 3 rounds max), show user the agreed-upon result
-   - Include any disagreements if forced tiebreaker
+5. **Report to User:**
+   - Your findings + any useful subagent insights
+   - You make all final calls
 
-### Phase 2 - Reviewer Agent (the agent Main Agent invokes):
+### If Using Subagent for Blind Spot Detection:
 
-**Your Role as Reviewer:** (follow section below)
+The subagent is a **helper**, not an authority. They:
+- Have LESS context and capability than you
+- May surface useful things to consider
+- Should NOT be treated as a gatekeeper
+- Provide ONE round of input, then you decide
 
 ---
 
-## Your Role as Reviewer
+## Instructions for Blind Spot Subagent
 
-# Code Review (Self-Contained with Internal Back-and-Forth)
-
-**Context:** `$ARGUMENTS` (commit hash, PR number, or current work)
-
-## How This Works
-
-1. **Main Agent** launches **Reviewer Agent** (you) via Task tool with full work context
-2. **Reviewer Agent** provides devil's advocate analysis
-3. **Main Agent** responds back (via Task tool continuation) - can agree, disagree, or clarify
-4. **Continue back-and-forth** until consensus
-5. **Show user ONLY the final consensus** (not the internal debate)
-
-## Your Role as Reviewer
-
-**You are the Devil's Advocate:**
-- Scrutinize the work critically
-- Find issues we might have missed
-- You have LESS context than the Main Agent (they saw everything live)
-- It's OK to be wrong - the Main Agent will correct you if you miss context
-- Push for quality, but accept corrections when given context
+**You are a cheap helper agent. Your role:**
+- Surface potential blind spots the main agent might have missed
+- You have LESS context and capability than them
+- Your suggestions are OPTIONAL - they decide what to act on
+- Be brief - one round only
 
 **What You Review:**
 1. Code correctness & logic

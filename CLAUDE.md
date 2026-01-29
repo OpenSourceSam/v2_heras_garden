@@ -52,6 +52,36 @@ Target = Harvest Moon quality (warm, detailed, lived-in, purposeful)
 
 ---
 
+## 💰 Token-Efficient Delegation
+
+**Claude tokens are 50x more expensive than MiniMax/GLM/Kimi.**
+
+### ⛔ HARD STOP: No Claude Subagents
+
+**NEVER spawn Claude models (Haiku, Sonnet, Opus) as subagents.**
+
+- Default subagent: **MiniMax** (fast, instruction-following)
+- Alternative: **GLM** (creative, bigger picture tasks)
+- Claude tokens are 50x more expensive - reserve for main orchestration only
+- This is enforced in `.claude/settings.local.json` deny rules
+
+**Claude Opus handles:**
+- Complex reasoning and synthesis
+- Code writing and editing
+- Architectural decisions
+- Direct image analysis (1-3 images)
+- Reading specific known files
+
+**Delegate to MiniMax/GLM:**
+- Web research and documentation lookup
+- Broad codebase exploration (use Explore agent)
+- Batch image analysis (10+ images)
+- Pattern research across many files
+
+**Quick Rule:** If it's exploration/research, delegate. If it's reasoning/decisions, Claude does it directly.
+
+---
+
 ## 🎮 Testing Workflows
 
 ### HPV (Headed Playability Validation) - Primary Method

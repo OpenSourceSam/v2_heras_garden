@@ -7,6 +7,22 @@ description: Auto-injects subagent delegation best practices when agents, subage
 
 Auto-inject when: User mentions "subagent", "Task tool", "spawn agent", "parallel"
 
+## ⛔ HARD STOP: No Claude Subagents
+
+**NEVER use Claude models (Haiku, Sonnet, Opus) as subagents.**
+
+| ❌ FORBIDDEN | ✅ ALLOWED |
+|--------------|-----------|
+| `model="haiku"` | `model` omitted (default) |
+| `model="sonnet"` | general-purpose agent |
+| `model="opus"` | general-purpose agent |
+
+- Default: **MiniMax** (fast, instruction-following)
+- Alternative: **GLM** (creative, bigger picture)
+- Enforced: `.claude/settings.local.json` deny rules
+
+---
+
 ## Core Principle: Main Agent = Orchestrator ONLY
 
 Main agents should NOT:
