@@ -59,7 +59,11 @@ Exploration/Research → Delegate (MiniMax/Kimi)
 Reasoning/Decisions  → Claude does directly
 10+ images           → Delegate to Kimi K2.5
 Code changes         → Claude writes, subagent reviews
+Tasks >30 seconds    → run_in_background=true + end turn
 ```
+
+### Token Suspension (Background Execution)
+For long-running subagent tasks: use `run_in_background=true`, end turn early, retrieve with `TaskOutput` on next turn. See `/skill delegation` for details.
 
 ---
 

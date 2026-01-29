@@ -177,6 +177,52 @@ Result passed back: 500 tokens (only what matters)
 10-15% of queries → Opus (only when needed)
 ```
 
+### Pattern 4: Token Suspension via Background Execution
+
+**The Problem:** Claude tokens burn while waiting for subagent results.
+
+**The Solution:** Use `run_in_background=true` and **end the turn early**.
+
+```
+┌─────────────────────────────────────────────────────────┐
+│ BLOCKING (expensive)                                    │
+├─────────────────────────────────────────────────────────┤
+│ Claude spawns subagent → waits 60s → gets result       │
+│ Cost: 60 seconds of Opus tokens BURNED                  │
+├─────────────────────────────────────────────────────────┤
+│ BACKGROUND + END TURN (cheap)                           │
+├─────────────────────────────────────────────────────────┤
+│ Claude spawns with run_in_background=true → ends turn  │
+│ Cost: ~0 seconds of Opus tokens (turn ended)           │
+│ Subagent runs: 60s of cheap tokens                      │
+│ User says "continue" → Claude retrieves with TaskOutput│
+└─────────────────────────────────────────────────────────┘
+```
+
+**When to suspend (use background):**
+- Research/exploration tasks >30 seconds
+- Batch image analysis (10+ images)
+- Web searches with multiple queries
+- Code review by subagent
+
+**When NOT to suspend:**
+- Quick lookups (<5 seconds)
+- Claude needs result to continue current reasoning
+- Interactive debugging requiring rapid iteration
+
+**Fire-and-Retrieve Workflow:**
+```
+1. Task(prompt="Research X", run_in_background=true)
+   → Returns immediately with task_id and output_file
+2. Claude responds: "Research dispatched. Say 'continue' when ready."
+3. User prompts again
+4. TaskOutput(task_id="...", block=true)
+   → Returns full results
+5. Claude synthesizes and delivers answer
+```
+
+**Key phrase:** For tasks >30 seconds, use background execution and end turn early.
+
 ---
 
 ## Anti-Patterns to Avoid

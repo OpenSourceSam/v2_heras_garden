@@ -146,6 +146,56 @@ Task(prompt="Research Z", subagent_type="general-purpose")  ←─┘
 
 ---
 
+## Background Execution (Token Suspension)
+
+**Problem:** Claude tokens burn while waiting for subagent results.
+**Solution:** Use `run_in_background=true` + end turn early.
+
+### Pattern: Fire-and-Retrieve
+```
+1. Claude receives task requiring research
+2. Task(prompt="...", run_in_background=true) → returns output_file
+3. Claude ends turn: "Research agent dispatched. Say 'continue' for results."
+4. User says "continue"
+5. TaskOutput(task_id="...", block=true) → retrieves results
+6. Claude synthesizes and responds
+```
+
+### When to Use Background Execution
+
+| Scenario | Background? | Why |
+|----------|-------------|-----|
+| Research >30 sec | ✅ Yes | Saves expensive Claude wait time |
+| Batch image analysis | ✅ Yes | Long-running, user can wait |
+| Quick file lookup | ❌ No | Faster to wait inline |
+| Claude needs result to continue | ❌ No | Would block anyway |
+
+### Token Savings Calculation
+```
+Blocking:     Claude waits 60s = 60s of Opus tokens burned
+Background:   Claude ends turn = 0s of Opus tokens burned
+              (subagent tokens are 50x cheaper)
+```
+
+### Example Usage
+```
+# Fire (spawn and end turn immediately)
+Task(
+  prompt="Analyze all 20 sprites in assets/sprites/",
+  subagent_type="general-purpose",
+  run_in_background=true
+)
+→ Returns: {task_id: "abc123", output_file: "/path/to/output"}
+
+# ... Claude ends turn, tells user to say "continue" ...
+
+# Retrieve (on next turn)
+TaskOutput(task_id="abc123", block=true)
+→ Returns: Full subagent analysis
+```
+
+---
+
 ## Token Economics
 
 | Provider | Relative Cost | When to Use |

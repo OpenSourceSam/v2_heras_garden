@@ -73,6 +73,29 @@ Task(prompt="Research Z")  ←─┘
 
 ---
 
+## Background Execution (Token Suspension)
+
+**For tasks >30 seconds:** Use `run_in_background=true` + end turn.
+
+| Execution Mode | Token Cost | UX |
+|----------------|-----------|-----|
+| Blocking | High (Claude waits) | Seamless |
+| Background + continue | Medium | Seamless |
+| Background + end turn | **Low** | Requires re-prompt |
+
+### Fire-and-Retrieve Pattern
+```
+1. Task(prompt="...", run_in_background=true) → gets task_id
+2. Claude ends turn: "Dispatched. Say 'continue' for results."
+3. User prompts → TaskOutput(task_id="...", block=true)
+4. Claude synthesizes
+```
+
+**Why it saves tokens:** Ending Claude's turn stops the token meter.
+Subagent tokens are 50x cheaper than Claude tokens.
+
+---
+
 ## Quick Checklist
 
 Before spawning:
