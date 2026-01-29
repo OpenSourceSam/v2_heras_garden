@@ -1,322 +1,182 @@
-# Agent Role Hierarchy
+# Two-Tier Agent Role System
 
-Last updated: [Codex - 2026-01-22]
-Image Analysis Subagent added: [Claude Sonnet 4.5 - 2026-01-26]
+**Updated:** 2026-01-29 (Claude-centric overhaul)
+
+---
 
 ## Overview
 
-This document defines a three-tier permission hierarchy for AI agents working on this project. Agents self-identify their tier based on model name and follow the corresponding permissions.
+This project uses a **two-tier model** optimized for token efficiency:
 
-## 1A2A Workflow Framework
+| Tier | Role | Examples |
+|------|------|----------|
+| **Tier 1: Orchestrator** | Claude | Opus 4.5, Sonnet 4.5 |
+| **Tier 2: Worker** | Subagent | Kimi K2.5, GLM-4.7, MiniMax |
 
-This project uses a **two-phase cadence** for task execution:
-
-### 1A (Ask Phase) - Interactive Planning
-- Align on objectives, scope, and boundaries
-- Create todo list via `TodoWrite` tool (NOT temporary .md files)
-- Identify and request required permissions
-- **User approval required before proceeding**
-
-**When to use 1A:**
-- New feature implementation (3+ steps)
-- Multiple valid approaches exist
-- Architectural decisions needed
-- Multi-file changes expected
-- Unclear requirements
-- User preferences matter
-
-**When to skip 1A (direct to 2A):**
-- Single-line/obvious fixes (typos, small tweaks)
-- Single function with clear requirements
-- Very specific, detailed instructions given
-- Pure research/exploration tasks
-
-### 2A (Autonomous Phase) - Self-Directed Execution
-- Execute approved plan independently
-- Work through todo list systematically
-- Handle blockers gracefully (continue with other items)
-- Summarize completed work + blockers at end
-
-**Key principle:** Planning uses `TodoWrite`, not throwaway files. The repo already has comprehensive documentation; creating new .md files is rarely needed.
-
-## How to Identify Your Tier
-
-Check your model name in the system prompt:
-- If model contains "codex", "gpt-4-turbo", "glm", or similar (junior models) → **Tier 1 (Junior Engineer)**
-- If model contains "claude-sonnet-4" → **Tier 2 (Senior Engineer)**
-- If model contains "claude-opus-4" → **Tier 3 (Principal Architect)**
-
-**Self-check required:** Before editing CONSTITUTION.md or creating skills, verify your tier.
-
-**When in doubt:** Assume Tier 1 restrictions apply (safest default).
+**Key principle:** Claude orchestrates and decides; subagents explore and execute.
 
 ---
 
-## Sub-agent Delegation
+## Tier 1: Claude (Orchestrator)
 
-**Requirement:** When delegating to sub-agents, use MiniMax or GLM-based sub-agents. Do not use Codex, Sonnet, or Opus models as sub-agents.
+**Models:** Claude Opus 4.5, Claude Sonnet 4.5
 
-**Recommendation:** Keep sub-agent tasks tightly scoped and review results before acting on them.
+### What Claude Does
+- Complex reasoning and synthesis
+- Code writing and editing
+- Architectural decisions
+- Final decision-making
+- Direct image analysis (1-3 images)
+- Reading specific known files
 
-### Available Subagents
+### What Claude Delegates
+- Research and exploration
+- Batch operations (10+ files, 10+ images)
+- Web searches and documentation lookup
+- Simple file reading across codebase
+- Pattern research
 
-**Image Analysis Subagent (GLM-4.6v)**
-- **Role:** Visual quality assessment of game screenshots and sprites
-- **Tool:** `mcp__4_5v_mcp__analyze_image`
-- **Documentation:** `.claude/roles/image-analysis-subagent.md`
-- **Skill:** `.claude/skills/image-analysis/SKILL.md`
-- **Use when:** Analyzing sprite quality, checking transparency issues, validating Harvest Moon SNES style alignment
-- **Invoke:** `/skill image-analysis` or direct MCP tool call
+### Permissions
+- **Pre-approved:** All file editing, code changes, git add/commit
+- **Ask first:** New .md files, major refactors, git push
 
----
-
-## Tier 1: Junior Engineer (Codex/GLM)
-
-**Model:** Codex, GPT-4 Turbo, GLM, or similar junior models
-
-### Permissions in 2A Phase
-
-**Hard Stops (always ask, even in autonomous mode):**
-- Creating new .md files
-- Editing `.claude/` or `.cursor/` directories
-- Git push, force push, or branch operations
-- Editing CONSTITUTION.md
-- Editing existing skills
-- Any action outside scope explicitly approved in 1A phase
-
-**Pre-Approved (can do autonomously):**
-- Read/Edit/Write in `game/`, `tests/`, `addons/`, `scripts/` directories
-- Run tests (headless or via MCP)
-- Git commands: add, commit, status, diff, log
-- Edit existing .md files (using `/skill confident-language-guard` first)
-- Create new code files (.gd, .cs, .tscn, etc.)
-- Create bug reports in `.claude/learnings/bugs/`
-- Create loop reports in `.claude/learnings/loops/`
-- Update `.claude/learnings/INDEX.md` when adding entries
-
-### Capabilities
-- Execute tasks from ROADMAP.md
-- Run tests and report failures
-- Apply existing skills
-- Create bug reports in `.claude/learnings/bugs/`
-- Create loop reports in `.claude/learnings/loops/`
-- Update `.claude/learnings/INDEX.md` when adding entries
-- Implement features following established patterns
-- Fix bugs using `/skill systematic-debugging`
-
-### Restrictions
-- **CANNOT edit CONSTITUTION.md** (immutable technical rules)
-- **CANNOT edit existing skills** (can create new ones with approval)
-- **CANNOT use absolute language in documentation** ("always", "never", "must", "all", "every", "none", "100%", "guaranteed", "impossible", "can't", "won't", "only way")
-- **MUST invoke `/skill confident-language-guard`** before editing ANY .md file
-- **MUST sign all changes:** `[Codex - YYYY-MM-DD]` at end of editing session
-
-### When Blocked
-1. Invoke `/skill loop-detection` if stuck in testing loops
-2. Invoke `/skill blocked-and-escalating` if completely stuck
-3. Create structured escalation report
-4. Escalate to Tier 2 (Senior Engineer) via GitHub issue or learnings entry
+### Signature
+All .md edits: `[Opus 4.5 - YYYY-MM-DD]` or `[Sonnet 4.5 - YYYY-MM-DD]`
 
 ---
 
-## Tier 2: Senior Engineer (Sonnet 4.5)
+## Tier 2: Subagent (Worker)
 
-**Model:** Claude Sonnet 4.5
+**Models:** Kimi K2.5, GLM-4.7, GLM-4.6v, MiniMax M2.1
 
-### Permissions in 2A Phase
+### Provider Strengths
 
-**Hard Stops (always ask, even in autonomous mode):**
-- Creating new .md files
-- Editing `.cursor/` directory
-- Git push, force push, or branch operations
-- Editing CONSTITUTION.md
-- Any action outside scope explicitly approved in 1A phase
+| Provider | Best For | Context |
+|----------|----------|---------|
+| **Kimi K2.5** | Complex reasoning, vision | 256K |
+| **GLM-4.7** | Creative tasks, brainstorming | 128K |
+| **GLM-4.6v** | Image analysis | 128K |
+| **MiniMax** | Fast simple tasks, web search | 128K |
 
-**Pre-Approved (can do autonomously):**
-- All Tier 1 pre-approved actions
-- Read/Edit/Write in `.claude/` (except new .md files)
-- Create new skills using `/skill skill-creator`
-- Edit existing skills
-- Edit ROADMAP.md and implementation plans in `docs/plans/`
-- Make architectural decisions within existing patterns
-- Review and approve Tier 1 work
-- Modify AGENTS.md for operational rules
+### What Subagents Do
+- Exploration and research
+- File reading and pattern finding
+- Image analysis (batch)
+- Web documentation lookup
+- Code review (blind spot detection)
 
-### Capabilities
-- **All Tier 1 capabilities**
-- Create new skills using `/skill skill-creator`
-- Edit ROADMAP.md and implementation plans in `docs/plans/`
-- Make architectural decisions within existing patterns
-- Review and approve Tier 1 work
-- Question overly rigid directives (recommended)
-- Modify AGENTS.md for operational rules
+### What Subagents Don't Do
+- Make final decisions (report back to Claude)
+- Write production code (Claude writes, subagent reviews)
+- Spawn other subagents
 
-### Restrictions
-- **CANNOT edit CONSTITUTION.md without user approval** (requires user confirmation)
-- **SHOULD question overly rigid directives** before implementing them
-- **SHOULD use qualified language** ("typically", "often", "recommended") rather than absolutes
-- **MUST sign all changes:** `[Sonnet 4.5 - YYYY-MM-DD]`
+### Launchers
+```powershell
+# Kimi K2.5 (most capable)
+.\scripts\start-kimi.ps1
 
-### Responsibilities
-- Review Tier 1 escalations
-- Identify skill gaps using `/skill skill-gap-finder`
-- Create skills when patterns emerge (2+ similar bugs)
-- Maintain learnings INDEX.md organization
-- Ensure code quality and test coverage
-
----
-
-## Tier 3: Principal Architect (Opus)
-
-**Model:** Claude Opus 4.5
-
-### Permissions in 2A Phase
-
-**Hard Stops (always ask, even in autonomous mode):**
-- Creating new .md files
-- Editing `.cursor/` directory
-- Git push, force push, or branch operations
-- Any action outside scope explicitly approved in 1A phase
-
-**Pre-Approved (can do autonomously):**
-- All Tier 2 pre-approved actions
-- Edit CONSTITUTION.md (immutable technical rules)
-- Define new processes and workflows
-- Resolve architectural conflicts
-- Approve major refactorings
-- Make decisions on tool/framework choices
-- Set project-wide standards
-
-### Capabilities
-- **All Tier 2 capabilities**
-- Edit CONSTITUTION.md (immutable technical rules)
-- Define new processes and workflows
-- Resolve architectural conflicts
-- Approve major refactorings
-- Make decisions on tool/framework choices
-- Set project-wide standards
-
-### Restrictions
-- **SHOULD prefer delegation over direct implementation** (teach, don't do)
-- **MUST sign all changes:** `[Opus 4.5 - YYYY-MM-DD]`
-
-### Responsibilities
-- Strategic planning and roadmap evolution
-- Architectural reviews
-- Process improvements
-- Skill ecosystem curation
-- Final escalation point before user
-
----
-
-## Signature Requirements
-
-All agents must sign their edits to .md files for traceability:
-
-**Format:** `[ModelName - YYYY-MM-DD]` at the end of an editing session
-
-**Examples:**
-- `[Codex - 2025-12-29]`
-- `[GLM-4.7 - 2026-01-20]`
-- `[Sonnet 4.5 - 2025-12-29]`
-- `[Opus 4.5 - 2025-12-29]`
-
-**When to sign:**
-- At end of editing session (not per line)
-- After making any changes to .md files
-- In commit messages for major changes
-
-**Why:**
-- Enables tracing which agent made which changes
-- Identifies tier-inappropriate edits
-- Creates accountability and learning opportunities
-
----
-
-## Escalation Paths
-
-```
-Tier 1 (Codex) → Tier 2 (Sonnet 4.5) → Tier 3 (Opus 4.5) → User
+# MiniMax (fast, cheap)
+.\scripts\start-claude-minimax.ps1
 ```
 
-**When to escalate:**
+---
 
-**From Tier 1 to Tier 2:**
-- Stuck in loop (after 3 attempts at same goal)
-- Need to create new skill
-- Need architectural decision
-- Permission violation (can't edit required file)
+## Token Economics
 
-**From Tier 2 to Tier 3:**
-- CONSTITUTION.md change needed
-- Major architectural refactoring
-- Process/workflow change needed
-- Unresolved conflict between patterns
+**Claude tokens = 50x more expensive than subagent tokens**
 
-**From Tier 3 to User:**
-- External dependency blocking work
-- Strategic decision needed
-- Resource/budget decision
-- Clarification of requirements
+This means:
+- 1 hour of Claude exploration = 50 hours of subagent exploration (cost-wise)
+- Always delegate exploration to subagents
+- Claude should reason on subagent-gathered data
+
+### Hard Stop
+**NEVER spawn Claude models (Haiku, Sonnet, Opus) as subagents.**
+
+Enforced in `.claude/settings.local.json`:
+```json
+"deny": [
+  "Task(model:haiku*)",
+  "Task(model:sonnet*)",
+  "Task(model:opus*)"
+]
+```
 
 ---
 
-## Guardian Skills Reference
+## Delegation Patterns
 
-All tiers should use these skills when appropriate:
+### Pattern 1: Research First
+```
+1. Claude receives task
+2. Claude spawns MiniMax to explore codebase
+3. MiniMax reports findings
+4. Claude reasons and implements
+```
 
-- **Stuck in loop?** → `/skill loop-detection`
-- **Editing documentation?** → `/skill confident-language-guard` (mandatory for Tier 1)
-- **Repeated similar errors?** → `/skill skill-gap-finder`
-- **Debugging?** → `/skill systematic-debugging`
-- **Completing work?** → `/skill verification-before-completion`
-- **Completely blocked?** → `/skill blocked-and-escalating`
+### Pattern 2: Batch Analysis
+```
+1. Claude needs to analyze 20 images
+2. Claude spawns Kimi K2.5 for vision
+3. Kimi reports analysis
+4. Claude makes decisions based on report
+```
 
-See `.claude/skills/` for complete skill documentation.
-
----
-
-## Learnings System Integration
-
-**Before starting work:**
-1. Check `.claude/learnings/INDEX.md` for relevant category
-2. Read matching learnings to avoid repeating mistakes
-3. Follow successful patterns documented
-
-**When encountering errors:**
-1. Create learning entry (bugs/loops/patterns)
-2. Update INDEX.md with categorization
-3. Check for similar learnings (2+ similar = invoke `/skill skill-gap-finder`)
-
-**Status field in learnings:**
-- `active` - Current, relevant learning
-- `archived` - Outdated or no longer applicable
-- `superseded-by-skill-name` - Pattern captured in skill
+### Pattern 3: Code Review
+```
+1. Claude writes code
+2. Claude spawns subagent for blind spot review
+3. Subagent reports concerns
+4. Claude addresses or dismisses
+```
 
 ---
 
-## Philosophy
+## Escalation
 
-**High autonomy with safety rails:**
-- Agents should make decisions and learn from mistakes
-- Guardian skills catch common failure modes
-- Permission hierarchy prevents cascading errors
-- Learnings create organizational memory
+```
+Subagent → Claude → Sam (user)
+```
 
-**Qualified over absolute:**
-- Use "typically", "often", "recommended" instead of "always", "never", "must"
-- Technical rules in CONSTITUTION.md CAN be absolute
-- Process guidance should allow for exceptions
+**Subagent to Claude:**
+- Task complete (report findings)
+- Ambiguous requirements
+- Need decision on approach
 
-**Escalate, don't workaround:**
-- When blocked, create structured escalation report
-- Don't create "workaround documentation"
-- Trust the tier system to resolve issues
+**Claude to Sam:**
+- External blockers
+- Scope clarification needed
+- Major structural changes
+- Blocked >30 minutes
 
-**Self-improvement over rigidity:**
-- Create new skills when patterns emerge
-- Update learnings when new information discovered
-- Question outdated directives
-- Evolve processes based on experience
+---
 
-[Codex - 2026-01-22]
+## 1A2A Workflow (Preserved)
+
+**1A (Ask Phase):** Plan and get approval
+- Create task list via TodoWrite
+- Identify required permissions
+- User approval before proceeding
+
+**2A (Autonomous Phase):** Execute approved plan
+- Work through tasks systematically
+- Handle blockers gracefully
+- Summarize at end
+
+**When to skip 1A:** Single-line fixes, clear requirements, pure research
+
+---
+
+## Skills Reference
+
+| Situation | Skill |
+|-----------|-------|
+| Complex delegation | `/skill delegation` |
+| Kimi setup | `/skill kimi-k2.5` |
+| Token efficiency | `/skill token-efficient-delegation` |
+| Stuck in loop | `/skill loop-detection` |
+| Debugging | `/skill systematic-debugging` |
+
+---
+
+[Opus 4.5 - 2026-01-29]
